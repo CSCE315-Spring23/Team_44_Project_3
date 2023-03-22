@@ -1,0 +1,12 @@
+{
+	"name": "BackEnd",
+	"version": "1.0.0",
+	"description": "Back End Code.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Dai, Kevin; Davis, Sloan; Kuppa Jayaram, Shreeman; Lai, Huy; Mao, Steven",
+	"license": "GPL-3.0"
+}
