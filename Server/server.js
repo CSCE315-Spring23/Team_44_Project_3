@@ -1,14 +1,12 @@
 const express = require('express');
 const path = require('path');
-const app = express();
+const app = require('./app.js');
 
 const orderhistory = require("./Database/OrderHistory/OrderHistory.js");
 
 const port = 3001;
 
-app.use(express.static(path.join(__dirname, '../Client/dist')));
-
-//app.get("/", orderhistory);
+app.get("/", orderhistory);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

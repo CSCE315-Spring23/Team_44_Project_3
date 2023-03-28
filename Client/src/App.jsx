@@ -7,7 +7,7 @@ function App() {
 	const [orderHistory, setOrderHistory] = useState([])
 
 	useEffect(() => {
-		fetch(`${HOST}/orderhistory/getOrders`)
+		fetch(`${HOST}/api/orderhistory/getOrders`)
 			.then(res => res.json())
 			.then(data => {
 				setOrderHistory(data)
