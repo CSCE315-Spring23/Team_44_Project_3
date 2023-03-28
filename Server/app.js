@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require('path');
 
 const port = 3001;
 
@@ -12,8 +13,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/", (req, res) => {
-    res.send("Starting Page");
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Client/dist/index.html'));
 });
 
 

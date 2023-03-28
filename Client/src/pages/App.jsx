@@ -16,7 +16,7 @@ function App() {
 
 	return (
 		<div className="App">
-
+			Hello World!
 			<ul>
 				{orderHistory.map(order => (
 					<li key={order.id}>{order.id}, {order.customer_name}, {order.total_cost}, {order.date}, {order.employee_id}</li>
