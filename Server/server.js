@@ -1,26 +1,13 @@
-const express = require("express");
+const app = require("./app.js");
 
-const app = express();
+const orderhistory = require("./Database/OrderHistory/OrderHistory.js");
+
 const port = 3001;
 
-const test = require("./Database/OrderQueries/test.js");
+app.get("/", orderhistory);
 
-app.use(express.json())
-
-
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Example app listening at http://localhost:${port}`)
 });
 
-
-app.get("/orderhistory/getOrders", (req, res) => {
-    test.getOrders((data) => {
-        res.send(data.rows);
-    });
-});
