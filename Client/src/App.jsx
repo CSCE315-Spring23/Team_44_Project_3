@@ -1,10 +1,21 @@
-import {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+
 function App() {
 	const [count, setCount] = useState(0)
+	const [orderItems, setOrderItems] = useState([])
+
+
+	useEffect(() => {
+		fetch('http://localhost:3001/orderhistory/getOrders')
+			.then((res) => res.json())
+			.then((data) => {
+				setOrderItems(data)
+			})
+	}, [])
 
 	return (
 		<div className="App">
@@ -28,6 +39,12 @@ function App() {
 			<p className="read-the-docs">
 				Click on the Vite and React logos to learn more
 			</p>
+
+			<ul>
+				{orderItems.map((item) => (
+					<li key={item.id}>{item.id}, {item.customer_name}, {item.total_cost}, {item.date}, {item.employee_id}</li>
+				))}
+			</ul>
 		</div>
 	)
 }
