@@ -1,6 +1,0 @@
-This is a dummy file so the folder will show on git
-
-
-This folder is for different components that show on the pages
-
-For example, the side navbar, tables, etc.

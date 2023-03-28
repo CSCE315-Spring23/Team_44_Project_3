@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-import { HOST } from '../utils/constants/host'
+import { HOST } from './utils/host'
 
 function App() {
 

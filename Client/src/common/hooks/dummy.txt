@@ -1,8 +1,0 @@
-This is a dummy file so the folder will show on git
-
-folder for custom hooks to be used in the project
-
-"Hooks are functions that let you “hook into” React state and lifecycle features from function components.
-Hooks don't work inside classes — they let you use React without classes."
-
-- source -> React
