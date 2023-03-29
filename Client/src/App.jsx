@@ -28,7 +28,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Login />}></Route>
+				<Route path="/Login" element={<Login />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);
