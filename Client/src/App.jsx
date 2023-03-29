@@ -5,9 +5,9 @@ import Login from './pages/Login.jsx';
 
 function App() {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename='/'>
 			<Routes>
-				<Route path="/Login" element={<Login />}></Route>
+				<Route path="Login" element={<Login />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);
