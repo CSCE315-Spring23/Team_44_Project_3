@@ -5,7 +5,8 @@ const port = 3001;
 
 
 // include database helper funcs
-const orderHistoryFuncs = require("./Database/OrderHistory/OrderHistoryFunctions");
+const orderHistoryRouter = require("./api/Database/OrderHistory.js");
+
 
 // connect to static react app
 app.use(express.static(path.join(__dirname, '../Client/dist')));
@@ -18,11 +19,13 @@ app.use((req, res, next) => {
 
 /* here we will include any other app.get() endpoints that we keep in other files */
 
-app.get('/api/getOrders', (req, res) => {
-    orderHistoryFuncs.getOrders((result) => {
-        res.send(result.rows);
-    });
-});
+app.use('/', orderHistoryRouter);
+
+
+
+
+
+
 
 //catch all other routes and direct them to react
 app.get('*', (req, res) => {
@@ -33,3 +36,5 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 });
+
+module.exports = app;

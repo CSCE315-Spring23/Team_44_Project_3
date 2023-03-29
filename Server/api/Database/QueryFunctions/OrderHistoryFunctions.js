@@ -1,8 +1,6 @@
-const ORDER_ITEM_DATABASE = require('../DatabaseNames.js').ORDER_ITEM_DATABASE;
-const MENU_ITEM_DATABASE = require('../DatabaseNames.js').MENU_ITEM_DATABASE;
-const SOLD_ITEM_DATABASE = require('../DatabaseNames.js').SOLD_ITEM_DATABASE;
+const { ORDER_ITEM_DATABASE, MENU_ITEM_DATABASE, SOLD_ITEM_DATABASE } = require('../Info/DatabaseNames.js');
 
-const db = require('../DatabaseConnect.js');
+const db = require('../Info/DatabaseConnect.js');
 
 // Get the last 30 orders
 function getOrders(callback) {
