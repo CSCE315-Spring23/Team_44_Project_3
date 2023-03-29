@@ -9,7 +9,7 @@ const api_path = "/api/orderhistory";
 orderHistoryRouter.get(api_path+"/getOrders", (req, res) => {
     functions.getOrders((result) => {
         res.send(result.rows);
-    });
+    });                           
 });
 
 orderHistoryRouter.get(api_path+"/getOrderInformation/", (req, res) => {
