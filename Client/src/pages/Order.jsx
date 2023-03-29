@@ -29,9 +29,9 @@ function Order() {
 			<body>
 				<ul role="list">
 					<li role="listitem">
-						<button data-cy="MOBILE_BREAKFAST" class="breakfast">
+						<button data-cy="MOBILE_BREAKFAST" class="menuButton">
 							<div class="image">
-								<img alt="Breakfast" src={breakfast} data-cy="ProductImageAvailable" aria-hidden="true" class="menuImg" />
+								<img alt="Breakfast" src={breakfast} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
 							</div>
 							<div class="name">
 								<h3 class="name">Breakfast</h3>
@@ -39,9 +39,9 @@ function Order() {
 						</button>
 					</li>
 					<li role="listitem">
-						<button data-cy="MOBILE_MEALS" class="meals">
+						<button data-cy="MOBILE_MEALS" class="menuButton">
 							<div class="image">
-								<img alt="Meals" src={meal} data-cy="ProductImageAvailable" aria-hidden="true" class="menuImg" />
+								<img alt="Meals" src={meal} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
 							</div>
 							<div class="name">
 								<h3 class="name">Meals</h3>
@@ -49,9 +49,9 @@ function Order() {
 						</button>
 					</li>
 					<li role="listitem">
-						<button data-cy="MOBILE_ENTREE" class="entree">
+						<button data-cy="MOBILE_ENTREE" class="menuButton">
 							<div class="image">
-								<img alt="Entrées" src={entree} data-cy="ProductImageAvailable" aria-hidden="true" class="menuImg" />
+								<img alt="Entrées" src={entree} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
 							</div>
 							<div class="name">
 								<h3 class="name">Entrées</h3>
@@ -59,9 +59,9 @@ function Order() {
 						</button>
 					</li>
 					<li role="listitem">
-						<button data-cy="MOBILE_SIDES" class="sides">
+						<button data-cy="MOBILE_SIDES" class="menuButton">
 							<div class="image">
-								<img alt="Meals" src={sides} data-cy="ProductImageAvailable" aria-hidden="true" class="menuImg" />
+								<img alt="Meals" src={sides} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
 							</div>
 							<div class="name">
 								<h3 class="name">Sides</h3>
@@ -69,9 +69,9 @@ function Order() {
 						</button>
 					</li>
 					<li role="listitem">
-						<button data-cy="MOBILE_BEVERAGES" class="beverage">
+						<button data-cy="MOBILE_BEVERAGES" class="menuButton">
 							<div class="image">
-								<img alt="Beverages" src={beverage} data-cy="ProductImageAvailable" aria-hidden="true" class="menuImg" />
+								<img alt="Beverages" src={beverage} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
 							</div>
 							<div class="name">
 								<h3 class="name">Beverages</h3>
@@ -79,9 +79,9 @@ function Order() {
 						</button>
 					</li>
 					<li role="listitem">
-						<button data-cy="MOBILE_SALADS" class="salad">
+						<button data-cy="MOBILE_SALADS" class="menuButton">
 							<div class="image">
-								<img alt="Salad" src={salad} data-cy="ProductImageAvailable" aria-hidden="true" class="menuImg" />
+								<img alt="Salad" src={salad} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
 							</div>
 							<div class="name">
 								<h3 class="name">Salads</h3>
@@ -89,9 +89,9 @@ function Order() {
 						</button>
 					</li>
 					<li role="listitem">
-						<button data-cy="MOBILE_TREATS" class="treats">
+						<button data-cy="MOBILE_TREATS" class="menuButton">
 							<div class="image">
-								<img alt="Treats" src={treats} data-cy="ProductImageAvailable" aria-hidden="true" class="menuImg" />
+								<img alt="Treats" src={treats} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
 							</div>
 							<div class="name">
 								<h3 class="name">Treats</h3>
@@ -99,9 +99,9 @@ function Order() {
 						</button>
 					</li>
 					<li role="listitem">
-						<button data-cy="MOBILE_KID_MENU" class="kid_menu">
+						<button data-cy="MOBILE_KID_MENU" class="menuButton">
 							<div class="image">
-								<img alt="Kid's Menu" src={kid_menu} data-cy="ProductImageAvailable" aria-hidden="true" class="menuImg" />
+								<img alt="Kid's Menu" src={kid_menu} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
 							</div>
 							<div class="name">
 								<h3 class="name">Kid's Menu</h3>
@@ -109,9 +109,9 @@ function Order() {
 						</button>
 					</li>
 					<li role="listitem">
-						<button data-cy="MOBILE_SAUCE" class="sauce">
+						<button data-cy="MOBILE_SAUCE" class="menuButton">
 							<div class="image">
-								<img alt="sauce" src={sauce} data-cy="ProductImageAvailable" aria-hidden="true" class="menuImg" />
+								<img alt="sauce" src={sauce} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
 							</div>
 							<div class="name">
 								<h3 class="name">Sauce</h3>

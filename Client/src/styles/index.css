@@ -14,8 +14,32 @@
 	-webkit-text-size-adjust: 100%;
 }
 
+button.menuButton {
+	display: flex;
+	flex-direction: column;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	width: 270px;
+	height: 279px;
+	padding: 23px;
+	position: relative;
+	margin: auto;
+	border-radius: 8px;
+	border: 2px solid transparent;
+	background: 0px center;
+	text-align: left;
+	font-family: inherit;
+}
+
 header {
 	text-align: center;
+}
+
+img.menuIMG {
+	max-height: 100%;
+	max-width: 100%;
 }
 
 ul {
