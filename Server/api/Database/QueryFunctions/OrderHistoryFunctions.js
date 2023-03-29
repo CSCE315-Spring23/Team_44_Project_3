@@ -2,13 +2,37 @@ const { ORDER_ITEM_DATABASE, MENU_ITEM_DATABASE, SOLD_ITEM_DATABASE } = require(
 
 const db = require('../Info/DatabaseConnect.js');
 
-// Get the last 30 orders
+/*
+    Get the last 30 orders
+
+    @return: JSON object with the following format:
+    {
+        "id": "number",
+        "customer_name": "string",
+        "total_cost": "number",
+        "date": "string",
+        "employee_id": "number"
+    }
+*/
 function getOrders(callback) {
     db.query('SELECT * FROM ' + ORDER_ITEM_DATABASE + ' ORDER BY id DESC LIMIT 30', [], (err, res) => {
         callback(res);
     });
 }
 
+
+/*
+    Get the order information for a specific order
+
+    @param: Order ID
+    @return: JSON object with the following format:
+    {
+        "name": "string",
+        "cost": "number",
+        "totalSold": "number"
+    }
+
+*/
 function getOrderInformation(callback, id) {
 
     db.query(`SELECT ${MENU_ITEM_DATABASE}.name, ${MENU_ITEM_DATABASE}.cost, COUNT(*) as totalSold FROM ${SOLD_ITEM_DATABASE}
