@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-function Login(){
+function Login() {
     return(
         <>
             <h1>Test Login Page</h1>

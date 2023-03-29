@@ -13,6 +13,7 @@ function App() {
 	// 		.then(data => {
 	// 			setOrderHistory(data)
 	// 		})
+	//		.catch(err => console.log(err))
 	// }, [])
 
 	// return (
