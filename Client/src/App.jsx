@@ -4,7 +4,8 @@ import { HOST } from './utils/host';
 import Login from './pages/Login.jsx';
 import CustomerOrder from './pages/customer/CustomerOrder.jsx';
 import OrderHistory from './pages/employee/OrderHistory';
-import Order from './pages/employee/Order'
+import Order from './pages/employee/Order';
+import EmployeeRoutes from './routes/EmployeeRoutes';
 
 function App() {
 	return (
@@ -13,11 +14,8 @@ function App() {
 				<Route path="/" element={<Login />} />
 				<Route path="/Login" element={<Login />} />
 				<Route path="/CustomerOrder" element={<CustomerOrder />} />
-				<Route path="/employee">
-					<Route path='order' element={<Order />}></Route>
-					<Route path='orderHistory' element={<OrderHistory />}></Route>
-				</Route>
 			</Routes>
+			<EmployeeRoutes />
 		</BrowserRouter>
 	);
 }
