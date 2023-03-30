@@ -6,6 +6,7 @@ const port = 3001;
 
 // include database helper funcs
 const orderHistoryRouter = require("./api/Database/OrderHistory.js");
+const employeeRouter = require("./api/Database/Employee.js");
 const weatherRouter = require("./api/Weather/Weather.js");
 
 
@@ -21,6 +22,7 @@ app.use((req, res, next) => {
 /* here we will include any other app.get() endpoints that we keep in other files */
 
 app.use('/', orderHistoryRouter);
+app.use('/', employeeRouter);
 app.use('/', weatherRouter);
 
 
