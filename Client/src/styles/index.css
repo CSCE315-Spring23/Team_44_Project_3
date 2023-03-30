@@ -42,6 +42,13 @@ img.menuIMG {
 	max-width: 100%;
 }
 
-ul {
+ul.menu {
+	height: 100%;
+	width: 100%;
+	max-width: 1660px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	padding-bottom: 28px;
+	gap: 28px;
 	list-style: none;
 }

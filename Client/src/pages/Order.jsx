@@ -27,7 +27,7 @@ function Order() {
 			</header>
 
 			<body>
-				<ul role="list">
+				<ul data-cy="MenyCategoryList" class="menu" role="list">
 					<li role="listitem">
 						<button data-cy="MOBILE_BREAKFAST" class="menuButton">
 							<div class="image">
