@@ -1,12 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import style from "../../styles/index.css";
 import icon from "../../assets/logo.svg"
-import meal from "../../assets/categories/meals.png";
-import entree from "../../assets/categories/entree.png";
-import beverage from "../../assets/categories/beverages.png";
-import salad from "../../assets/categories/salads.png";
-import treats from "../../assets/categories/treats.png";
-import sauce from "../../assets/categories/sauces.png";
+
+const categories = [
+	{title: "Meals", src: "/assets/categories/meals.png", key: 1},
+	{title: "Entrées", src: "/assets/categories/entree.png", key: 2},
+	{title: "Beverages", src: "/assets/categories/beverages.png", key: 3},
+	{title: "Salads", src: "/assets/categories/salads.png", key: 4},
+	{title: "Treats", src: "/assets/categories/treats.png", key: 5},
+	{title: "Sauces", src: "/assets/categories/sauces.png", key: 6}
+];
+
+const categoryList = categories.map(item =>
+	<li role="listitem">
+		<button data-cy={"\"" + item.title + "\""} class="menuButton">
+			<div class="image">
+				<img alt={item.title} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
+			</div>
+			<div class="name">
+				<h3 class="name">{item.title}</h3>
+			</div>
+		</button>
+	</li>
+);
 
 function CustomerOrder() {
 	return (
@@ -25,6 +41,8 @@ function CustomerOrder() {
 
 			<body>
 				<ul data-cy="MenyCategoryList" class="menu" role="list">
+					{categoryList}
+					{/*
 					<li role="listitem">
 						<button data-cy="MOBILE_MEALS" class="menuButton">
 							<div class="image">
@@ -85,6 +103,8 @@ function CustomerOrder() {
 							</div>
 						</button>
 					</li>
+					*/}
+
 				</ul>
 			</body>
 		</html>
