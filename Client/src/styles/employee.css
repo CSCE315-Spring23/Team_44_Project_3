@@ -1,0 +1,19 @@
+nav.empNav{
+    background-color: #F4F8F9;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+button.empNavButton{
+    text-align: center;
+    color: black;
+    background-color: white;
+    font-weight: bold;
+}
+
+button.empNavButton.current{
+    color: white;
+    background-color: #DD0031;
+}
