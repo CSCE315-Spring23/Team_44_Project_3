@@ -27,7 +27,8 @@ a.empNavButton {
     justify-content: center;
     box-shadow: 0px 3px 3px grey;
 }
-a.empNavButton:hover{
+
+a.empNavButton:hover {
     box-shadow: 0px 0px 3px grey;
 }
 

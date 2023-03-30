@@ -4,8 +4,8 @@ import '../../styles/employee.css'
 
 export default function OrderHistory() {
     return (
-    <>
-    <EmployeeNav></EmployeeNav>
-    </>
+        <>
+            <EmployeeNav></EmployeeNav>
+        </>
     );
 }
