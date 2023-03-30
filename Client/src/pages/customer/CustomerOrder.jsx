@@ -1,15 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import style from "../styles/index.css";
-import icon from "../assets/logo.svg"
-import breakfast from "../assets/breakfast_display.png";
-import meal from "../assets/meal_display.png";
-import entree from "../assets/entree_display.png";
-import sides from "../assets/sides_display.png";
-import beverage from "../assets/beverages_display.png";
-import salad from "../assets/salad_display.png";
-import treats from "../assets/treats_display.png";
-import kid_menu from "../assets/kids_meal_display.png";
-import sauce from "../assets/sauce_display.png";
+import style from "../../styles/index.css";
+import icon from "../../assets/logo.svg"
+import meal from "../../assets/categories/meals.png";
+import entree from "../../assets/categories/entree.png";
+import beverage from "../../assets/categories/beverages.png";
+import salad from "../../assets/categories/salads.png";
+import treats from "../../assets/categories/treats.png";
+import sauce from "../../assets/categories/sauces.png";
 
 function CustomerOrder() {
 	return (
@@ -29,16 +26,6 @@ function CustomerOrder() {
 			<body>
 				<ul data-cy="MenyCategoryList" class="menu" role="list">
 					<li role="listitem">
-						<button data-cy="MOBILE_BREAKFAST" class="menuButton">
-							<div class="image">
-								<img alt="Breakfast" src={breakfast} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
-							</div>
-							<div class="name">
-								<h3 class="name">Breakfast</h3>
-							</div>
-						</button>
-					</li>
-					<li role="listitem">
 						<button data-cy="MOBILE_MEALS" class="menuButton">
 							<div class="image">
 								<img alt="Meals" src={meal} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
@@ -55,16 +42,6 @@ function CustomerOrder() {
 							</div>
 							<div class="name">
 								<h3 class="name">Entrées</h3>
-							</div>
-						</button>
-					</li>
-					<li role="listitem">
-						<button data-cy="MOBILE_SIDES" class="menuButton">
-							<div class="image">
-								<img alt="Meals" src={sides} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
-							</div>
-							<div class="name">
-								<h3 class="name">Sides</h3>
 							</div>
 						</button>
 					</li>
@@ -95,16 +72,6 @@ function CustomerOrder() {
 							</div>
 							<div class="name">
 								<h3 class="name">Treats</h3>
-							</div>
-						</button>
-					</li>
-					<li role="listitem">
-						<button data-cy="MOBILE_KID_MENU" class="menuButton">
-							<div class="image">
-								<img alt="Kid's Menu" src={kid_menu} data-cy="ProductImageAvailable" aria-hidden="true" class="menuIMG" />
-							</div>
-							<div class="name">
-								<h3 class="name">Kid's Menu</h3>
 							</div>
 						</button>
 					</li>
