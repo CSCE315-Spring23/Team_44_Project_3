@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet';
 import CategoryItem from '../../components/CategoryItem';
 
-import style from "../../styles/index.css";
-import icon from "../../assets/logo.svg"
 import images from '../../utils/imageImport';
 
 const categories = [
@@ -34,9 +32,9 @@ function CustomerOrder() {
 			<header>
 				<h1>Place an order</h1>
 			</header>
-				<ul data-cy="MenyCategoryList" className="menu" role="list">
-					{categoryList}
-				</ul>
+			<ul data-cy="MenuCategoryList" className="menu" role="list">
+				{categoryList}
+			</ul>
 		</>
 	);
 }
