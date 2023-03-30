@@ -19,11 +19,5 @@ orderHistoryRouter.get(api_path+"/getOrderInformation/", (req, res) => {
 });
 
 
-orderHistoryRouter.post(api_path+"/addOrder", (req, res) => {
-    functions.addOrder((result) => {
-        res.send(result.rows);
-    }, req.body);
-});
-
 module.exports = orderHistoryRouter;
 

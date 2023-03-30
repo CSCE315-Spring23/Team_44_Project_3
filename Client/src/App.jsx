@@ -12,6 +12,7 @@ function App() {
 				<Route path="/" element={<Login />} />
 				<Route path="/Login" element={<Login />} />
 				<Route path="/CustomerOrder" element={<Order />} />
+				<Route path = "/ServerTest" element = {<ServerTest />} />
 			</Routes>
 		</BrowserRouter>
 	);
