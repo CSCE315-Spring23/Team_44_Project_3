@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import images from '../utils/imageImport';
 
-
+/**
+ * 
+ * @param {*} props 
+ * @returns a component to render a food category onto the CustomerOrder screen 
+ */
 export default function CategoryItem(props) {
     const item = props.item;
     return (

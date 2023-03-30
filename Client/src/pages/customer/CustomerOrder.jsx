@@ -15,6 +15,8 @@ const categories = [
 	{title: "Sauces", src: images.sauces, key: 6}
 ];
 
+
+// create list of category elements to be ordered
 const categoryList = categories.map(item =>
 	<CategoryItem key={item.key} item={item}></CategoryItem>
 );
@@ -22,20 +24,18 @@ const categoryList = categories.map(item =>
 function CustomerOrder() {
 	return (
 		<>
-			<Helmet>
-				<meta charSet="UTF-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			{/* Set html head elements. currently commented because this is set in index.html */}
+			{/* <Helmet>
 				<title>Chick-fil-A</title>
 				<link rel="icon" href={icon} />
 				<link rel="stylesheet" href={style} />
-			</Helmet>
+			</Helmet> */}
 
 			<header>
 				<h1>Place an order</h1>
 			</header>
 				<ul data-cy="MenyCategoryList" className="menu" role="list">
 					{categoryList}
-
 				</ul>
 		</>
 	);

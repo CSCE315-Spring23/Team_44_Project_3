@@ -5,6 +5,10 @@ import salads from "../assets/categories/salads.png";
 import sauces from "../assets/categories/sauces.png";
 import treats from "../assets/categories/treats.png";
 
+
+/**
+ * Make it easier to import multiple images by separating imports into a separate file
+ */
 export default{
     beverages,
     entree,
