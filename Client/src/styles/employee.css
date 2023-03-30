@@ -1,7 +1,6 @@
 nav.empNav {
-    padding-top: .5em;
     position: absolute;
-    width: 30%;
+    width: 15%;
     height: 100%;
     background-color: #F4F8F9;
     display: flex;
@@ -11,6 +10,7 @@ nav.empNav {
 }
 
 a.empNavButton {
+    margin-top: 1em;
     text-align: center;
     text-decoration: none;
     min-width: 80%;
