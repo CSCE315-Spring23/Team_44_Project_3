@@ -15,9 +15,8 @@ const apiPath = "/api/inventory";
     @param: quantity - quantity of the item
     @return: None
 */
-//TODO: Idk why .post() doesn't work here, but .get() does
-inventoryRouter.post(apiPath+"/insertInventoryItem", async (req, res) => {
-    try{
+inventoryRouter.post(apiPath + "/insertInventoryItem", async (req, res) => {
+    try {
         console.log(req.body)
         const name = req.body.name;
         const quantity = req.body.quantity;
@@ -26,9 +25,9 @@ inventoryRouter.post(apiPath+"/insertInventoryItem", async (req, res) => {
         const id = lastid.rows[0].max + 1;
         const response = await db.query(`INSERT INTO ${INVENTORY_DATABASE} (id, name, quantity, threshold) VALUES (${id}, '${name}', ${quantity}, 50)`);
 
-        res.status(200).json({message: `Item ${id}: ${name} inserted successfully`});
-    } catch(err){
-        res.status(500).json({message: "Error inserting item into inventory database"});
+        res.status(200).json({ message: `Item ${id}: ${name} inserted successfully` });
+    } catch (err) {
+        res.status(500).json({ message: "Error inserting item into inventory database" });
     }
 });
 
@@ -40,20 +39,19 @@ inventoryRouter.post(apiPath+"/insertInventoryItem", async (req, res) => {
     @param: id - id of the item to delete
     @return: None
 */
-//TODO: Idk why .post() doesn't work here, but .get() does
-inventoryRouter.post(apiPath+"/deleteInventoryItem", async (req, res) => {
-    try{
+inventoryRouter.post(apiPath + "/deleteInventoryItem", async (req, res) => {
+    try {
         console.log(req.body)
         const id = req.body.id;
 
         const response = await db.query(`DELETE FROM ${INVENTORY_DATABASE} WHERE id = ${id}`, (err, res) => {
-            if(err){
+            if (err) {
                 console.log(err);
             }
         });
-        res.status(200).json({message: `Item ${id} deleted successfully`});
-    } catch(err){
-        res.status(500).json({message: "Error deleting item from inventory database"});
+        res.status(200).json({ message: `Item ${id} deleted successfully` });
+    } catch (err) {
+        res.status(500).json({ message: "Error deleting item from inventory database" });
     }
 });
 
