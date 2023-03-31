@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet';
 import {Outlet} from 'react-router-dom';
-import CategoryItem from '../../components/CategoryItem';
+import AddMenuItem from '../../components/AddMenuItem';
 
 import entreeImages from '../../utils/entreeImages';
 
@@ -20,7 +20,7 @@ const menu = [
 ];
 
 const menuList = menu.map(item =>
-    <CategoryItem key={item.key} item={item}></CategoryItem>
+    <AddMenuItem key={item.key} item={item}></AddMenuItem>
 );
 
 function Entree() {
