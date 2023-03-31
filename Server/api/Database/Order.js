@@ -6,14 +6,13 @@ const { ORDER_ITEM_DATABASE, MENU_ITEM_DATABASE, SOLD_ITEM_DATABASE } = require(
 
 /*
     Query Database for Menu Items
-    @param: None
-    @return: JSON object with the format: list[{id: int, name: string, cost: string, numbersold: int}]
-        ex: [ { "id": 5, "name": "Sandwich", "cost": "4.23", "numbersold": 2000 } ]
+    @param: none
+    @return: JSON object: list[{id: int, name: string, cost: string, numbersold: int}]
+        ex: [ { "id": 5, "name": "Sandwich", "cost": "4.23", "numbersold": 2000 }, ... ]
 */
 orderRouter.get(apiPath + "/getMenu", async (req, res) => {
-    console.log('hello there!');
     try {
-        const response = await db.query(`SELECT * FROM ${MENU_ITEM_DATABASE}`);
+        const response = db.query(`SELECT * FROM ${MENU_ITEM_DATABASE}`);
         console.log(response.rows);
         res.send(response.rows);
     } catch (err) {
@@ -21,13 +20,14 @@ orderRouter.get(apiPath + "/getMenu", async (req, res) => {
     }
 });
 
+/*
+    Send Order to Database
+    @param: JSON object: {customerName: string, totalCost: float, employeeID: int, items: list[{id: int, quantity: int}]}
+        ex: { "customerName": "John Doe", "totalCost": 12.34, "employeeID": 1, "items": [ { "id": 5, "quantity": 2 }, ... ] }
+    @return: none
+*/
 orderRouter.post(apiPath + "/postOrder", async (req, res) => {
     try {
-        console.log('hi!');
-        console.log(req.body);
-        const value = req.body.value;
-        console.log(value);
-        res.send('e');
     } catch (err) {
         console.log(err);
     }
