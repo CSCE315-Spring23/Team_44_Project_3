@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet';
+import { Outlet } from 'react-router-dom';
+import CategoryItem from '../../components/CategoryItem';
 
 import sauceImages from '../../utils/sauceImages';
 
@@ -31,6 +33,7 @@ function Sauces() {
             <ul data-cy="SauceList" className="menu" role="list">
                 {menuList}
             </ul>
+            <Outlet />
         </>
     );
 }

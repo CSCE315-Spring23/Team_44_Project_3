@@ -7,8 +7,8 @@ export default function EmployeeRoutes() {
     return (
         <Routes>
             <Route path="/employee">
-                <Route path='order' element={<Order />}></Route>
-                <Route path='orderHistory' element={<OrderHistory />}></Route>
+                <Route path='order' element={<Order />} />
+                <Route path='orderHistory' element={<OrderHistory />} />
             </Route>
         </Routes>
     );

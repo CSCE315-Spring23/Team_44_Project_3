@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { Outlet } from 'react-router-dom';
 import {Helmet} from 'react-helmet';
 import CategoryItem from '../../components/CategoryItem';
 
@@ -35,6 +36,7 @@ function CustomerOrder() {
 			<ul data-cy="MenuCategoryList" className="menu" role="list">
 				{categoryList}
 			</ul>
+			<Outlet />
 		</>
 	);
 }
