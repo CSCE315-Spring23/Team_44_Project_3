@@ -21,9 +21,10 @@ app.use((req, res, next) => {
     next();
 });
 
-/* here we will include any other app.get() endpoints that we keep in other files */
-
+// middleware parse json for POST requests
 app.use(express.json());
+
+// here we will include any other app.get() endpoints that we keep in other files
 app.use('/', orderRouter);
 app.use('/', orderHistoryRouter);
 app.use('/', employeeRouter);
