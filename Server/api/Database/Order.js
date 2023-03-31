@@ -12,3 +12,11 @@ orderRouter.get(apiPath + "/getMenu", async (req, res) => {
         console.log(err);
     }
 });
+
+orderRouter.post(apiPath + "/postOrder", async (req, res) => {
+    try {
+        const { customer_name, employee_id, items } = req.body;
+    } catch (err) {
+        console.log(err);
+    }
+});
