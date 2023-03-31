@@ -1,7 +1,6 @@
 const express = require('express');
 const db = require('./Info/DatabaseConnect.js');
 const inventoryRouter = express.Router();
-inventoryRouter.use(express.json());
 
 const INVENTORY_DATABASE = require('./Info/DatabaseNames.js').INVENTORY_DATABASE;
 
@@ -42,7 +41,7 @@ inventoryRouter.post(apiPath+"/insertInventoryItem", async (req, res) => {
     @return: None
 */
 //TODO: Idk why .post() doesn't work here, but .get() does
-inventoryRouter.delete(apiPath+"/deleteInventoryItem", async (req, res) => {
+inventoryRouter.post(apiPath+"/deleteInventoryItem", async (req, res) => {
     try{
         console.log(req.body)
         const id = req.body.id;
