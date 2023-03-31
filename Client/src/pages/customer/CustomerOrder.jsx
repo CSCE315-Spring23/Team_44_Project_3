@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import { Outlet } from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
 import CategoryItem from '../../components/CategoryItem';
 
 import images from '../../utils/imageImport';
 
 const categories = [
-	{title: "Meals", src: images.meals, key: 1},
-	{title: "Entrées", src: images.entree, key: 2},
-	{title: "Beverages", src: images.beverages, key: 3},
-	{title: "Salads", src: images.salads, key: 4},
-	{title: "Treats", src: images.treats, key: 5},
-	{title: "Sauces", src: images.sauces, key: 6}
+	{title: "Meals", src: images.meals, key: 0},
+	{title: "Entrées", src: images.entree, key: 1},
+	{title: "Beverages", src: images.beverages, key: 2},
+	{title: "Salads", src: images.salads, key: 3},
+	{title: "Treats", src: images.treats, key: 4},
+	{title: "Sauces", src: images.sauces, key: 5}
 ];
 
 
