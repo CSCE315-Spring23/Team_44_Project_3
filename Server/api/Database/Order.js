@@ -7,7 +7,8 @@ const { ORDER_ITEM_DATABASE, MENU_ITEM_DATABASE, SOLD_ITEM_DATABASE } = require(
 /*
     Query Database for Menu Items
     @param: None
-    @return: Something
+    @return: JSON object with the format: list[{id: int, name: string, cost: string, numbersold: int}]
+        ex: [ { "id": 5, "name": "Sandwich", "cost": "4.23", "numbersold": 2000 } ]
 */
 orderRouter.get(apiPath + "/getMenu", async (req, res) => {
     console.log('hello there!');
@@ -22,7 +23,11 @@ orderRouter.get(apiPath + "/getMenu", async (req, res) => {
 
 orderRouter.post(apiPath + "/postOrder", async (req, res) => {
     try {
-        const { customer_name, employee_id, items } = req.body;
+        console.log('hi!');
+        console.log(req.body);
+        const value = req.body.value;
+        console.log(value);
+        res.send('e');
     } catch (err) {
         console.log(err);
     }

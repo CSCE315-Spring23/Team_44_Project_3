@@ -23,6 +23,7 @@ app.use((req, res, next) => {
 
 /* here we will include any other app.get() endpoints that we keep in other files */
 
+app.use(express.json());
 app.use('/', orderRouter);
 app.use('/', orderHistoryRouter);
 app.use('/', employeeRouter);
