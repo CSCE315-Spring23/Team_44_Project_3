@@ -32,11 +32,27 @@ const Test = () => {
         })
     }
 
+    const update = () => {
+        console.log("updated inventory item");
+
+        fetch('http://localhost:3001/api/inventory/updateinventoryitem', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+                },
+            body: JSON.stringify({
+                "id": 84,
+                "quantity": 100
+            })
+        })
+    }
+
     return (
         <div>
             <h1>Test</h1>
             <button onClick={add}>add new inventory item</button>
             <button onClick={del}>delete inventory item</button>
+            <button onClick={update}>update inventory item</button>
         </div>
     )
 }

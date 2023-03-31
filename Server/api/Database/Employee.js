@@ -8,6 +8,15 @@ const api_path = "/api/employee";
 /*
     Get all employees
     /api/employee/getEmployees
+
+    @param: None
+    @return: JSON object with the following format:
+        {
+            "id": "number",
+            "name": "string",
+            "role": "string",
+            "pin": "string"
+        }
 */
 employeeRouter.get(api_path+"/getEmployees", async (req, res) => {
     try{
