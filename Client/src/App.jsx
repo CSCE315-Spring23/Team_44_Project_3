@@ -6,12 +6,16 @@ import Order from './pages/employee/Order';
 import EmployeeRoutes from './routes/EmployeeRoutes';
 import CustomerRoutes from './routes/CustomerRoutes';
 
+
+import Test from './pages/Test.jsx';
+
 function App() {
 	return (
 		<BrowserRouter basename="/">
 			<Routes>
 				<Route path="/" element={<Login />} />
 				<Route path="/Login" element={<Login />} />
+				<Route path ="/Test" element={<Test />} />
 			</Routes>
 			<CustomerRoutes />
 			<EmployeeRoutes />
