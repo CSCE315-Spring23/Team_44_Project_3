@@ -7,7 +7,7 @@ div.empOrderPage {
 
 nav.empNav {
     position: relative;
-    width: 15%;
+    min-width: 15%;
     min-height: 100%;
     background-color: #F4F8F9;
     display: flex;

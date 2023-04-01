@@ -22,7 +22,7 @@ export default function OrderItemPane() {
             .then(data => {
                 //create the map of all the menu buttons to render
                 const menBtns = data.map((element) =>
-                    <OrderItemButton itemName={element["name"]} />
+                    <OrderItemButton key={element.id} itemName={element["name"]} />
                 );
                 setMenuButtons(menBtns);
             })
@@ -34,7 +34,6 @@ export default function OrderItemPane() {
 
     return (
         <div className="orderItemPane">
-            <OrderItemButton itemName="Button1"></OrderItemButton>
             {menuButtons}
         </div>
     );
