@@ -123,3 +123,14 @@ div#checkoutOrderItems{
     overflow-y: scroll;
     min-width: 100%;
 }
+
+div#orderHistoryDiv{
+    width: 85%;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+table.databaseTable{
+    width: 100%;
+    height: 100%;
+}
