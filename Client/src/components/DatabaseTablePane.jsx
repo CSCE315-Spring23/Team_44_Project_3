@@ -6,7 +6,11 @@ export default function DatabaseTablePane(props) {
     console.log(headers);
 
     const handleOnClick = (id) => {
-        props.handleOnClick(id);
+        if(props.handleOnClick) {
+            props.handleOnClick(id);
+        } else{
+            console.log("No handleOnClick function passed to DatabaseTablePane");
+        }
     }
 
     return (

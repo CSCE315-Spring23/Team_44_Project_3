@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+
 import EmployeeNav from "../../components/EmployeeNav";
-import OrderHistoryTable from "../../components/OrderHistoryTable";
 import '../../styles/employee.css'
 import DatabaseTablePane from "../../components/DatabaseTablePane";
 import { endpoints } from "../../utils/apiEndpoints";
@@ -12,6 +12,7 @@ export default function OrderHistory(props) {
     const isManager = props.isManager;
 
     const [orderHistTable, setOrderHistTable] = useState();
+    const [orderHistInfoID, setOrderHistInfoID] = useState();
     const [orderHistInfo, setOrderHistInfo] = useState();
 
     useEffect(() => {
@@ -35,6 +36,7 @@ export default function OrderHistory(props) {
 
     const handleOnClick = (id) => {
         setOrderHistInfo(null);
+        setOrderHistInfoID(id)
         const url = HOST + endpoints.orderInformation + "?id=" + id;
         fetch(url, {
             method: "GET"
@@ -58,6 +60,8 @@ export default function OrderHistory(props) {
                 {orderHistTable}
             </div>
             <div id="orderHistoryInfoDiv">
+                <div style={{textDecoration: 'underline'}}>Viewing Order #{orderHistInfoID}</div>
+
                 {orderHistInfo}
             </div>
         </div>
