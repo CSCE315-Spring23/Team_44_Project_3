@@ -55,6 +55,7 @@ button.orderItemBtn {
     padding: 1em;
     height: 50px;
     margin-right: 1em;
+    margin-bottom: 1em;
 }
 
 button.orderItemBtn:hover {
@@ -67,4 +68,15 @@ div.orderItemPane {
     flex-direction: row;
     flex-wrap: wrap;    
     min-width: 65%;
+}
+
+div.checkoutPanel{
+    position: relative;
+    min-width: 20%;
+    min-height: 100%;
+    background-color: #F4F8F9;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
 }
