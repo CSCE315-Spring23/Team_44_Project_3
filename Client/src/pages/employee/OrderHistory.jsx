@@ -12,6 +12,7 @@ export default function OrderHistory(props) {
     const isManager = props.isManager;
 
     const [orderHistTable, setOrderHistTable] = useState();
+    const [orderHistInfo, setOrderHistInfo] = useState();
 
     useEffect(() => {
         setOrderHistTable(null);
@@ -27,16 +28,37 @@ export default function OrderHistory(props) {
                 return response.json();
             })
             .then(data => {
-                const table = <DatabaseTablePane data={data} />;
+                const table = <DatabaseTablePane data={data} handleOnClick={handleOnClick}/>;
                 setOrderHistTable(table);
             });
     }, []);
+
+    const handleOnClick = (id) => {
+        setOrderHistInfo(null);
+        const url = HOST + endpoints.orderInformation + "?id=" + id;
+        fetch(url, {
+            method: "GET"
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response not OK");
+                }
+                return response.json();
+            })
+            .then(data => {
+                const table = <DatabaseTablePane data={data} />;
+                setOrderHistInfo(table);
+            });
+    }
 
     return (
         <div className="empOrderPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
             <div id="orderHistoryDiv">
                 {orderHistTable}
+            </div>
+            <div id="orderHistoryInfoDiv">
+                {orderHistInfo}
             </div>
         </div>
     );
