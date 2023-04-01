@@ -7,8 +7,15 @@ const { ORDER_ITEM_DATABASE, MENU_ITEM_DATABASE, SOLD_ITEM_DATABASE, INVENTORY_D
 /*
     Query Database for Menu Items
     @param: none
-    @return: JSON object: list[{id: int, name: string, cost: string, numbersold: int}]
-        ex: [ { "id": 5, "name": "Sandwich", "cost": "4.23", "numbersold": 2000 }, ... ]
+    @return: list of JSON objects (menu items)
+        ex: [
+                {
+                    id: 5, 
+                    name: "Sandwich", 
+                    cost: "4.23", 
+                    numbersold: 2000 
+                }, ...
+            ]
 */
 orderRouter.get(apiPath + "/getMenu", async (req, res) => {
     try {
@@ -22,8 +29,13 @@ orderRouter.get(apiPath + "/getMenu", async (req, res) => {
 
 /*
     Send Order to Database
-    @param: JSON object: {customerName: string, totalCost: float OR string, employeeID: int, items: list[{id: int, quantity: int}]}
-        ex: { "customerName": "John Doe", "totalCost": 12.34, "employeeID": 1, "items": [ { "id": 5, "quantity": 2 }, ... ] }
+    @param: stringified JSON object
+        ex: {
+            customerName: "John Doe",
+            totalCost: "12.34",
+            employeeID: 1,
+            items: [ {"id": 1, "quantity": 2}, ... ]
+        }
     @return: none
 */
 orderRouter.post(apiPath + "/postOrder", async (req, res) => {
