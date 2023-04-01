@@ -18,7 +18,7 @@ const api_path = "/api/employee";
             "pin": "string"
         }
 */
-employeeRouter.get(api_path+"/getEmployees", async (req, res) => {
+employeeRouter.get(api_path + "/getEmployees", async (req, res) => {
     try{
         const response = await db.query(`SELECT * FROM ${EMPLOYEE_DATABASE}`);
         res.send(response.rows);
