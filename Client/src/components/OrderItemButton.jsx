@@ -1,10 +1,17 @@
 import React from "react";
 
 export default function OrderItemButton(props){
-    const itemName = props.itemName;
+    const item = props.item;
+    const itemName = item.name;
+    const addToCart = props.addToCart;
+
+    const handleClick = () =>{
+        addToCart(item);
+    }
+
     return(
-        <button className="orderItemBtn">
-            {itemName ? itemName : "No Item"}
+        <button onClick={handleClick} className="orderItemBtn">
+            {itemName ?  itemName : "No Item"}
         </button>
     );
 }
