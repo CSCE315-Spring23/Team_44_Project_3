@@ -9,6 +9,7 @@ const orderRouter = require("./api/Database/Order.js");
 const orderHistoryRouter = require("./api/Database/OrderHistory.js");
 const employeeRouter = require("./api/Database/Employee.js");
 const inventoryRouter = require("./api/Database/Inventory.js");
+const editMenuRouter = require("./api/Database/EditMenu.js");
 const weatherRouter = require("./api/Weather/Weather.js");
 
 
@@ -28,8 +29,10 @@ app.use(express.json());
 app.use('/', orderRouter);
 app.use('/', orderHistoryRouter);
 app.use('/', employeeRouter);
-app.use('/', weatherRouter);
 app.use('/', inventoryRouter);
+app.use('/', weatherRouter);
+app.use('/', editMenuRouter);
+
 
 
 
