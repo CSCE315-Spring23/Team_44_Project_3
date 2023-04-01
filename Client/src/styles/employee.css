@@ -80,3 +80,22 @@ div.checkoutPanel{
     justify-content: start;
     align-items: center;
 }
+
+a.checkoutBtn{
+    margin-top: 1em;
+    text-align: center;
+    text-decoration: none;
+    min-width: 80%;
+    min-height: 10%;
+    color: black;
+    background-color: green;
+    border-style: solid;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: grey;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 3px 3px grey;
+}
