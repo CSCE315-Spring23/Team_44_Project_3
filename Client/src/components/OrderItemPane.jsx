@@ -28,7 +28,7 @@ export default function OrderItemPane(){
             console.error("Could not fetch menu items from " + url);
         });
         
-    });
+    },[]);
 
     return(
         <div className="orderItemPane">
