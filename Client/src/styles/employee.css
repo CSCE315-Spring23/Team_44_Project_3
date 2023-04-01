@@ -54,6 +54,7 @@ button.orderItemBtn {
     border-width: 1px;
     padding: 1em;
     height: 50px;
+    margin-right: 1em;
 }
 
 button.orderItemBtn:hover {
