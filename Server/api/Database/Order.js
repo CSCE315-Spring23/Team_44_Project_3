@@ -38,6 +38,7 @@ orderRouter.get(apiPath + "/getMenu", async (req, res) => {
         }
     @return: none
 */
+// TODO: add to solditem, update menuitem count, update inventory count
 orderRouter.post(apiPath + "/postOrder", async (req, res) => {
     try {
         // extract data
