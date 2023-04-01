@@ -3,10 +3,6 @@ import { Link, json } from "react-router-dom";
 
 export default function CheckoutPanel(props) {
     const { cart } = props;
-    useEffect(() => {
-        console.log("cart Update");
-    }, [cart]);
-    console.log(cart);
 
     return (
         <div id="checkoutPanel">
