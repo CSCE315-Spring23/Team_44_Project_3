@@ -1,3 +1,0 @@
-This is a dummy file so the folder will show on git
-
-where api and config stuff goes
