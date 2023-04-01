@@ -19,7 +19,7 @@ const { ORDER_ITEM_DATABASE, MENU_ITEM_DATABASE, SOLD_ITEM_DATABASE, INVENTORY_D
 */
 orderRouter.get(apiPath + "/getMenu", async (req, res) => {
     try {
-        const response = db.query(`SELECT * FROM ${MENU_ITEM_DATABASE}`);
+        const response = await db.query(`SELECT * FROM ${MENU_ITEM_DATABASE}`);
         console.log(response.rows);
         res.send(response.rows);
     } catch (err) {
