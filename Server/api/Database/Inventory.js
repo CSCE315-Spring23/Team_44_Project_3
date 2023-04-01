@@ -55,4 +55,52 @@ inventoryRouter.post(apiPath + "/deleteInventoryItem", async (req, res) => {
     }
 });
 
+
+/*
+    Get all inventory items from the inventory database.
+
+    /api/inventory/getInventory
+
+    @param: None
+    @return: Json object in the following format:
+    {
+        "id": "number",
+        "name": "string",
+        "quantity": "number",
+        "threshold": "number"
+    }
+*/
+inventoryRouter.get(apiPath+"/getInventory", async (req, res) => {
+    try{
+        const response = await db.query(`SELECT * FROM ${INVENTORY_DATABASE} ORDER BY id`);
+        res.status(200).json(response.rows.splice(1));
+    } catch(err){
+        res.status(500).json({message: "Error getting inventory"});
+    }
+});
+
+
+inventoryRouter.put(apiPath+"/updateInventoryItem", async (req, res) => {
+    try{
+        console.log(req.body)
+        const id = req.body.id;
+        const quantity = req.body.quantity;
+        const prevQuant = await db.query(`SELECT quantity FROM ${INVENTORY_DATABASE} WHERE id = ${id}`);
+        const quant = prevQuant.rows[0].quantity;
+
+        if(quant === 0){
+            res.status(500).json({message: "Cannot update item with 0 quantity"});
+            return;
+        }
+
+        const response = await db.query(`UPDATE ${INVENTORY_DATABASE} SET quantity = ${quantity} WHERE id = ${id}`);
+        res.status(200).json({message: `Item ${id} updated successfully`});
+    } catch(err){
+        res.status(500).json({message: "Error updating inventory item"});
+    }
+});
+
+
+
+
 module.exports = inventoryRouter;
