@@ -47,11 +47,25 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
         const formattedDateTime = currentDate.toISOString().replace('T', ' ').split('.')[0];
 
         // query next orderitem id
-        let id = await db.query(`SELECT MAX(id) FROM ${ORDER_ITEM_DATABASE}`);
-        id = id.rows[0].max + 1;
+        let orderId = await db.query(`SELECT MAX(id) FROM ${ORDER_ITEM_DATABASE}`);
+        orderId = orderId.rows[0].max + 1;
 
         // insert receipt into orderitem
-        await db.query(`INSERT INTO ${ORDER_ITEM_DATABASE} VALUES (${id}, '${customerName}', '${totalCost}', '${formattedDateTime}', ${employeeID})`);
+        await db.query(`INSERT INTO ${ORDER_ITEM_DATABASE} VALUES (${orderId}, '${customerName}', '${totalCost}', '${formattedDateTime}', ${employeeID})`);
+
+        // insert items into solditem
+        let response = await db.query(`SELECT MAX(id) FROM ${SOLD_ITEM_DATABASE}`);
+        let solditemId = response.rows[0].max + 1;
+        items.forEach((item) => {
+            for (let i = 0; i < item.quantity; i++) {
+                db.query(`INSERT INTO ${SOLD_ITEM_DATABASE} (id, menuid, orderid) VALUES (${solditemId}, ${item.id}, ${orderId})`);
+                solditemId++;
+            }
+        });
+
+        // update menuitem count
+
+        // update inventory count
 
         res.status(200).send("Order Received");
     } catch (err) {
