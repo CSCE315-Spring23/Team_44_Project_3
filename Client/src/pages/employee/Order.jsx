@@ -5,7 +5,7 @@ import OrderItemPane from "../../components/OrderItemPane";
 import CheckoutPanel from "../../components/CheckoutPanel";
 
 export default function Order(props) {
-    const [cart, setCart] = useState({ total: 0, items: {} });
+    const [cart, setCart] = useState({ total: [0], items: {} });
 
     const addToCart = (item) => {
         let newCart = { ...cart };
@@ -17,7 +17,7 @@ export default function Order(props) {
         newCart.items[item.name][0] += 1;
         newCart.items[item.name][1] += Number(item.cost);
 
-        newCart.total += item.cost;
+        newCart.total[0] += Number(item.cost);
 
         setCart(newCart);
         // console.log("add to cart " + item.name);
