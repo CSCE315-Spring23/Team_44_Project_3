@@ -52,20 +52,26 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
 
         // insert receipt into orderitem
         await db.query(`INSERT INTO ${ORDER_ITEM_DATABASE} VALUES (${orderId}, '${customerName}', '${totalCost}', '${formattedDateTime}', ${employeeID})`);
-
-        // insert items into solditem
+        
+        // grab next ids
         let response = await db.query(`SELECT MAX(id) FROM ${SOLD_ITEM_DATABASE}`);
         let solditemId = response.rows[0].max + 1;
+
+        // update other 3 tables
         items.forEach((item) => {
+            // insert items into solditem
             for (let i = 0; i < item.quantity; i++) {
                 db.query(`INSERT INTO ${SOLD_ITEM_DATABASE} (id, menuid, orderid) VALUES (${solditemId}, ${item.id}, ${orderId})`);
                 solditemId++;
             }
+
+            // update menuitem count
+
+            // update inventory count
+            
         });
 
-        // update menuitem count
-
-        // update inventory count
+        
 
         res.status(200).send("Order Received");
     } catch (err) {
