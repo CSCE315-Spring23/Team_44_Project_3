@@ -66,9 +66,9 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
             }
 
             // update menuitem count
+            db.query(`UPDATE ${MENU_ITEM_DATABASE} SET numbersold = numbersold + ${item.quantity} WHERE id = ${item.id}`)
 
             // update inventory count
-            
         });
 
         
