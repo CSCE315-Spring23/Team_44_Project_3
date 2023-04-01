@@ -15,7 +15,7 @@ const menu = [
     {title: "Polynesian Sauce", src: sauceImages.polynesian, key: 6},
     {title: "Ranch", src: sauceImages.ranch, key: 7},
     {title: "Ranch Dressing", src: sauceImages.ranchDressing, key: 8},
-    {title: "Sweat, Sour, and Siracha Sauce", src: sauceImages.SSSrirachaSauce, key: 9},
+    {title: "Sweat and Spicy Siracha Sauce", src: sauceImages.SSSrirachaSauce, key: 9},
     {title: "Zesty Apple Dressing", src: sauceImages.zestyAppleDressing, key: 10},
     {title: "Zesty Buffalo Sauce", src: sauceImages.ZestyBuff, key: 11}
 ];
