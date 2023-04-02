@@ -20,13 +20,13 @@ const menuList = menu.map(item =>
     <AddMenuItem key={item.key} item={item}></AddMenuItem>
 );
 
-function Sauces() {
+function Meals() {
     return (
         <>
             <header>
-                <h1>Sauces</h1>
+                <h1>Meals</h1>
             </header>
-            <ul data-cy="SauceList" className="menu" role="list">
+            <ul data-cy="MealList" className="menu" role="list">
                 {menuList}
             </ul>
             <Outlet />
@@ -34,4 +34,4 @@ function Sauces() {
     );
 }
 
-export default Sauces;
+export default Meals;

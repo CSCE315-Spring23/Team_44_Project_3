@@ -1,3 +1,4 @@
 *.gpg
+vite.config.js.timestamp-*
 
 /**/node_modules
