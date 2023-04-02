@@ -23,13 +23,6 @@ const categoryList = categories.map(item =>
 function CustomerOrder() {
 	return (
 		<>
-			{/* Set html head elements. currently commented because this is set in index.html */}
-			{/* <Helmet>
-				<title>Chick-fil-A</title>
-				<link rel="icon" href={icon} />
-				<link rel="stylesheet" href={style} />
-			</Helmet> */}
-
 			<header>
 				<h1>Place an order</h1>
 			</header>

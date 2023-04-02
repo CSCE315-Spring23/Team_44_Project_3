@@ -8,11 +8,11 @@ import Sauces from "../pages/customer/sauces";
 export default function CustomerRoutes() {
     return (
         <Routes>
-            <Route path="/CustomerOrder" element={<Outlet />} >
-                <Route path='' element={<CustomerOrder />} />
-                <Route path="beverages" element={<Beverage />} />
-                <Route path="entrées" element={<Entree />} />
-                <Route path="sauces" element={<Sauces />} />
+            <Route path="/customer" element={<Outlet />} >
+                <Route path="order" element={<CustomerOrder />} />
+                <Route path="order/beverages" element={<Beverage />} />
+                <Route path="order/entrées" element={<Entree />} />
+                <Route path="order/sauces" element={<Sauces />} />
             </Route>
         </Routes>
     );
