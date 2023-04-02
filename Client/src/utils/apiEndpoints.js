@@ -6,6 +6,7 @@ export const endpoints = {
 
     orderHistory : "/api/orderHistory/getOrderHistory",
     orderInformation : "/api/orderHistory/getOrderInformation/",
+    postOrder : "/api/order/postOrder",
 
     inventory : "/api/inventory/getInventory",
     insertInventoryItem : "/api/inventory/insertInventoryItem/",

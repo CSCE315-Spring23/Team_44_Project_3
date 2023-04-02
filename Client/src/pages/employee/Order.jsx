@@ -10,7 +10,7 @@ export default function Order(props) {
         Format of Cart
         {
             total : [total cost],
-            items : {item name : [number, cost per]}
+            items : {item name : [number, cost per, itemID]}
         } 
 
     */
@@ -25,6 +25,7 @@ export default function Order(props) {
         //update cart entry
         newCart.items[item.name][0] += 1;
         newCart.items[item.name][1] = Number(item.cost);
+        newCart.items[item.name][2] = item.id;
 
         newCart.total[0] += Number(item.cost);
 
@@ -33,12 +34,16 @@ export default function Order(props) {
         // console.log(JSON.stringify(cart));
     }
 
+    const emptyCart = () => {
+        setCart({ total: [0], items: {} });
+    }
+
     const isManager = props.isManager;
     return (
         <div className="empOrderPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
             <OrderItemPane addToCart={addToCart}></OrderItemPane>
-            <CheckoutPanel cart={cart} />
+            <CheckoutPanel cart={cart} emptyCart={emptyCart} />
         </div>
     );
 }
