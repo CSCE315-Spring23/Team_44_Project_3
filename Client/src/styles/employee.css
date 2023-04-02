@@ -176,4 +176,6 @@ div#inventoryDiv{
 div#inventoryFormsDiv {
     width: 25%;
     height: 100vh;
+    overflow-y: scroll;
+    text-align: center;
 }
