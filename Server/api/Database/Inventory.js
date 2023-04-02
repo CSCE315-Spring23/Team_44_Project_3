@@ -94,7 +94,9 @@ inventoryRouter.put(apiPath+"/updateInventoryItem", async (req, res) => {
     try{
         console.log(req.body)
         const id = req.body.id;
+        const name = req.body.name;
         const quantity = req.body.quantity;
+        const threshold = req.body.threshold;
         const prevQuant = await db.query(`SELECT quantity FROM ${INVENTORY_DATABASE} WHERE id = ${id}`);
         const quant = prevQuant.rows[0].quantity;
 
@@ -103,7 +105,17 @@ inventoryRouter.put(apiPath+"/updateInventoryItem", async (req, res) => {
             return;
         }
 
-        const response = await db.query(`UPDATE ${INVENTORY_DATABASE} SET quantity = ${quantity} WHERE id = ${id}`);
+        if(name !== ''){
+            await db.query(`UPDATE ${INVENTORY_DATABASE} SET name = '${name}' WHERE id = ${id}`);
+        }
+        if(quantity !== ''){
+            await db.query(`UPDATE ${INVENTORY_DATABASE} SET quantity = ${quantity} WHERE id = ${id}`);
+        }
+        if(threshold !== ''){
+            await db.query(`UPDATE ${INVENTORY_DATABASE} SET threshold = ${threshold} WHERE id = ${id}`);
+        }
+
+
         res.status(200).json({message: `Item ${id} updated successfully`});
     } catch(err){
         res.status(500).json({message: "Error updating inventory item"});

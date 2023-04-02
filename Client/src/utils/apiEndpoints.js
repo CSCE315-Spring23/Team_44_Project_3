@@ -9,4 +9,6 @@ export const endpoints = {
 
     inventory : "/api/inventory/getInventory",
     insertInventoryItem : "/api/inventory/insertInventoryItem/",
+    deleteInventoryItem : "/api/inventory/deleteInventoryItem/",
+    updateInventoryItem : "/api/inventory/updateInventoryItem/",
 }
