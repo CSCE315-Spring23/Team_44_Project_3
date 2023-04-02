@@ -17,6 +17,8 @@ const menu = [
     {title: "L. Sunjoy", src: beveragesImages.beverage8, key: 8},
     {title: "M. Soft Drink", src: beveragesImages.beverage9, key: 9},
     {title: "L. Soft Drink", src: beveragesImages.beverage10, key: 10},
+    {title: "Original Cold Brew Iced Coffee", src: beveragesImages.beverage11, key: 11},
+    {title: "Vanilla Cold Brew Iced Coffee", src: beveragesImages.beverage12, key: 12},
 ];
 
 const menuList = menu.map(item =>
