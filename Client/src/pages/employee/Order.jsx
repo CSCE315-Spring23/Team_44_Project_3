@@ -5,6 +5,15 @@ import OrderItemPane from "../../components/OrderItemPane";
 import CheckoutPanel from "../../components/CheckoutPanel";
 
 export default function Order(props) {
+
+    /*
+        Format of Cart
+        {
+            total : [total cost],
+            items : {item name : [number, cost per]}
+        } 
+
+    */
     const [cart, setCart] = useState({ total: [0], items: {} });
 
     const addToCart = (item) => {
@@ -15,7 +24,7 @@ export default function Order(props) {
         }
         //update cart entry
         newCart.items[item.name][0] += 1;
-        newCart.items[item.name][1] += Number(item.cost);
+        newCart.items[item.name][1] = Number(item.cost);
 
         newCart.total[0] += Number(item.cost);
 
