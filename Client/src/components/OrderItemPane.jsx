@@ -3,9 +3,11 @@ import OrderItemButton from "./OrderItemButton";
 import { endpoints } from "../utils/apiEndpoints";
 import { HOST } from "../utils/host";
 
-export default function OrderItemPane() {
+export default function OrderItemPane(props) {
     //set a react state to contain the json of menu items
     const [menuButtons, setMenuButtons] = useState(null);
+
+    const addToCart = props.addToCart;
     //fetch the menu items from the api
     useEffect(() => {
         setMenuButtons(null);
@@ -22,7 +24,7 @@ export default function OrderItemPane() {
             .then(data => {
                 //create the map of all the menu buttons to render
                 const menBtns = data.map((element) =>
-                    <OrderItemButton key={element.id} itemName={element["name"]} />
+                    <OrderItemButton key={element.id} item={element} addToCart={addToCart} />
                 );
                 setMenuButtons(menBtns);
             })

@@ -1,11 +1,17 @@
-import React, {useState, useEffect, useContext} from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, json } from "react-router-dom";
 
-export default function CheckoutPanel(props){
-    return(
-        <div className="checkoutPanel">
+export default function CheckoutPanel(props) {
+    const { cart } = props;
 
-            <Link className='empNavButton'>Menu Board</Link>
+    return (
+        <div id="checkoutPanel">
+            <div id="checkoutOrderItems">
+                <p>{JSON.stringify(cart)}</p>
+            </div>
+            <div id="checkoutButtonDiv">
+                <Link id='checkoutBtn'>Checkout</Link>
+            </div>
         </div>
     );
 }

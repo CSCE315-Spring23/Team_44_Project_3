@@ -20,9 +20,9 @@ const api_path = "/api/orderhistory";
         "employee_id": "number"
     }
 */
-orderHistoryRouter.get(api_path+"/getOrders", async (req, res) => {
+orderHistoryRouter.get(api_path+"/getOrderHistory", async (req, res) => {
     try{
-        const response = await db.query(`SELECT * FROM ${ORDER_ITEM_DATABASE} ORDER BY date DESC LIMIT 30`);
+        const response = await db.query(`SELECT * FROM ${ORDER_ITEM_DATABASE} ORDER BY id DESC LIMIT 30`);
         res.send(response.rows);
     } catch(err){
         console.log(err);
@@ -33,7 +33,7 @@ orderHistoryRouter.get(api_path+"/getOrders", async (req, res) => {
 /*
     Get the order information for a specific order
 
-    /api/orderhistory/getOrderInformation?id=${id}
+    /api/orderhistory/getOrderInformation/?id=${id}
 
     @param: Order ID
     @return: JSON object with the following format:
