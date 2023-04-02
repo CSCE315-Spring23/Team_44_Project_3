@@ -1,10 +1,5 @@
-div.empOrderPage {
-    display: flex;
-    min-width: 100%;
-    min-height: 100vh;
-    flex-direction: row;
-}
 
+/* Nav Bar */
 nav.empNav {
     position: relative;
     width: 15%;
@@ -44,6 +39,7 @@ a.empNavButton.current {
     background-color: #DD0031;
 }
 
+/* Order Buttons */
 button.orderItemBtn {
     background-color: #D9D9D9;
     color: black;
@@ -72,6 +68,7 @@ div.orderItemPane {
     max-height: 100vh;
 }
 
+/* Order Checkout */
 div#checkoutPanel{
     position: relative;
     width: 20%;
@@ -124,10 +121,37 @@ div#checkoutOrderItems{
     min-width: 100%;
 }
 
+/* Tables */
+table.databaseTable{
+    width: 100%;
+    padding: 0 .75em 0 .75em;
+}
+table th, table td{
+    border: 1px solid black;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    text-decoration: underline;
+    text-emphasis: bold;
+    font-size: 1.5em;
+}
+
+
+/* Order History */
+div.empOrderPage {
+    display: flex;
+    min-width: 100%;
+    min-height: 100vh;
+    flex-direction: row;
+}
+
 div#orderHistoryDiv{
     width: 60%;
     height: 100vh;
     overflow-y: scroll;
+    text-align: center;
 }
 div#orderHistoryInfoDiv{
     width: 25%;
@@ -136,10 +160,20 @@ div#orderHistoryInfoDiv{
     text-align: center;
 }
 
-table.databaseTable{
-    width: 100%;
+/* Inventory */
+div.empInventoryPage {
+    display: flex;
+    min-width: 100%;
+    min-height: 100vh;
+    flex-direction: row;
 }
-table th, table td{
-    border: 1px solid black;
-    text-align: center;
+
+div#inventoryDiv{
+    width: 60%;
+    height: 100vh;
+    overflow-y: scroll;
+}
+div#inventoryFormsDiv {
+    width: 25%;
+    height: 100vh;
 }

@@ -3,6 +3,16 @@ import React, { useEffect, useState } from "react";
 export default function DatabaseTablePane(props) {
     console.log(props)
     const headers = Object.keys(props.data[0]);
+    const formattedHeaders = [];
+    // format headers
+    for(let i = 0; i < headers.length; i++) {
+        // remove underscores
+        let formattedHeader = headers[i].replace(/_/g, " ");
+        // capitalize all words
+        formattedHeader = formattedHeader.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));
+        formattedHeaders.push(formattedHeader);
+    }
+
     console.log(headers);
 
     const handleOnClick = (id) => {
@@ -17,7 +27,7 @@ export default function DatabaseTablePane(props) {
         <table className="databaseTable">
             <thead>
                 <tr>
-                    {headers.map((header) => (
+                    {formattedHeaders.map((header) => (
                         <th key={header}>{header}</th>
                     ))}
                 </tr>

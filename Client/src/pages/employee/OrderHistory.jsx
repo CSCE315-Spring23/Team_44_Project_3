@@ -57,10 +57,11 @@ export default function OrderHistory(props) {
         <div className="empOrderPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
             <div id="orderHistoryDiv">
+                <h2>Order History</h2>
                 {orderHistTable}
             </div>
             <div id="orderHistoryInfoDiv">
-                <div style={{textDecoration: 'underline'}}>Viewing Order #{orderHistInfoID}</div>
+                <h3>View Order #{orderHistInfoID}</h3>
 
                 {orderHistInfo}
             </div>

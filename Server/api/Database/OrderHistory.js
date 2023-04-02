@@ -46,7 +46,7 @@ orderHistoryRouter.get(api_path+"/getOrderHistory", async (req, res) => {
 orderHistoryRouter.get(api_path+"/getOrderInformation/", async (req, res) => {
     try{
         const id = req.query.id;
-        const response = await db.query(`SELECT ${MENU_ITEM_DATABASE}.name, ${MENU_ITEM_DATABASE}.cost, COUNT(*) as totalSold FROM ${SOLD_ITEM_DATABASE}
+        const response = await db.query(`SELECT ${MENU_ITEM_DATABASE}.name, ${MENU_ITEM_DATABASE}.cost, COUNT(*) as total_sold FROM ${SOLD_ITEM_DATABASE}
             JOIN ${MENU_ITEM_DATABASE} ON ${SOLD_ITEM_DATABASE}.menuid = ${MENU_ITEM_DATABASE}.id
             JOIN ${ORDER_ITEM_DATABASE} ON ${SOLD_ITEM_DATABASE}.orderid = ${ORDER_ITEM_DATABASE}.id
             WHERE ${ORDER_ITEM_DATABASE}.id = ${id} GROUP BY ${MENU_ITEM_DATABASE}.id`);
