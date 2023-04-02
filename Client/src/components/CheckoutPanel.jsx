@@ -75,6 +75,7 @@ export default function CheckoutPanel(props) {
                 ))}
             </div>
             <div id="checkoutButtonDiv">
+                <p>Total: {cart.total[0]}</p>
                 <input type="text" value={custName} onChange={handleNameChanged} placeholder="Customer Name" />
                 <button onClick={e => checkoutBtnClicked()} id='checkoutBtn'>Checkout</button>
             </div>
