@@ -8,4 +8,5 @@ export const endpoints = {
     orderInformation : "/api/orderHistory/getOrderInformation/",
 
     inventory : "/api/inventory/getInventory",
+    insertInventoryItem : "/api/inventory/insertInventoryItem/",
 }
