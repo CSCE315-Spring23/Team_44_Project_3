@@ -115,7 +115,29 @@ export default function Inventory(props) {
     ];
 
     const handleDeleteInventory = (formState) => {
-        console.log(formState);
+        const id = formState.itemID;
+        const url = HOST + endpoints.deleteInventoryItem;
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: id
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response not OK");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                getInventory();
+            }
+        );
     }
     return (
         <div className="empInventoryPage">
