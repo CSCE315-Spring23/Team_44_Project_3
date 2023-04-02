@@ -80,7 +80,7 @@ div#checkoutPanel{
     align-items: center;
 }
 
-a#checkoutBtn{
+button#checkoutBtn{
     margin-bottom: 5%;
     text-align: center;
     text-decoration: none;
@@ -98,7 +98,7 @@ a#checkoutBtn{
     justify-content: center;
     box-shadow: 0px 3px 3px rgb(0, 94, 19);
 }
-a#checkoutBtn:hover{
+button#checkoutBtn:hover{
     background-color: rgb(0, 97, 0);
     box-shadow: 0px 0px 3px rgb(0, 94, 19) inset;
 }

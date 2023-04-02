@@ -12,18 +12,18 @@ export default function CheckoutPanel(props) {
     //sends order to server when checkout button clicked
     const checkoutBtnClicked = () => {
         //TODO change emp id to be dynamic depending on who is logged in
-        setTimeout(() => {  console.log("SUBMITTING ORDER!"); }, 2000);
         const TEMP_EMP_ID = 1;
 
+        console.log(cart);
         /*
             convert items to an array of form:
             items: [ {"id": 1, "quantity": 2}, ... ] 
         */
         let itemsArr = [];
-        for(itemName in cart.items){
+        for (let itemName in cart.items) {
             const id = cart.items[itemName][2];
             const count = cart.items[itemName][0];
-            const curItem = {"id" : id, "quantity" : count};
+            const curItem = { "id": id, "quantity": count };
             itemsArr.push(curItem);
         }
         //build the order object to be sent in POST
@@ -36,8 +36,8 @@ export default function CheckoutPanel(props) {
             }
         */
         const order = {
-            customerName : custName,
-            totalCost: toString(cart.total[0]),
+            customerName: custName,
+            totalCost: cart.total[0].toString(),
             employeeID: TEMP_EMP_ID,
             items: itemsArr
         };
@@ -46,15 +46,17 @@ export default function CheckoutPanel(props) {
 
         fetch(url, {
             method: "POST",
-            body : JSON.stringify(order)
+            body: JSON.stringify(order)
         })
-        .then(response => {
-            return response.text();
-        })
-        .then(data => {
-            console.log(data);
-        });
+            .then(response => {
+                return response.text();
+            })
+            .then(data => {
+                console.log(data);
+            });
         props.emptyCart();
+
+        console.log("order Submitted");
 
 
 
@@ -74,7 +76,7 @@ export default function CheckoutPanel(props) {
             </div>
             <div id="checkoutButtonDiv">
                 <input type="text" value={custName} onChange={handleNameChanged} placeholder="Customer Name" />
-                <Link onClick={checkoutBtnClicked} id='checkoutBtn'>Checkout</Link>
+                <button onClick={e => checkoutBtnClicked()} id='checkoutBtn'>Checkout</button>
             </div>
         </div>
     );
