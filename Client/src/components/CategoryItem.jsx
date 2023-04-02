@@ -10,7 +10,7 @@ export default function CategoryItem(props) {
     return (
 
         <li role="listitem">
-            <a href={"/customerorder/" + item.title.toLowerCase()} className="menuLink">
+            <a href={"/customer/order/" + item.title.toLowerCase()} className="menuLink">
                 <button data-cy={"\"" + item.title + "\""} className="menuButton">
                     <div className="image">
                         <img alt={item.title} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
