@@ -44,10 +44,11 @@ inventoryRouter.post(apiPath + "/insertInventoryItem", async (req, res) => {
         console.log(req.body)
         const name = req.body.name;
         const quantity = req.body.quantity;
+        const threshold = req.body.threshold;
 
         const lastid = await db.query(`SELECT MAX(id) FROM ${INVENTORY_DATABASE}`);
         const id = lastid.rows[0].max + 1;
-        const response = await db.query(`INSERT INTO ${INVENTORY_DATABASE} (id, name, quantity, threshold) VALUES (${id}, '${name}', ${quantity}, 50)`);
+        const response = await db.query(`INSERT INTO ${INVENTORY_DATABASE} (id, name, quantity, threshold) VALUES (${id}, '${name}', ${quantity}, ${threshold})`);
 
         res.status(200).json({ message: `Item ${id}: ${name} inserted successfully` });
     } catch (err) {
@@ -97,6 +98,7 @@ inventoryRouter.put(apiPath+"/updateInventoryItem", async (req, res) => {
         const name = req.body.name;
         const quantity = req.body.quantity;
         const threshold = req.body.threshold;
+
         const prevQuant = await db.query(`SELECT quantity FROM ${INVENTORY_DATABASE} WHERE id = ${id}`);
         const quant = prevQuant.rows[0].quantity;
 

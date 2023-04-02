@@ -80,11 +80,13 @@ export default function Inventory(props) {
     const addInventoryFields = [
         { name: "itemName", label: "Item Name", type: "text", placeholder: "Item Name" },
         { name: "itemQuantity", label: "Item Quantity", type: "text", placeholder: "Item Quantity"},
+        { name: "itemThreshold", label: "Item Threshold", type: "text", placeholder: "Item Threshold"}
     ];
 
     const handleAddInventory = (formState) => {
         const name = formState.itemName;
         const quantity = formState.itemQuantity;
+        const threshold = formState.itemThreshold;
         const url = HOST + endpoints.insertInventoryItem;
 
         fetch(url, {
@@ -94,7 +96,8 @@ export default function Inventory(props) {
             },
             body: JSON.stringify({
                 name: name,
-                quantity: quantity
+                quantity: quantity,
+                threshold: threshold
             })
         })
             .then(response => {
