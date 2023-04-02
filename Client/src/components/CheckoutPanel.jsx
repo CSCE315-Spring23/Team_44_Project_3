@@ -13,8 +13,6 @@ export default function CheckoutPanel(props) {
     const checkoutBtnClicked = () => {
         //TODO change emp id to be dynamic depending on who is logged in
         const TEMP_EMP_ID = 1;
-
-        console.log(cart);
         /*
             convert items to an array of form:
             items: [ {"id": 1, "quantity": 2}, ... ] 
@@ -44,8 +42,10 @@ export default function CheckoutPanel(props) {
 
         const url = HOST + endpoints.postOrder;
 
+        console.log(order);
         fetch(url, {
             method: "POST",
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(order)
         })
             .then(response => {

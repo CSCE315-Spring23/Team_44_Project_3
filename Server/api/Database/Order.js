@@ -20,7 +20,6 @@ const { ORDER_ITEM_DATABASE, MENU_ITEM_DATABASE, SOLD_ITEM_DATABASE, INVENTORY_D
 orderRouter.get(apiPath + "/getMenu", async (req, res) => {
     try {
         const response = await db.query(`SELECT * FROM ${MENU_ITEM_DATABASE} ORDER BY ID`);
-        console.log(response.rows);
         res.send(response.rows);
     } catch (err) {
         console.log(err);
@@ -42,6 +41,7 @@ orderRouter.get(apiPath + "/getMenu", async (req, res) => {
 orderRouter.post(apiPath + "/postOrder", async (req, res) => {
     try {
         // extract data
+        console.log(req.body);
         const { customerName, totalCost, employeeID, items } = req.body;
         const currentDate = new Date();
         const formattedDateTime = currentDate.toISOString().replace('T', ' ').split('.')[0];
