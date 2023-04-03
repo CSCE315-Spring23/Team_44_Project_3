@@ -34,6 +34,10 @@ body {
 	padding: 0;
 }
 
+button#orderButton {
+	text-align: center;
+}
+
 button.menuButton {
 	-webkit-box-align: center;
 	-webkit-box-pack: center;
@@ -56,6 +60,10 @@ button.menuButton {
 
 button.menuButton:hover {
 	border: 2px solid;
+}
+
+div.login {
+	text-align: center;
 }
 
 header {
