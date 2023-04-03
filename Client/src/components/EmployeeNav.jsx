@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-export default function av(props) {
+export default function EmployeeNav(props) {
 
-    const isManager = props.isManager;
+    const [isManager, setIsManager] = useState();
+
+    useEffect(() => {
+        const managerBool = localStorage.getItem('isManager') !== 'false';
+        console.log(localStorage.getItem('isManager'), " ", managerBool);
+        setIsManager(managerBool);
+    },[]);
+
     const navigate = useNavigate();
     const handleLogout = () => {
 
