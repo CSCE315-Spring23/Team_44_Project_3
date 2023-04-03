@@ -203,3 +203,10 @@ div#menuTableDiv{
     height: 100vh;
     overflow-y: scroll;
 }
+
+div#menuFormsDiv {
+    width: 25%;
+    height: 100vh;
+    overflow-y: scroll;
+    text-align: center;
+}

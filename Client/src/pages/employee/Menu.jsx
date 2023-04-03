@@ -172,17 +172,17 @@ export default function Menu(props){
             </div>
             <div id="menuFormsDiv">
                 <div id = "updateMenuFormDiv">
-                    <h3>Update Menu Item</h3>
+                    <h4>Update Menu Item</h4>
                     <Form fields={updateMenuFields} onSubmit={handleUpdateMenu} />
                 </div>
                 <hr style={{marginRight: "5px"}}></hr>
                 <div id = "addMenuItemFormDiv">
-                    <h3>Add Menu Item</h3>
+                    <h4>Add Menu Item</h4>
                     <Form fields={addMenuItemFields} onSubmit={handleAddMenuItem} />
                 </div>
                 <hr style={{marginRight: "5px"}}></hr>
                 <div id = "deleteMenuItemFormDiv">
-                    <h3>Delete Menu Item</h3>
+                    <h4>Delete Menu Item</h4>
                     <Form fields={deleteMenuItemFields} onSubmit={handleDeleteMenuItem} />
                 </div>
             </div>

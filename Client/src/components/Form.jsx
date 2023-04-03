@@ -28,6 +28,7 @@ function FormGenerator({ fields, onSubmit }) {
         type={field.type}
         name={field.name}
         value={formState[field.name]}
+        placeholder={field.placeholder}
         onChange={handleFieldChange}
         style={{ flex: 1, padding: '5px', textAlign: 'right' }}
       />
