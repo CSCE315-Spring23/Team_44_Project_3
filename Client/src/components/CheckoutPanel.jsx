@@ -5,7 +5,8 @@ import { HOST } from "../utils/host";
 import { endpoints } from "../utils/apiEndpoints";
 
 export default function CheckoutPanel(props) {
-    const [custName, setCustName] = useState("noName");
+    const name = localStorage.getItem('custName');
+    const [custName, setCustName] = useState(name ? name : "");
     const { cart } = props;
     const items = Object.keys(cart.items);
 
@@ -57,13 +58,13 @@ export default function CheckoutPanel(props) {
         props.emptyCart();
 
         console.log("order Submitted");
-
-
+        setCustName("");
 
     }
 
     //change customer name
     const handleNameChanged = (comp) => {
+        localStorage.setItem('custName', comp.target.value);
         setCustName(comp.target.value);
     }
 

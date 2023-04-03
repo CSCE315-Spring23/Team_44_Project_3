@@ -14,7 +14,8 @@ export default function Order(props) {
         } 
 
     */
-    const [cart, setCart] = useState({ total: [0], items: {} });
+    const currCart = localStorage.getItem('cart');
+    const [cart, setCart] = useState(currCart ? JSON.parse(currCart) : { total: [0], items: {} });
 
     const addToCart = (item) => {
         let newCart = { ...cart };
@@ -30,6 +31,7 @@ export default function Order(props) {
         newCart.total[0] += Number(item.cost);
 
         setCart(newCart);
+        localStorage.setItem('cart', JSON.stringify(newCart));
         // console.log("add to cart " + item.name);
         // console.log(JSON.stringify(cart));
     }
