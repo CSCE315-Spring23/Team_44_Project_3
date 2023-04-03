@@ -1,0 +1,212 @@
+
+/* Nav Bar */
+nav.empNav {
+    position: relative;
+    width: 15%;
+    min-height: 100%;
+    background-color: #F4F8F9;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+a.empNavButton {
+    margin-top: 1em;
+    text-align: center;
+    text-decoration: none;
+    min-width: 80%;
+    min-height: 10%;
+    color: black;
+    background-color: white;
+    border-style: solid;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: grey;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 3px 3px grey;
+}
+
+a.empNavButton:hover {
+    box-shadow: 0px 0px 3px grey;
+}
+
+a.empNavButton.current {
+    color: white;
+    background-color: #DD0031;
+}
+
+/* Order Buttons */
+button.orderItemBtn {
+    background-color: #D9D9D9;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 1em;
+    height: 50px;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+button.orderItemBtn:hover {
+    background-color: #9c9c9c;
+}
+
+div.orderItemPane {
+    overflow-y: scroll;
+    padding: 1%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;    
+    width: 65%;
+    max-height: 100vh;
+}
+
+/* Order Checkout */
+div#checkoutPanel{
+    position: relative;
+    width: 20%;
+    height: 100vh;
+    background-color: #F4F8F9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button#checkoutBtn{
+    margin-bottom: 5%;
+    text-align: center;
+    text-decoration: none;
+    min-width: 90%;
+    min-height: 90%;
+    color: white;
+    background-color: green;
+    border-style: solid;
+    border-width: 0px;
+    border-radius: 10px;
+    border-color: grey;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 3px 3px rgb(0, 94, 19);
+}
+button#checkoutBtn:hover{
+    background-color: rgb(0, 97, 0);
+    box-shadow: 0px 0px 3px rgb(0, 94, 19) inset;
+}
+
+div#checkoutButtonDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    min-height: 20%;
+    min-width: 100%;
+}
+div#checkoutOrderItems{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 70%;
+    overflow-y: scroll;
+    min-width: 100%;
+}
+
+div.checkoutItem{
+    margin-bottom: 1em;
+}
+
+p.checkoutItem{
+    margin: 0;
+    font-size: .75em;
+}
+
+/* Tables */
+table.databaseTable{
+    width: 100%;
+    padding: 0 .75em 0 .75em;
+}
+table th, table td{
+    border: 1px solid black;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    text-decoration: underline;
+    text-emphasis: bold;
+    font-size: 1.5em;
+}
+
+
+/* Order History */
+div.empOrderPage {
+    display: flex;
+    min-width: 100%;
+    min-height: 100vh;
+    flex-direction: row;
+}
+
+div#orderHistoryTableDiv{
+    width: 60%;
+    height: 100vh;
+    overflow-y: scroll;
+    text-align: center;
+}
+div#orderHistoryInfoDiv{
+    width: 25%;
+    height: 100vh;
+    overflow-y: scroll;
+    text-align: center;
+}
+
+/* Inventory */
+div.empInventoryPage {
+    display: flex;
+    min-width: 100%;
+    min-height: 100vh;
+    flex-direction: row;
+}
+
+div#inventoryTableDiv{
+    width: 60%;
+    height: 100vh;
+    overflow-y: scroll;
+}
+div#inventoryFormsDiv {
+    width: 25%;
+    height: 100vh;
+    overflow-y: scroll;
+    text-align: center;
+}
+
+/* Edit Menu Page */
+div.empMenuPage {
+    display: flex;
+    min-width: 100%;
+    min-height: 100vh;
+    flex-direction: row;
+}
+
+div#menuTableDiv{
+    width: 60%;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+div#menuFormsDiv {
+    width: 25%;
+    height: 100vh;
+    overflow-y: scroll;
+    text-align: center;
+}

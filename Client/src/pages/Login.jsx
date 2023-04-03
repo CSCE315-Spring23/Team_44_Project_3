@@ -1,21 +1,30 @@
 import React, {useEffect, useState} from 'react';
-import chickFilA from '../assets/chickFilA.png';
-import '../styles/login.css';
+import logo from '../assets/CFA Banner.svg'
 
 function Login() {
-
-    const handleLoginButtonClick = (event) => {
-
+    function authLogin() {
+        console.log("WOW");
     }
 
-    return(
-        <div>
-            <img className='logo' src={chickFilA} />
+    return (
+        <>
+            <header>
+                <h1>Welcome to</h1>
+                <img src={logo}></img>
+            </header>
             <div>
-                <button className='orderButton'>Order</button>
-                <button className='employeeButton'>Employee Login</button>
+                <label for="username">Username:</label><br />
+                <input type="text" id="username" name="username" />
             </div>
-        </div>
+
+            <div>
+                <label for="pass">Password:</label><br />
+                <input type="password" id="pass" name="password"
+                    minlength="4" required />
+            </div>
+
+            <input type="submit" value="Sign in" onClick={authLogin}></input>
+        </>
     );
 }
 
