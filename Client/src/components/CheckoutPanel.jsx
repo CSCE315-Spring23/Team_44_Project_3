@@ -11,8 +11,8 @@ export default function CheckoutPanel(props) {
 
     //sends order to server when checkout button clicked
     const checkoutBtnClicked = () => {
-        //TODO change emp id to be dynamic depending on who is logged in
-        const TEMP_EMP_ID = 1;
+        const EMP_ID = localStorage.getItem('empID');
+        console.log(EMP_ID);
         /*
             convert items to an array of form:
             items: [ {"id": 1, "quantity": 2}, ... ] 
@@ -36,7 +36,7 @@ export default function CheckoutPanel(props) {
         const order = {
             customerName: custName,
             totalCost: cart.total[0].toString(),
-            employeeID: TEMP_EMP_ID,
+            employeeID: EMP_ID,
             items: itemsArr
         };
 

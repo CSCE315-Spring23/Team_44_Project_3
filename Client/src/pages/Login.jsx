@@ -38,8 +38,10 @@ export default function Login(props) {
         for (let i = 0;i < employeeTable.length;i++) {
             if (employeePin == employeeTable[i].pin) {
                 const isManager = employeeTable[i].role === 'manager';
+                const empID = String(employeeTable[i].id);
+                console.log("login ID ", empID);
                 localStorage.setItem('isManager', String(isManager));
-                console.log(isManager);
+                localStorage.setItem('empID', empID);
                 navigate('/employee/order');
             } else
                 setErrorMessage("Invalid PIN");
