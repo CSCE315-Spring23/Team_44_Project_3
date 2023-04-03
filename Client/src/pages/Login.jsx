@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import EmployeeNav from "../components/EmployeeNav";
 
-import { useNavigate } from 'react-router-dom';
-import { endpoints } from "../utils/apiEndpoints";
-import { HOST } from "../utils/host";
+import {useNavigate} from 'react-router-dom';
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
 import logo from '../assets/CFA Banner.svg'
 
 export default function Login(props) {
@@ -16,9 +16,9 @@ export default function Login(props) {
 
     useEffect(() => {
         fetch('/api/employee/getEmployees')
-        .then(response => response.json())
-        .then(data => SetEmployeeTable(data))
-        .catch(error => console.error(error));  
+            .then(response => response.json())
+            .then(data => SetEmployeeTable(data))
+            .catch(error => console.error(error));
     }, [])
 
     if (!employeeTable) {
@@ -35,15 +35,12 @@ export default function Login(props) {
         console.log(employeePin);
         console.log(employeeTable);
 
-        for (let i=0; i < employeeTable.length; i++) {
+        for (let i = 0;i < employeeTable.length;i++) {
             if (employeePin == employeeTable[i].pin) {
-                if (employeeTable[i].role == 'manager') {
-                    props.isManager = true;
-                }
-                navigate('Order');
-            } else {
+                props.isManager = employeeTable[i].role == 'manager';
+                navigate('employee/order');
+            } else
                 setErrorMessage("Invalid PIN");
-            }
         }
     }
 
@@ -55,14 +52,16 @@ export default function Login(props) {
                 <img src={logo}></img>
             </header>
 
-            <div>
+            <div className="login">
                 {errorMessage && <p>{errorMessage}</p>}
                 <label for="pass">PIN:</label><br />
-                <input type="password" id="pass" name="password"/> 
+                <input type="password" id="pass" name="password" />
                 <input type="submit" value="Sign in" onClick={authLogin}></input>
             </div>
 
-            <button id="orderButton">Order Now</button>
+            <a href="/customer/order">
+                <button id="orderButton">Order Now</button>
+            </a>
 
         </div>
     );
