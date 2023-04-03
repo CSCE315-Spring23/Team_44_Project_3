@@ -48,6 +48,7 @@ export default function Login(props) {
     }
 
     return (
+        // TODO: pass props to other pages
         <div>
             <header>
                 <h1>Welcome to</h1>
