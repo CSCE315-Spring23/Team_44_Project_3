@@ -1,31 +1,68 @@
 import React, {useEffect, useState} from 'react';
+import EmployeeNav from "../components/EmployeeNav";
+
+import { useNavigate } from 'react-router-dom';
+import { endpoints } from "../utils/apiEndpoints";
+import { HOST } from "../utils/host";
 import logo from '../assets/CFA Banner.svg'
 
-function Login() {
+export default function Login(props) {
+
+    const isManager = props.isManager;
+
+    const navigate = useNavigate();
+    const [employeeTable, SetEmployeeTable] = useState(null);
+    const [errorMessage, setErrorMessage] = useState("");
+
+    useEffect(() => {
+        fetch('/api/employee/getEmployees')
+        .then(response => response.json())
+        .then(data => SetEmployeeTable(data))
+        .catch(error => console.error(error));  
+    }, [])
+
+    if (!employeeTable) {
+        return <div>Loading Employee Table ...</div>
+    }
+
     function authLogin() {
-        console.log("WOW");
+        const employeePin = document.getElementById('pass').value;
+
+        if (!employeePin || employeePin.length < 4) {
+            return;
+        }
+
+        console.log(employeePin);
+        console.log(employeeTable);
+
+        for (let i=0; i < employeeTable.length; i++) {
+            if (employeePin == employeeTable[i].pin) {
+                if (employeeTable[i].role == 'manager') {
+                    props.isManager = true;
+                }
+                navigate('Order');
+            } else {
+                setErrorMessage("Invalid PIN");
+            }
+        }
     }
 
     return (
-        <>
+        <div>
             <header>
                 <h1>Welcome to</h1>
                 <img src={logo}></img>
             </header>
-            <div>
-                <label for="username">Username:</label><br />
-                <input type="text" id="username" name="username" />
-            </div>
 
             <div>
-                <label for="pass">Password:</label><br />
-                <input type="password" id="pass" name="password"
-                    minlength="4" required />
+                {errorMessage && <p>{errorMessage}</p>}
+                <label for="pass">PIN:</label><br />
+                <input type="password" id="pass" name="password"/> 
+                <input type="submit" value="Sign in" onClick={authLogin}></input>
             </div>
 
-            <input type="submit" value="Sign in" onClick={authLogin}></input>
-        </>
+            <button id="orderButton">Order Now</button>
+
+        </div>
     );
 }
-
-export default Login;

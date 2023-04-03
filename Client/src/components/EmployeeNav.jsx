@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function EmployeeNav(props) {
+export default function av(props) {
 
     const isManager = props.isManager;
     if (isManager) {

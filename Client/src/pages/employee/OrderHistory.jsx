@@ -62,7 +62,6 @@ export default function OrderHistory(props) {
             </div>
             <div id="orderHistoryInfoDiv">
                 <h3>View Order #{orderHistInfoID}</h3>
-
                 {orderHistInfo}
             </div>
         </div>
