@@ -25,7 +25,7 @@ const apiPath = "/api/editMenu";
 //TODO: probably will include a "category" field in the future
 editMenuRouter.get(apiPath + "/getMenu", async (req, res) => {
     try {
-        const response = await db.query(`SELECT * FROM ${MENU_ITEM_DATABASE} ORDER BY id`);
+        const response = await db.query(`SELECT id, name, cost, numbersold as number_sold FROM ${MENU_ITEM_DATABASE} ORDER BY id`);
         res.status(200).json(response.rows);
     } catch (err) {
         res.status(500).json({ message: "Error getting menu" });
@@ -100,6 +100,7 @@ editMenuRouter.delete(apiPath + "/deleteMenuItem", async (req, res) => {
 */
 editMenuRouter.post(apiPath + "/addMenuItem", async (req, res) => {
     try {
+        console.log(req.body);
         const { name, cost, recipeItems } = req.body;
         const lastid = await db.query(`SELECT MAX(id) FROM ${MENU_ITEM_DATABASE}`);
         const newid = lastid.rows[0].max + 1;

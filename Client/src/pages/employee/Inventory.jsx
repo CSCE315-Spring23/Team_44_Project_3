@@ -145,7 +145,7 @@ export default function Inventory(props) {
     return (
         <div className="empInventoryPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
-            <div id="inventoryDiv">
+            <div id="inventoryTableDiv">
                 <h2>Inventory</h2>
                 {inventoryTable}
             </div>

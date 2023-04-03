@@ -122,6 +122,15 @@ div#checkoutOrderItems{
     min-width: 100%;
 }
 
+div.checkoutItem{
+    margin-bottom: 1em;
+}
+
+p.checkoutItem{
+    margin: 0;
+    font-size: .75em;
+}
+
 /* Tables */
 table.databaseTable{
     width: 100%;
@@ -148,7 +157,7 @@ div.empOrderPage {
     flex-direction: row;
 }
 
-div#orderHistoryDiv{
+div#orderHistoryTableDiv{
     width: 60%;
     height: 100vh;
     overflow-y: scroll;
@@ -169,7 +178,7 @@ div.empInventoryPage {
     flex-direction: row;
 }
 
-div#inventoryDiv{
+div#inventoryTableDiv{
     width: 60%;
     height: 100vh;
     overflow-y: scroll;
@@ -181,11 +190,16 @@ div#inventoryFormsDiv {
     text-align: center;
 }
 
-div.checkoutItem{
-    margin-bottom: 1em;
+/* Edit Menu Page */
+div.empMenuPage {
+    display: flex;
+    min-width: 100%;
+    min-height: 100vh;
+    flex-direction: row;
 }
 
-p.checkoutItem{
-    margin: 0;
-    font-size: .75em;
+div#menuTableDiv{
+    width: 60%;
+    height: 100vh;
+    overflow-y: scroll;
 }
