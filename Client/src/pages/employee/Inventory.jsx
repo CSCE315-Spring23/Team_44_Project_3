@@ -151,17 +151,17 @@ export default function Inventory(props) {
             </div>
             <div id="inventoryFormsDiv">
                 <div id = "updateInventoryFormDiv">
-                    <h4>Update Inventory</h4>
+                    <h4>Update Inventory Item</h4>
                     <Form fields={updateInventoryFields} onSubmit={handleUpdateInventory} />
                 </div>
                 <hr style={{marginRight: "5px"}}></hr>
                 <div id = "addInventoryFormDiv">
-                    <h4>Add Inventory</h4>
+                    <h4>Add Inventory Item</h4>
                     <Form fields={addInventoryFields} onSubmit={handleAddInventory} />
                 </div>
                 <hr style={{marginRight: "5px"}}></hr>
                 <div id = "deleteInventoryFormDiv">
-                    <h4>Delete Inventory</h4>
+                    <h4>Delete Inventory Item</h4>
                     <Form fields={deleteInventoryFields} onSubmit={handleDeleteInventory} />
                 </div>
             </div>

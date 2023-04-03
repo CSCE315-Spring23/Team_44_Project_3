@@ -90,7 +90,7 @@ editMenuRouter.delete(apiPath + "/deleteMenuItem", async (req, res) => {
 /*
     Add a menu item to the menu database.
 
-    /api/editMenu/addMenuItem
+    /api/editMenu/insertMenuItem
 
     @param: name - "string"
     @param: cost - "number"
@@ -98,9 +98,8 @@ editMenuRouter.delete(apiPath + "/deleteMenuItem", async (req, res) => {
 
     @return: None
 */
-editMenuRouter.post(apiPath + "/addMenuItem", async (req, res) => {
+editMenuRouter.post(apiPath + "/insertMenuItem", async (req, res) => {
     try {
-        console.log(req.body);
         const { name, cost, recipeItems } = req.body;
         const lastid = await db.query(`SELECT MAX(id) FROM ${MENU_ITEM_DATABASE}`);
         const newid = lastid.rows[0].max + 1;
@@ -154,11 +153,10 @@ const addRecipeItems = async (id, recipeItems) => {
                 recipeItemMap.set(item.id, 1);
             }
         });
-
+        const lastid = await db.query(`SELECT MAX(id) FROM ${RECIPE_ITEM_DATABASE}`);
+        let newid = lastid.rows[0].max + 1;
         recipeItemMap.forEach(async (value, key) => {
-            const lastid = await db.query(`SELECT MAX(id) FROM ${RECIPE_ITEM_DATABASE}`);
-            const newid = lastid.rows[0].max + 1;
-            await db.query(`INSERT INTO ${RECIPE_ITEM_DATABASE} (id, inventoryid, menuid, count) VALUES (${newid}, ${key}, ${id}, ${value})`);
+            await db.query(`INSERT INTO ${RECIPE_ITEM_DATABASE} (id, inventoryid, menuid, count) VALUES (${newid++}, ${key}, ${id}, ${value})`);
         });
     } catch (err) {
         console.log("Error adding recipe items");

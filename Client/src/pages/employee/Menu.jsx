@@ -61,10 +61,35 @@ export default function Menu(props){
 
     const handleAddMenuItem = (formState) => {
         const name = formState.name;
-        const cost = formState.cost;
+        const cost = Number(formState.cost);
         const recipe = parseRecipe(formState.recipe);
         // const category = formState.category;
         console.log(name, cost, recipe);
+        const url = HOST + endpoints.insertMenuItem;
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                cost: cost,
+                recipeItems: recipe,
+                // category: category
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response not OK");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                getMenu();
+            }
+        );
     }
 
     const deleteMenuItemFields = [
@@ -80,7 +105,7 @@ export default function Menu(props){
         const recipeArray = recipe.split(",");
         const recipeJson = [];
         for (let i = 0; i < recipeArray.length; i++) {
-            recipeJson.push({id: recipeArray[i]});
+            recipeJson.push({id: Number(recipeArray[i])});
         }
         return recipeJson;
     }
