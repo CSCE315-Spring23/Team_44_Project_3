@@ -13,6 +13,8 @@ nav.empNav {
 
 a.empNavButton {
     margin-top: 1em;
+    font-size: 1em;
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     text-align: center;
     text-decoration: none;
     min-width: 80%;
@@ -31,6 +33,8 @@ a.empNavButton {
 }
 button.empNavLogout{
     margin-top: 1em;
+    font-size: 1em;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     text-align: center;
     text-decoration: none;
     min-width: 80%;
