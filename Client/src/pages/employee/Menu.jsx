@@ -49,6 +49,33 @@ export default function Menu(props){
         const recipe = parseRecipe(formState.newRecipe);
         // const category = formState.newCategory;
         console.log(id, name, cost, recipe);
+
+        const url = HOST + endpoints.updateMenuItem;
+
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: id,
+                name: name,
+                cost: cost,
+                recipeItems: recipe,
+                // category: category
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response not OK");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                getMenu();
+            }
+        );
     }
 
 
@@ -127,6 +154,10 @@ export default function Menu(props){
         const recipeArray = recipe.split(",");
         const recipeJson = [];
         for (let i = 0; i < recipeArray.length; i++) {
+            // exclud empty string
+            if (recipeArray[i] === "") {
+                continue;
+            }
             recipeJson.push({id: Number(recipeArray[i])});
         }
         return recipeJson;

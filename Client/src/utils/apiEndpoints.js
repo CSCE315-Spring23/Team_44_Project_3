@@ -16,4 +16,5 @@ export const endpoints = {
     menu: "/api/editmenu/getMenu",
     insertMenuItem: "/api/editmenu/insertMenuItem/",
     deleteMenuItem: "/api/editmenu/deleteMenuItem/",
+    updateMenuItem: "/api/editmenu/updateMenuItem/",
 }

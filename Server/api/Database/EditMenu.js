@@ -48,13 +48,23 @@ editMenuRouter.get(apiPath + "/getMenu", async (req, res) => {
 editMenuRouter.put(apiPath + "/updateMenuItem", async (req, res) => {
     try {
         const { id, name, cost, recipeItems } = req.body;
-        await db.query(`UPDATE ${MENU_ITEM_DATABASE} SET name = \'${name}\', cost = ${cost} WHERE id = ${id}`);
 
-        // Delete all recipe items associated with this menu item
-        await deleteRecipeItems(id);
+        if(name !== ''){
+            await db.query(`UPDATE ${MENU_ITEM_DATABASE} SET name = \'${name}\' WHERE id = ${id}`);
+        }
+        if(cost !== ''){
+            await db.query(`UPDATE ${MENU_ITEM_DATABASE} SET cost = ${cost} WHERE id = ${id}`);
+        }
 
-        // Add all recipe items associated with this menu item
-        await addRecipeItems(id, recipeItems);
+        // check if recipeItems is empty
+        if(recipeItems.length > 0){
+
+            // Delete all recipe items associated with this menu item
+            await deleteRecipeItems(id);
+
+            // Add all recipe items associated with this menu item
+            await addRecipeItems(id, recipeItems);
+        }
 
         res.status(200).json({ message: "Successfully updated menu item" });
     } catch (err) {
