@@ -29,13 +29,41 @@ a.menuLink:active {
 	text-decoration: none;
 }
 
+a.orderLink:link {
+	text-decoration: none;
+}
+
+a.orderLink:visited {
+	text-decoration: none;
+}
+
+a.orderLink:hover {
+	text-decoration: none;
+}
+
+a.orderLink:active {
+	text-decoration: none;
+}
+
 body {
 	margin: 0;
 	padding: 0;
 }
 
-button#orderButton {
+button.orderButton {
+	align-items: center;
+	display: flex;
+	justify-content: center;
 	text-align: center;
+	height: 100px;
+	width: 270px;
+
+	background-color: red;
+	padding: 5px;
+	color: white;
+
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-size: 300%;
 }
 
 button.menuButton {
@@ -66,13 +94,39 @@ div.login {
 	text-align: center;
 }
 
+div.order {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -40%);
+	transform: translate(-50%, -40%);
+}
+
 header {
 	text-align: center;
+}
+
+input#pass {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	width: 200px;
+	height: 25px;
+}
+
+input.signIn {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	width: 200px;
+	height: 25px;
 }
 
 img.menuIMG {
 	max-height: 100%;
 	max-width: 100%;
+}
+
+label.passLabel {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-size: 24pt;
 }
 
 ul.menu {

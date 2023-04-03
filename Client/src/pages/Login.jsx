@@ -46,7 +46,7 @@ export default function Login(props) {
 
     return (
         // TODO: pass props to other pages
-        <div>
+        <>
             <header>
                 <h1>Welcome to</h1>
                 <img src={logo}></img>
@@ -54,15 +54,16 @@ export default function Login(props) {
 
             <div className="login">
                 {errorMessage && <p>{errorMessage}</p>}
-                <label for="pass">PIN:</label><br />
+                <label for="pass" className="passLabel">PIN:</label><br />
                 <input type="password" id="pass" name="password" />
-                <input type="submit" value="Sign in" onClick={authLogin}></input>
+                <input type="submit" value="Sign in" onClick={authLogin} className="signIn"></input>
             </div>
 
-            <a href="/customer/order">
-                <button id="orderButton">Order Now</button>
-            </a>
-
-        </div>
+            <div className="order">
+                <a className="orderLink" href="/customer/order">
+                    <button className="orderButton">Order Now</button>
+                </a>
+            </div>
+        </>
     );
 }
