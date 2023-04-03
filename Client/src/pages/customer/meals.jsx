@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet';
 import {Outlet} from 'react-router-dom';
 import AddMenuItem from '../../components/AddMenuItem';
+import {useNavigate} from 'react-router-dom';
 
 import mealImages from '../../utils/mealImages';
 
@@ -21,8 +22,16 @@ const menuList = menu.map(item =>
 );
 
 function Meals() {
+
+    const navigate = useNavigate();
+
+    function navigateOrderPage() {
+        navigate('/customer/order')
+    }
+
     return (
         <>
+            <button onClick={navigateOrderPage}>Go Back</button>
             <header>
                 <h1>Meals</h1>
             </header>
