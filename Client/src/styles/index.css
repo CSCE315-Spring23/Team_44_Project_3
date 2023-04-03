@@ -50,8 +50,22 @@ body {
 	padding: 0;
 }
 
+button.backButton {
+	align-items: center;
+	background: 0px center;
+	border: 0px;
+	cursor: pointer;
+	display: flex;
+	font-family: inherit;
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+	-webkit-box-align: center;
+}
+
 button.orderButton {
 	align-items: center;
+	cursor: pointer;
 	display: flex;
 	justify-content: center;
 	text-align: center;
@@ -88,6 +102,29 @@ button.menuButton {
 
 button.menuButton:hover {
 	border: 2px solid;
+}
+
+div.backDiv {
+	width: 13.5%;
+	text-align: left;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+}
+
+div.backText {
+	margin-left: 12px;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 20px;
+	letter-spacing: -0.5px;
+	color: #485259;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: initial;
 }
 
 div.login {
