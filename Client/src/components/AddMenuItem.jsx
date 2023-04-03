@@ -12,6 +12,16 @@ export default function AddMenuItem(props) {
         console.log(item.title);
         console.log(item.src);
         console.log(item.key);
+        let order = localStorage.getItem('curOrder');
+        if(!order){
+            order = {total: [0], items: []};
+        }
+        else{
+            order = JSON.parse(order);
+        }
+        // add to the order object
+        
+        localStorage.setItem('curOrder', JSON.stringify(order));
     }
 
     return (
