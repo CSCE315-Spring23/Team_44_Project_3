@@ -98,7 +98,29 @@ export default function Menu(props){
 
     const handleDeleteMenuItem = (formState) => {
         const id = formState.itemID;
-        console.log(id);
+
+        const url = HOST + endpoints.deleteMenuItem;
+
+        fetch(url, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: id
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response not OK");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                getMenu();
+            }
+        );
     }
     //parse recipe string into json array
     const parseRecipe = (recipe) => {
