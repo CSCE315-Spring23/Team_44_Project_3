@@ -136,16 +136,27 @@ div.backText {
 	align-items: center;
 }
 
-.sign-in-field {
-	margin-right: 1em;
-	height: 2em;
+input[type="password"], input[type="submit"] {
+	height: 3em;
+	margin: 0;
+	padding: 0 1.2em;
+	box-sizing: content-box;
+	border: 1px solid black;
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-size: 1rem;
+	font-weight: 500;
 }
 
-.sign-in-button {
-	height: 2rem;
-	margin: 0px;
-	padding: 0px 1em;
-	font-weight: 400;
+input[type="password"] {
+	border-radius: 100px 0px 0px 100px;
+	border-right: none;
+}
+
+input[type="submit"] {
+	background-color: rgba(221,0,49,1);
+	color: white;
+	border-radius: 0px 100px 100px 0px;
+	border-left: none;
 }
 
 .order-link {
