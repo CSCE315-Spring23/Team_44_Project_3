@@ -59,6 +59,7 @@ export default function CheckoutPanel(props) {
 
         console.log("order Submitted");
         setCustName("");
+        localStorage.setItem('custName', "");
 
     }
 
@@ -76,7 +77,7 @@ export default function CheckoutPanel(props) {
                 ))}
             </div>
             <div id="checkoutButtonDiv">
-                <p>Total: {cart.total[0]}</p>
+                <p>Total: ${cart.total[0].toFixed(2)}</p>
                 <input type="text" value={custName} onChange={handleNameChanged} placeholder="Customer Name" />
                 <button onClick={e => checkoutBtnClicked()} id='checkoutBtn'>Checkout</button>
             </div>

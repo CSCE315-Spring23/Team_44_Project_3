@@ -38,6 +38,7 @@ export default function Order(props) {
 
     const emptyCart = () => {
         setCart({ total: [0], items: {} });
+        localStorage.setItem('cart', JSON.stringify({ total: [0], items: {} }));
     }
 
     const isManager = props.isManager;

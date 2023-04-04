@@ -152,20 +152,28 @@ div#checkoutButtonDiv {
 div#checkoutOrderItems {
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: center;
     height: 70%;
     overflow-y: scroll;
     min-width: 100%;
+    border-bottom: black 1px solid;
 }
 
-div.checkoutItem {
-    margin-bottom: 1em;
+div.checkoutItem{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-p.checkoutItem {
-    margin: 0;
+p.checkoutItemLeft {
+    margin-left: 15px;
     font-size: .75em;
+    text-align: left;
+}
+p.checkoutItemRight {
+    margin-right: 15px;
+    font-size: .75em;
+    text-align: right;
+    flex-direction: flex-end;
 }
 
 /* Tables */
