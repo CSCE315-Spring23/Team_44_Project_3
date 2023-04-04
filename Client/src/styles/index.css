@@ -13,42 +13,11 @@
 	-webkit-text-size-adjust: 100%;
 }
 
-a.menuLink:link {
-	text-decoration: none;
-}
-
-a.menuLink:visited {
-	text-decoration: none;
-}
-
-a.menuLink:hover {
-	text-decoration: none;
-}
-
-a.menuLink:active {
-	text-decoration: none;
-}
-
-a.orderLink:link {
-	text-decoration: none;
-}
-
-a.orderLink:visited {
-	text-decoration: none;
-}
-
-a.orderLink:hover {
-	text-decoration: none;
-}
-
-a.orderLink:active {
-	text-decoration: none;
-}
-
 body {
 	margin: 0;
 	padding: 0;
 	text-align: center;
+	margin-top: 5em;
 }
 
 button.backButton {
@@ -163,7 +132,7 @@ input[type="submit"] {
 .order-link {
 	position: relative;
 	display: inline-block;
-	margin-top: 3em;
+	margin-top: 5em;
 	padding: 1em 2em;
 
 	text-decoration: none;
