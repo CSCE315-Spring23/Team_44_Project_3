@@ -1,6 +1,6 @@
 # Scrum Meeting 1
 Prepared by: Steven Mao  
-Meeting Date: 2023-30-03
+Meeting Date: 2023-03-30
 
 ## Meeting Attendees
     - Steven Mao

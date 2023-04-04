@@ -1,6 +1,6 @@
 # Scrum Meeting 0
 Prepared by: Steven Mao  
-Meeting Date: 2023-28-03
+Meeting Date: 2023-03-28
 
 ## Meeting Attendees
     - Steven Mao
