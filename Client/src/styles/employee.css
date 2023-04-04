@@ -1,11 +1,11 @@
-
 /* Nav Bar */
 body {
-	margin: 0;
-	padding: 0;
-	text-align: center;
-	margin-top: 0em;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-top: 0em;
 }
+
 nav.empNav {
     position: relative;
     width: 15%;
@@ -20,7 +20,7 @@ nav.empNav {
 a.empNavButton {
     margin-top: 1em;
     font-size: 1em;
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     text-align: center;
     text-decoration: none;
     min-width: 80%;
@@ -37,7 +37,8 @@ a.empNavButton {
     justify-content: center;
     box-shadow: 0px 3px 3px grey;
 }
-button.empNavLogout{
+
+button.empNavLogout {
     margin-top: 1em;
     font-size: 1em;
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -58,7 +59,8 @@ button.empNavLogout{
     align-items: center;
     box-shadow: 0px 3px 3px grey;
 }
-button.empNavLogout:hover{
+
+button.empNavLogout:hover {
     box-shadow: 0px 0px 3px grey;
 }
 
@@ -95,13 +97,13 @@ div.orderItemPane {
     padding: 1%;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;    
+    flex-wrap: wrap;
     width: 65%;
     max-height: 100vh;
 }
 
 /* Order Checkout */
-div#checkoutPanel{
+div#checkoutPanel {
     position: relative;
     width: 20%;
     height: 100vh;
@@ -112,7 +114,8 @@ div#checkoutPanel{
     align-items: center;
 }
 
-button#checkoutBtn{
+button#checkoutBtn {
+    margin-top: 5%;
     margin-bottom: 5%;
     text-align: center;
     text-decoration: none;
@@ -131,12 +134,13 @@ button#checkoutBtn{
     align-items: center;
     box-shadow: 0px 3px 3px rgb(0, 94, 19);
 }
-button#checkoutBtn:hover{
+
+button#checkoutBtn:hover {
     background-color: rgb(0, 97, 0);
     box-shadow: 0px 0px 3px rgb(0, 94, 19) inset;
 }
 
-div#checkoutButtonDiv{
+div#checkoutButtonDiv {
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -144,7 +148,8 @@ div#checkoutButtonDiv{
     min-height: 20%;
     min-width: 100%;
 }
-div#checkoutOrderItems{
+
+div#checkoutOrderItems {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -154,26 +159,28 @@ div#checkoutOrderItems{
     min-width: 100%;
 }
 
-div.checkoutItem{
+div.checkoutItem {
     margin-bottom: 1em;
 }
 
-p.checkoutItem{
+p.checkoutItem {
     margin: 0;
     font-size: .75em;
 }
 
 /* Tables */
-table.databaseTable{
+table.databaseTable {
     width: 100%;
     padding: 0 .75em 0 .75em;
 }
-table th, table td{
+
+table th,
+table td {
     border: 1px solid black;
     text-align: center;
 }
 
-h2{
+h2 {
     text-align: center;
     text-decoration: underline;
     text-emphasis: bold;
@@ -189,13 +196,14 @@ div.empOrderPage {
     flex-direction: row;
 }
 
-div#orderHistoryTableDiv{
+div#orderHistoryTableDiv {
     width: 60%;
     height: 100vh;
     overflow-y: scroll;
     text-align: center;
 }
-div#orderHistoryInfoDiv{
+
+div#orderHistoryInfoDiv {
     width: 25%;
     height: 100vh;
     overflow-y: scroll;
@@ -210,11 +218,12 @@ div.empInventoryPage {
     flex-direction: row;
 }
 
-div#inventoryTableDiv{
+div#inventoryTableDiv {
     width: 60%;
     height: 100vh;
     overflow-y: scroll;
 }
+
 div#inventoryFormsDiv {
     width: 25%;
     height: 100vh;
@@ -230,7 +239,7 @@ div.empMenuPage {
     flex-direction: row;
 }
 
-div#menuTableDiv{
+div#menuTableDiv {
     width: 60%;
     height: 100vh;
     overflow-y: scroll;
