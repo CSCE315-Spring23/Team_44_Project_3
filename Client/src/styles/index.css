@@ -127,8 +127,10 @@ div.backText {
 	font: inherit;
 	vertical-align: initial;
 }
-/* * LOGIN ITEMS */
+
+/* LOGIN ITEMS */
 .login-wrapper {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -167,18 +169,6 @@ div.backText {
 
 header {
 	text-align: center;
-}
-
-input#pass {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	width: 200px;
-	height: 25px;
-}
-
-input.signIn {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	width: 200px;
-	height: 25px;
 }
 
 img.menuIMG {
