@@ -7,17 +7,17 @@ import {useNavigate} from 'react-router-dom';
 import entreeImages from '../../utils/entreeImages';
 
 const menu = [
-    {title: "Chicken Sandwich", src: entreeImages.entree0, key: 0},
-    {title: "Chicken Sandwich Deluxe", src: entreeImages.entree1, key: 1},
-    {title: "Spicy Chicken Sandwich", src: entreeImages.entree2, key: 2},
-    {title: "Spicy Chicken Sandwich Deluxe", src: entreeImages.entree3, key: 3},
-    {title: "12 ct. Grilled Nuggets", src: entreeImages.entree4, key: 4},
-    {title: "8 ct. Grilled Nuggets", src: entreeImages.entree5, key: 5},
-    {title: "12 ct. Nuggets", src: entreeImages.entree7, key: 6},
-    {title: "8 ct. Nuggets", src: entreeImages.entree6, key: 7},
-    {title: "Grilled Chicken Sandwich", src: entreeImages.entree8, key: 8},
-    {title: "Grilled Chicken Club", src: entreeImages.entree9, key: 9},
-    {title: "Grilled Chicken Cool Wrap", src: entreeImages.entree10, key: 10}
+    {title: "Chicken Sandwich", src: entreeImages.entree0, key: 0, id: 1},
+    {title: "Chicken Sandwich Deluxe", src: entreeImages.entree1, key: 1, id: 2},
+    {title: "Spicy Chicken Sandwich", src: entreeImages.entree2, key: 2, id: 3},
+    {title: "Spicy Chicken Sandwich Deluxe", src: entreeImages.entree3, key: 3, id: 4},
+    {title: "12 ct. Grilled Nuggets", src: entreeImages.entree4, key: 4, id: 5},
+    {title: "8 ct. Grilled Nuggets", src: entreeImages.entree5, key: 5, id: 6},
+    {title: "12 ct. Nuggets", src: entreeImages.entree7, key: 6, id: 7},
+    {title: "8 ct. Nuggets", src: entreeImages.entree6, key: 7, id: 8},
+    {title: "Grilled Chicken Sandwich", src: entreeImages.entree8, key: 8, id: 9},
+    {title: "Grilled Chicken Club", src: entreeImages.entree9, key: 9, id: 10},
+    {title: "Grilled Chicken Cool Wrap", src: entreeImages.entree10, key: 10, id: 11}
 ];
 
 const menuList = menu.map(item =>
