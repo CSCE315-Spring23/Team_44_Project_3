@@ -131,6 +131,7 @@ div.backText {
 /* LOGIN ITEMS */
 .login-wrapper {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	margin-top: 3em;
 	display: flex;
 	justify-content: center;
 	align-items: center;

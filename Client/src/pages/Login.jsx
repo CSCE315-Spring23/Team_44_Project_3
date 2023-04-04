@@ -58,8 +58,7 @@ export default function Login(props) {
 
             <div className="login-wrapper">
                 {errorMessage && <p>{errorMessage}</p>}
-                <label for="pass" className="passLabel">PIN:</label>
-                <input type="password" id="pass" name="password" className="sign-in-field"/>
+                <input type="password" id="pass" name="password" className="sign-in-field" placeholder="Enter PIN Number"/>
                 <input type="submit" value="Sign In" onClick={authLogin} className="sign-in-button"/>
             </div>
 
