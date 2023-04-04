@@ -7,9 +7,9 @@ import {useNavigate} from 'react-router-dom';
 import saladImages from '../../utils/saladImages';
 
 const menu = [
-    {title: "Cobb Salad", src: saladImages.salad0, key: 0},
-    {title: "Market Salad", src: saladImages.salad1, key: 1},
-    {title: "Spicy Southwest Salad", src: saladImages.salad2, key: 2},
+    {title: "Cobb Salad", src: saladImages.salad0, key: 0, id: 12},
+    {title: "Market Salad", src: saladImages.salad1, key: 1, id: 14},
+    {title: "Spicy Southwest Salad", src: saladImages.salad2, key: 2, id: 13},
 ];
 
 const menuList = menu.map(item =>
