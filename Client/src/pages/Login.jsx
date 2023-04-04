@@ -56,18 +56,14 @@ export default function Login(props) {
                 <img src={logo}></img>
             </header>
 
-            <div className="login">
+            <div className="login-wrapper">
                 {errorMessage && <p>{errorMessage}</p>}
-                <label for="pass" className="passLabel">PIN:</label><br />
-                <input type="password" id="pass" name="password" />
-                <input type="submit" value="Sign in" onClick={authLogin} className="signIn"></input>
+                <label for="pass" className="passLabel">PIN:</label>
+                <input type="password" id="pass" name="password" className="sign-in-field"/>
+                <input type="submit" value="Sign In" onClick={authLogin} className="sign-in-button"/>
             </div>
 
-            <div className="order">
-                <a className="orderLink" href="/customer/order">
-                    <button className="orderButton">Order Now</button>
-                </a>
-            </div>
+            <a className="order-link" href="/customer/order">Order Now</a>
         </>
     );
 }
