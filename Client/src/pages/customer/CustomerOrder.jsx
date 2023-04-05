@@ -21,11 +21,38 @@ const categories = [
 const categoryList = categories.map(item =>
 	<CategoryItem key={item.key} item={item}></CategoryItem>
 );
-const handleCheckout = () => {
-	console.log("checkout");
-}
+
 
 function CustomerOrder() {
+	const handleCheckout = () => {
+		console.log("checkout");
+		const orderLocal = JSON.parse(localStorage.getItem('curOrder'));
+		const order = {
+			customerName: "custName",
+			totalCost: orderLocal.total[0],
+			employeeID: 0,
+			items: orderLocal.items
+		};
+
+		const url = HOST + endpoints.postOrder;
+
+		console.log(order);
+		fetch(url, {
+			method: "POST",
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(order)
+		})
+			.then(response => {
+				return response.text();
+			})
+			.then(data => {
+				console.log(data);
+			});
+		const defaultOrder = { total: [0], items: [] };
+		localStorage.setItem('curOrder', JSON.stringify(defaultOrder));
+		setOrderTotal(0);
+
+	}
 	//get menu and update total
 	const [orderTotal, setOrderTotal] = useState(0);
 	useEffect(() => {
