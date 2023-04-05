@@ -21,11 +21,11 @@ Meeting Date: 2023-03-30
 
 ### Tasks Completed
 
-| Task Description                                     | Assigned to   | Completed? (yes/no) |
-| ---------------------------------------------------- | ------------- | ------------------- |
-| Create pages and components                          | Huy, Shreeman | yes                 |
-| Implement routes and routing between pages for react | Sloan         | yes                 |
-| Translate Java Controllers to API in Express         | Kevin, Steven | yes                 |
+| Task Description                                     | Assigned to          | Completed? (yes/no) |
+| ---------------------------------------------------- | ---------------------| ------------------- |
+| Create pages and components                          | Huy, Shreeman, Sloan | yes                 |
+| Implement routes and routing between pages for react | Sloan                | yes                 |
+| Translate Java Controllers to API in Express         | Kevin, Steven        | yes                 |
 
 ## Before The Next Meeting
 ### Plans
