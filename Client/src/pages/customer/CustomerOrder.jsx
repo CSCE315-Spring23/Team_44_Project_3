@@ -77,7 +77,7 @@ function CustomerOrder() {
 
 		//update total
 		const curOrder = JSON.parse(localStorage.getItem('curOrder'));
-		if (curOrder.total) {
+		if (curOrder && curOrder.total) {
 			setOrderTotal(curOrder.total[0]);
 		}
 
