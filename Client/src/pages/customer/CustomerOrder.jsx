@@ -21,9 +21,15 @@ const categories = [
 const categoryList = categories.map(item =>
 	<CategoryItem key={item.key} item={item}></CategoryItem>
 );
+const handleCheckout = () => {
+	console.log("checkout");
+}
 
 function CustomerOrder() {
+	//get menu and update total
+	const [orderTotal, setOrderTotal] = useState(0);
 	useEffect(() => {
+		//get menu
 		const url = HOST + endpoints.getMenu;
 		fetch(url, {
 			method: "GET"
@@ -42,6 +48,12 @@ function CustomerOrder() {
 				console.error("Could not fetch menu items from " + url);
 			});
 
+		//update total
+		const curOrder = JSON.parse(localStorage.getItem('curOrder'));
+		if (curOrder.total) {
+			setOrderTotal(curOrder.total[0]);
+		}
+
 	}, []);
 
 
@@ -53,6 +65,9 @@ function CustomerOrder() {
 			<ul data-cy="MenuCategoryList" className="menu" role="list">
 				{categoryList}
 			</ul>
+			<div id='customerCheckout'>
+				<button onClick={e => handleCheckout()} id='customerCheckoutBtn'>Checkout {orderTotal.toFixed(2)}</button>
+			</div>
 			<Outlet />
 		</>
 	);
