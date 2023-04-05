@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import CategoryItem from '../../components/CategoryItem';
+import { HOST } from '../../utils/host';
+import { endpoints } from '../../utils/apiEndpoints';
 
 import images from '../../utils/imageImport';
 
@@ -33,6 +35,7 @@ function CustomerOrder() {
 				return response.json();
 			})
 			.then(data => {
+				console.log("data from customerOrder: ", data);
 				localStorage.setItem('menu', JSON.stringify(data));
 			})
 			.catch(error => {
