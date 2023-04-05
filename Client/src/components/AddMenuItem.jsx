@@ -23,9 +23,10 @@ export default function AddMenuItem(props) {
         const menu = JSON.parse(localStorage.getItem('menu'));
         //handle meals
         if (item.ids) {
-            item.ids.forEach((curItem) => {
+            item.ids.forEach((curID) => {
+                console.log("meal id: ", curID);
                 menu.forEach((arrItem) => {
-                    if (arrItem.id == curItem.id) {
+                    if (arrItem.id == curID) {
                         order.total[0] += Number(arrItem.cost);
                         order.items.push({"id" : arrItem.id, "quantity" : 1});
                     }
