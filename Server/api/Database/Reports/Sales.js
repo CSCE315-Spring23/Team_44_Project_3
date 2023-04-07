@@ -8,7 +8,22 @@ const apiPath = "/api/reports/sales";
 
 
 
+/*
+    Gets the menu items that were sold between the start and end date
 
+    /api/reports/sales/?startDate={YYYY-MM-DD}&endDate={YYYY-MM-DD}
+
+    @param startDate: String, the start date of the report
+    @param endDate: String, the end date of the report
+
+    @return: JSON object, the menu items that were sold between the start and end date
+        e.g. {
+            0: {
+                name: "Menu Item",
+                number_sold: 10
+            },
+            1: { ... }
+*/
 salesRouter.get(apiPath + "/getSales", async (req, res) => {
     try{
         console.log(req.query)
@@ -28,7 +43,22 @@ salesRouter.get(apiPath + "/getSales", async (req, res) => {
     }
 });
 
+/*
+    Gets the inventory items that were sold between the start and end date
 
+    /api/reports/sales/getInventorySales?startDate={YYYY-MM-DD}&endDate={YYYY-MM-DD}
+
+    @param startDate: String, the start date of the report
+    @param endDate: String, the end date of the report
+
+    @return: JSON object, the inventory items that were sold between the start and end date
+        e.g. {
+            0: {
+                name: "Inventory Item",
+                number_sold: 10
+            },
+            1: { ... }
+*/
 salesRouter.get(apiPath + "/getInventorySales", async (req, res) => {
     try{
         console.log(req.query)

@@ -7,6 +7,24 @@ const { ORDER_ITEM_DATABASE, SOLD_ITEM_DATABASE, MENU_ITEM_DATABASE, INVENTORY_D
 const apiPath = "/api/reports/salesTogether";
 
 
+
+/*
+    Gets the menu items that are sold together the most
+
+    /api/reports/salesTogether/?startDate={YYYY-MM-DD}&endDate={YYYY-MM-DD}
+
+    @param startDate: String, the start date of the report
+    @param endDate: String, the end date of the report
+
+    @return: JSON object, the menu items that are sold together the most
+        e.g. {
+            0: {
+                menu_item_1: "Menu Item 1",
+                menu_item_2: "Menu Item 2",
+                number_sold: 10
+            },
+            1: { ... }
+*/
 salesTogetherRouter.get(apiPath, async (req, res) => {
     try{
         const startDate = req.query.startDate;
