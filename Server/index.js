@@ -13,6 +13,7 @@ const editMenuRouter = require("./api/Database/EditMenu.js");
 
 const salesRouter = require("./api/Database/Reports/Sales.js");
 const restockRouter = require("./api/Database/Reports/Restock.js");
+const salesTogetherRouter = require("./api/Database/Reports/SalesTogether.js");
 const weatherRouter = require("./api/Weather/Weather.js");
 
 
@@ -36,6 +37,7 @@ app.use('/', inventoryRouter);
 app.use('/', editMenuRouter);
 app.use('/', salesRouter);
 app.use('/', restockRouter);
+app.use('/', salesTogetherRouter);
 app.use('/', weatherRouter);
 
 
