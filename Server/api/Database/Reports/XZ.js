@@ -9,8 +9,8 @@ const apiPath = "/api/reports/XZ";
 
 XZRouter.get(apiPath + "/getXReport", async (req, res) => {
     try{
-        const totalSales = await getTotalSalesSinceZReport();
-
+        let totalSales = await getTotalSalesSinceZReport();
+        if(totalSales == null) totalSales = 0;
         const employee = await getEmployee(req.query.employeeid);
         const employeeName = employee.name;
 
@@ -44,6 +44,29 @@ XZRouter.get(apiPath + "/getZReportInfo", async (req, res) => {
     }
 });
 
+XZRouter.post(apiPath + "/createZReport", async (req, res) => {
+    try{
+        console.log(req.body)
+        const employeeID = req.body.employeeid;
+        const employee = await getEmployee(employeeID);
+        const employeeName = employee.name;
+
+        const orderID = await getLastOrderID();
+
+        const date = currentDate();
+
+        let totalSales = await getTotalSalesSinceZReport();
+        if(totalSales == null) totalSales = 0;
+
+        db.query(`INSERT INTO ${ZREPORT_DATABASE} (totalsales, employee, orderid, datecreated)
+            VALUES (${totalSales}, '${employeeName}', ${orderID}, '${date}')`);
+
+        res.send({ totalSales, employeeName, orderID, date });
+    } catch(err){
+        console.log(err);
+    }
+});
+
 
 const getTotalSalesSinceZReport = async () => {
     try{
@@ -71,7 +94,6 @@ const getLastZReport = async () => {
 const getEmployee = async (employeeID) => {
     try{
         const response = await db.query(`SELECT * FROM ${EMPLOYEE_DATABASE} WHERE id = ${employeeID}`);
-        console.log(response.rows[0]);
         return response.rows[0];
     }
     catch(err){
@@ -96,7 +118,6 @@ const currentDate = () => {
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
     const day = String(currentDate.getDate()).padStart(2, '0');
     const formattedDate = `${year}-${month}-${day}`;
-    console.log(formattedDate); // prints something like "2022-01-23"
     return formattedDate;
 }
 
