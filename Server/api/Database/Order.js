@@ -41,7 +41,6 @@ orderRouter.get(apiPath + "/getMenu", async (req, res) => {
 orderRouter.post(apiPath + "/postOrder", async (req, res) => {
     try {
         // extract data
-        console.log(req.body);
         const { customerName, totalCost, employeeID, items } = req.body;
         const currentDate = new Date();
         const formattedDateTime = currentDate.toISOString().replace('T', ' ').split('.')[0];

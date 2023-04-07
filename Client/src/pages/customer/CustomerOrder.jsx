@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import CategoryItem from '../../components/CategoryItem';
+import { HOST } from '../../utils/host';
+import { endpoints } from '../../utils/apiEndpoints';
 
 import images from '../../utils/imageImport';
 
@@ -20,8 +22,41 @@ const categoryList = categories.map(item =>
 	<CategoryItem key={item.key} item={item}></CategoryItem>
 );
 
+
 function CustomerOrder() {
+	const handleCheckout = () => {
+		console.log("checkout");
+		const orderLocal = JSON.parse(localStorage.getItem('curOrder'));
+		const order = {
+			customerName: "custName",
+			totalCost: orderLocal.total[0],
+			employeeID: 0,
+			items: orderLocal.items
+		};
+
+		const url = HOST + endpoints.postOrder;
+
+		console.log(order);
+		fetch(url, {
+			method: "POST",
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(order)
+		})
+			.then(response => {
+				return response.text();
+			})
+			.then(data => {
+				console.log(data);
+			});
+		const defaultOrder = { total: [0], items: [] };
+		localStorage.setItem('curOrder', JSON.stringify(defaultOrder));
+		setOrderTotal(0);
+
+	}
+	//get menu and update total
+	const [orderTotal, setOrderTotal] = useState(0);
 	useEffect(() => {
+		//get menu
 		const url = HOST + endpoints.getMenu;
 		fetch(url, {
 			method: "GET"
@@ -33,11 +68,18 @@ function CustomerOrder() {
 				return response.json();
 			})
 			.then(data => {
+				console.log("data from customerOrder: ", data);
 				localStorage.setItem('menu', JSON.stringify(data));
 			})
 			.catch(error => {
 				console.error("Could not fetch menu items from " + url);
 			});
+
+		//update total
+		const curOrder = JSON.parse(localStorage.getItem('curOrder'));
+		if (curOrder && curOrder.total) {
+			setOrderTotal(curOrder.total[0]);
+		}
 
 	}, []);
 
@@ -50,6 +92,9 @@ function CustomerOrder() {
 			<ul data-cy="MenuCategoryList" className="menu" role="list">
 				{categoryList}
 			</ul>
+			<div id='customerCheckout'>
+				<button onClick={e => handleCheckout()} id='customerCheckoutBtn'>Checkout {orderTotal.toFixed(2)}</button>
+			</div>
 			<Outlet />
 		</>
 	);

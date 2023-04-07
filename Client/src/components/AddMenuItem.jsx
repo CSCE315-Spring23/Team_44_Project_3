@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { HOST } from '../utils/host';
 
 /**
  * 
@@ -9,20 +10,40 @@ export default function AddMenuItem(props) {
     const item = props.item;
 
     function addOrder(item) {
-        console.log(item.title);
-        console.log(item.src);
-        console.log(item.key);
 
         let order = localStorage.getItem('curOrder');
-        order = order ? JSON.parse(order) : {total: [0], items: []};
+        console.log("order before changes: ", order);
         if (!order) {
-            order = {total: [0], items: []};
+            order = { total: [0], items: [] };
         }
         else {
             order = JSON.parse(order);
         }
         // add to the order object
-
+        const menu = JSON.parse(localStorage.getItem('menu'));
+        //handle meals
+        if (item.ids) {
+            item.ids.forEach((curID) => {
+                console.log("meal id: ", curID);
+                menu.forEach((arrItem) => {
+                    if (arrItem.id == curID) {
+                        order.total[0] += Number(arrItem.cost);
+                        order.items.push({"id" : arrItem.id, "quantity" : 1});
+                    }
+                });
+            });
+        }
+        //handle all other items
+        if (item.id) {
+            console.log("clicked itemid: ", item.id);
+            menu.forEach((arrItem) => {
+                if (arrItem.id == item.id) {
+                    order.total[0] += Number(arrItem.cost);
+                    order.items.push({"id" : arrItem.id, "quantity" : 1});
+                }
+            });
+        }
+        console.log(order);
         localStorage.setItem('curOrder', JSON.stringify(order));
     }
 
