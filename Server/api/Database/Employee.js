@@ -3,7 +3,7 @@ const employeeRouter = express.Router();
 const db = require('./Info/DatabaseConnect.js');
 
 const EMPLOYEE_DATABASE = require('./Info/DatabaseNames.js').EMPLOYEE_DATABASE;
-const api_path = "/api/employee";
+const apiPath = "/api/employee";
 
 /*
     Get all employees
@@ -18,7 +18,7 @@ const api_path = "/api/employee";
             "pin": "string"
         }
 */
-employeeRouter.get(api_path + "/getEmployees", async (req, res) => {
+employeeRouter.get(apiPath + "/getEmployees", async (req, res) => {
     try{
         const response = await db.query(`SELECT * FROM ${EMPLOYEE_DATABASE}`);
         res.send(response.rows);
