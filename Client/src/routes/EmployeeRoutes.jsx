@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 
 import Order from "../pages/employee/Order";
 import OrderHistory from "../pages/employee/OrderHistory";
@@ -20,7 +20,8 @@ export default function EmployeeRoutes() {
                 <Route path='orderHistory' element={<OrderHistory />} />
                 <Route path='inventory' element={<Inventory />} />
                 <Route path='menu' element={<Menu />} />
-                <Route path='reports' element={<Reports />} >
+                <Route path='reports' element={<Outlet/>} >
+                    <Route path="" element={<Reports/>}></Route>
                     <Route path="sales" element={<SalesRep/>}></Route>
                     <Route path="restock" element={<RestockRep/>}></Route>
                     <Route path="excess" element={<ExcessRep/>}></Route>
