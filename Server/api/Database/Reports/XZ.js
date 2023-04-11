@@ -6,7 +6,21 @@ const db = require('../Info/DatabaseConnect.js');
 const { ORDER_ITEM_DATABASE, ZREPORT_DATABASE, EMPLOYEE_DATABASE } = require('../Info/DatabaseNames.js');
 const apiPath = "/api/reports/XZ";
 
+/*
+    gets the X report since the last Z report
 
+    /api/reports/XZ/getXReport?employeeid={employeeid}
+
+    @param employeeid - id of the employee who is requesting the report
+
+    @return - json object with the following format:
+    {
+        totalSales: {totalSales},
+        employeeName: {employeeName},
+        orderID: {orderID},
+        date: {date}
+    }
+*/
 XZRouter.get(apiPath + "/getXReport", async (req, res) => {
     try{
         let totalSales = await getTotalSalesSinceZReport();
@@ -23,6 +37,24 @@ XZRouter.get(apiPath + "/getXReport", async (req, res) => {
     }
 });
 
+
+/*
+    gets the all Z reports
+
+    /api/reports/XZ/getZReports
+
+    @return - json object with the following format:
+    [
+        {
+            reportid: {reportid},
+            totalsales: {totalsales},
+            employee: {employee},
+            orderid: {orderid},
+            datecreated: {datecreated}
+        },
+        ...
+    ]
+*/
 XZRouter.get(apiPath + "/getZReports", async (req, res) => {
     try{
         const response = await db.query(`SELECT * FROM ${ZREPORT_DATABASE} ORDER BY reportid`);
@@ -32,6 +64,23 @@ XZRouter.get(apiPath + "/getZReports", async (req, res) => {
     }
 });
 
+
+/*
+    gets the Z report info with the given id
+
+    /api/reports/XZ/getZReportInfo?id={id}
+
+    @param id - id of the Z report to get
+
+    @return - json object with the following format:
+    {
+        reportid: {reportid},
+        totalsales: {totalsales},
+        employee: {employee},
+        orderid: {orderid},
+        datecreated: {datecreated}
+    }
+*/
 XZRouter.get(apiPath + "/getZReportInfo", async (req, res) => {
     try{
         const id = req.query.id;
@@ -44,6 +93,14 @@ XZRouter.get(apiPath + "/getZReportInfo", async (req, res) => {
     }
 });
 
+
+/*
+    creates a new Z report
+
+    /api/reports/XZ/createZReport
+
+    @param employeeid - id of the employee who is creating the report
+*/
 XZRouter.post(apiPath + "/createZReport", async (req, res) => {
     try{
         console.log(req.body)
@@ -67,7 +124,9 @@ XZRouter.post(apiPath + "/createZReport", async (req, res) => {
     }
 });
 
+// helper functions
 
+// gets the total sales since the last Z report
 const getTotalSalesSinceZReport = async () => {
     try{
         const lastZReport = await getLastZReport();
@@ -81,6 +140,7 @@ const getTotalSalesSinceZReport = async () => {
     }
 }
 
+// gets the last Z report
 const getLastZReport = async () => {
     try{
         const response = await db.query(`SELECT * FROM ${ZREPORT_DATABASE} ORDER BY reportid DESC LIMIT 1`);
@@ -91,6 +151,7 @@ const getLastZReport = async () => {
     }
 }
 
+// gets the employee name with the given id
 const getEmployee = async (employeeID) => {
     try{
         const response = await db.query(`SELECT * FROM ${EMPLOYEE_DATABASE} WHERE id = ${employeeID}`);
@@ -101,6 +162,7 @@ const getEmployee = async (employeeID) => {
     }
 }
 
+// gets the last order id
 const getLastOrderID = async () => {
     try{
         const response = await db.query(`SELECT id FROM ${ORDER_ITEM_DATABASE} ORDER BY id DESC LIMIT 1`);
@@ -111,7 +173,7 @@ const getLastOrderID = async () => {
     }
 }
 
-
+// gets the current date in the format YYYY-MM-DD
 const currentDate = () => {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
