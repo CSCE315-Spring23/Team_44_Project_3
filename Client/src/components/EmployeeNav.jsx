@@ -25,8 +25,8 @@ export default function EmployeeNav(props) {
                 <Link className='empNavButton' to='/employee/orderHistory'>Order History</Link>
                 <Link className='empNavButton' to='/employee/inventory'>Inventory</Link>
                 <Link className='empNavButton' to='/employee/menu'>Menu</Link>
-                <Link className='empNavButton'>Reports</Link>
-                <Link className='empNavButton'>Menu Board</Link>
+                <Link className='empNavButton' to='/employee/reports'>Reports</Link>
+                <Link className='empNavButton' to='/employee/menuBoard'>Menu Board</Link>
                 <button onClick={e => handleLogout()} className='empNavLogout'>Logout</button>
             </nav>
         );

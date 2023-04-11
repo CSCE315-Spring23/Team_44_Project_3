@@ -5,6 +5,7 @@ import Order from "../pages/employee/Order";
 import OrderHistory from "../pages/employee/OrderHistory";
 import Inventory from "../pages/employee/Inventory";
 import Menu from "../pages/employee/Menu";
+import Reports from "../pages/employee/Reports";
 
 export default function EmployeeRoutes() {
     return (
@@ -14,6 +15,7 @@ export default function EmployeeRoutes() {
                 <Route path='orderHistory' element={<OrderHistory />} />
                 <Route path = 'inventory' element={<Inventory />} />
                 <Route path = 'menu' element={<Menu />} />
+                <Route path = 'reports' element={<Reports />} />
             </Route>
         </Routes>
     );
