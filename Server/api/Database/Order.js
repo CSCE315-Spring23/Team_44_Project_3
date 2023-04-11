@@ -56,6 +56,9 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
         let response = await db.query(`SELECT MAX(id) FROM ${SOLD_ITEM_DATABASE}`);
         let solditemId = response.rows[0].max + 1;
 
+        // add TOGO Bag to items
+        items.push({id: 1, quantity: 1});
+
         // update other 3 tables
         items.forEach((item) => {
             // insert items into solditem

@@ -10,6 +10,13 @@ const orderHistoryRouter = require("./api/Database/OrderHistory.js");
 const employeeRouter = require("./api/Database/Employee.js");
 const inventoryRouter = require("./api/Database/Inventory.js");
 const editMenuRouter = require("./api/Database/EditMenu.js");
+
+const salesRouter = require("./api/Database/Reports/Sales.js");
+const restockRouter = require("./api/Database/Reports/Restock.js");
+const salesTogetherRouter = require("./api/Database/Reports/SalesTogether.js");
+const XZRouter = require("./api/Database/Reports/XZ.js");
+const excessRouter = require("./api/Database/Reports/Excess.js");
+
 const weatherRouter = require("./api/Weather/Weather.js");
 
 
@@ -30,8 +37,13 @@ app.use('/', orderRouter);
 app.use('/', orderHistoryRouter);
 app.use('/', employeeRouter);
 app.use('/', inventoryRouter);
-app.use('/', weatherRouter);
 app.use('/', editMenuRouter);
+app.use('/', salesRouter);
+app.use('/', restockRouter);
+app.use('/', salesTogetherRouter);
+app.use('/', XZRouter);
+app.use('/', excessRouter);
+app.use('/', weatherRouter);
 
 
 
