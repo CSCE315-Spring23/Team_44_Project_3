@@ -15,6 +15,8 @@ const salesRouter = require("./api/Database/Reports/Sales.js");
 const restockRouter = require("./api/Database/Reports/Restock.js");
 const salesTogetherRouter = require("./api/Database/Reports/SalesTogether.js");
 const XZRouter = require("./api/Database/Reports/XZ.js");
+const excessRouter = require("./api/Database/Reports/Excess.js");
+
 const weatherRouter = require("./api/Weather/Weather.js");
 
 
@@ -40,6 +42,7 @@ app.use('/', salesRouter);
 app.use('/', restockRouter);
 app.use('/', salesTogetherRouter);
 app.use('/', XZRouter);
+app.use('/', excessRouter);
 app.use('/', weatherRouter);
 
 

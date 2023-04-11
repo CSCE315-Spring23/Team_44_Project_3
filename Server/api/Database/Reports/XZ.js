@@ -3,7 +3,7 @@ const XZRouter = express.Router();
 const db = require('../Info/DatabaseConnect.js');
 
 
-const { ORDER_ITEM_DATABASE, SOLD_ITEM_DATABASE, MENU_ITEM_DATABASE, INVENTORY_DATABASE, RECIPE_ITEM_DATABASE, ZREPORT_DATABASE, EMPLOYEE_DATABASE} = require('../Info/DatabaseNames.js');
+const { ORDER_ITEM_DATABASE, ZREPORT_DATABASE, EMPLOYEE_DATABASE } = require('../Info/DatabaseNames.js');
 const apiPath = "/api/reports/XZ";
 
 
