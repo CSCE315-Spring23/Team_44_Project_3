@@ -267,6 +267,7 @@ div#reportsSelection{
     flex-wrap: wrap;
 }
 
+/* Report Page */
 a.reportBtn{
     margin: 1em;
     font-size: 1em;
@@ -289,7 +290,6 @@ a.reportBtn{
     box-shadow: 0px 3px 3px grey;
 }
 a.reportBtn:hover{
-
     box-shadow: 0px 3px 3px  inset grey;
 }
 div.salesRepDiv{
