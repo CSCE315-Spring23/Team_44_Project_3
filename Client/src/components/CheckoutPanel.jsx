@@ -63,6 +63,7 @@ export default function CheckoutPanel(props) {
 
     }
 
+
     //change customer name
     const handleNameChanged = (comp) => {
         localStorage.setItem('custName', comp.target.value);
@@ -73,7 +74,7 @@ export default function CheckoutPanel(props) {
         <div id="checkoutPanel">
             <div id="checkoutOrderItems">
                 {items.map(item => (
-                    <CheckoutItem itemName={item} count={cart.items[item][0]} price={cart.items[item][1]}></CheckoutItem>
+                    <CheckoutItem itemName={item} count={cart.items[item][0]} price={cart.items[item][1]} onClick={props.removeFromCart}></CheckoutItem>
                 ))}
             </div>
             <div id="checkoutButtonDiv">
