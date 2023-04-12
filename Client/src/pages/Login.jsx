@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import EmployeeNav from "../components/EmployeeNav";
 
-import {useNavigate} from 'react-router-dom';
-import {endpoints} from "../utils/apiEndpoints";
-import {HOST} from "../utils/host";
+import { useNavigate } from 'react-router-dom';
+import { endpoints } from "../utils/apiEndpoints";
+import { HOST } from "../utils/host";
 import logo from '../assets/CFA Banner.svg'
+
+import { Helmet } from "react-helmet";
 
 export default function Login(props) {
     const isManager = props.isManager;
@@ -34,7 +36,7 @@ export default function Login(props) {
         console.log(employeePin);
         console.log(employeeTable);
 
-        for (let i = 0;i < employeeTable.length;i++) {
+        for (let i = 0; i < employeeTable.length; i++) {
             if (employeePin == employeeTable[i].pin) {
                 const isManager = employeeTable[i].role === 'manager';
                 const empID = String(employeeTable[i].id);
@@ -50,6 +52,9 @@ export default function Login(props) {
     return (
         // TODO: pass props to other pages
         <>
+            <Helmet>
+                <script src="https://accounts.google.com/gsi/client" async defer></script>
+            </Helmet>
             <header>
                 <h1>Welcome to</h1>
                 <img src={logo}></img>
@@ -57,6 +62,23 @@ export default function Login(props) {
 
             <div className="order-wrapper">
                 <a className="order-link" href="/customer/order">Order Now</a>
+            </div>
+
+            <div id="g_id_onload"
+                data-client_id="494495949926-om1cjij44iie2585is6tk7n98aurqso6.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-login_uri="/employee/order"
+                data-auto_prompt="false">
+            </div>
+
+            <div class="g_id_signin"
+                data-type="standard"
+                data-shape="pill"
+                data-theme="outline"
+                data-text="signin_with"
+                data-size="large"
+                data-logo_alignment="left">
             </div>
 
             <div className="login-wrapper">
