@@ -302,7 +302,7 @@ div.salesRepDiv{
 div.repBody{
     display: flex;
     flex-direction: row;
-    
+
 }
 
 div.salesMenuItemTable{
@@ -311,5 +311,17 @@ div.salesMenuItemTable{
 }
 div.salesInvItemTable{
     max-height: 100vh;
+    overflow-y: scroll;
+}
+
+div.excessRepDiv{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    /* overflow-y: scroll; */
+    max-height: 100vh;
+}
+
+div.excessRepTable{
     overflow-y: scroll;
 }
