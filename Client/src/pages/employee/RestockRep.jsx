@@ -1,5 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-export default function RestockRep(){
-    
+import EmployeeNav from "../../components/EmployeeNav";
+import '../../styles/employee.css'
+import DatabaseTablePane from "../../components/DatabaseTablePane";
+import { endpoints } from "../../utils/apiEndpoints";
+import { HOST } from "../../utils/host";
+
+
+export default function RestockRep(props){
+    const isManager = props.isManager;
+    return (
+        <div className="empOrderPage">
+            <EmployeeNav isManager={isManager}></EmployeeNav>
+            <div className="salesRepTable">
+                <h2>Restock Reps</h2>
+            </div>
+        </div>
+    );
 }

@@ -1,60 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
+
+function Test() {
+  const [selectedDate, setSelectedDate] = useState(null);
+const [startDate, setStartDate] = useState(null);
+  function handleChange(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    console.log(`${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`);
+    setStartDate(`${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`);
+  }
+
+  useEffect(() => {
+    console.log(startDate);
+    }, [startDate]);
 
 
-const Test = () => {
-
-    const add = () => {
-        console.log("added new inventory item");
-
-        fetch('http://localhost:3001/api/inventory/insertinventoryitem', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-                },
-            body: JSON.stringify({
-                "name": "new item",
-                "quantity": 11
-            })
-        })
-    }
-
-    const del = () => {
-        console.log("deleted inventory item");
-
-        fetch('http://localhost:3001/api/inventory/deleteinventoryitem', {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-                },
-            body: JSON.stringify({
-                "id": 83
-                })
-        })
-    }
-
-    const update = () => {
-        console.log("updated inventory item");
-
-        fetch('http://localhost:3001/api/inventory/updateinventoryitem', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-                },
-            body: JSON.stringify({
-                "id": 84,
-                "quantity": 100
-            })
-        })
-    }
-
-    return (
-        <div>
-            <h1>Test</h1>
-            <button onClick={add}>add new inventory item</button>
-            <button onClick={del}>delete inventory item</button>
-            <button onClick={update}>update inventory item</button>
-        </div>
-    )
+  return (
+    <DatePicker
+      selected={selectedDate}
+      onChange={handleChange}
+      dateFormat="yyyy-MM-dd"
+    />
+  );
 }
 
 export default Test;
