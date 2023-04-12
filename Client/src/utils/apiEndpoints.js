@@ -16,4 +16,13 @@ export const endpoints = {
     insertMenuItem: "/api/editmenu/insertMenuItem/",
     deleteMenuItem: "/api/editmenu/deleteMenuItem/",
     updateMenuItem: "/api/editmenu/updateMenuItem/",
+
+    getSales: "/api/reports/sales/getSales/",
+    getInventorySales: "/api/reports/sales/getInventorySales/",
+
+    getRestock: "/api/reports/restock",
+
+    getSalesTogether: "/api/reports/salesTogether/",
+
+    getExcess: "/api/reports/excess/",
 }
