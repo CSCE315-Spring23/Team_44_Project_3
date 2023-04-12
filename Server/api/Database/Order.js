@@ -43,6 +43,7 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
         // extract data
         const { customerName, totalCost, employeeID, items } = req.body;
         const currentDate = new Date();
+        console.log(currentDate);
         const formattedDateTime = currentDate.toISOString().replace('T', ' ').split('.')[0];
 
         // query next orderitem id
