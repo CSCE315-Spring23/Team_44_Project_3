@@ -32,18 +32,18 @@ function Treats() {
 
     return (
         <>
-            <div className="backDiv">
-                <button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigateOrderPage}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        </path>
-                    </svg>
-                    <div aria-hidden="true" className="backText">
-                        Back
-                    </div>
-                </button>
-            </div>
             <header>
+                <div className="backDiv">
+                    <button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigateOrderPage}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                        </svg>
+                        <div aria-hidden="true" className="backText">
+                            Back
+                        </div>
+                    </button>
+                </div>
                 <h1>Treats</h1>
             </header>
             <ul data-cy="TreatsList" className="menu" role="list">
