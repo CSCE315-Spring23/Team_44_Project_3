@@ -79,7 +79,7 @@ export default function SalesRep(props){
     return (
         <div className="empOrderPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
-            <div className= "salesRepDiv">
+            <div className= "repDiv">
                 <div className="repHead">
                     <div className = "repTitle">
                         <Link to="/employee/reports" className="backButton">Back</Link>
@@ -99,7 +99,7 @@ export default function SalesRep(props){
                                 onChange={handleEndDateChange}
                                 placeholderText="End Date"
                             />
-                            <button onClick={genReport}>Go</button>
+                            <button className="goButton" onClick={genReport}>Go</button>
                         </div>
                     </div>
                 </div>

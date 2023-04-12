@@ -34,13 +34,15 @@ export default function RestockRep(props){
     return (
         <div className="empOrderPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
-            <div className="restockRepDiv">
-                <div className="restockRepHead">
+            <div className="repDiv">
+                <div className="repHead">
                     <Link to="/employee/reports" className="backButton">Back</Link>
-                    <h2>Restock Reps</h2>
+                    <h2>Restock Report</h2>
                 </div>
-                <div className="restockRepTable">
-                    {restockTable}
+                <div className="repBody">
+                    <div className="restockRepTable">
+                        {restockTable}
+                    </div>
                 </div>
             </div>
         </div>

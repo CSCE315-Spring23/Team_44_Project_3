@@ -59,10 +59,10 @@ export default function SalesTogetherRep(props){
     return (
         <div className="empOrderPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
-            <div className="salesTogetherRepDiv">
-                <div className="salesTogetherRepHead">
+            <div className="repDiv">
+                <div className="repHead">
                     <Link to="/employee/reports" className="backButton">Back</Link>
-                    <h2>Sales Together Reps</h2>
+                    <h2>Sales Together Report</h2>
                     <div className="datePicker">
                         <h5>Enter Start Date: </h5>
                         <DatePicker
@@ -78,11 +78,13 @@ export default function SalesTogetherRep(props){
                             dateFormat="yyyy-MM-dd"
                             placeholderText="End Date"
                         />
-                        <button onClick={genReport}>Go</button>
+                        <button className="goButton" onClick={genReport}>Go</button>
                     </div>
                 </div>
-                <div className="salesTogetherRepTable">
-                    {salesTogetherTable}
+                <div className="repBody">
+                    <div className="salesTogetherRepTable">
+                        {salesTogetherTable}
+                    </div>
                 </div>
             </div>
         </div>

@@ -56,10 +56,10 @@ export default function ExcessRep(props){
     return (
         <div className="empOrderPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
-            <div className="excessRepDiv">
-                <div className="excessRepHead">
+            <div className="repDiv">
+                <div className="repHead">
                     <Link to="/employee/reports" className="backButton">Back</Link>
-                    <h2>Excess Reps</h2>
+                    <h2>Excess Report</h2>
                     <div className="excessRepDate">
                         <h5>Enter Start Date</h5>
                         <DatePicker
@@ -68,11 +68,13 @@ export default function ExcessRep(props){
                             dateFormat="yyyy-MM-dd"
                             placeholderText="Start Date"
                         />
-                        <button onClick={genReport}>Go</button>
+                        <button className="goButton" onClick={genReport}>Go</button>
                     </div>
                 </div>
-                <div className="excessRepTable">
-                    {excessRepTable}
+                <div className="repBody">
+                    <div className = "excessRepTable">
+                        {excessRepTable}
+                    </div>
                 </div>
             </div>
         </div>

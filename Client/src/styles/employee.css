@@ -294,7 +294,8 @@ a.reportBtn:hover{
 }
 
 /* Reports */
-div.salesRepDiv{
+
+div.repDiv{
     display: flex;
     flex-direction: row;
     width: 85%;
@@ -320,24 +321,28 @@ div.salesInvItemTable{
     width: 50%;
 }
 
-div.excessRepDiv{
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    max-height: 100vh;
-}
 
 div.excessRepTable{
     overflow-y: scroll;
-}
-
-div.salesTogetherRepDiv{
-    display: flex;
-    flex-direction: row;
-    width: 80%;
+    width: 100%;
     max-height: 100vh;
 }
 
+
 div.salesTogetherRepTable{
     overflow-y: scroll;
+    width: 100%;
+    max-height: 100vh;
+}
+
+div.restockRepTable{
+    overflow-y: scroll;
+    width: 100%;
+    max-height: 100vh;
+    margin-top: 1em;
+}
+
+.goButton{
+    padding: 4px;
+    margin: 20px;
 }
