@@ -84,23 +84,23 @@ export default function SalesRep(props){
                     <div className = "repTitle">
                         <Link to="/employee/reports" className="backButton">Back</Link>
                         <h2>Sales Report</h2>
-                    </div>
-                    <div className="datePicker">
-                        <h5>Enter Start Date: </h5>
-                        <DatePicker
-                            selected={selectedStartDate}
-                            onChange={handleStartDateChange}
-                            dateFormat="yyyy-MM-dd"
-                            placeholderText="Start Date"
-                        />
-                        <h5>Enter End Date:</h5>
-                        <DatePicker
-                            selected={selectedEndDate}
-                            dateFormat="yyyy-MM-dd"
-                            onChange={handleEndDateChange}
-                            placeholderText="End Date"
-                        />
-                        <button onClick={genReport}>Go</button>
+                        <div className="datePicker">
+                            <h5>Enter Start Date: </h5>
+                            <DatePicker
+                                selected={selectedStartDate}
+                                onChange={handleStartDateChange}
+                                dateFormat="yyyy-MM-dd"
+                                placeholderText="Start Date"
+                            />
+                            <h5>Enter End Date:</h5>
+                            <DatePicker
+                                selected={selectedEndDate}
+                                dateFormat="yyyy-MM-dd"
+                                onChange={handleEndDateChange}
+                                placeholderText="End Date"
+                            />
+                            <button onClick={genReport}>Go</button>
+                        </div>
                     </div>
                 </div>
                 <div className="repBody">

@@ -22,7 +22,8 @@ const api_path = "/api/orderhistory";
 */
 orderHistoryRouter.get(api_path+"/getOrderHistory", async (req, res) => {
     try{
-        const response = await db.query(`SELECT * FROM ${ORDER_ITEM_DATABASE} ORDER BY id DESC LIMIT 30`);
+        const response = await db.query(`SELECT id, customer_name, total_cost, date AT TIME ZONE 'utc' AT TIME ZONE 'america/chicago' AS date, employee_id  FROM ${ORDER_ITEM_DATABASE} ORDER BY id DESC LIMIT 30`);
+
         res.send(response.rows);
     } catch(err){
         console.log(err);
