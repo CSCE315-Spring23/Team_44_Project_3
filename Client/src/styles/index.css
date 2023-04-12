@@ -241,7 +241,7 @@ nav.desktop-navigation {
 	height: 64px;
 	-webkit-box-align: center;
 	align-items: center;
-	box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px;
+	box-shadow: #00000033 0px 0px 4px;
 	position: fixed;
 	width: 100%;
 	background-color: white;
@@ -258,6 +258,7 @@ ul.menu {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	padding-inline-start: 0px;
+	padding-top: 64px;
 	padding-bottom: 28px;
 	gap: 28px;
 	list-style: none;

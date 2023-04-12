@@ -37,7 +37,7 @@ function CustomerOrder() {
 		const url = HOST + endpoints.postOrder;
 
 		console.log(order);
-		if(order.items === undefined || order.items.length === 0){
+		if (order.items === undefined || order.items.length === 0) {
 			alert("Please add items to your order before checking out.");
 			return;
 		}
@@ -100,7 +100,7 @@ function CustomerOrder() {
 			<Weather />
 
 			<div id='customerCheckout'>
-				<button onClick={e => handleCheckout()} id='customerCheckoutBtn'>Checkout {orderTotal.toFixed(2)}</button>
+				<button onClick={e => handleCheckout()} id='customerCheckoutBtn'>Checkout ${orderTotal.toFixed(2)}</button>
 			</div>
 			<Outlet />
 		</>
