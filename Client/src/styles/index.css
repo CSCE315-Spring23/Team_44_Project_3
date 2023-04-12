@@ -52,6 +52,25 @@ button.backButton {
 	-webkit-box-align: center;
 }
 
+button#customerCheckoutBtn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50%;
+	width: 20%;
+	background-color: green;
+	color: white;
+	border-radius: 10px;
+	border-style: none;
+	box-shadow: 0px 3px 3px rgb(0, 94, 19);
+
+}
+
+button#customerCheckoutBtn:hover {
+	background-color: rgb(0, 97, 0);
+	box-shadow: 0px 0px 3px rgb(0, 94, 19) inset;
+}
+
 button.menuButton {
 	-webkit-box-align: center;
 	-webkit-box-pack: center;
@@ -74,6 +93,40 @@ button.menuButton {
 
 button.menuButton:hover {
 	border: 2px solid;
+}
+
+button.viewOrderBtn {
+	box-sizing: border-box;
+	padding: 0px 24px;
+	height: 48px;
+	min-width: 120px;
+	width: 100%;
+	border: none;
+	border-radius: 24px;
+	outline: none;
+	background-image: linear-gradient(#ff033b 0%, #ca0f1a 100%);
+	background-size: 100%;
+	color: rgb(255, 255, 255);
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	letter-spacing: -0.5625px;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	text-decoration: none;
+	pointer-events: auto;
+	position: relative;
+	transition: all 250ms ease-out 0s;
+}
+
+button.viewOrderBtn:hover {
+	background-size: 100%;
+	background-image: linear-gradient(#ff033b 0%, #ca0f1a 100%);
+	position: relative;
+	z-index: 1;
 }
 
 div.backDiv {
@@ -99,6 +152,15 @@ div.backText {
 	vertical-align: initial;
 }
 
+div#customerCheckout {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+	justify-content: center;
+	height: 20vh;
+}
+
 div.login-wrapper {
 	margin: 3em;
 	font-family: inherit;
@@ -107,6 +169,22 @@ div.login-wrapper {
 
 	justify-content: center;
 	align-items: center;
+}
+
+div.title {
+	width: 73%;
+	text-align: center;
+	display: flex;
+	-webkit-box-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	align-items: center;
+}
+
+div.order {
+	-webkit-box-pack: end;
+	justify-content: flex-end;
+	width: 13.5%;
 }
 
 div.order-wrapper {
@@ -158,6 +236,19 @@ label.passLabel {
 	font-size: 24pt;
 }
 
+nav.desktop-navigation {
+	display: flex;
+	height: 64px;
+	-webkit-box-align: center;
+	align-items: center;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px;
+	position: fixed;
+	width: 100%;
+	background-color: white;
+	z-index: 50;
+	top: 0px;
+}
+
 ul.menu {
 	height: 100%;
 	width: 100%;
@@ -171,32 +262,4 @@ ul.menu {
 	gap: 28px;
 	list-style: none;
 	text-align: center;
-}
-
-div#customerCheckout {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	align-items: start;
-	justify-content: center;
-	height: 20vh;
-}
-
-button#customerCheckoutBtn {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 50%;
-	width: 20%;
-	background-color: green;
-	color: white;
-	border-radius: 10px;
-	border-style: none;
-	box-shadow: 0px 3px 3px rgb(0, 94, 19);
-
-}
-
-buton#customerCheckoutBtn:hover {
-	background-color: rgb(0, 97, 0);
-	box-shadow: 0px 0px 3px rgb(0, 94, 19) inset;
 }
