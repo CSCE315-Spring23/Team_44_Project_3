@@ -77,7 +77,7 @@ export default function SalesRep(props){
     }
 
     return (
-        <div className="empSalesPage">
+        <div className="empOrderPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
             <div className= "salesRepDiv">
                 <div className="repHead">

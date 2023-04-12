@@ -299,12 +299,39 @@ div.salesRepDiv{
     /* overflow-y: scroll; */
     max-height: 100vh;
 }
+div.repBody{
+    display: flex;
+    flex-direction: row;
 
-div#salesMenuItemTable{
+}
+
+div.salesMenuItemTable{
     max-height: 100vh;
     overflow-y: scroll;
 }
-div#salesInvItemTable{
+div.salesInvItemTable{
     max-height: 100vh;
+    overflow-y: scroll;
+}
+
+div.excessRepDiv{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    max-height: 100vh;
+}
+
+div.excessRepTable{
+    overflow-y: scroll;
+}
+
+div.salesTogetherRepDiv{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    max-height: 100vh;
+}
+
+div.salesTogetherRepTable{
     overflow-y: scroll;
 }

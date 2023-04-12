@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import CategoryItem from '../../components/CategoryItem';
-import { HOST } from '../../utils/host';
-import { endpoints } from '../../utils/apiEndpoints';
+import React, {useEffect, useState} from 'react';
+import {Outlet} from 'react-router-dom';
+import {HOST} from '../../utils/host';
+import {endpoints} from '../../utils/apiEndpoints';
+import Weather from '../../components/Weather';
 
 import images from '../../utils/imageImport';
 
 const categories = [
-	{ title: "Meals", src: images.meals, key: 0 },
-	{ title: "Entrées", src: images.entree, key: 1 },
-	{ title: "Beverages", src: images.beverages, key: 2 },
-	{ title: "Salads", src: images.salads, key: 3 },
-	{ title: "Treats", src: images.treats, key: 4 },
-	{ title: "Sauces", src: images.sauces, key: 5 }
+	{title: "Meals", src: images.meals, key: 0},
+	{title: "Entrées", src: images.entree, key: 1},
+	{title: "Beverages", src: images.beverages, key: 2},
+	{title: "Salads", src: images.salads, key: 3},
+	{title: "Treats", src: images.treats, key: 4},
+	{title: "Sauces", src: images.sauces, key: 5}
 ];
 
 
@@ -43,7 +43,7 @@ function CustomerOrder() {
 		}
 		fetch(url, {
 			method: "POST",
-			headers: { 'Content-Type': 'application/json' },
+			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify(order)
 		})
 			.then(response => {
@@ -52,7 +52,7 @@ function CustomerOrder() {
 			.then(data => {
 				console.log(data);
 			});
-		const defaultOrder = { total: [0], items: [] };
+		const defaultOrder = {total: [0], items: []};
 		localStorage.setItem('curOrder', JSON.stringify(defaultOrder));
 		setOrderTotal(0);
 
@@ -96,6 +96,9 @@ function CustomerOrder() {
 			<ul data-cy="MenuCategoryList" className="menu" role="list">
 				{categoryList}
 			</ul>
+
+			<Weather />
+
 			<div id='customerCheckout'>
 				<button onClick={e => handleCheckout()} id='customerCheckoutBtn'>Checkout {orderTotal.toFixed(2)}</button>
 			</div>
