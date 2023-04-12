@@ -37,6 +37,10 @@ function CustomerOrder() {
 		const url = HOST + endpoints.postOrder;
 
 		console.log(order);
+		if(order.items === undefined || order.items.length === 0){
+			alert("Please add items to your order before checking out.");
+			return;
+		}
 		fetch(url, {
 			method: "POST",
 			headers: {'Content-Type': 'application/json'},

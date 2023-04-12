@@ -2,7 +2,7 @@ const express = require('express');
 const orderRouter = express.Router();
 const apiPath = "/api/order";
 const db = require('./Info/DatabaseConnect.js');
-const { ORDER_ITEM_DATABASE, MENU_ITEM_DATABASE, SOLD_ITEM_DATABASE, INVENTORY_DATABASE } = require('./Info/DatabaseNames.js');
+const { ORDER_ITEM_DATABASE, MENU_ITEM_DATABASE, SOLD_ITEM_DATABASE, INVENTORY_DATABASE, RECIPE_ITEM_DATABASE } = require('./Info/DatabaseNames.js');
 
 /*
     Query Database for Menu Items
@@ -57,8 +57,6 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
         let response = await db.query(`SELECT MAX(id) FROM ${SOLD_ITEM_DATABASE}`);
         let solditemId = response.rows[0].max + 1;
 
-        // add TOGO Bag to items
-        items.push({id: 1, quantity: 1});
 
         // update other 3 tables
         items.forEach((item) => {
@@ -72,8 +70,21 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
             db.query(`UPDATE ${MENU_ITEM_DATABASE} SET numbersold = numbersold + ${item.quantity} WHERE id = ${item.id}`)
 
             // update inventory count
-            db.query(`UPDATE ${INVENTORY_DATABASE} SET quantity = quantity - ${item.quantity} WHERE id = ${item.id}`)
-        });
+            db.query(`UPDATE ${INVENTORY_DATABASE} SET quantity = quantity -
+            (SELECT ${RECIPE_ITEM_DATABASE}.count
+                FROM ${RECIPE_ITEM_DATABASE}
+                WHERE ${RECIPE_ITEM_DATABASE}.menuid = ${item.id}
+                AND ${RECIPE_ITEM_DATABASE}.inventoryid = ${INVENTORY_DATABASE}.id
+            )
+            WHERE ${INVENTORY_DATABASE}.id IN
+            (SELECT ${RECIPE_ITEM_DATABASE}.inventoryid
+                FROM ${RECIPE_ITEM_DATABASE}
+                WHERE ${RECIPE_ITEM_DATABASE}.menuid = ${item.id})`)
+        },
+        // TOGO bag
+        await db.query(`UPDATE ${INVENTORY_DATABASE} SET quantity = quantity - 1 WHERE id = 1`)
+
+        );
 
         
 
