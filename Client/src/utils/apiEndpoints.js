@@ -22,4 +22,5 @@ export const endpoints = {
 
     getRestock: "/api/reports/restock",
 
+    getSalesTogether: "/api/reports/salesTogether/",
 }

@@ -89,12 +89,14 @@ export default function SalesRep(props){
                             selected={selectedStartDate}
                             onChange={handleStartDateChange}
                             dateFormat="yyyy-MM-dd"
+                            placeholderText="Start Date"
                         />
                         <h5>Enter End Date:</h5>
                         <DatePicker
                             selected={selectedEndDate}
                             dateFormat="yyyy-MM-dd"
                             onChange={handleEndDateChange}
+                            placeholderText="End Date"
                         />
                         <button onClick={genReport}>Go</button>
                     </div>

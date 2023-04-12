@@ -36,7 +36,7 @@ export default function RestockRep(props){
             <EmployeeNav isManager={isManager}></EmployeeNav>
             <div className="restockRepDiv">
                 <div className="restockRepHead">
-                    <Link to="/employee/reports" className="backToEmpDash">Back</Link>
+                    <Link to="/employee/reports" className="backButton">Back</Link>
                     <h2>Restock Reps</h2>
                 </div>
                 <div className="restockRepTable">
