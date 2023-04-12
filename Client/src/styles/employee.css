@@ -169,13 +169,17 @@ p.checkoutItemLeft {
     font-size: .75em;
     text-align: left;
 }
-p.checkoutItemRight {
+.checkoutItemRight {
+    display: flex;
+    flex-direction: row;
     margin-right: 15px;
     font-size: .75em;
     text-align: right;
     flex-direction: flex-end;
 }
-
+button.checkoutItemButton{
+    margin-left: 5px;
+}
 /* Tables */
 table.databaseTable {
     width: 100%;
