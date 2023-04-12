@@ -77,12 +77,14 @@ export default function SalesRep(props){
     }
 
     return (
-        <div className="empOrderPage">
+        <div className="empSalesPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
             <div className= "salesRepDiv">
-                <div className="salesRepHead">
-                    <Link to="/employee/reports" className="backButton">Back</Link>
-                    <h2>Sales Report</h2>
+                <div className="repHead">
+                    <div className = "repTitle">
+                        <Link to="/employee/reports" className="backButton">Back</Link>
+                        <h2>Sales Report</h2>
+                    </div>
                     <div className="datePicker">
                         <h5>Enter Start Date: </h5>
                         <DatePicker
@@ -101,13 +103,15 @@ export default function SalesRep(props){
                         <button onClick={genReport}>Go</button>
                     </div>
                 </div>
-                <div id = "salesMenuItemTable">
-                    <h4>Menu</h4>
-                    {salesTable}
-                </div>
-                <div id = "salesInvItemTable">
-                    <h4>Inventory</h4>
-                    {inventoryTable}
+                <div className="repBody">
+                    <div className = "salesMenuItemTable">
+                        <h4>Menu</h4>
+                        {salesTable}
+                    </div>
+                    <div className = "salesInvItemTable">
+                        <h4>Inventory</h4>
+                        {inventoryTable}
+                    </div>
                 </div>
             </div>
         </div>
