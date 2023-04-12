@@ -299,12 +299,17 @@ div.salesRepDiv{
     /* overflow-y: scroll; */
     max-height: 100vh;
 }
+div.repBody{
+    display: flex;
+    flex-direction: row;
+    
+}
 
-div#salesMenuItemTable{
+div.salesMenuItemTable{
     max-height: 100vh;
     overflow-y: scroll;
 }
-div#salesInvItemTable{
+div.salesInvItemTable{
     max-height: 100vh;
     overflow-y: scroll;
 }
