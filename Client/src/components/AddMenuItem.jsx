@@ -47,41 +47,6 @@ export default function AddMenuItem(props) {
         localStorage.setItem('curOrder', JSON.stringify(order));
     }
 
-    function removeOrder(item) {
-        let order = localStorage.getItem('curOrder');
-        if (!order)
-            return;
-        else
-            order = JSON.parse(order);
-
-        // add to the order object
-        const menu = JSON.parse(localStorage.getItem('menu'));
-        //handle meals
-        if (item.ids) {
-            item.ids.forEach((curID) => {
-                console.log("meal id: ", curID);
-                menu.forEach((arrItem) => {
-                    if (arrItem.id == curID) {
-                        order.total[0] -= Number(arrItem.cost);
-                        order.items.pop({"id": arrItem.id, "quantity": 1});
-                    }
-                });
-            });
-        }
-        //handle all other items
-        if (item.id) {
-            console.log("clicked itemid: ", item.id);
-            menu.forEach((arrItem) => {
-                if (arrItem.id == item.id) {
-                    order.total[0] -= Number(arrItem.cost);
-                    order.items.pop({"id": arrItem.id, "quantity": 1});
-                }
-            });
-        }
-        console.log(order);
-        localStorage.setItem('curOrder', JSON.stringify(order));
-    }
-
     return (
         <li role="listitem">
             <button data-cy={"\"" + item.title + "\""} className="menuButton" onClick={() => addOrder(item)}>

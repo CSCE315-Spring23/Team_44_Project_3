@@ -7,7 +7,6 @@ import {HOST} from "../utils/host";
 import logo from '../assets/CFA Banner.svg'
 
 export default function Login(props) {
-
     const isManager = props.isManager;
 
     const navigate = useNavigate();
