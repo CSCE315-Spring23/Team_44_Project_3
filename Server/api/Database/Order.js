@@ -42,9 +42,11 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
     try {
         // extract data
         const { customerName, totalCost, employeeID, items } = req.body;
-        const currentDate = new Date();
-        console.log(currentDate);
-        const formattedDateTime = currentDate.toISOString().replace('T', ' ').split('.')[0];
+
+        const options = { timeZone: 'America/Chicago', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        const date = new Date().toLocaleDateString('en-US', options);
+        const formattedDateTime = `${date}`;
+        console.log(formattedDateTime);
 
         // query next orderitem id
         let orderId = await db.query(`SELECT MAX(id) FROM ${ORDER_ITEM_DATABASE}`);
@@ -94,5 +96,15 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
         res.status(500).send("Error: " + err);
     }
 });
+
+
+const currentDate = () => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    return formattedDate;
+}
 
 module.exports = orderRouter;
