@@ -19,4 +19,7 @@ export const endpoints = {
 
     getSales: "/api/reports/sales/getSales/",
     getInventorySales: "/api/reports/sales/getInventorySales/",
+
+    getRestock: "/api/reports/restock",
+
 }

@@ -8,6 +8,7 @@ import { HOST } from "../../utils/host";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 
 
 export default function SalesRep(props){
@@ -78,22 +79,25 @@ export default function SalesRep(props){
     return (
         <div className="empOrderPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
-            <div className="salesRepTable">
-                <h2>Sales Report</h2>
-                <div className="datePicker">
-                    <h5>Enter Start Date: </h5>
-                    <DatePicker
-                        selected={selectedStartDate}
-                        onChange={handleStartDateChange}
-                        dateFormat="yyyy-MM-dd"
-                    />
-                    <h5>Enter End Date:</h5>
-                    <DatePicker
-                        selected={selectedEndDate}
-                        dateFormat="yyyy-MM-dd"
-                        onChange={handleEndDateChange}
-                    />
-                    <button onClick={genReport}>Go</button>
+            <div className= "salesRepDiv">
+                <div className="salesRepHead">
+                    <Link to="/employee/reports" className="backButton">Back</Link>
+                    <h2>Sales Report</h2>
+                    <div className="datePicker">
+                        <h5>Enter Start Date: </h5>
+                        <DatePicker
+                            selected={selectedStartDate}
+                            onChange={handleStartDateChange}
+                            dateFormat="yyyy-MM-dd"
+                        />
+                        <h5>Enter End Date:</h5>
+                        <DatePicker
+                            selected={selectedEndDate}
+                            dateFormat="yyyy-MM-dd"
+                            onChange={handleEndDateChange}
+                        />
+                        <button onClick={genReport}>Go</button>
+                    </div>
                 </div>
                 <div id = "salesMenuItemTable">
                     <h4>Menu</h4>
