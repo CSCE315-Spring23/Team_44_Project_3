@@ -370,3 +370,28 @@ div.repXZInfoBody{
     padding: 0;
     text-align: left;
 }
+
+
+/* PopUp */
+.PopUp{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    border: 1px solid #011627;
+    border-radius: 1em;
+    box-shadow: -2px 5px 5px 0px rgba(0,0,0,0.75);
+    background-color: #F9F6EE ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: #011627;
+    z-index: 9999; /* Set this value higher than other elements */
+}
+
+.PopUp.active{
+    pointer-events: all;
+}
