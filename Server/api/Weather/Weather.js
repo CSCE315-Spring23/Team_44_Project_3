@@ -12,12 +12,12 @@ weatherRouter.get(apiPath, async (req, res) => {
     const lon = req.query.lon || -96.341508;
     const lat = req.query.lat || 30.612298;
     console.log(lon, lat)
-    try{
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`);
+    try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
         const data = await response.json();
         res.send(data);
     }
-    catch(err){
+    catch (err) {
         console.log(err);
     }
 });
