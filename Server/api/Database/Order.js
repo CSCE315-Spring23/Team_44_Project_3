@@ -54,7 +54,7 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
 
         // insert receipt into orderitem
         await db.query(`INSERT INTO ${ORDER_ITEM_DATABASE} VALUES (${orderId}, '${customerName}', '${totalCost}', '${formattedDateTime}', ${employeeID})`);
-        
+
         // grab next ids
         let response = await db.query(`SELECT MAX(id) FROM ${SOLD_ITEM_DATABASE}`);
         let solditemId = response.rows[0].max + 1;
@@ -65,30 +65,32 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
             // insert items into solditem
             for (let i = 0; i < item.quantity; i++) {
                 db.query(`INSERT INTO ${SOLD_ITEM_DATABASE} (id, menuid, orderid) VALUES (${solditemId}, ${item.id}, ${orderId})`);
+
+                // update inventory count
+                db.query(`UPDATE ${INVENTORY_DATABASE} SET quantity = quantity -
+                (SELECT ${RECIPE_ITEM_DATABASE}.count
+                    FROM ${RECIPE_ITEM_DATABASE}
+                    WHERE ${RECIPE_ITEM_DATABASE}.menuid = ${item.id}
+                    AND ${RECIPE_ITEM_DATABASE}.inventoryid = ${INVENTORY_DATABASE}.id
+                )
+                WHERE ${INVENTORY_DATABASE}.id IN
+                (SELECT ${RECIPE_ITEM_DATABASE}.inventoryid
+                    FROM ${RECIPE_ITEM_DATABASE}
+                    WHERE ${RECIPE_ITEM_DATABASE}.menuid = ${item.id})`)
                 solditemId++;
             }
 
             // update menuitem count
             db.query(`UPDATE ${MENU_ITEM_DATABASE} SET numbersold = numbersold + ${item.quantity} WHERE id = ${item.id}`)
 
-            // update inventory count
-            db.query(`UPDATE ${INVENTORY_DATABASE} SET quantity = quantity -
-            (SELECT ${RECIPE_ITEM_DATABASE}.count
-                FROM ${RECIPE_ITEM_DATABASE}
-                WHERE ${RECIPE_ITEM_DATABASE}.menuid = ${item.id}
-                AND ${RECIPE_ITEM_DATABASE}.inventoryid = ${INVENTORY_DATABASE}.id
-            )
-            WHERE ${INVENTORY_DATABASE}.id IN
-            (SELECT ${RECIPE_ITEM_DATABASE}.inventoryid
-                FROM ${RECIPE_ITEM_DATABASE}
-                WHERE ${RECIPE_ITEM_DATABASE}.menuid = ${item.id})`)
+
         },
-        // TOGO bag
-        await db.query(`UPDATE ${INVENTORY_DATABASE} SET quantity = quantity - 1 WHERE id = 1`)
+            // TOGO bag
+            await db.query(`UPDATE ${INVENTORY_DATABASE} SET quantity = quantity - 1 WHERE id = 1`)
 
         );
 
-        
+
 
         res.status(200).send("Order Received");
     } catch (err) {

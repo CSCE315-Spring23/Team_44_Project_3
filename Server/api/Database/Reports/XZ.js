@@ -57,7 +57,7 @@ XZRouter.get(apiPath + "/getXReport", async (req, res) => {
 */
 XZRouter.get(apiPath + "/getZReports", async (req, res) => {
     try{
-        const response = await db.query(`SELECT * FROM ${ZREPORT_DATABASE} ORDER BY reportid`);
+        const response = await db.query(`SELECT reportid as id, totalsales as total_sales, employee, orderid as order_id, datecreated as date_created FROM ${ZREPORT_DATABASE} ORDER BY reportid`);
         res.send(response.rows);
     } catch(err){
         console.log(err);

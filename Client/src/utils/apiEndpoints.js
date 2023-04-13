@@ -25,4 +25,9 @@ export const endpoints = {
     getSalesTogether: "/api/reports/salesTogether/",
 
     getExcess: "/api/reports/excess/",
+
+    getXReport: "/api/reports/XZ/getXReport/",
+    getZReports: "/api/reports/XZ/getZReports",
+    getZReportInfo: "/api/reports/XZ/getZReportInfo/",
+    createZReport: "/api/reports/XZ/createZReport/",
 }
