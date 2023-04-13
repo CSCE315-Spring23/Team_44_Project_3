@@ -152,6 +152,15 @@ div.backText {
 	vertical-align: initial;
 }
 
+div.bagIcon {
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	margin-right: 8px;
+	max-height: 40px;
+	position: relative;
+}
+
 div#customerCheckout {
 	width: 100%;
 	display: flex;
@@ -234,6 +243,25 @@ img.menuIMG {
 label.passLabel {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	font-size: 24pt;
+}
+
+span.itemCount {
+	align-items: center;
+	color: #dd0031;
+	background-color: #ffffff;
+	width: 14px;
+	height: 14px;
+	top: -8px;
+	right: -5px;
+	font-size: 8px;
+	font-weight: 700;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+
+	border-radius: 50%;
+	position: absolute;
 }
 
 nav.desktop-navigation {
