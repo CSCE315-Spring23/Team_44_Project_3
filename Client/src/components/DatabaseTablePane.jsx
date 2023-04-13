@@ -33,8 +33,11 @@ export default function DatabaseTablePane(props) {
                 </tr>
             </thead>
             <tbody>
-                {props.data.map((row) => (
-                    <tr key={row.id} onClick={ () => handleOnClick(row.id)}>
+                {props.data.map((row, index) => (
+                    <tr
+                        key={row.id}
+                        onClick={ () => handleOnClick(row.id)}
+                        style={{backgroundColor: index % 2 == 0 ? '#c0c0c0' : 'white'}}>
                         {headers.map((header) => (
                             <td key={header}>{row[header]}</td>
                         ))}
