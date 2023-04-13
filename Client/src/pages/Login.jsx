@@ -47,6 +47,12 @@ export default function Login(props) {
         }
     }
 
+    function checkEnterKey(event) {
+        if (event.key === 'Enter') {
+            authLogin();
+        }
+    }
+
     return (
         // TODO: pass props to other pages
         <>
@@ -66,7 +72,7 @@ export default function Login(props) {
                 </div>
 
                 <div>
-                    <input type="password" id="pass" name="password" className="sign-in-field" placeholder="Enter PIN Number" />
+                    <input type="password" id="pass" name="password" className="sign-in-field" placeholder="Enter PIN Number" onKeyDown={checkEnterKey} />
                     <input type="submit" value="Sign In" onClick={authLogin} className="sign-in-button" />
                 </div>
             </div>
