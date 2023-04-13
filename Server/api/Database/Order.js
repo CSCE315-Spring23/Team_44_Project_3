@@ -100,13 +100,25 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
 });
 
 
-const currentDate = () => {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    const day = String(currentDate.getDate()).padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
-    return formattedDate;
-}
+
+orderRouter.get(apiPath + "/getRecipe", async (req, res) => {
+    try {
+        const id = req.query.id;
+        const response = await db.query(`SELECT i.name
+            FROM ${RECIPE_ITEM_DATABASE} r
+            JOIN ${INVENTORY_DATABASE} i ON r.inventoryid = i.id
+            WHERE r.menuid = ${id}
+            AND i.id NOT BETWEEN 0 AND 14
+            AND i.id != 20
+            AND i.id < 47
+            ORDER BY i.id;`);
+        res.send(response.rows);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+
+
 
 module.exports = orderRouter;

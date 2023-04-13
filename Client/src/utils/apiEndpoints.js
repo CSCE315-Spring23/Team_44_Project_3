@@ -1,7 +1,7 @@
 export const endpoints = {
     getMenu : "/api/order/getmenu",
     postOrder : "/api/order/postOrder",
-
+    getRecipe: "/api/order/getRecipe/",
     
 
     orderHistory : "/api/orderHistory/getOrderHistory",
