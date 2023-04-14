@@ -37,12 +37,12 @@ orderRouter.get(apiPath + "/getMenu", async (req, res) => {
         }
     @return: none
 */
-// TODO: add to solditem, update menuitem count, update inventory count
+
 orderRouter.post(apiPath + "/postOrder", async (req, res) => {
     try {
         // extract data
         const { customerName, totalCost, employeeID, items } = req.body;
-
+        console.log(req.body);
         const options = { timeZone: 'America/Chicago', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
         const date = new Date().toLocaleDateString('en-US', options);
         const formattedDateTime = `${date}`;
@@ -77,6 +77,11 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
                 (SELECT ${RECIPE_ITEM_DATABASE}.inventoryid
                     FROM ${RECIPE_ITEM_DATABASE}
                     WHERE ${RECIPE_ITEM_DATABASE}.menuid = ${item.id})`)
+
+                // excluded items
+                for(let j = 0; j < item.excluded.length; j++){
+                    db.query(`UPDATE ${INVENTORY_DATABASE} SET quantity = quantity + 1 WHERE id = ${item.excluded[j]}`)
+                }
                 solditemId++;
             }
 
