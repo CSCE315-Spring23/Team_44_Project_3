@@ -4,17 +4,12 @@ const Weather = () => {
     const [temperature, setTemperature] = useState(null);
     const [weather, setWeather] = useState(null);
     const [description, setDescription] = useState(null);
+    const [icon, setIcon] = useState(null);
 
     function toFahrenheit(temp) {
-        const fahrenheit = 1.8 * toCelcius(temp) + 32
+        const fahrenheit = 1.8 * temp + 32
         console.log(`Converted ${temp} to ${fahrenheit}\u2109.`);
         return fahrenheit;
-    }
-
-    function toCelcius(temp) {
-        const celcius = temp - 273.15;
-        console.log(`Converted ${temp} to ${celcius}\u2103.`);
-        return celcius;
     }
 
     useEffect(() => {
@@ -24,14 +19,16 @@ const Weather = () => {
                 setTemperature(toFahrenheit(data.main.temp));
                 setWeather(data.weather[0].main);
                 setDescription(data.weather[0].description);
+                setIcon(data.weather[0].icon)
             });
     }, []);
 
     return (
         <div className="weather">
-            {temperature && <h1>{temperature.toFixed(0)}℉</h1>}
-            {weather && <h1>{weather}</h1>}
-            {description && <h1>{description}</h1>}
+            {temperature && <p>{temperature.toFixed(2)} &#x2109;</p>}
+            <img src={"https://openweathermap.org/img/wn/" + icon + "@2x.png"} />
+            {/* {weather && <p>{weather}</p>} */}
+            {/* {description && <p>{description}</p>} */}
         </div>
     );
 }
