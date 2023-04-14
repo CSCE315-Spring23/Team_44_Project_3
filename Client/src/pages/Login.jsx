@@ -68,7 +68,7 @@ export default function Login(props) {
                 data-client_id="494495949926-om1cjij44iie2585is6tk7n98aurqso6.apps.googleusercontent.com"
                 data-context="signin"
                 data-ux_mode="popup"
-                data-login_uri="/employee/order"
+                data-login_uri="/api/login"
                 data-auto_prompt="false">
             </div>
 
