@@ -395,3 +395,8 @@ div.repXZInfoBody{
 .PopUp.active{
     pointer-events: all;
 }
+
+.PopUpRow{
+    display: flex;
+    flex-direction: row;
+}

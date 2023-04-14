@@ -104,7 +104,7 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
 orderRouter.get(apiPath + "/getRecipe", async (req, res) => {
     try {
         const id = req.query.id;
-        const response = await db.query(`SELECT i.name
+        const response = await db.query(`SELECT i.name, i.id
             FROM ${RECIPE_ITEM_DATABASE} r
             JOIN ${INVENTORY_DATABASE} i ON r.inventoryid = i.id
             WHERE r.menuid = ${id}

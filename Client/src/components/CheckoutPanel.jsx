@@ -73,8 +73,15 @@ export default function CheckoutPanel(props) {
     return (
         <div id="checkoutPanel">
             <div id="checkoutOrderItems">
-                {items.map(item => (
-                    <CheckoutItem itemName={item} count={cart.items[item][0]} price={cart.items[item][1]} onClick={props.removeFromCart}></CheckoutItem>
+                {items.map(cartID => (
+                    <CheckoutItem
+                        itemName={cart.items[cartID][0]}
+                        count={cart.items[cartID][1]}
+                        price={cart.items[cartID][2]}
+                        onClick={props.removeFromCart}
+                        cartID = {cartID}
+                        excluded={cart.items[cartID][4]}>
+                    </CheckoutItem>
                 ))}
             </div>
             <div id="checkoutButtonDiv">

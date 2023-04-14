@@ -11,6 +11,7 @@ import "../styles/employee.css"
 export default function PopUp(props) {
     const item = props.item
     const [recipeItems, setRecipeItems] = useState(null);
+    const [excludeItems, setExcludeItems] = useState([]);
 
     useEffect(() => {
 
@@ -42,15 +43,27 @@ export default function PopUp(props) {
     }, []);
 
     const handleSubmitClick = () => {
-        props.addToCart(item);
+        console.log(excludeItems);
+        props.addToCart(item, excludeItems);
         props.setPopUp(false);
+    }
+
+    const handleExcludeClick = (item) => {
+        // if item not in excludeItems, add it
+        if (!excludeItems.includes(item)) {
+            setExcludeItems([...excludeItems, item]);
+        }
+        // if item is in excludeItems, remove it
+        else {
+            setExcludeItems(excludeItems.filter((element) => element !== item));
+        }
     }
 
     return (
         <div className="PopUp">
             YOU GOT POPPED, {props.item.name}
             {recipeItems && recipeItems.map((element) =>
-                <PopUpRow inventoryitem={element} />
+                <PopUpRow inventoryitem={element} handleExcludeClick={handleExcludeClick}/>
             )}
             <button className="PopUpButton" onClick={() => props.setPopUp(false)}>Close</button>
             <button className="PopUpButton" onClick={handleSubmitClick}>Add to Cart</button>
