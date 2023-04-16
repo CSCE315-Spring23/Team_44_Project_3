@@ -22,9 +22,17 @@ export default function Login(props) {
             .catch(error => console.error(error));
     }, [])
 
+    // Trigger: when user signs in with google
+    // Action: set user object in local storage
     function handleGoogleLogin(response) {
-        console.log('encoded JWT ID token: ', response.credential);
-        console.log('decoded JWT ID token: ', jwt_decode(response.credential));
+        const decodedResponse = jwt_decode(response.credential);
+        const userObject = {
+            name: decodedResponse.name,
+            email: decodedResponse.email,
+            picture: decodedResponse.picture
+        }
+        localStorage.setItem('googleUser', JSON.stringify(userObject));
+        console.log("Stored user object in local storage: ", userObject);
     }
 
     useEffect(() => {
@@ -77,7 +85,6 @@ export default function Login(props) {
     
 
     return (
-        // TODO: pass props to other pages
         <>
             <header>
                 <h1>Welcome to</h1>
@@ -101,7 +108,6 @@ export default function Login(props) {
                     <input type="submit" value="Sign In" onClick={authLogin} className="sign-in-button" />
                 </div>
             </div>
-
         </>
     );
 }
