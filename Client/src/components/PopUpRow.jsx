@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 export default function PopUpRow(props) {
 
@@ -13,8 +13,12 @@ export default function PopUpRow(props) {
 
     return (
         <div className="PopUpRow">
-            {inventoryitem.name}
-            <input type="checkbox" checked={checked} onChange={handleCheckboxChange} />
+            <div className="PopUpRowLeft">
+                {inventoryitem.name}
+            </div>
+            <div className="PopUpRowRight">
+                <input style={{ marginLeft: '.25em' }} type="checkbox" checked={checked} onChange={handleCheckboxChange} />
+            </div>
         </div>
     );
 }

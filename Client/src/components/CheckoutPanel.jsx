@@ -48,6 +48,12 @@ export default function CheckoutPanel(props) {
             items: itemsArr
         };
 
+        // if customer name is empty or items is empty, don't submit order
+        if (order.customerName === "" || order.items.length === 0) {
+            console.log("order not submitted: customer name or items empty")
+            return;
+        }
+
         const url = HOST + endpoints.postOrder;
 
         console.log(order);

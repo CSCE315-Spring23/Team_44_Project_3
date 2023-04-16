@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
-import {endpoints} from "../utils/apiEndpoints";
-import {HOST} from "../utils/host";
+import { endpoints } from "../utils/apiEndpoints";
+import { HOST } from "../utils/host";
 import PopUpRow from "./PopUpRow";
 
 
@@ -12,6 +12,7 @@ export default function PopUp(props) {
     const item = props.item
     const [recipeItems, setRecipeItems] = useState(null);
     const [excludeItems, setExcludeItems] = useState([]);
+    const [notes, setNotes] = useState("");
 
     useEffect(() => {
 
@@ -43,7 +44,11 @@ export default function PopUp(props) {
     }, []);
 
     const handleSubmitClick = () => {
+        console.log(notes)
+        // add notes to excludeItems
         console.log(excludeItems);
+        if(notes !== "")
+            excludeItems.push(notes);
         props.addToCart(item, excludeItems);
         props.setPopUp(false);
     }
@@ -59,14 +64,20 @@ export default function PopUp(props) {
         }
     }
 
+
     return (
         <div className="PopUp">
-            YOU GOT POPPED, {props.item.name}
-            {recipeItems && recipeItems.map((element) =>
-                <PopUpRow inventoryitem={element} handleExcludeClick={handleExcludeClick} />
-            )}
-            <button className="PopUpButton" onClick={() => props.setPopUp(false)}>Close</button>
-            <button className="PopUpButton" onClick={handleSubmitClick}>Add to Cart</button>
+            Edit {props.item.name}
+            <div className="PopUpRows">
+                {recipeItems && recipeItems.map((element) =>
+                    <PopUpRow inventoryitem={element} handleExcludeClick={handleExcludeClick} />
+                )}
+            </div>
+            <div className="PopUpButtons">
+                <button className="PopUpButton" onClick={() => props.setPopUp(false)}>Close</button>
+                <input type="text" placeholder="Special Notes" className="PopUpNotes" onChange={(e) => setNotes(e.target.value)}/>
+                <button className="PopUpButton" onClick={handleSubmitClick}>Add to Cart</button>
+            </div>
         </div>
     );
 }

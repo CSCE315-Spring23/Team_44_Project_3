@@ -347,10 +347,43 @@ div.PopUp.active {
     pointer-events: all;
 }
 
-div.PopUpRow {
+.PopUpRows{
+    width: 60%;
+}
+
+.PopUpRow {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
 }
+
+.PopUpRowLeft{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 50%;
+}
+.PopUpRowRight{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.PopUpButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.PopUpButton{
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #011627;
+}
+
 
 div.repBody {
     display: flex;
