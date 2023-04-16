@@ -22,10 +22,11 @@ export default function CheckoutItem(props) {
                 <div className="checkoutItemEx">
                     <ul style={{margin:0}}>
                         {props.excluded && props.excluded.map((item, index) => {
+                            if(item.name)
+                                return <li key={index}>no {item.name}</li>
                             if(index === props.excluded.length - 1) {
                                 return <li key={index}>{item}</li>
                             }
-                            return <li key={index}>no {item.name}</li>
                         })}
                     </ul>
                 </div>}

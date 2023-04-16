@@ -30,11 +30,7 @@ export default function PopUp(props) {
             .then(data => {
 
                 console.log(data)
-                //if the recipe is empty, then just return the item
-                if (data.length === 0) {
-                    handleSubmitClick();
-                    return;
-                }
+
                 setRecipeItems(data);
             })
             .catch(error => {

@@ -9,6 +9,7 @@ export default function CheckoutPanel(props) {
     const [custName, setCustName] = useState(name ? name : "");
     const { cart } = props;
     const items = Object.keys(cart.items);
+    console.log(cart)
 
     //sends order to server when checkout button clicked
     const checkoutBtnClicked = () => {

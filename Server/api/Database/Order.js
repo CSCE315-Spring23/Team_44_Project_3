@@ -115,7 +115,7 @@ orderRouter.get(apiPath + "/getRecipe", async (req, res) => {
             WHERE r.menuid = ${id}
             AND i.id NOT BETWEEN 0 AND 14
             AND i.id != 20
-            AND i.id < 47
+            AND i.id < 45
             ORDER BY i.id;`);
         res.send(response.rows);
     } catch (err) {
