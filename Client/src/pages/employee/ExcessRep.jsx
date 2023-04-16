@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 
-import EmployeeNav from "../../components/EmployeeNav";
-import '../../styles/employee.css'
-import DatabaseTablePane from "../../components/DatabaseTablePane";
-import {endpoints} from "../../utils/apiEndpoints";
-import {HOST} from "../../utils/host";
-import {useNavigate} from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {useNavigate} from 'react-router-dom';
+import DatabaseTablePane from "../../components/DatabaseTablePane";
+import EmployeeNav from "../../components/EmployeeNav";
+import '../../styles/employee.css';
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
 
 
 export default function ExcessRep(props) {

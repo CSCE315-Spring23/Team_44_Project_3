@@ -1,18 +1,23 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
 import EmployeeNav from "../../components/EmployeeNav";
-import { Link } from "react-router-dom";
-import '../../styles/employee.css'
+import '../../styles/employee.css';
 
 export default function Reports() {
+    const navigate = useNavigate();
+    function changePage(page) {
+        navigate(`/employee/reports/${page}`);
+    }
+
     return (
         <div className="empOrderPage">
             <EmployeeNav></EmployeeNav>
             <div id="reportsSelection">
-                <Link className='reportBtn' to='sales'>Sales Report</Link>
-                <Link className='reportBtn' to='excess'>Excess Report</Link>
-                <Link className='reportBtn' to='XZ'>XZ Report</Link>
-                <Link className='reportBtn' to='restock'>Restock Report</Link>
-                <Link className='reportBtn' to='salestogether'>Sales Together Report</Link>
+                <button onClick={e => changePage("sales")} className="reportBtn">Sales Report</button>
+                <button onClick={e => changePage("excess")} className="reportBtn">Excess Report</button>
+                <button onClick={e => changePage("XZ")} className="reportBtn">XZ Report</button>
+                <button onClick={e => changePage("restock")} className="reportBtn">Restock Report</button>
+                <button onClick={e => changePage("salestogether")} className="reportBtn">Sales Together Report</button>
             </div>
         </div>
     );

@@ -1,10 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import EmployeeNav from "../components/EmployeeNav";
 
 import {useNavigate} from 'react-router-dom';
-import {endpoints} from "../utils/apiEndpoints";
-import {HOST} from "../utils/host";
-import logo from '../assets/CFA Banner.svg'
+import logo from '../assets/CFA Banner.svg';
 
 export default function Login(props) {
     const isManager = props.isManager;

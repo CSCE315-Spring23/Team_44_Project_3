@@ -1,12 +1,12 @@
 import React from "react";
-import {Route, Routes, Outlet} from "react-router-dom";
+import {Outlet, Route, Routes} from "react-router-dom";
 import CustomerOrder from '../pages/customer/CustomerOrder';
-import Beverage from "../pages/customer/beverages"
+import Beverage from "../pages/customer/beverages";
 import Entree from "../pages/customer/entree";
 import Meal from "../pages/customer/meals";
-import Treats from "../pages/customer/treats";
 import Salad from "../pages/customer/salads";
 import Sauces from "../pages/customer/sauces";
+import Treats from "../pages/customer/treats";
 
 export default function CustomerRoutes() {
     return (

@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {format} from "date-fns";
 
 function Test() {
 	const [selectedDate, setSelectedDate] = useState(null);

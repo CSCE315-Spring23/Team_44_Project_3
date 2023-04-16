@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 
-import { HOST } from "../utils/host";
-import { endpoints } from "../utils/apiEndpoints";
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
 import PopUpRow from "./PopUpRow";
 
 
-import "../styles/employee.css"
+import "../styles/employee.css";
 
 
 export default function PopUp(props) {
@@ -63,7 +63,7 @@ export default function PopUp(props) {
         <div className="PopUp">
             YOU GOT POPPED, {props.item.name}
             {recipeItems && recipeItems.map((element) =>
-                <PopUpRow inventoryitem={element} handleExcludeClick={handleExcludeClick}/>
+                <PopUpRow inventoryitem={element} handleExcludeClick={handleExcludeClick} />
             )}
             <button className="PopUpButton" onClick={() => props.setPopUp(false)}>Close</button>
             <button className="PopUpButton" onClick={handleSubmitClick}>Add to Cart</button>

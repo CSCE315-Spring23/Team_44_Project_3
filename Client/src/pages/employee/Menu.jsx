@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 
-import '../../styles/employee.css'
-import EmployeeNav from "../../components/EmployeeNav";
 import DatabaseTablePane from "../../components/DatabaseTablePane";
+import EmployeeNav from "../../components/EmployeeNav";
 import Form from "../../components/Form";
-import { endpoints } from "../../utils/apiEndpoints";
-import { HOST } from "../../utils/host";
+import '../../styles/employee.css';
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
 
-export default function Menu(props){
+export default function Menu(props) {
     const isManager = props.isManager;
 
     const [menuTable, setMenuTable] = useState();
@@ -35,10 +35,10 @@ export default function Menu(props){
     }
 
     const updateMenuFields = [
-        { name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID" },
-        { name: "newName", label: "New Name", type: "text", placeholder: "New Name"},
-        { name: "newCost", label: "New Cost", type: "text", placeholder: "New Cost"},
-        { name: "newRecipe", label: "New Recipe", type: "text", placeholder: "New Recipe Items IDs"},
+        {name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID"},
+        {name: "newName", label: "New Name", type: "text", placeholder: "New Name"},
+        {name: "newCost", label: "New Cost", type: "text", placeholder: "New Cost"},
+        {name: "newRecipe", label: "New Recipe", type: "text", placeholder: "New Recipe Items IDs"},
         // { name: "newCategory", label: "New Category", type: "text", placeholder: "New Category"}
     ];
 
@@ -75,14 +75,14 @@ export default function Menu(props){
                 console.log(data);
                 getMenu();
             }
-        );
+            );
     }
 
 
     const addMenuItemFields = [
-        { name: "name", label: "Name", type: "text", placeholder: "Name" },
-        { name: "cost", label: "Cost", type: "text", placeholder: "Cost"},
-        { name: "recipe", label: "Recipe", type: "text", placeholder: "Recipe Items IDs"},
+        {name: "name", label: "Name", type: "text", placeholder: "Name"},
+        {name: "cost", label: "Cost", type: "text", placeholder: "Cost"},
+        {name: "recipe", label: "Recipe", type: "text", placeholder: "Recipe Items IDs"},
         // { name: "category", label: "Category", type: "text", placeholder: "Category"}
     ];
 
@@ -116,11 +116,11 @@ export default function Menu(props){
                 console.log(data);
                 getMenu();
             }
-        );
+            );
     }
 
     const deleteMenuItemFields = [
-        { name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID" }
+        {name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID"}
     ];
 
     const handleDeleteMenuItem = (formState) => {
@@ -147,13 +147,13 @@ export default function Menu(props){
                 console.log(data);
                 getMenu();
             }
-        );
+            );
     }
     //parse recipe string into json array
     const parseRecipe = (recipe) => {
         const recipeArray = recipe.split(",");
         const recipeJson = [];
-        for (let i = 0; i < recipeArray.length; i++) {
+        for (let i = 0;i < recipeArray.length;i++) {
             // exclud empty string
             if (recipeArray[i] === "") {
                 continue;
@@ -171,17 +171,17 @@ export default function Menu(props){
                 {menuTable}
             </div>
             <div id="menuFormsDiv">
-                <div id = "updateMenuFormDiv">
+                <div id="updateMenuFormDiv">
                     <h4>Update Menu Item</h4>
                     <Form fields={updateMenuFields} onSubmit={handleUpdateMenu} />
                 </div>
                 <hr style={{marginRight: "5px"}}></hr>
-                <div id = "addMenuItemFormDiv">
+                <div id="addMenuItemFormDiv">
                     <h4>Add Menu Item</h4>
                     <Form fields={addMenuItemFields} onSubmit={handleAddMenuItem} />
                 </div>
                 <hr style={{marginRight: "5px"}}></hr>
-                <div id = "deleteMenuItemFormDiv">
+                <div id="deleteMenuItemFormDiv">
                     <h4>Delete Menu Item</h4>
                     <Form fields={deleteMenuItemFields} onSubmit={handleDeleteMenuItem} />
                 </div>

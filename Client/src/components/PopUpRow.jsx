@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, {useState} from "react";
 
-export default function PopUpRow(props){
+export default function PopUpRow(props) {
 
     const [checked, setChecked] = useState(true);
 
@@ -11,10 +11,10 @@ export default function PopUpRow(props){
         setChecked(!checked);
     }
 
-    return(
+    return (
         <div className="PopUpRow">
             {inventoryitem.name}
-            <input type="checkbox" checked={checked} onChange={handleCheckboxChange}/>
+            <input type="checkbox" checked={checked} onChange={handleCheckboxChange} />
         </div>
     );
 }

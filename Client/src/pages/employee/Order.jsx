@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import EmployeeNav from "../../components/EmployeeNav";
-import style from '../../styles/employee.css?inline';
-import OrderItemPane from "../../components/OrderItemPane";
+import React, {useState} from "react";
 import CheckoutPanel from "../../components/CheckoutPanel";
+import EmployeeNav from "../../components/EmployeeNav";
+import OrderItemPane from "../../components/OrderItemPane";
 
 export default function Order(props) {
 
@@ -15,15 +14,15 @@ export default function Order(props) {
 
     */
     const currCart = localStorage.getItem('cart');
-    const [cart, setCart] = useState(currCart ? JSON.parse(currCart) : { total: [0], items: {} });
+    const [cart, setCart] = useState(currCart ? JSON.parse(currCart) : {total: [0], items: {}});
 
     const addToCart = (item, excludeItems) => {
         const cartID = Object.keys(cart.items).length;
         console.log("add to cart clicked ->", item.name, excludeItems, cartID)
-        let newCart = { ...cart };
+        let newCart = {...cart};
         //create entry in cart if it doesn't exist and excluded items is different
-        for(let key in newCart.items){
-            if(newCart.items[key][0] === item.name && JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)){
+        for (let key in newCart.items) {
+            if (newCart.items[key][0] === item.name && JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)) {
                 newCart.items[key][1] += 1;
                 newCart.total[0] += Number(item.cost);
                 setCart(newCart);
@@ -43,19 +42,19 @@ export default function Order(props) {
     }
 
     const emptyCart = () => {
-        setCart({ total: [0], items: {} });
-        localStorage.setItem('cart', JSON.stringify({ total: [0], items: {} }));
+        setCart({total: [0], items: {}});
+        localStorage.setItem('cart', JSON.stringify({total: [0], items: {}}));
     }
 
     const removeFromCart = (cartID) => {
         console.log("remove from cart clicked ->", cartID)
 
-        let newCart = { ...cart };
+        let newCart = {...cart};
         newCart.total[0] -= newCart.items[cartID][2];
-        if(newCart.items[cartID][1] > 1){
+        if (newCart.items[cartID][1] > 1) {
             newCart.items[cartID][1] -= 1;
         }
-        else{
+        else {
             delete newCart.items[cartID];
         }
         setCart(newCart);
@@ -67,7 +66,7 @@ export default function Order(props) {
         <div className="empOrderPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
             <OrderItemPane addToCart={addToCart}></OrderItemPane>
-            <CheckoutPanel cart={cart} emptyCart={emptyCart} removeFromCart={removeFromCart}/>
+            <CheckoutPanel cart={cart} emptyCart={emptyCart} removeFromCart={removeFromCart} />
         </div>
     );
 }

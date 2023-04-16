@@ -1,59 +1,3 @@
-a.empNavButton {
-    background-color: #ffffff;
-    border-color: #808080;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 0px;
-    box-shadow: 0px 3px 3px #808080;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 1em;
-    font-weight: bold;
-    justify-content: center;
-    margin-top: 1em;
-    min-height: 10%;
-    min-width: 80%;
-    text-align: center;
-    text-decoration: none;
-}
-
-a.empNavButton.current {
-    background-color: #dd0031;
-    color: white;
-}
-
-a.empNavButton:hover {
-    box-shadow: 0px 0px 3px #808080;
-}
-
-a.reportBtn {
-    background-color: #D9D9D9;
-    border-color: grey;
-    border-radius: 100px;
-    border-style: solid;
-    border-width: 0px;
-    box-shadow: 0px 3px 3px grey;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 1em;
-    font-weight: bold;
-    justify-content: center;
-    margin: 1em;
-    max-height: 20%;
-    max-width: 33%;
-    text-align: center;
-    text-decoration: none;
-    width: 33%;
-}
-
-a.reportBtn:hover {
-    box-shadow: 0px 3px 3px inset grey;
-}
-
 body {
     margin: 0;
     margin-top: 0em;
@@ -104,6 +48,33 @@ button.checkoutItemButton {
     margin-left: 5px;
 }
 
+button.empNavButton {
+    background-color: #ffffff;
+    border-color: #808080;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 0px;
+    box-shadow: 0px 3px 3px #808080;
+    color: black;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 1em;
+    min-height: 10%;
+    min-width: 80%;
+    text-align: center;
+    text-decoration: none;
+}
+
+button.empNavButton.current {
+    background-color: #dd0031;
+    color: white;
+}
+
+button.empNavButton:hover {
+    box-shadow: 0px 0px 3px #808080;
+}
+
 button.empNavLogout {
     align-items: center;
     background-color: #ffffff;
@@ -151,6 +122,29 @@ button.orderItemBtn {
 
 button.orderItemBtn:hover {
     background-color: #9c9c9c;
+}
+
+button.reportBtn {
+    background-color: #D9D9D9;
+    border-color: #808080;
+    border-radius: 100px;
+    border-style: solid;
+    border-width: 0px;
+    box-shadow: 0px 3px 3px #808080;
+    color: #000000;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 1em;
+    max-height: 20%;
+    max-width: 33%;
+    text-align: center;
+    text-decoration: none;
+    width: 33%;
+}
+
+button.reportBtn:hover {
+    box-shadow: 0px 3px 3px inset #808080;
 }
 
 div#checkoutButtonDiv {

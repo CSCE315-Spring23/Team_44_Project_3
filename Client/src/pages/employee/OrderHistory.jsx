@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
-import EmployeeNav from "../../components/EmployeeNav";
-import '../../styles/employee.css'
 import DatabaseTablePane from "../../components/DatabaseTablePane";
-import { endpoints } from "../../utils/apiEndpoints";
-import { HOST } from "../../utils/host";
+import EmployeeNav from "../../components/EmployeeNav";
+import '../../styles/employee.css';
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
 
 export default function OrderHistory(props) {
 
@@ -29,7 +29,7 @@ export default function OrderHistory(props) {
                 return response.json();
             })
             .then(data => {
-                const table = <DatabaseTablePane data={data} handleOnClick={handleOnClick}/>;
+                const table = <DatabaseTablePane data={data} handleOnClick={handleOnClick} />;
                 setOrderHistTable(table);
             });
     }, []);

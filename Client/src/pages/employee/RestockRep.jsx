@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 
-import EmployeeNav from "../../components/EmployeeNav";
-import '../../styles/employee.css'
+import {useNavigate} from 'react-router-dom';
 import DatabaseTablePane from "../../components/DatabaseTablePane";
+import EmployeeNav from "../../components/EmployeeNav";
+import '../../styles/employee.css';
 import {endpoints} from "../../utils/apiEndpoints";
 import {HOST} from "../../utils/host";
-import {useNavigate} from 'react-router-dom';
 
 
 export default function RestockRep(props) {

@@ -1,10 +1,9 @@
-import CategoryItem from '../../components/CategoryItem';
 import React, {useEffect, useState} from 'react';
-import {Outlet} from 'react-router-dom';
-import {HOST} from '../../utils/host';
-import {endpoints} from '../../utils/apiEndpoints';
-import {useNavigate} from 'react-router-dom';
+import {Outlet, useNavigate} from 'react-router-dom';
+import CategoryItem from '../../components/CategoryItem';
 import Weather from '../../components/Weather';
+import {endpoints} from '../../utils/apiEndpoints';
+import {HOST} from '../../utils/host';
 
 import images from '../../utils/imageImport';
 

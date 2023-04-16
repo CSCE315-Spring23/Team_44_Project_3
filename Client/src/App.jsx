@@ -1,10 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {HOST} from './utils/host';
+import React from 'react';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Login from './pages/Login.jsx';
-import Order from './pages/employee/Order';
-import EmployeeRoutes from './routes/EmployeeRoutes';
 import CustomerRoutes from './routes/CustomerRoutes';
+import EmployeeRoutes from './routes/EmployeeRoutes';
 
 
 import Test from './pages/Test.jsx';
