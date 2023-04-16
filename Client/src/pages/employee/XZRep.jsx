@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 
-import EmployeeNav from "../../components/EmployeeNav";
-import '../../styles/employee.css'
+import {useNavigate} from 'react-router-dom';
 import DatabaseTablePane from "../../components/DatabaseTablePane";
-import { endpoints } from "../../utils/apiEndpoints";
-import { HOST } from "../../utils/host";
-import { Link } from "react-router-dom";
+import EmployeeNav from "../../components/EmployeeNav";
+import '../../styles/employee.css';
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
 
-export default function XZRep(props){
+export default function XZRep(props) {
     const isManager = props.isManager;
 
     const [zReport, setZReport] = useState([]);
@@ -34,7 +34,7 @@ export default function XZRep(props){
         })
             .then(response => response.json())
             .then(data => {
-                const table = <DatabaseTablePane data={data} handleOnClick={viewZReportInfo}/>
+                const table = <DatabaseTablePane data={data} handleOnClick={viewZReportInfo} />
                 setZReport(table);
             })
             .catch((error) => {
@@ -63,7 +63,7 @@ export default function XZRep(props){
                 setDateCreated(data.datecreated);
                 setOrderID(data.orderid);
             }
-        );
+            );
     }
 
 
@@ -90,7 +90,7 @@ export default function XZRep(props){
                 setDateCreated(data.datecreated);
                 setOrderID(data.orderid);
             }
-        );
+            );
     }
 
 
@@ -114,7 +114,13 @@ export default function XZRep(props){
                 setDateCreated(data.date);
                 setOrderID(data.orderID);
             }
-        );
+            );
+    }
+
+    const navigate = useNavigate();
+
+    function navigateOrderPage() {
+        navigate("/employee/reports")
     }
 
     return (
@@ -122,18 +128,28 @@ export default function XZRep(props){
             <EmployeeNav isManager={isManager}></EmployeeNav>
             <div className="repDiv">
                 <div className="repHead">
-                    <Link to="/employee/reports" className="backButton">Back</Link>
+                    <div className="backDiv">
+                        <button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigateOrderPage}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                            </svg>
+                            <div aria-hidden="true" className="backText">
+                                Back
+                            </div>
+                        </button>
+                    </div>
                     <h2>XZ Reports</h2>
                     <button className="goButton" onClick={createZReport}>Create Z Report</button>
                     <button className="goButton" onClick={viewXReport}>View X Report</button>
                 </div>
 
                 <div className="repBody">
-                    <div className = "repZTable">
+                    <div className="repZTable">
                         <h3>Z Reports</h3>
                         {zReport}
                     </div>
-                    <div className = "repXZInfo">
+                    <div className="repXZInfo">
                         <h3>Info</h3>
                         <div className="repXZInfoBody">
                             <p>Report Type: {reportType}</p>

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, {useState} from "react";
 
-import EmployeeNav from "../../components/EmployeeNav";
-import '../../styles/employee.css'
-import DatabaseTablePane from "../../components/DatabaseTablePane";
-import { endpoints } from "../../utils/apiEndpoints";
-import { HOST } from "../../utils/host";
-import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {useNavigate} from "react-router-dom";
+import DatabaseTablePane from "../../components/DatabaseTablePane";
+import EmployeeNav from "../../components/EmployeeNav";
+import '../../styles/employee.css';
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
 
-export default function SalesTogetherRep(props){
+export default function SalesTogetherRep(props) {
     const isManager = props.isManager;
 
     const [salesTogetherTable, setSalesTogetherTable] = useState([]);
@@ -44,16 +44,22 @@ export default function SalesTogetherRep(props){
             method: 'GET',
         })
             .then(response => {
-                if(!response.ok){
+                if (!response.ok) {
                     throw new Error("Newwork Response not OK");
                 }
                 return response.json();
             })
             .then(data => {
-                const table = <DatabaseTablePane data={data}/>
+                const table = <DatabaseTablePane data={data} />
                 setSalesTogetherTable(table);
             }
-        );
+            );
+    }
+
+    const navigate = useNavigate();
+
+    function navigateOrderPage() {
+        navigate("/employee/reports")
     }
 
     return (
@@ -61,7 +67,17 @@ export default function SalesTogetherRep(props){
             <EmployeeNav isManager={isManager}></EmployeeNav>
             <div className="repDiv">
                 <div className="repHead">
-                    <Link to="/employee/reports" className="backButton">Back</Link>
+                    <div className="backDiv">
+                        <button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigateOrderPage}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                            </svg>
+                            <div aria-hidden="true" className="backText">
+                                Back
+                            </div>
+                        </button>
+                    </div>
                     <h2>Sales Together Report</h2>
                     <div className="datePicker">
                         <h5>Enter Start Date: </h5>

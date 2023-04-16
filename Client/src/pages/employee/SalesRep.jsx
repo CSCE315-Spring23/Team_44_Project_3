@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, {useState} from "react";
 
-import EmployeeNav from "../../components/EmployeeNav";
-import '../../styles/employee.css'
-import DatabaseTablePane from "../../components/DatabaseTablePane";
-import { endpoints } from "../../utils/apiEndpoints";
-import { HOST } from "../../utils/host";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { format } from "date-fns";
-import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
+import DatabaseTablePane from "../../components/DatabaseTablePane";
+import EmployeeNav from "../../components/EmployeeNav";
+import '../../styles/employee.css';
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
 
 
-export default function SalesRep(props){
+export default function SalesRep(props) {
     const isManager = props.isManager;
 
     const [salesTable, setSalesTable] = useState([]);
@@ -48,41 +47,57 @@ export default function SalesRep(props){
             method: 'GET',
         })
             .then(response => {
-                if(!response.ok){
+                if (!response.ok) {
                     throw new Error("Newwork Response not OK");
                 }
                 return response.json();
             })
             .then(data => {
                 console.log(data);
-                const table = <DatabaseTablePane data={data}/>
+                const table = <DatabaseTablePane data={data} />
                 setSalesTable(table);
             });
 
 
         const url2 = HOST + endpoints.getInventorySales + '?startDate=' + startDate + '&endDate=' + endDate;
-        fetch(url2,{
+        fetch(url2, {
             method: 'GET',
         })
             .then(response => {
-                if(!response.ok){
+                if (!response.ok) {
                     throw new Error("Network Resposnse not ok");
                 }
                 return response.json()
             })
             .then(data => {
-                const table = <DatabaseTablePane data={data}/>
+                const table = <DatabaseTablePane data={data} />
                 setInventoryTable(table);
             });
+    }
+
+    const navigate = useNavigate();
+
+    function navigateOrderPage() {
+        navigate("/employee/reports")
     }
 
     return (
         <div className="empOrderPage">
             <EmployeeNav isManager={isManager}></EmployeeNav>
-            <div className= "repDiv">
+            <div className="repDiv">
                 <div className="repHead">
-                    <div className = "repTitle">
-                        <Link to="/employee/reports" className="backButton">Back</Link>
+                    <div className="repTitle">
+                        <div className="backDiv">
+                            <button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigateOrderPage}>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    </path>
+                                </svg>
+                                <div aria-hidden="true" className="backText">
+                                    Back
+                                </div>
+                            </button>
+                        </div>
                         <h2>Sales Report</h2>
                         <div className="datePicker">
                             <h5>Enter Start Date: </h5>
@@ -104,11 +119,11 @@ export default function SalesRep(props){
                     </div>
                 </div>
                 <div className="repBody">
-                    <div className = "salesMenuItemTable">
+                    <div className="salesMenuItemTable">
                         <h4>Menu</h4>
                         {salesTable}
                     </div>
-                    <div className = "salesInvItemTable">
+                    <div className="salesInvItemTable">
                         <h4>Inventory</h4>
                         {inventoryTable}
                     </div>
