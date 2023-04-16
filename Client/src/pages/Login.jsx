@@ -89,23 +89,6 @@ export default function Login(props) {
             </div>
 
             <div id='google-signin'></div>
-            {/* <div id="g_id_onload"
-                data-client_id="494495949926-om1cjij44iie2585is6tk7n98aurqso6.apps.googleusercontent.com"
-                data-context="signin"
-                data-ux_mode="popup"
-                // data-login_uri="/api/login" // ! For Server API
-                data-callback= {handleGoogleLogin}
-                data-auto_prompt="false">
-            </div>
-
-            <div class="g_id_signin"
-                data-type="standard"
-                data-shape="pill"
-                data-theme="outline"
-                data-text="signin_with"
-                data-size="large"
-                data-logo_alignment="left">
-            </div> */}
 
             <div className="login-wrapper">
                 <div className="login-text">
