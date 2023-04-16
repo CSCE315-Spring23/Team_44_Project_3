@@ -14,10 +14,10 @@ export default function XZRep(props) {
 
     const [reportType, setReportType] = useState("");
 
-    const [totalSales, setTotalSales] = useState(0);
+    const [totalSales, setTotalSales] = useState("");
     const [employee, setEmployee] = useState("");
     const [dateCreated, setDateCreated] = useState("");
-    const [orderID, setOrderID] = useState(0);
+    const [orderID, setOrderID] = useState("");
 
     useEffect(() => {
         loadZReports();
@@ -155,8 +155,8 @@ export default function XZRep(props) {
                             <p>Report Type: {reportType}</p>
                             <p>Employee: {employee}</p>
                             <p>Date Created: {dateCreated.split('T')[0]}</p>
-                            <p>Order ID: {orderID}</p>
-                            <p>Total Sales: {totalSales}</p>
+                            <p>Since Order ID: {orderID}</p>
+                            <p>Total Sales since last Z Report: ${totalSales}</p>
                         </div>
                     </div>
                 </div>
