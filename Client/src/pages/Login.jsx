@@ -6,7 +6,7 @@ import { endpoints } from "../utils/apiEndpoints";
 import { HOST } from "../utils/host";
 import logo from '../assets/CFA Banner.svg'
 
-import { Helmet } from "react-helmet";
+import jwt_decode from "jwt-decode";
 
 export default function Login(props) {
     const isManager = props.isManager;
@@ -23,8 +23,8 @@ export default function Login(props) {
     }, [])
 
     function handleGoogleLogin(response) {
-        console.log('hi!');
-        console.log("google login: ", response);
+        console.log('encoded JWT ID token: ', response.credential);
+        console.log('decoded JWT ID token: ', jwt_decode(response.credential));
     }
 
     useEffect(() => {
