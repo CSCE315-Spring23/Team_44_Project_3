@@ -22,6 +22,13 @@ export default function Login(props) {
             .catch(error => console.error(error));
     }, [])
 
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://accounts.google.com/gsi/client";
+        script.async = true;
+        document.body.appendChild(script);
+    });
+
     if (!employeeTable) {
         return <div>Loading Employee Table ...</div>
     }
@@ -49,12 +56,14 @@ export default function Login(props) {
         }
     }
 
+    function handleGoogleLogin(response) {
+        console.log('hi!');
+        console.log("google login: ", response);
+    }
+
     return (
         // TODO: pass props to other pages
         <>
-            <Helmet>
-                <script src="https://accounts.google.com/gsi/client" async defer></script>
-            </Helmet>
             <header>
                 <h1>Welcome to</h1>
                 <img src={logo}></img>
@@ -68,7 +77,8 @@ export default function Login(props) {
                 data-client_id="494495949926-om1cjij44iie2585is6tk7n98aurqso6.apps.googleusercontent.com"
                 data-context="signin"
                 data-ux_mode="popup"
-                data-login_uri="/api/login"
+                // data-login_uri="/api/login" // ! For Server API
+                data-callback= {handleGoogleLogin}
                 data-auto_prompt="false">
             </div>
 
