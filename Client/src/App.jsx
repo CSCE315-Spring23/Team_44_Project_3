@@ -7,6 +7,7 @@ import EmployeeRoutes from './routes/EmployeeRoutes';
 import CustomerRoutes from './routes/CustomerRoutes';
 
 import Test from './pages/Test.jsx';
+import { Helmet } from 'react-helmet';
 
 function App() {
 	return (

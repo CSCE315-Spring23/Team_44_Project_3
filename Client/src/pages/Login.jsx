@@ -22,11 +22,29 @@ export default function Login(props) {
             .catch(error => console.error(error));
     }, [])
 
+    function handleGoogleLogin(response) {
+        console.log('hi!');
+        console.log("google login: ", response);
+    }
+
     useEffect(() => {
         const script = document.createElement('script');
         script.src = "https://accounts.google.com/gsi/client";
         script.async = true;
         document.body.appendChild(script);
+
+        google.accounts.id.initialize({
+            client_id: '494495949926-om1cjij44iie2585is6tk7n98aurqso6.apps.googleusercontent.com',
+            callback: handleGoogleLogin
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById('google-signin'),
+            {
+                theme: 'outline',
+                size: 'large'
+            }
+        );
     });
 
     if (!employeeTable) {
@@ -56,10 +74,7 @@ export default function Login(props) {
         }
     }
 
-    function handleGoogleLogin(response) {
-        console.log('hi!');
-        console.log("google login: ", response);
-    }
+    
 
     return (
         // TODO: pass props to other pages
@@ -73,7 +88,8 @@ export default function Login(props) {
                 <a className="order-link" href="/customer/order">Order Now</a>
             </div>
 
-            <div id="g_id_onload"
+            <div id='google-signin'></div>
+            {/* <div id="g_id_onload"
                 data-client_id="494495949926-om1cjij44iie2585is6tk7n98aurqso6.apps.googleusercontent.com"
                 data-context="signin"
                 data-ux_mode="popup"
@@ -89,7 +105,7 @@ export default function Login(props) {
                 data-text="signin_with"
                 data-size="large"
                 data-logo_alignment="left">
-            </div>
+            </div> */}
 
             <div className="login-wrapper">
                 <div className="login-text">
