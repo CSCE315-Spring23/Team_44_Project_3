@@ -2,7 +2,7 @@ export const endpoints = {
     getMenu : "/api/order/getmenu",
     postOrder : "/api/order/postOrder",
 
-    
+    loginAPI : "/api/login",
 
     orderHistory : "/api/orderHistory/getOrderHistory",
     orderInformation : "/api/orderHistory/getOrderInformation/",
