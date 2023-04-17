@@ -30,6 +30,19 @@ export default function Login(props) {
         localStorage.setItem('name', decodedResponse.name);
         localStorage.setItem('email', decodedResponse.email);
 
+        //login handshake with backend
+        let responseData = {};
+        const url = HOST + endpoints.loginAPI;
+        fetch(url, {
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            responseData = data;
+        })
+        .catch(error => console.error(error));
+
+
     }
 
     function handlePINLogin(response) {
