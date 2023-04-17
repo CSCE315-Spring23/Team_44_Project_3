@@ -26,13 +26,23 @@ export default function Login(props) {
     // Action: set user object in local storage
     function handleGoogleLogin(response) {
         const decodedResponse = jwt_decode(response.credential);
-        const userObject = {
-            name: decodedResponse.name,
-            email: decodedResponse.email,
-            picture: decodedResponse.picture
+
+        localStorage.setItem('name', decodedResponse.name);
+        localStorage.setItem('email', decodedResponse.email);
+
+    }
+
+    function handlePINLogin(response) {
+        const employeePin = document.getElementById('pass').value;
+
+        if (!employeePin || employeePin.length < 4) {
+            return;
         }
-        localStorage.setItem('googleUser', JSON.stringify(userObject));
-        console.log("Stored user object in local storage: ", userObject);
+
+        console.log(employeePin);
+        console.log(employeeTable);
+
+        authLogin(employeePin, employeeTable);
     }
 
     useEffect(() => {
@@ -59,15 +69,8 @@ export default function Login(props) {
         return <div>Loading Employee Table ...</div>
     }
 
-    function authLogin() {
-        const employeePin = document.getElementById('pass').value;
-
-        if (!employeePin || employeePin.length < 4) {
-            return;
-        }
-
-        console.log(employeePin);
-        console.log(employeeTable);
+    // TODO: migrate to server side
+    function authLogin(employeePin, employeeTable) {
 
         for (let i = 0; i < employeeTable.length; i++) {
             if (employeePin == employeeTable[i].pin) {
@@ -105,7 +108,7 @@ export default function Login(props) {
 
                 <div>
                     <input type="password" id="pass" name="password" className="sign-in-field" placeholder="Enter PIN Number" />
-                    <input type="submit" value="Sign In" onClick={authLogin} className="sign-in-button" />
+                    <input type="submit" value="Sign In" onClick={handlePINLogin} className="sign-in-button" />
                 </div>
             </div>
         </>
