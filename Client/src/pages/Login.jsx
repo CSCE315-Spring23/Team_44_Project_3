@@ -40,6 +40,7 @@ export default function Login(props) {
         const data = await response.json();
 
         if (data.isValidUser) {
+            localStorage.setItem('employeeId', data.id);
             localStorage.setItem('name', data.name);
             localStorage.setItem('email', email);
             localStorage.setItem('pin', pin);

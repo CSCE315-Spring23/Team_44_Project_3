@@ -14,10 +14,11 @@ loginRouter.post(apiPath, async (req, res) => {
 
     // construct response
     let isValidUser = response.rows.length > 0;
+    let id = isValidUser && response.rows[0].id;
     let name = isValidUser && response.rows[0].name;
     let isManager = isValidUser && response.rows[0].role === 'manager';
 
-    res.send({ isValidUser, name, isManager });
+    res.send({ isValidUser, id, name, isManager });
 });
 
 module.exports = loginRouter;
