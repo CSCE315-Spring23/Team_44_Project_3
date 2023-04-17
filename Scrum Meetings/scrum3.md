@@ -10,46 +10,36 @@ Meeting Date: 2023-04-05
 	- Huy Lai
 
 ## Meeting Agenda Items
-    - Discuss any blockers a team member may have.
-    - Discuss our progress in the project
-    - Ensured backlogs are up to date
-    - Discuss future moves
-  
+    - Discuss Sprint 1
+    - Discuss Sprint 2
+
 ## Status Update Since Last Meeting
 ### Accomplishments
-    - Customer page makes the orders
-    - Navigational button for the customer pages.
-    - Graphical User Interface for the Login page was altered
-    - Graphical User Interface for the Checkout Pannel was altered
-
+    - We have a minimum viable product with most of the functionality from Project 2
+    - Customer view looks nice and can make orders
 
 ### Tasks Completed
 
-| Task Description                                             | Assigned to   | Completed? (yes/no) |
-| ------------------------------------------------------------ | ------------- | ------------------- |
-| Customer page makes the orders                               | Sloan         | yes                 |
-| Navigational button for the customer pages.                  | Huy, Shreeman | yes                 |
-| Graphical User Interface for the Login page was altered      | Steven        | yes                 |
-| Graphical User Interface for the Checkout Pannel was altered | Kevin         | yes                 |
+| Task Description                                        | Assigned to   | Completed? (yes/no) |
+| ------------------------------------------------------- | ------------- | ------------------- |
+| Create ordering system for customers                    | Huy, Shreeman | Yes                 |
+| Navigate between various page for employees             | Kevin, Sloan  | Yes                 |
+| Polishing style and help create persistent session data | Steven        | Yes                 |
+
 
 ## Before The Next Meeting
 ### Plans
-    - Connect OAuth
-    - Add OpenWeather API to GUI
-    - Add the price under each menu item
-    - Enforce consistent text styling for title and menu item names
-    - Add customer name on the checkout button and integrate into backend tables
-    - Add checkout cart page for user to add and remove items, confirm their order, and cancel their order
+    - Create all reports for manager view
+    - Incorporate more accessibility needs	
 
 ### Task Assignments
-| Task Description                                                                                     | Assigned to |
-| ---------------------------------------------------------------------------------------------------- | ----------- |
-| Connect OAuth                                                                                        |             |
-| Add OpenWeather API to GUI                                                                           |             |
-| Add the price under each menu item                                                                   |             |
-| Enforce consistent text styling for title and menu item names                                        |             |
-| Add customer name on the checkout button and integrate into backend tables                           |             |
-| Add checkout cart page for user to add and remove items, confirm their order, and cancel their order |             |
+| Task Description                             | Assigned to          |
+| -------------------------------------------- | -------------------- |
+| Connect OAuth                                |                      |
+| Create backend API endpoints for the reports | Kevin, Steven        |
+| Create all report pages for manager view     | Kevin, Steven, Sloan |
+| Customer cart view                           | Huy, Shreeman        |
+
 
 ## Minutes from Previous Meeting
-We started the meeting discussing our progress in the project which we collectively agreed that we are in a pretty good spot. We have made significant progress in our POS and will continue to do so. Next, we discussed any blockers we may have. For the most part, our struggles with React have diminished. It’s not completely gone, there are some things we needed to figure out, but it’s getting there. Our main problem right now is making an Order persist across different routes. We plan to solve this before the end of the sprint. We also talked about the backlogs and made sure it is up to date with the correct times and items completed. 
+We first discussed the progress and challenges we faced from Sprint 1. We agreed that our main challenge from Sprint 1 is learning and setting up React correctly. Once we got used to React, our progress became smoother. We all liked the progress we made in Sprint 1, having a minimum viable product that users can interact and have majority of the functionality there. Next, we discussed future plans for Sprint 2 from the backlogs on what we want completed by the end of this sprint. We delegated a brief overview of the tasks to certain members of the team, and then talked about what we wanted completed by the next SCRUM meeting. We finished discussing a high-level overview of the rest of project, including sprint 3. 
