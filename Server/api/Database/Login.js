@@ -7,15 +7,14 @@ const db = require('./Info/DatabaseConnect.js');
 // returns user if valid
 loginRouter.post(apiPath, async (req, res) => {
     
-    const { name, email = '', pin = ''} = req.body;
-    let isValidUser = false;
-    let isManager = false;
+    const { email = '', pin = ''} = req.body;
 
-    // check if user exists
+    // grab user data from database
     let response = await db.query(`SELECT * FROM employee WHERE ${pin !== '' ? `pin = '${pin}'` : `email = '${email}'`}`);
-    isValidUser = response.rows.length > 0;
-    isManager = isValidUser && response.rows[0].role === 'manager';
-    console.log(isValidUser, isManager);
+
+    // construct response
+    let isValidUser = response.rows.length > 0;
+    let isManager = isValidUser && response.rows[0].role === 'manager';
 
     res.send({ isValidUser, isManager });
 });
