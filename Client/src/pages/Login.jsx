@@ -26,19 +26,24 @@ export default function Login(props) {
     // Action: set user object in local storage
     function handleGoogleLogin(response) {
         const decodedResponse = jwt_decode(response.credential);
-
-        localStorage.setItem('name', decodedResponse.name);
-        localStorage.setItem('email', decodedResponse.email);
-
+        
+        const name = decodedResponse.name;
+        const email = decodedResponse.email;
+        
         //login handshake with backend
-        let responseData = {};
         const url = HOST + endpoints.loginAPI;
+        
         fetch(url, {
-
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, email })
         })
         .then(response => response.json())
         .then(data => {
-            responseData = data;
+            localStorage.setItem('name', name);
+            localStorage.setItem('email', email);
         })
         .catch(error => console.error(error));
 
