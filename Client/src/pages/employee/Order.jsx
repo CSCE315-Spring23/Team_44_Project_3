@@ -64,9 +64,9 @@ export default function Order(props) {
     const isManager = props.isManager;
     return (
         <div className="empOrderPage">
-            <EmployeeNav isManager={isManager}></EmployeeNav>
+            <EmployeeNav isManager={isManager} current={"order"} />
             <OrderItemPane addToCart={addToCart}></OrderItemPane>
             <CheckoutPanel cart={cart} emptyCart={emptyCart} removeFromCart={removeFromCart} />
-        </div>
+        </div >
     );
 }

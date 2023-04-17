@@ -55,7 +55,7 @@ export default function OrderHistory(props) {
 
     return (
         <div className="empOrderPage">
-            <EmployeeNav isManager={isManager}></EmployeeNav>
+            <EmployeeNav isManager={isManager} current={"history"} />
             <div id="orderHistoryTableDiv">
                 <h2>Order History</h2>
                 {orderHistTable}

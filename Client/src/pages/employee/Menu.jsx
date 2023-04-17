@@ -165,7 +165,7 @@ export default function Menu(props) {
 
     return (
         <div className="empMenuPage">
-            <EmployeeNav isManager={isManager} />
+            <EmployeeNav isManager={isManager} current={"menu"} />
             <div id="menuTableDiv">
                 <h2>Menu</h2>
                 {menuTable}

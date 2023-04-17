@@ -11,7 +11,7 @@ export default function Reports() {
 
     return (
         <div className="empOrderPage">
-            <EmployeeNav></EmployeeNav>
+            <EmployeeNav current={"reports"} />
             <div id="reportsSelection">
                 <button onClick={e => changePage("sales")} className="reportBtn">Sales Report</button>
                 <button onClick={e => changePage("excess")} className="reportBtn">Excess Report</button>
