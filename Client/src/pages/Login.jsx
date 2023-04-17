@@ -22,8 +22,36 @@ export default function Login(props) {
             .catch(error => console.error(error));
     }, [])
 
-    // Trigger: when user signs in with google
-    // Action: set user object in local storage
+    // Checks for user with server, then updates localstorage
+    // * @param: { email, pin }, needs either one
+    // * @returns: Promise, then resolves to true if user was found
+    async function OAUTH(params) {
+        const url = HOST + endpoints.loginAPI;
+        const { email = '', pin = ''} = params;
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, pin })
+        })
+        
+        const data = await response.json();
+
+        if (data.isValidUser) {
+            localStorage.setItem('name', data.name);
+            localStorage.setItem('email', email);
+            localStorage.setItem('pin', pin);
+            localStorage.setItem('isManager', data.isManager);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function handleGoogleLogin(response) {
         const decodedResponse = jwt_decode(response.credential);
         
@@ -33,36 +61,27 @@ export default function Login(props) {
         //login handshake with backend
         const url = HOST + endpoints.loginAPI;
         
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name, email })
-        })
-        .then(response => response.json())
-        .then(data => {
-            localStorage.setItem('name', name);
-            localStorage.setItem('email', email);
-        })
-        .catch(error => console.error(error));
-
-
+        OAUTH({ email })
+            .then(isValid => {
+                if (isValid) navigate('/employee/order');
+                else setErrorMessage("Invalid Google User");
+            });
     }
 
-    function handlePINLogin(response) {
+    function handlePINLogin() {
         const employeePin = document.getElementById('pass').value;
 
-        if (!employeePin || employeePin.length < 4) {
+        if (!employeePin || employeePin.length < 4)
             return;
-        }
 
-        console.log(employeePin);
-        console.log(employeeTable);
-
-        authLogin(employeePin, employeeTable);
+        OAUTH({ pin: employeePin })
+            .then(isValid => {
+                if (isValid) navigate('/employee/order');
+                else setErrorMessage("Invalid Google User");
+            });
     }
 
+    // set up google oauth button and behavior
     useEffect(() => {
         const script = document.createElement('script');
         script.src = "https://accounts.google.com/gsi/client";
