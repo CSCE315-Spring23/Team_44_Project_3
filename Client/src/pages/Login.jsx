@@ -22,12 +22,11 @@ export default function Login(props) {
             .catch(error => console.error(error));
     }, [])
 
-    // Checks for user with server, then updates localstorage
+    // ASYNC: checks if user exists, then updates localstorage
     // * @param: { email, pin }, needs either one
-    // * @returns: Promise, then resolves to true if user was found
+    // * @returns: resolves to true if user found and updated localstorage, false otherwise
     async function OAUTH(params) {
         const url = HOST + endpoints.loginAPI;
-        const { email = '', pin = ''} = params;
 
         const response = await fetch(url, {
             method: 'POST',
@@ -35,7 +34,7 @@ export default function Login(props) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email, pin })
+            body: JSON.stringify(params)
         })
         
         const data = await response.json();
