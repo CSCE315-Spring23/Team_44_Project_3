@@ -27,6 +27,7 @@ export default function Login(props) {
     // * @returns: resolves to true if user found and updated localstorage, false otherwise
     async function OAUTH(params) {
         const url = HOST + endpoints.loginAPI;
+        const { email = '', pin = '' } = params;
 
         const response = await fetch(url, {
             method: 'POST',
@@ -54,6 +55,7 @@ export default function Login(props) {
 
     function handleGoogleLogin(response) {
         const decodedResponse = jwt_decode(response.credential);
+        console.log(decodedResponse);
         
         const name = decodedResponse.name;
         const email = decodedResponse.email;
