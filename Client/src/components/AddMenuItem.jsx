@@ -32,7 +32,7 @@ export default function AddMenuItem(props) {
                 menu.forEach((arrItem) => {
                     if (arrItem.id == curID) {
                         order.total[0] += Number(arrItem.cost);
-                        order.items.push({"id": arrItem.id, "quantity": 1, "price": Number(arrItem.cost)});
+                        order.items.push({"id": arrItem.id, "quantity": 1, "excluded": []});
                         localStorage.setItem('numItems', JSON.stringify(numberOfItems + 1));
                     }
                 });
@@ -44,7 +44,7 @@ export default function AddMenuItem(props) {
             menu.forEach((arrItem) => {
                 if (arrItem.id == item.id) {
                     order.total[0] += Number(arrItem.cost);
-                    order.items.push({"id": arrItem.id, "quantity": 1, "price": Number(arrItem.cost)});
+                    order.items.push({"id": arrItem.id, "quantity": 1, "excluded": []});
                     localStorage.setItem('numItems', JSON.stringify(numberOfItems + 1));
                 }
             });
