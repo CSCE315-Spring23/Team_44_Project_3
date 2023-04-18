@@ -9,18 +9,9 @@ import logo from '../assets/CFA Banner.svg'
 import jwt_decode from "jwt-decode";
 
 export default function Login(props) {
-    const isManager = props.isManager;
 
     const navigate = useNavigate();
-    const [employeeTable, SetEmployeeTable] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
-
-    useEffect(() => {
-        fetch('/api/employee/getEmployees')
-            .then(response => response.json())
-            .then(data => SetEmployeeTable(data))
-            .catch(error => console.error(error));
-    }, [])
 
     // ASYNC: checks if user exists, then updates localstorage
     // * @param: { email, pin }, needs either one
@@ -104,10 +95,6 @@ export default function Login(props) {
         );
     });
 
-    if (!employeeTable) {
-        return <div>Loading Employee Table ...</div>
-    }
-
     return (
         <>
             <header>
@@ -123,8 +110,7 @@ export default function Login(props) {
 
             <div className="login-wrapper">
                 <div className="login-text">
-                    {errorMessage && <p>{errorMessage}</p>}
-                    {!errorMessage && <p>Employees Only</p>}
+                    {errorMessage ? <p>{errorMessage}</p> : <p>Employees Only</p>}
                 </div>
 
                 <div>
