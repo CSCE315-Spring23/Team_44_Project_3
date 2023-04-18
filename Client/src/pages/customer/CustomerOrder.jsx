@@ -29,10 +29,6 @@ function CustomerOrder() {
 	let numberOfItems = localStorage.getItem("numItems");
 	numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
 
-	function checkoutPage() {
-		navigate("/customer/order/checkout");
-	}
-
 	//get menu and update total
 	const [orderTotal, setOrderTotal] = useState(0);
 	useEffect(() => {
@@ -62,12 +58,6 @@ function CustomerOrder() {
 		}
 
 	}, []);
-
-	const navigate = useNavigate();
-
-	function navigatePage() {
-		navigate("/Login")
-	};
 
 	return (
 		<>
