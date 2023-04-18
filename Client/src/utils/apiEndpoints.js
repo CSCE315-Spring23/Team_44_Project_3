@@ -4,6 +4,8 @@ export const endpoints = {
     getRecipe: "/api/order/getRecipe/",
     
 
+    loginAPI : "/api/login",
+
     orderHistory : "/api/orderHistory/getOrderHistory",
     orderInformation : "/api/orderHistory/getOrderInformation/",
 

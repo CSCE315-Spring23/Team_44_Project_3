@@ -36,7 +36,9 @@ a.order-link {
 	font-weight: 500;
 	text-decoration: none;
 	color: #ffffff;
-	background-image: linear-gradient(-180deg, #fe436c, #dd0031 49%, #c20726);
+	background-image: linear-gradient(-180deg, rgba(254, 67, 108, .99), rgba(201, 0, 43, 0.99) 49%, #9b0720);
+	background-size: 100% 150%;
+	background-position: top;
 	border: 1px solid #333333;
 	border-radius: 20px;
 	padding: 20px;
@@ -45,7 +47,7 @@ a.order-link {
 }
 
 a.order-link:hover {
-	letter-spacing: 15px;
+	background-position: bottom;
 }
 
 body {
@@ -187,8 +189,15 @@ div#customerCheckout {
 	height: 20vh;
 }
 
+#google-signin {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	margin-top: 5em;
+}
+
 div.login-wrapper {
-	margin: 3em;
+	margin: 2em;
 	font-family: inherit;
 	display: flex;
 	flex-direction: column;
