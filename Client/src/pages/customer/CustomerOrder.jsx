@@ -24,39 +24,11 @@ const categoryList = categories.map(item =>
 
 
 function CustomerOrder() {
-	const handleCheckout = () => {
-		console.log("checkout");
-		const orderLocal = JSON.parse(localStorage.getItem('curOrder'));
-		const order = {
-			customerName: "custName",
-			totalCost: orderLocal.total[0],
-			employeeID: 0,
-			items: orderLocal.items
-		};
 
-		const url = HOST + endpoints.postOrder;
-
-		console.log(order);
-		if (order.items === undefined || order.items.length === 0) {
-			alert("Please add items to your order before checking out.");
-			return;
-		}
-		fetch(url, {
-			method: "POST",
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify(order)
-		})
-			.then(response => {
-				return response.text();
-			})
-			.then(data => {
-				console.log(data);
-			});
-		const defaultOrder = {total: [0], items: []};
-		localStorage.setItem('curOrder', JSON.stringify(defaultOrder));
-		setOrderTotal(0);
-
+	function checkoutPage() {
+        navigate("/customer/order/checkout");
 	}
+
 	//get menu and update total
 	const [orderTotal, setOrderTotal] = useState(0);
 	useEffect(() => {
@@ -111,7 +83,7 @@ function CustomerOrder() {
 				<div className="title">Place an Order</div>
 
 				<div className="order">
-					<button className="viewOrderBtn">
+					<button className="viewOrderBtn" onClick={checkoutPage}>
 						<div className="bagIcon">
 							<span className="itemCount">0</span>
 							<svg width="30" height="31" viewBox="0 0 30 31" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="sc-NfXLL kkFxpj">
@@ -128,10 +100,7 @@ function CustomerOrder() {
 			</ul>
 
 			<Weather />
-
-			<div id='customerCheckout'>
-				<button onClick={e => handleCheckout()} id='customerCheckoutBtn'>Checkout ${orderTotal.toFixed(2)}</button>
-			</div>
+			
 			<Outlet />
 		</>
 	);
