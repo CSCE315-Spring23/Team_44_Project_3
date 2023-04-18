@@ -1,15 +1,13 @@
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
-
-	color: #000000;
 	background-color: #ffffff;
-
+	color: #000000;
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	font-synthesis: none;
+	font-weight: 400;
+	line-height: 1.5;
+	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
 }
 
@@ -17,11 +15,11 @@ a.menuLink:active {
 	text-decoration: none;
 }
 
-a.menuLink:link {
+a.menuLink:hover {
 	text-decoration: none;
 }
 
-a.menuLink:hover {
+a.menuLink:link {
 	text-decoration: none;
 }
 
@@ -41,8 +39,14 @@ a.order-link {
 	background-position: top;
 	border: 1px solid #333333;
 	border-radius: 20px;
-	padding: 20px;
+	color: #ffffff;
+	display: block;
+	font-family: sans-serif;
+	font-size: 48px;
+	font-weight: 500;
 	letter-spacing: 4px;
+	padding: 20px;
+	text-decoration: none;
 	transition: all 0.3s ease-in-out;
 }
 
@@ -52,9 +56,27 @@ a.order-link:hover {
 
 body {
 	margin: 0;
+	margin-top: 5em;
 	padding: 0;
 	text-align: center;
-	margin-top: 5em;
+}
+
+button#customerCheckoutBtn {
+	align-items: center;
+	background-color: #008000;
+	border-radius: 10px;
+	border-style: none;
+	box-shadow: 0px 3px 3px #005e13;
+	color: white;
+	display: flex;
+	height: 50%;
+	justify-content: center;
+	width: 20%;
+}
+
+button#customerCheckoutBtn:hover {
+	background-color: #006100;
+	box-shadow: 0px 0px 3px #005e13 inset;
 }
 
 button.backButton {
@@ -70,28 +92,7 @@ button.backButton {
 	-webkit-box-align: center;
 }
 
-button#customerCheckoutBtn {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 50%;
-	width: 20%;
-	background-color: #008000;
-	color: white;
-	border-radius: 10px;
-	border-style: none;
-	box-shadow: 0px 3px 3px #005e13;
-
-}
-
-button#customerCheckoutBtn:hover {
-	background-color: #006100;
-	box-shadow: 0px 0px 3px #005e13 inset;
-}
-
 button.menuButton {
-	-webkit-box-align: center;
-	-webkit-box-pack: center;
 	align-items: center;
 	background: 0px center;
 	border: 2px solid transparent;
@@ -106,6 +107,8 @@ button.menuButton {
 	padding: 23px;
 	position: relative;
 	text-align: center;
+	-webkit-box-align: center;
+	--webkit-box-pack: center;
 	width: 270px;
 }
 
@@ -114,13 +117,11 @@ button.menuButton:hover {
 }
 
 button.viewOrderBtn {
-	-webkit-box-align: center;
-	-webkit-box-pack: center;
 	align-items: center;
 	background-image: linear-gradient(#ff033b 0%, #ca0f1a 100%);
 	background-size: 100%;
-	border-radius: 24px;
 	border: none;
+	border-radius: 24px;
 	box-sizing: border-box;
 	color: #ffffff;
 	cursor: pointer;
@@ -138,57 +139,58 @@ button.viewOrderBtn {
 	position: relative;
 	text-decoration: none;
 	transition: all 250ms ease-out 0s;
+	-webkit-box-align: center;
+	-webkit-box-pack: center;
 	width: 100%;
 }
 
 button.viewOrderBtn:hover {
-	background-size: 100%;
 	background-image: linear-gradient(#ca0f1a 0%, #ff033b 100%);
+	background-size: 100%;
 	position: relative;
 	z-index: 1;
 }
 
-div.backDiv {
-	width: 13.5%;
-	text-align: left;
+div#customerCheckout {
+	align-items: start;
 	display: flex;
-	-webkit-box-align: center;
+	flex-direction: row;
+	height: 20vh;
+	justify-content: center;
+	width: 100%;
+}
+
+div.backDiv {
 	align-items: center;
+	display: flex;
+	text-align: left;
+	-webkit-box-align: center;
+	width: 13.5%;
 }
 
 div.backText {
-	margin-left: 12px;
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 20px;
-	letter-spacing: -0.5px;
-	color: #485259;
-	margin: 0;
-	padding: 0;
 	border: 0;
-	font-size: 100%;
+	color: #485259;
 	font: inherit;
+	font-size: 100%;
+	font-size: 12px;
+	font-weight: 400;
+	letter-spacing: -0.5px;
+	line-height: 20px;
+	margin: 0;
+	margin-left: 12px;
+	padding: 0;
 	vertical-align: initial;
 }
 
 div.bagIcon {
-	display: flex;
-	-webkit-box-align: center;
 	align-items: center;
+	display: flex;
 	margin-right: 8px;
 	max-height: 40px;
 	position: relative;
+	-webkit-box-align: center;
 }
-
-div#customerCheckout {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	align-items: start;
-	justify-content: center;
-	height: 20vh;
-}
-
 #google-signin {
 	position: relative;
 	display: flex;
@@ -197,13 +199,24 @@ div#customerCheckout {
 }
 
 div.login-wrapper {
-	margin: 2em;
+	margin: 3em;
 	font-family: inherit;
 	display: flex;
 	flex-direction: column;
-
+	font-family: inherit;
 	justify-content: center;
-	align-items: center;
+	margin: 3em;
+}
+
+div.order {
+	justify-content: flex-end;
+	-webkit-box-pack: end;
+	width: 13.5%;
+}
+
+div.order-wrapper {
+	display: inline-block;
+	margin-top: 3em;
 }
 
 div.title {
@@ -218,47 +231,6 @@ div.title {
 	width: 73%;
 }
 
-div.order {
-	-webkit-box-pack: end;
-	justify-content: flex-end;
-	width: 13.5%;
-}
-
-div.order-wrapper {
-	display: inline-block;
-	margin-top: 3em;
-}
-
-input[type="password"],
-input[type="submit"] {
-	height: 3em;
-	margin: 0;
-	padding: 0 1.2em;
-	box-sizing: content-box;
-	border: 1px solid black;
-	font-family: inherit;
-	font-size: 1rem;
-	font-weight: 500;
-}
-
-input[type="password"] {
-	border-radius: 100px 0px 0px 100px;
-	border-right: none;
-}
-
-input[type="submit"] {
-	background-color: #dd0031;
-	color: white;
-	border-radius: 0px 100px 100px 0px;
-	border-left: none;
-	cursor: pointer;
-	transition: all 0.5s ease-in-out;
-}
-
-input[type="submit"]:hover {
-	background-color: #9e1c38;
-}
-
 header {
 	text-align: center;
 }
@@ -268,55 +240,84 @@ img.menuIMG {
 	max-width: 100%;
 }
 
+input[type="password"] {
+	border-radius: 100px 0px 0px 100px;
+	border-right: none;
+}
+
+input[type="password"],
+input[type="submit"] {
+	border: 1px solid black;
+	box-sizing: content-box;
+	font-family: inherit;
+	font-size: 1rem;
+	font-weight: 500;
+	height: 3em;
+	margin: 0;
+	padding: 0 1.2em;
+}
+
+input[type="submit"] {
+	background-color: #dd0031;
+	border-left: none;
+	border-radius: 0px 100px 100px 0px;
+	color: white;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+input[type="submit"]:hover {
+	background-color: #9e1c38;
+}
+
 label.passLabel {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	font-size: 24pt;
 }
 
-span.itemCount {
-	align-items: center;
-	color: #dd0031;
-	background-color: #ffffff;
-	width: 14px;
-	height: 14px;
-	top: -8px;
-	right: -5px;
-	font-size: 8px;
-	font-weight: 700;
-	display: flex;
-	-webkit-box-align: center;
-	-webkit-box-pack: center;
-	justify-content: center;
-
-	border-radius: 50%;
-	position: absolute;
-}
-
 nav.desktop-navigation {
+	align-items: center;
+	background-color: white;
+	box-shadow: #00000033 0px 0px 4px;
 	display: flex;
 	height: 64px;
-	-webkit-box-align: center;
-	align-items: center;
-	box-shadow: #00000033 0px 0px 4px;
 	position: fixed;
-	width: 100%;
-	background-color: white;
-	z-index: 50;
 	top: 0px;
+	-webkit-box-align: center;
+	width: 100%;
+	z-index: 50;
+}
+
+span.itemCount {
+	align-items: center;
+	background-color: #ffffff;
+	border-radius: 50%;
+	color: #dd0031;
+	display: flex;
+	font-size: 8px;
+	font-weight: 700;
+	height: 14px;
+	justify-content: center;
+	position: absolute;
+	right: -5px;
+	top: -8px;
+	-webkit-box-align: center;
+	-webkit-box-pack: center;
+	width: 14px;
 }
 
 ul.menu {
-	height: 100%;
-	width: 100%;
-	max-width: 100%;
-	justify-items: center;
 	align-items: center;
 	display: grid;
+	gap: 28px;
 	grid-template-columns: repeat(3, 1fr);
+	height: 100%;
+	justify-items: center;
+	list-style: none;
+	max-width: 100%;
+	padding-bottom: 28px;
 	padding-inline-start: 0px;
 	padding-top: 64px;
-	padding-bottom: 28px;
-	gap: 28px;
-	list-style: none;
 	text-align: center;
+	width: 100%;
 }

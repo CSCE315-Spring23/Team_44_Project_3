@@ -1,12 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-export default function PopUpRow(props){
+export default function PopUpRow(props) {
+
+    const [checked, setChecked] = useState(true);
 
     const inventoryitem = props.inventoryitem;
 
-    return(
+    const handleCheckboxChange = () => {
+        props.handleExcludeClick(inventoryitem);
+        setChecked(!checked);
+    }
+
+    return (
         <div className="PopUpRow">
-            {inventoryitem.name}
+            <div className="PopUpRowLeft">
+                {inventoryitem.name}
+            </div>
+            <div className="PopUpRowRight">
+                <input style={{ marginLeft: '.25em' }} type="checkbox" checked={checked} onChange={handleCheckboxChange} />
+            </div>
         </div>
     );
 }

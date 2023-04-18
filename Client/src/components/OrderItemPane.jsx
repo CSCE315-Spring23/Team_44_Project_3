@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
 import OrderItemButton from "./OrderItemButton";
-import { endpoints } from "../utils/apiEndpoints";
-import { HOST } from "../utils/host";
 
 export default function OrderItemPane(props) {
     //set a react state to contain the json of menu items

@@ -37,12 +37,12 @@ orderRouter.get(apiPath + "/getMenu", async (req, res) => {
         }
     @return: none
 */
-// TODO: add to solditem, update menuitem count, update inventory count
+
 orderRouter.post(apiPath + "/postOrder", async (req, res) => {
     try {
         // extract data
         const { customerName, totalCost, employeeID, items } = req.body;
-
+        console.log(req.body);
         const options = { timeZone: 'America/Chicago', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
         const date = new Date().toLocaleDateString('en-US', options);
         const formattedDateTime = `${date}`;
@@ -77,6 +77,11 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
                 (SELECT ${RECIPE_ITEM_DATABASE}.inventoryid
                     FROM ${RECIPE_ITEM_DATABASE}
                     WHERE ${RECIPE_ITEM_DATABASE}.menuid = ${item.id})`)
+
+                // excluded items
+                for(let j = 0; j < item.excluded.length; j++){
+                    db.query(`UPDATE ${INVENTORY_DATABASE} SET quantity = quantity + 1 WHERE id = ${item.excluded[j]}`)
+                }
                 solditemId++;
             }
 
@@ -104,13 +109,13 @@ orderRouter.post(apiPath + "/postOrder", async (req, res) => {
 orderRouter.get(apiPath + "/getRecipe", async (req, res) => {
     try {
         const id = req.query.id;
-        const response = await db.query(`SELECT i.name
+        const response = await db.query(`SELECT i.name, i.id
             FROM ${RECIPE_ITEM_DATABASE} r
             JOIN ${INVENTORY_DATABASE} i ON r.inventoryid = i.id
             WHERE r.menuid = ${id}
             AND i.id NOT BETWEEN 0 AND 14
             AND i.id != 20
-            AND i.id < 47
+            AND i.id < 45
             ORDER BY i.id;`);
         res.send(response.rows);
     } catch (err) {

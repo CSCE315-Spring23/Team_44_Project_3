@@ -9,7 +9,7 @@ import treats from "../assets/categories/treats.png";
 /**
  * Make it easier to import multiple images by separating imports into a separate file
  */
-export default{
+export default {
     beverages,
     entree,
     meals,

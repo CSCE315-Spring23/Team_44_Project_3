@@ -9,6 +9,7 @@ export default function CheckoutPanel(props) {
     const [custName, setCustName] = useState(name ? name : "");
     const { cart } = props;
     const items = Object.keys(cart.items);
+    console.log(cart)
 
     //sends order to server when checkout button clicked
     const checkoutBtnClicked = () => {
@@ -19,10 +20,17 @@ export default function CheckoutPanel(props) {
             items: [ {"id": 1, "quantity": 2}, ... ] 
         */
         let itemsArr = [];
-        for (let itemName in cart.items) {
-            const id = cart.items[itemName][2];
-            const count = cart.items[itemName][0];
-            const curItem = { "id": id, "quantity": count };
+        for (let cartID in cart.items) {
+            const id = cart.items[cartID][3];
+            const count = cart.items[cartID][1];
+            const excluded = cart.items[cartID][4];
+
+            let excludedIDs = [];
+            for (let i = 0; i < excluded.length; i++) {
+                excludedIDs.push(excluded[i].id);
+            }
+
+            const curItem = { "id": id, "quantity": count, "excluded": excludedIDs };
             itemsArr.push(curItem);
         }
         //build the order object to be sent in POST
@@ -31,7 +39,7 @@ export default function CheckoutPanel(props) {
                 customerName: "John Doe",
                 totalCost: "12.34",
                 employeeID: 1,
-                items: [ {"id": 1, "quantity": 2}, ... ]
+                items: [ {"id": 1, "quantity": 2, "excluded": [15,27...]}, ... ]
             }
         */
         const order = {
@@ -40,6 +48,12 @@ export default function CheckoutPanel(props) {
             employeeID: EMP_ID,
             items: itemsArr
         };
+
+        // if customer name is empty or items is empty, don't submit order
+        if (order.customerName === "" || order.items.length === 0) {
+            console.log("order not submitted: customer name or items empty")
+            return;
+        }
 
         const url = HOST + endpoints.postOrder;
 
@@ -73,8 +87,15 @@ export default function CheckoutPanel(props) {
     return (
         <div id="checkoutPanel">
             <div id="checkoutOrderItems">
-                {items.map(item => (
-                    <CheckoutItem itemName={item} count={cart.items[item][0]} price={cart.items[item][1]} onClick={props.removeFromCart}></CheckoutItem>
+                {items.map(cartID => (
+                    <CheckoutItem
+                        itemName={cart.items[cartID][0]}
+                        count={cart.items[cartID][1]}
+                        price={cart.items[cartID][2]}
+                        onClick={props.removeFromCart}
+                        cartID = {cartID}
+                        excluded={cart.items[cartID][4]}>
+                    </CheckoutItem>
                 ))}
             </div>
             <div id="checkoutButtonDiv">

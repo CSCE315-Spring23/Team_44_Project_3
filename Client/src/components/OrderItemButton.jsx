@@ -1,24 +1,24 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import PopUp from "./PopUp";
 
-export default function OrderItemButton(props){
+export default function OrderItemButton(props) {
     const item = props.item;
     const itemName = item.name;
     const addToCart = props.addToCart;
 
     const [popUp, setPopUp] = useState(false);
 
-    const handleClick = () =>{
+    const handleClick = () => {
         // addToCart(item);
         setPopUp(true);
     }
 
-    return(
+    return (
         <div>
             <button onClick={handleClick} className="orderItemBtn">
-                {itemName ?  itemName : "No Item"}
+                {itemName ? itemName : "No Item"}
             </button>
-            {popUp && <PopUp item={item} setPopUp={setPopUp} addToCart={addToCart}/>}
+            {popUp && <PopUp item={item} setPopUp={setPopUp} addToCart={addToCart} />}
         </div>
     );
 }

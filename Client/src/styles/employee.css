@@ -1,397 +1,481 @@
-/* Nav Bar */
 body {
     margin: 0;
+    margin-top: 0em;
     padding: 0;
     text-align: center;
-    margin-top: 0em;
 }
 
-nav.empNav {
-    position: relative;
-    width: 15%;
-    height: 100vh;
-    background-color: #F4F8F9;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
+button#checkoutBtn {
     align-items: center;
-}
-
-a.empNavButton {
-    margin-top: 1em;
-    font-size: 1em;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    text-align: center;
-    text-decoration: none;
-    min-width: 80%;
-    min-height: 10%;
-    color: black;
-    background-color: white;
+    background-color: #008000;
+    border-color: grey;
+    border-radius: 10px;
     border-style: solid;
     border-width: 0px;
-    border-radius: 10px;
-    border-color: grey;
-    font-weight: bold;
+    box-shadow: 0px 3px 3px #005e13;
+    color: white;
     display: flex;
     flex-direction: column;
+    font-weight: bold;
     justify-content: center;
-    box-shadow: 0px 3px 3px grey;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    min-height: 90%;
+    min-width: 90%;
+    text-align: center;
+    text-decoration: none;
+}
+
+button#checkoutBtn:hover {
+    background-color: #006100;
+    box-shadow: 0px 0px 3px #005e13 inset;
+}
+
+button.backButton {
+    align-items: center;
+    background: 0px center;
+    border: 0px;
+    cursor: pointer;
+    display: flex;
+    font-family: inherit;
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    -webkit-box-align: center;
+}
+
+button.checkoutItemButton {
+    margin-left: 5px;
+    /* height: 30%; */
+}
+
+button.empNavButton {
+    background-color: #ffffff;
+    border-color: #808080;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 0px;
+    box-shadow: 0px 3px 3px #808080;
+    color: black;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 1em;
+    min-height: 10%;
+    min-width: 80%;
+    text-align: center;
+    text-decoration: none;
+}
+
+button.empNavButton.current {
+    background-color: #dd0031;
+    color: white;
+}
+
+button.empNavButton:hover {
+    box-shadow: 0px 0px 3px #808080;
 }
 
 button.empNavLogout {
-    margin-top: 1em;
-    font-size: 1em;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    text-align: center;
-    text-decoration: none;
-    min-width: 80%;
-    min-height: 10%;
-    color: black;
-    background-color: white;
+    align-items: center;
+    background-color: #ffffff;
+    border-color: #808080;
+    border-radius: 10px;
     border-style: solid;
     border-width: 0px;
-    border-radius: 10px;
-    border-color: grey;
-    font-weight: bold;
+    box-shadow: 0px 3px 3px #808080;
+    color: #000000;
     display: flex;
     flex-direction: column;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
     justify-content: center;
-    align-items: center;
-    box-shadow: 0px 3px 3px grey;
+    margin-top: 1em;
+    min-height: 10%;
+    min-width: 80%;
+    text-align: center;
+    text-decoration: none;
 }
 
 button.empNavLogout:hover {
-    box-shadow: 0px 0px 3px grey;
+    box-shadow: 0px 0px 3px #808080;
 }
 
-a.empNavButton:hover {
-    box-shadow: 0px 0px 3px grey;
+button.goButton {
+    margin: 20px;
+    padding: 4px;
 }
 
-a.empNavButton.current {
-    color: white;
-    background-color: #DD0031;
-}
-
-/* Order Buttons */
 button.orderItemBtn {
-    background-color: #D9D9D9;
-    color: black;
-    text-align: center;
-    text-decoration: none;
+    background-color: #d9d9d9;
     border-radius: 10px;
     border-style: solid;
     border-width: 1px;
-    padding: 1em;
+    color: black;
     height: 50px;
-    margin-right: 1em;
     margin-bottom: 1em;
+    margin-right: 1em;
+    padding: 1em;
+    text-align: center;
+    text-decoration: none;
 }
 
 button.orderItemBtn:hover {
     background-color: #9c9c9c;
 }
 
-div.orderItemPane {
-    overflow-y: scroll;
-    padding: 1%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 65%;
-    max-height: 100vh;
-}
-
-/* Order Checkout */
-div#checkoutPanel {
-    position: relative;
-    width: 20%;
-    height: 100vh;
-    background-color: #F4F8F9;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-button#checkoutBtn {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    text-align: center;
-    text-decoration: none;
-    min-width: 90%;
-    min-height: 90%;
-    color: white;
-    background-color: green;
+button.reportBtn {
+    background-color: #D9D9D9;
+    border-color: #808080;
+    border-radius: 50px;
     border-style: solid;
     border-width: 0px;
-    border-radius: 10px;
-    border-color: grey;
+    box-shadow: 0px 3px 3px #808080;
+    color: #000000;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1em;
     font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 3px 3px rgb(0, 94, 19);
+    margin: 1em;
+    max-height: 20%;
+    max-width: 33%;
+    text-align: center;
+    text-decoration: none;
+    width: 33%;
 }
 
-button#checkoutBtn:hover {
-    background-color: rgb(0, 97, 0);
-    box-shadow: 0px 0px 3px rgb(0, 94, 19) inset;
+button.reportBtn:hover {
+    box-shadow: 0px 3px 3px inset #808080;
 }
 
 div#checkoutButtonDiv {
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: end;
-    align-items: center;
     min-height: 20%;
     min-width: 100%;
 }
 
 div#checkoutOrderItems {
+    border-bottom: #000000 1px solid;
     display: flex;
     flex-direction: column;
     height: 70%;
-    overflow-y: scroll;
     min-width: 100%;
-    border-bottom: black 1px solid;
+    overflow-y: scroll;
 }
 
-div.checkoutItem{
+div#checkoutPanel {
+    align-items: center;
+    background-color: #f4f8f9;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    height: 100vh;
     justify-content: space-between;
-}
-
-p.checkoutItemLeft {
-    margin-left: 15px;
-    font-size: .75em;
-    text-align: left;
-}
-.checkoutItemRight {
-    display: flex;
-    flex-direction: row;
-    margin-right: 15px;
-    font-size: .75em;
-    text-align: right;
-    flex-direction: flex-end;
-}
-button.checkoutItemButton{
-    margin-left: 5px;
-}
-/* Tables */
-table.databaseTable {
-    width: 98%;
-    margin: 0 .75em 0 .75em;
-    border-collapse: collapse;
-}
-
-table th,
-table td {
-    border: none;
-
-    text-align: center;
-}
-
-h2 {
-    text-align: center;
-    text-decoration: underline;
-    text-emphasis: bold;
-    font-size: 1.5em;
-}
-
-
-/* Order History */
-div.empOrderPage {
-    display: flex;
-    width: 100vw;
-    min-height: 100vh;
-    flex-direction: row;
-}
-
-div#orderHistoryTableDiv {
-    width: 60%;
-    height: 100vh;
-    overflow-y: scroll;
-    text-align: center;
-}
-
-div#orderHistoryInfoDiv {
-    width: 25%;
-    height: 100vh;
-    overflow-y: scroll;
-    text-align: center;
-}
-
-/* Inventory */
-div.empInventoryPage {
-    display: flex;
-    min-width: 100%;
-    min-height: 100vh;
-    flex-direction: row;
-}
-
-div#inventoryTableDiv {
-    width: 60%;
-    height: 100vh;
-    overflow-y: scroll;
+    position: relative;
+    width: 20%;
 }
 
 div#inventoryFormsDiv {
-    width: 25%;
     height: 100vh;
     overflow-y: scroll;
     text-align: center;
+    width: 25%;
 }
 
-/* Edit Menu Page */
-div.empMenuPage {
-    display: flex;
-    min-width: 100%;
-    min-height: 100vh;
-    flex-direction: row;
-}
-
-div#menuTableDiv {
-    width: 60%;
+div#inventoryTableDiv {
     height: 100vh;
     overflow-y: scroll;
+    width: 60%;
 }
 
 div#menuFormsDiv {
-    width: 25%;
     height: 100vh;
     overflow-y: scroll;
     text-align: center;
+    width: 25%;
 }
-div#reportsSelection{
-    min-width: 80%;
-    min-height: 50%;
+
+div#menuTableDiv {
+    height: 100vh;
+    overflow-y: scroll;
+    width: 60%;
+}
+
+div#orderHistoryInfoDiv {
+    height: 100vh;
+    overflow-y: scroll;
+    text-align: center;
+    width: 25%;
+}
+
+div#orderHistoryTableDiv {
+    height: 100vh;
+    overflow-y: scroll;
+    text-align: center;
+    width: 60%;
+}
+
+div#reportsSelection {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-}
-
-/* Report Page */
-a.reportBtn{
-    margin: 1em;
-    font-size: 1em;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    text-align: center;
-    text-decoration: none;
-    width: 33%;
-    max-width: 33%;
-    max-height: 20%;
-    color: black;
-    background-color: #D9D9D9;
-    border-style: solid;
-    border-width: 0px;
-    border-radius: 100px;
-    border-color: grey;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    box-shadow: 0px 3px 3px grey;
-}
-a.reportBtn:hover{
-    box-shadow: 0px 3px 3px  inset grey;
+    min-height: 50%;
+    min-width: 80%;
 }
 
-/* Reports */
-
-div.repDiv{
+div.backDiv {
+    align-items: center;
     display: flex;
-    flex-direction: row;
-    width: 85%;
-    max-height: 100vh;
+    text-align: left;
+    -webkit-box-align: center;
+    width: 13.5%;
 }
-div.repBody{
+
+div.backText {
+    border: 0;
+    color: #485259;
+    font: inherit;
+    font-size: 100%;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    line-height: 20px;
+    margin: 0;
+    margin-left: 12px;
+    padding: 0;
+    vertical-align: initial;
+}
+
+div.checkoutItem {
     display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-div.repHead{
-    width: 15%;
-}
-
-div.salesMenuItemTable{
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 50%;
-}
-div.salesInvItemTable{
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 50%;
-}
-
-
-div.excessRepTable{
-    overflow-y: scroll;
-    width: 100%;
-    max-height: 100vh;
-}
-
-
-div.salesTogetherRepTable{
-    overflow-y: scroll;
-    width: 100%;
-    max-height: 100vh;
-}
-
-div.restockRepTable{
-    overflow-y: scroll;
-    width: 100%;
-    max-height: 100vh;
+    font-size: .75em;
+    flex-direction: column;
     margin-top: 1em;
 }
 
-div.repZTable{
-    overflow-y: scroll;
-    width: 80%;
+div.checkoutItemInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+div.checkoutItemRight {
+    display: flex;
+    flex-direction: flex-end;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 15px;
+    text-align: right;
+    padding: 0px;
+}
+
+div.checkoutItemLeft {
+    margin-left: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+div.checkoutItemEx {
+    text-align: left;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.empInventoryPage {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    min-width: 100%;
+}
+
+div.empMenuPage {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    min-width: 100%;
+}
+
+div.empOrderPage {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+div.excessRepTable {
     max-height: 100vh;
+    overflow-y: scroll;
+    width: 100%;
 }
 
-div.repXZInfo{
-    width: 20%;
+div.orderItemPane {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: 100vh;
+    overflow-y: scroll;
+    padding: 1%;
+    width: 65%;
+}
+
+div.PopUp {
+    align-items: center;
+    background-color: #f8f5ec;
+    border: 1px solid #011627;
+    border-radius: 1em;
+    box-shadow: -2px 5px 5px 0px #000000bf;
+    color: #011627;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    justify-content: space-between;
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    z-index: 9999;
+}
+
+div.PopUp.active {
+    pointer-events: all;
+}
+
+.PopUpRows {
+    width: 60%;
+}
+
+.PopUpRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.PopUpRowLeft {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 50%;
+}
+
+.PopUpRowRight {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.PopUpButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.PopUpButton {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #011627;
+}
+
+
+div.repBody {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+div.repDiv {
+    display: flex;
+    flex-direction: row;
+    max-height: 100vh;
+    width: 85%;
+}
+
+div.repHead {
+    margin-top: 10px;
+    width: 15%;
+}
+
+div.repXZInfo {
     margin-left: 1em;
+    width: 25%;
 }
 
-.goButton{
-    padding: 4px;
-    margin: 20px;
-}
-
-
-div.repXZInfoBody{
+div.repXZInfoBody {
     margin: 0;
     padding: 0;
     text-align: left;
 }
 
-
-/* PopUp */
-.PopUp{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: 50%;
-    border: 1px solid #011627;
-    border-radius: 1em;
-    box-shadow: -2px 5px 5px 0px rgba(0,0,0,0.75);
-    background-color: #F9F6EE ;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    color: #011627;
-    z-index: 9999; /* Set this value higher than other elements */
+div.repZTable {
+    max-height: 100vh;
+    overflow-y: scroll;
+    width: 75%;
 }
 
-.PopUp.active{
-    pointer-events: all;
+div.restockRepTable {
+    margin-top: 1em;
+    max-height: 100vh;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+div.salesInvItemTable {
+    max-height: 100vh;
+    overflow-y: scroll;
+    width: 50%;
+}
+
+div.salesMenuItemTable {
+    max-height: 100vh;
+    overflow-y: scroll;
+    width: 50%;
+}
+
+div.salesTogetherRepTable {
+    max-height: 100vh;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+h2 {
+    font-size: 1.5em;
+    text-align: center;
+    text-decoration: underline;
+    text-emphasis: bold;
+}
+
+nav.empNav {
+    align-items: center;
+    background-color: #f4f8f9;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: start;
+    position: relative;
+    width: 15%;
+}
+
+
+
+table th,
+table td {
+    border: none;
+    text-align: center;
+}
+
+table.databaseTable {
+    border-collapse: collapse;
+    margin: 0 .75em 0 .75em;
+    width: 98%;
 }

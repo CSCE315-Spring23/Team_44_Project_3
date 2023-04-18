@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-import { HOST } from "../utils/host";
 import { endpoints } from "../utils/apiEndpoints";
+import { HOST } from "../utils/host";
 import PopUpRow from "./PopUpRow";
 
 
-import "../styles/employee.css"
+import "../styles/employee.css";
 
 
 export default function PopUp(props) {
     const item = props.item
     const [recipeItems, setRecipeItems] = useState(null);
+    const [excludeItems, setExcludeItems] = useState([]);
+    const [notes, setNotes] = useState("");
 
     useEffect(() => {
 
@@ -28,11 +30,7 @@ export default function PopUp(props) {
             .then(data => {
 
                 console.log(data)
-                //if the recipe is empty, then just return the item
-                if (data.length === 0) {
-                    handleSubmitClick();
-                    return;
-                }
+
                 setRecipeItems(data);
             })
             .catch(error => {
@@ -42,18 +40,40 @@ export default function PopUp(props) {
     }, []);
 
     const handleSubmitClick = () => {
-        props.addToCart(item);
+        console.log(notes)
+        // add notes to excludeItems
+        console.log(excludeItems);
+        if(notes !== "")
+            excludeItems.push(notes);
+        props.addToCart(item, excludeItems);
         props.setPopUp(false);
     }
 
+    const handleExcludeClick = (item) => {
+        // if item not in excludeItems, add it
+        if (!excludeItems.includes(item)) {
+            setExcludeItems([...excludeItems, item]);
+        }
+        // if item is in excludeItems, remove it
+        else {
+            setExcludeItems(excludeItems.filter((element) => element !== item));
+        }
+    }
+
+
     return (
         <div className="PopUp">
-            YOU GOT POPPED, {props.item.name}
-            {recipeItems && recipeItems.map((element) =>
-                <PopUpRow inventoryitem={element} />
-            )}
-            <button className="PopUpButton" onClick={() => props.setPopUp(false)}>Close</button>
-            <button className="PopUpButton" onClick={handleSubmitClick}>Add to Cart</button>
+            Edit {props.item.name}
+            <div className="PopUpRows">
+                {recipeItems && recipeItems.map((element) =>
+                    <PopUpRow inventoryitem={element} handleExcludeClick={handleExcludeClick} />
+                )}
+            </div>
+            <div className="PopUpButtons">
+                <button className="PopUpButton" onClick={() => props.setPopUp(false)}>Close</button>
+                <input type="text" placeholder="Special Notes" className="PopUpNotes" onChange={(e) => setNotes(e.target.value)}/>
+                <button className="PopUpButton" onClick={handleSubmitClick}>Add to Cart</button>
+            </div>
         </div>
     );
 }
