@@ -44,6 +44,11 @@ button.backButton {
     -webkit-box-align: center;
 }
 
+button.checkoutItemButton {
+    margin-left: 5px;
+    /* height: 30%; */
+}
+
 button.empNavButton {
     background-color: #ffffff;
     border-color: #808080;
@@ -244,14 +249,14 @@ div.backText {
     vertical-align: initial;
 }
 
-.checkoutItem{
+div.checkoutItem {
     display: flex;
     font-size: .75em;
     flex-direction: column;
     margin-top: 1em;
 }
 
-.checkoutItemInfo {
+div.checkoutItemInfo {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -259,7 +264,7 @@ div.backText {
     box-sizing: border-box;
 }
 
-.checkoutItemRight {
+div.checkoutItemRight {
     display: flex;
     flex-direction: flex-end;
     align-items: center;
@@ -269,22 +274,19 @@ div.backText {
     padding: 0px;
 }
 
-.checkoutItemLeft {
+div.checkoutItemLeft {
     margin-left: 15px;
     text-align: left;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-.checkoutItemEx{
+
+div.checkoutItemEx {
     text-align: left;
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-}
-.checkoutItemButton {
-    margin-left: 5px;
-    /* height: 30%; */
 }
 
 div.empInventoryPage {
@@ -347,7 +349,7 @@ div.PopUp.active {
     pointer-events: all;
 }
 
-.PopUpRows{
+.PopUpRows {
     width: 60%;
 }
 
@@ -357,20 +359,21 @@ div.PopUp.active {
     justify-content: flex-start;
 }
 
-.PopUpRowLeft{
+.PopUpRowLeft {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     width: 50%;
 }
-.PopUpRowRight{
+
+.PopUpRowRight {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     width: 50%;
 }
 
-.PopUpButtons{
+.PopUpButtons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -378,7 +381,7 @@ div.PopUp.active {
     margin-bottom: 10px;
 }
 
-.PopUpButton{
+.PopUpButton {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #011627;
