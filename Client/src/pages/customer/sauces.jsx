@@ -6,18 +6,18 @@ import CustomerNav from './CustomerNav';
 import sauceImages from '../../utils/sauceImages';
 
 const menu = [
-    {name: "Avacado Lime Ranch Dressing", src: sauceImages.avacadoLimeRanchDressing, key: 0},
-    {name: "Barbeque Sauce", src: sauceImages.bbqSauce, key: 1},
-    {name: "Chick-fil-A Sauce", src: sauceImages.CFASauce, key: 2},
-    {name: "Honey Mustard", src: sauceImages.honeyMustard, key: 3},
-    {name: "Light Balsamic Vinegar", src: sauceImages.lightBalsamicVin, key: 4},
-    {name: "Light Italian Dressing", src: sauceImages.lightItalianDressing, key: 5},
-    {name: "Polynesian Sauce", src: sauceImages.polynesian, key: 6},
-    {name: "Ranch", src: sauceImages.ranch, key: 7},
-    {name: "Ranch Dressing", src: sauceImages.ranchDressing, key: 8},
-    {name: "Sweat and Spicy Siracha Sauce", src: sauceImages.SSSrirachaSauce, key: 9},
-    {name: "Zesty Apple Dressing", src: sauceImages.zestyAppleDressing, key: 10},
-    {name: "Zesty Buffalo Sauce", src: sauceImages.ZestyBuff, key: 11}
+    {name: "Avacado Lime Ranch Dressing", src: sauceImages.avacadoLimeRanchDressing, key: 0, id: 42},
+    {name: "Barbeque Sauce", src: sauceImages.bbqSauce, key: 1, id: 51},
+    {name: "Chick-fil-A Sauce", src: sauceImages.CFASauce, key: 2, id: 46},
+    {name: "Honey Mustard", src: sauceImages.honeyMustard, key: 3, id: 48},
+    {name: "Light Balsamic Vinegar", src: sauceImages.lightBalsamicVin, key: 4, id: 45},
+    {name: "Light Italian Dressing", src: sauceImages.lightItalianDressing, key: 5, id: 45},
+    {name: "Polynesian Sauce", src: sauceImages.polynesian, key: 6, id: 47},
+    {name: "Ranch", src: sauceImages.ranch, key: 7, id: 49},
+    {name: "Ranch Dressing", src: sauceImages.ranchDressing, key: 8, id: 44},
+    {name: "Sweat and Spicy Siracha Sauce", src: sauceImages.SSSrirachaSauce, key: 9, id: 52},
+    {name: "Zesty Apple Dressing", src: sauceImages.zestyAppleDressing, key: 10, id: 43},
+    {name: "Zesty Buffalo Sauce", src: sauceImages.ZestyBuff, key: 11, id: 50}
 ];
 
 const menuList = menu.map(item =>

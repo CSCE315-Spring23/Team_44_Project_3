@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {HOST} from '../utils/host';
+import React, { useEffect, useState } from 'react';
+import { HOST } from '../utils/host';
 
 /**
  * 
@@ -7,55 +7,86 @@ import {HOST} from '../utils/host';
  * @returns a component to render a food category onto the CustomerOrder screen 
  */
 export default function AddMenuItem(props) {
+
+    /*
+        Format of Cart
+        {
+            total : [total cost],
+            items : {itemID : [name, number, cost per, itemID, excluded items]},
+        }
+
+    */
     const item = props.item;
 
-    function addOrder(item) {
-        let order = localStorage.getItem('curOrder');
-        console.log("order before changes: ", order);
-        if (!order) {
-            order = {total: [0], items: []};
-        } else {
-            order = JSON.parse(order);
-        }
+
+    const addToCart = (item, excludeItems) => {
+        console.log("item: ", item, "excludeItems: ", excludeItems);
+        const cart = JSON.parse(localStorage.getItem('curOrder')) || { total: [0], items: {} };
+        let cartID = Object.keys(cart.items).length;
+        console.log(cartID)
+        let newCart = { ...cart };
 
         let numberOfItems = localStorage.getItem("numItems");
         numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
-        console.log("Item Count:\t" + numberOfItems);
 
-        // add to the order object
         const menu = JSON.parse(localStorage.getItem('menu'));
 
-        //handle meals
-        if (item.ids) {
+        if(item.ids){
             item.ids.forEach((curID) => {
-                console.log("meal id: ", curID);
                 menu.forEach((arrItem) => {
-                    if (arrItem.id == curID) {
-                        order.total[0] += Number(arrItem.cost);
-                        order.items.push({"id": arrItem.id, "quantity": 1, "excluded": []});
-                        localStorage.setItem('numItems', JSON.stringify(numberOfItems + 1));
+                    if(arrItem.id == curID){
+                        let found = false;
+                        for(let key in newCart.items){
+                            if(newCart.items[key][0] === arrItem.name && JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)){
+                                newCart.items[key][1] += 1;
+                                newCart.total[0] += Number(arrItem.cost);
+                                localStorage.setItem('numItems', JSON.stringify(numberOfItems + 1));
+                                found = true;
+                                break;
+                            }
+                        }
+                        if(!found){
+                            newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, excludeItems];
+                            newCart.total[0] += Number(arrItem.cost);
+                            cartID++;
+                            localStorage.setItem('numItems', JSON.stringify(numberOfItems + 1));
+                        }
+                        return;
                     }
                 });
             });
         }
-        //handle all other items
-        if (item.id) {
-            console.log("clicked itemid: ", item.id);
+
+        if(item.id){
             menu.forEach((arrItem) => {
-                if (arrItem.id == item.id) {
-                    order.total[0] += Number(arrItem.cost);
-                    order.items.push({"id": arrItem.id, "quantity": 1, "excluded": []});
-                    localStorage.setItem('numItems', JSON.stringify(numberOfItems + 1));
+                if(arrItem.id == item.id){
+                    let found = false;
+                    for(let key in newCart.items){
+                        if(newCart.items[key][0] === arrItem.name && JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)){
+                            newCart.items[key][1] += 1;
+                            newCart.total[0] += Number(arrItem.cost);
+                            localStorage.setItem('numItems', JSON.stringify(numberOfItems + 1));
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found){
+                        newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, excludeItems];
+                        newCart.total[0] += Number(arrItem.cost);
+                        localStorage.setItem('numItems', JSON.stringify(numberOfItems + 1));
+                    }
+                    return;
                 }
             });
         }
-        console.log(order);
-        localStorage.setItem('curOrder', JSON.stringify(order));
+
+        console.log("newCart: ", newCart);
+        localStorage.setItem('curOrder', JSON.stringify(newCart));
     }
 
     return (
         <li role="listitem">
-            <button data-cy={"\"" + item.name + "\""} className="menuButton" onClick={() => addOrder(item)}>
+            <button data-cy={"\"" + item.name + "\""} className="menuButton" onClick={() => addToCart(item,[])}>
                 <div className="image">
                     <img alt={item.name} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
                 </div>
