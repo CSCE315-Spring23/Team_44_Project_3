@@ -8,7 +8,6 @@ import {HOST} from '../utils/host';
  */
 export default function AddMenuItem(props) {
     const item = props.item;
-
     function addOrder(item) {
 
         let order = localStorage.getItem('curOrder');
@@ -40,6 +39,8 @@ export default function AddMenuItem(props) {
                 if (arrItem.id == item.id) {
                     order.total[0] += Number(arrItem.cost);
                     order.items.push({"id": arrItem.id, "quantity": 1, "price": Number(arrItem.cost)});
+                    let itemCount = parseInt(localStorage.getItem('numItems'), 10);
+                    localStorage.setItem('numItems', JSON.stringify(itemCount+1));
                 }
             });
         }

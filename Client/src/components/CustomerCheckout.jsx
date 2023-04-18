@@ -13,6 +13,7 @@ export default function CustomerCheckout(props) {
     function emptyCurrentOrder() {
 		const defaultOrder = {total: [0], items: []};
 		localStorage.setItem('curOrder', JSON.stringify(defaultOrder));
+        localStorage.setItem('numItems', '0');
     }
 
     function cancelOrder() {
