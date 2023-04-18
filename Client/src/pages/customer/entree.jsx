@@ -29,7 +29,7 @@ function Entree() {
 
     return (
         <>
-            <CustomerNav numberOfItems={numberOfItems} page={"Entreé"} />
+            <CustomerNav numberOfItems={numberOfItems} title={"Entreé"} navPage={"/customer/order"} />
             <ul data-cy="EntreeList" className="menu" role="list">
                 {menuList}
             </ul>

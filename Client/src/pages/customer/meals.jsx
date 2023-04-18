@@ -26,7 +26,7 @@ function Meals() {
 
     return (
         <>
-            <CustomerNav numberOfItems={numberOfItems} page={"Meals"} />
+            <CustomerNav numberOfItems={numberOfItems} title={"Meals"} navPage={"/customer/order"} />
             <ul data-cy="MealList" className="menu" role="list">
                 {menuList}
             </ul>

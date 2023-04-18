@@ -1,15 +1,52 @@
-import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
 
 function CustomerNav(props) {
     const numberOfItems = props.numberOfItems;
-    const page = props.page;
+    const title = props.title;
+    const navPage = props.navPage;
 
     const navigate = useNavigate();
 
     function navigagePage() {
-        navigate('/customer/order')
+        navigate(navPage);
     }
+
+    function checkoutPage() {
+        navigate("/customer/order/checkout");
+    }
+
+    //get menu and update total
+    const [orderTotal, setOrderTotal] = useState(0);
+    useEffect(() => {
+        //get menu
+        const url = HOST + endpoints.getMenu;
+        fetch(url, {
+            method: "GET"
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network Response Not OK");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("data from customerOrder: ", data);
+                localStorage.setItem("menu", JSON.stringify(data));
+            })
+            .catch(error => {
+                console.error("Could not fetch menu items from " + url);
+            });
+
+        //update total
+        const curOrder = JSON.parse(localStorage.getItem("curOrder"));
+        if (curOrder && curOrder.total) {
+            setOrderTotal(curOrder.total[0]);
+        }
+
+    }, []);
 
     return (
         <>
@@ -26,10 +63,10 @@ function CustomerNav(props) {
                     </button>
                 </div>
 
-                <div className="title">{page}</div>
+                <div className="title">{title}</div>
 
                 <div className="order">
-                    <button className="viewOrderBtn">
+                    <button className="viewOrderBtn" onClick={checkoutPage}>
                         <div className="bagIcon">
                             <span className="itemCount">{numberOfItems}</span>
                             <svg width="30" height="31" viewBox="0 0 30 31" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="sc-NfXLL kkFxpj">
