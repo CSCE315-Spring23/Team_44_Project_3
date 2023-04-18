@@ -6,27 +6,27 @@ import { endpoints } from "../utils/apiEndpoints";
 
 export default function CustomerCheckout(props) {
 
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
-    const [showModal, setShowModal] = useState(false);
+	const [showModal, setShowModal] = useState(false);
 
-    function emptyCurrentOrder() {
-		const defaultOrder = {total: [0], items: []};
+	function emptyCurrentOrder() {
+		const defaultOrder = { total: [0], items: [] };
 		localStorage.setItem('curOrder', JSON.stringify(defaultOrder));
-        localStorage.setItem('numItems', '0');
-    }
+		localStorage.setItem('numItems', '0');
+	}
 
-    function cancelOrder() {
-        emptyCurrentOrder();
-        navigate('/customer/order');
-    }
+	function cancelOrder() {
+		emptyCurrentOrder();
+		navigate('/customer/order');
+	}
 
-    const handlePayment = () => {
+	const handlePayment = () => {
 		console.log("checkout");
 		const orderLocal = JSON.parse(localStorage.getItem('curOrder'));
 		const order = {
-			customerName: document.getElementById("customerName").value != "" ? 
-                          document.getElementById("customerName").value : "noName",
+			customerName: document.getElementById("customerName").value != "" ?
+				document.getElementById("customerName").value : "noName",
 			totalCost: orderLocal.total[0],
 			employeeID: 0,
 			items: orderLocal.items
@@ -41,7 +41,7 @@ export default function CustomerCheckout(props) {
 		}
 		fetch(url, {
 			method: "POST",
-			headers: {'Content-Type': 'application/json'},
+			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(order)
 		})
 			.then(response => {
@@ -51,20 +51,20 @@ export default function CustomerCheckout(props) {
 				console.log(data);
 			});
 
-        console.log("Order Posted");
+		console.log("Order Posted");
 
-        setShowModal(true);
-        setTimeout(() => {
-            setShowModal(false);
-        }, 3000);
+		setShowModal(true);
+		setTimeout(() => {
+			setShowModal(false);
+		}, 3000);
 
-		const defaultOrder = {total: [0], items: []};
+		const defaultOrder = { total: [0], items: [] };
 		localStorage.setItem('curOrder', JSON.stringify(defaultOrder));
 		setOrderValue(0);
 
 	}
 
-    //get menu and update total
+	//get menu and update total
 	const [orderValue, setOrderValue] = useState(0);
 	useEffect(() => {
 		//get menu
@@ -94,27 +94,27 @@ export default function CustomerCheckout(props) {
 
 	}, []);
 
-    {/* Work on emptying cart with empty button and  */}
-    {/* Display all menu items in current order, their total price, and the quantity */}
-    {/* Display total price at the bottom */}
-    {/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */}
-    {/* If items.quantity == 0, we remove the component from localstorage */}
-    {/* Update handleCheckout in CustomerOrder.jsx */}
-   
-    return(
-        <div>
-            <form>
-                <label for="customerName">Please enter your name:</label>
-                <input type="text" id="customerName" name="customerName" />
-            </form>
-            <div id='customerCheckout'>
-                <button onClick={e => handlePayment()} id='customerCheckoutBtn'>Checkout ${orderValue.toFixed(2)}</button>
-            </div>
-            <button className="cancelButton" onClick={cancelOrder}>Cancel Order</button>
-            {showModal && (
-                <h3 className="orderPopup">Order Successful</h3>
-            )}
-        </div>
+	{/* Work on emptying cart with empty button and  */ }
+	{/* Display all menu items in current order, their total price, and the quantity */ }
+	{/* Display total price at the bottom */ }
+	{/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */ }
+	{/* If items.quantity == 0, we remove the component from localstorage */ }
+	{/* Update handleCheckout in CustomerOrder.jsx */ }
 
-    )
+	return (
+		<div>
+			<form>
+				<label for="customerName">Please enter your name:</label>
+				<input type="text" id="customerName" name="customerName" />
+			</form>
+			<div id='customerCheckout'>
+				<button onClick={e => handlePayment()} id='customerCheckoutBtn'>Checkout ${orderValue.toFixed(2)}</button>
+			</div>
+			<button className="cancelButton" onClick={cancelOrder}>Cancel Order</button>
+			{showModal && (
+				<h3 className="orderPopup">Order Successful</h3>
+			)}
+		</div>
+
+	)
 }
