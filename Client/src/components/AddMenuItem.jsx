@@ -18,12 +18,9 @@ export default function AddMenuItem(props) {
             order = JSON.parse(order);
         }
 
-        let itemCount = localStorage.getItem('numItems');
-        if (!itemCount)
-            itemCount = 0;
-        else
-            itemCount = parseInt(itemCount);
-        console.log("Item Count:\t" + itemCount);
+        let numberOfItems = localStorage.getItem("numItems");
+        numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
+        console.log("Item Count:\t" + numberOfItems);
 
         // add to the order object
         const menu = JSON.parse(localStorage.getItem('menu'));
@@ -36,7 +33,7 @@ export default function AddMenuItem(props) {
                     if (arrItem.id == curID) {
                         order.total[0] += Number(arrItem.cost);
                         order.items.push({"id": arrItem.id, "quantity": 1, "price": Number(arrItem.cost)});
-                        localStorage.setItem('numItems', JSON.stringify(itemCount + 1));
+                        localStorage.setItem('numItems', JSON.stringify(numberOfItems + 1));
                     }
                 });
             });
@@ -48,7 +45,7 @@ export default function AddMenuItem(props) {
                 if (arrItem.id == item.id) {
                     order.total[0] += Number(arrItem.cost);
                     order.items.push({"id": arrItem.id, "quantity": 1, "price": Number(arrItem.cost)});
-                    localStorage.setItem('numItems', JSON.stringify(itemCount + 1));
+                    localStorage.setItem('numItems', JSON.stringify(numberOfItems + 1));
                 }
             });
         }

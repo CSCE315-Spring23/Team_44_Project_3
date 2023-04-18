@@ -65,7 +65,7 @@ function CustomerOrder() {
 
 	const navigate = useNavigate();
 
-	function navigateOrderPage() {
+	function navigatePage() {
 		navigate('/Login')
 	};
 
@@ -73,7 +73,7 @@ function CustomerOrder() {
 		<>
 			<nav className="desktop-navigation">
 				<div className="backDiv">
-					<button title="Back to login" data-cy="SubNavBack" className="backButton" onClick={navigateOrderPage}>
+					<button title="Back to login" data-cy="SubNavBack" className="backButton" onClick={navigatePage}>
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
 							</path>
