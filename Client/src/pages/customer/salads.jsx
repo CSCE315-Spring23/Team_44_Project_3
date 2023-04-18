@@ -5,13 +5,13 @@ import AddMenuItem from '../../components/AddMenuItem';
 import saladImages from '../../utils/saladImages';
 
 const menu = [
-    {title: "Cobb Salad", src: saladImages.salad0, key: 0, id: 12},
-    {title: "Market Salad", src: saladImages.salad1, key: 1, id: 14},
-    {title: "Spicy Southwest Salad", src: saladImages.salad2, key: 2, id: 13},
+    {name: "Cobb Salad", src: saladImages.salad0, key: 0, id: 12},
+    {name: "Market Salad", src: saladImages.salad1, key: 1, id: 14},
+    {name: "Spicy Southwest Salad", src: saladImages.salad2, key: 2, id: 13},
 ];
 
 const menuList = menu.map(item =>
-    <AddMenuItem key={item.key} item={item}></AddMenuItem>
+    <AddMenuItem key={item.id} item={item}></AddMenuItem>
 );
 
 function Salad() {

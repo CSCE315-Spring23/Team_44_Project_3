@@ -5,18 +5,18 @@ import AddMenuItem from '../../components/AddMenuItem';
 import mealImages from '../../utils/mealImages';
 
 const menu = [
-    {title: "Sandwich Meal", src: mealImages.meal0, key: 0, meal: true, ids: [1, 16, 29]},
-    {title: "Deluxe Sandwich Meal", src: mealImages.meal1, key: 1, meal: true, ids: [2, 16, 29]},
-    {title: "Spicy Chicken Sandwich Meal", src: mealImages.meal2, key: 2, meal: true, ids: [3, 16, 29]},
-    {title: "Spicy Deluxe Chicken Sandwich Meal", src: mealImages.meal3, key: 3, meal: true, ids: [4, 16, 29]},
-    {title: "Grilled Chicken Sandwich Meal", src: mealImages.meal4, key: 4, meal: true, ids: [9, 16, 29]},
-    {title: "Grilled Chicken Club Meal", src: mealImages.meal5, key: 5, meal: true, ids: [10, 16, 29]},
-    {title: "Nuggest Meal", src: mealImages.meal6, key: 6, meal: true, ids: [8, 16, 29]},
-    {title: "Grilled Nugget Meal", src: mealImages.meal7, key: 7, meal: true, ids: [6, 16, 29]}
+    {name: "Sandwich Meal", src: mealImages.meal0, key: 0, meal: true, ids: [1, 16, 29]},
+    {name: "Deluxe Sandwich Meal", src: mealImages.meal1, key: 1, meal: true, ids: [2, 16, 29]},
+    {name: "Spicy Chicken Sandwich Meal", src: mealImages.meal2, key: 2, meal: true, ids: [3, 16, 29]},
+    {name: "Spicy Deluxe Chicken Sandwich Meal", src: mealImages.meal3, key: 3, meal: true, ids: [4, 16, 29]},
+    {name: "Grilled Chicken Sandwich Meal", src: mealImages.meal4, key: 4, meal: true, ids: [9, 16, 29]},
+    {name: "Grilled Chicken Club Meal", src: mealImages.meal5, key: 5, meal: true, ids: [10, 16, 29]},
+    {name: "Nuggest Meal", src: mealImages.meal6, key: 6, meal: true, ids: [8, 16, 29]},
+    {name: "Grilled Nugget Meal", src: mealImages.meal7, key: 7, meal: true, ids: [6, 16, 29]}
 ];
 
 const menuList = menu.map(item =>
-    <AddMenuItem key={item.key} item={item}></AddMenuItem>
+    <AddMenuItem key={item.id} item={item}></AddMenuItem>
 );
 
 function Meals() {
