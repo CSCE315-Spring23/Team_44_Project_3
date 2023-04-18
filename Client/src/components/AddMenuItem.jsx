@@ -8,18 +8,26 @@ import {HOST} from '../utils/host';
  */
 export default function AddMenuItem(props) {
     const item = props.item;
-    function addOrder(item) {
 
+    function addOrder(item) {
         let order = localStorage.getItem('curOrder');
         console.log("order before changes: ", order);
         if (!order) {
             order = {total: [0], items: []};
-        }
-        else {
+        } else {
             order = JSON.parse(order);
         }
+
+        let itemCount = localStorage.getItem('numItems');
+        if (!itemCount)
+            itemCount = 0;
+        else
+            itemCount = parseInt(itemCount);
+        console.log("Item Count:\t" + itemCount);
+
         // add to the order object
         const menu = JSON.parse(localStorage.getItem('menu'));
+
         //handle meals
         if (item.ids) {
             item.ids.forEach((curID) => {
@@ -28,6 +36,7 @@ export default function AddMenuItem(props) {
                     if (arrItem.id == curID) {
                         order.total[0] += Number(arrItem.cost);
                         order.items.push({"id": arrItem.id, "quantity": 1, "price": Number(arrItem.cost)});
+                        localStorage.setItem('numItems', JSON.stringify(itemCount + 1));
                     }
                 });
             });
@@ -39,8 +48,7 @@ export default function AddMenuItem(props) {
                 if (arrItem.id == item.id) {
                     order.total[0] += Number(arrItem.cost);
                     order.items.push({"id": arrItem.id, "quantity": 1, "price": Number(arrItem.cost)});
-                    let itemCount = parseInt(localStorage.getItem('numItems'), 10);
-                    localStorage.setItem('numItems', JSON.stringify(itemCount+1));
+                    localStorage.setItem('numItems', JSON.stringify(itemCount + 1));
                 }
             });
         }
@@ -50,12 +58,12 @@ export default function AddMenuItem(props) {
 
     return (
         <li role="listitem">
-            <button data-cy={"\"" + item.title + "\""} className="menuButton" onClick={() => addOrder(item)}>
+            <button data-cy={"\"" + item.name + "\""} className="menuButton" onClick={() => addOrder(item)}>
                 <div className="image">
-                    <img alt={item.title} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
+                    <img alt={item.name} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
                 </div>
                 <div className="name">
-                    <h3 className="name">{item.title}</h3>
+                    <h3 className="name">{item.name}</h3>
                 </div>
             </button>
         </li>

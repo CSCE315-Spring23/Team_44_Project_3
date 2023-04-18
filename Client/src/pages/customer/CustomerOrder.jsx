@@ -4,6 +4,7 @@ import CategoryItem from '../../components/CategoryItem';
 import Weather from '../../components/Weather';
 import {endpoints} from '../../utils/apiEndpoints';
 import {HOST} from '../../utils/host';
+import CustomerNav from './CustomerNav';
 
 import images from '../../utils/imageImport';
 
@@ -25,10 +26,11 @@ const categoryList = categories.map(item =>
 
 function CustomerOrder() {
 
-	const numberOfItems = parseInt(localStorage.getItem('numItems'), 10);
+	let numberOfItems = localStorage.getItem('numItems');
+	numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
 
 	function checkoutPage() {
-        navigate("/customer/order/checkout");
+		navigate("/customer/order/checkout");
 	}
 
 	//get menu and update total
@@ -102,7 +104,7 @@ function CustomerOrder() {
 			</ul>
 
 			<Weather />
-			
+
 			<Outlet />
 		</>
 	);
