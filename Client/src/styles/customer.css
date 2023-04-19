@@ -163,6 +163,7 @@ div#customerCheckout {
 div.backDiv {
 	align-items: center;
 	display: flex;
+	margin-left: 0.5%;
 	text-align: left;
 	-webkit-box-align: center;
 	width: 13.5%;
@@ -191,6 +192,7 @@ div.bagIcon {
 	position: relative;
 	-webkit-box-align: center;
 }
+
 #google-signin {
 	position: relative;
 	display: flex;
@@ -210,6 +212,7 @@ div.login-wrapper {
 
 div.order {
 	justify-content: flex-end;
+	margin-right: 0.5%;
 	-webkit-box-pack: end;
 	width: 13.5%;
 }

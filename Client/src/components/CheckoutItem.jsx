@@ -14,17 +14,17 @@ export default function CheckoutItem(props) {
 
                 </div>
                 <div className="checkoutItemRight">
-                    <p style={{margin:0}}>${props.price}</p>
+                    <p style={{margin: 0}}>${props.price}</p>
                     <button className="checkoutItemButton" onClick={handleClick}>-</button>
                 </div>
             </div>
             {props.excluded &&
                 <div className="checkoutItemEx">
-                    <ul style={{margin:0}}>
+                    <ul style={{margin: 0}}>
                         {props.excluded && props.excluded.map((item, index) => {
-                            if(item.name)
+                            if (item.name)
                                 return <li key={index}>no {item.name}</li>
-                            if(index === props.excluded.length - 1) {
+                            if (index === props.excluded.length - 1) {
                                 return <li key={index}>{item}</li>
                             }
                         })}
