@@ -3,8 +3,16 @@ import { Link, json, useNavigate } from "react-router-dom";
 import CustomerOrder from "../pages/customer/CustomerOrder";
 import { HOST } from "../utils/host";
 import { endpoints } from "../utils/apiEndpoints";
+import CustomerCheckOutItem from "../components/CustomerCheckOutItem";
 
 export default function CustomerCheckout(props) {
+
+    const currentOrder = JSON.parse(localStorage.getItem('curOrder'));
+    const items = currentOrder.items;
+
+    console.log(currentOrder);
+    console.log(items);
+    console.log(items[0]["id"]);
 
     const navigate = useNavigate();
 
@@ -102,18 +110,30 @@ export default function CustomerCheckout(props) {
     {/* Update handleCheckout in CustomerOrder.jsx */}
    
     return(
-        <div>
-            <form>
-                <label for="customerName">Please enter your name:</label>
-                <input type="text" id="customerName" name="customerName" />
-            </form>
-            <div id='customerCheckout'>
-                <button onClick={e => handlePayment()} id='customerCheckoutBtn'>Checkout ${orderValue.toFixed(2)}</button>
+        <div id="customerCheckout">
+            <div id="customerCheckoutOrderItems">
+                {items.map((item, index) => (
+                    <CustomerCheckOutItem
+                        itemName={currentOrder.items[index].id}
+                        count={items[index].quantity}
+                        price={items[index].price}
+                        currOrderItem = {item}>
+                    </CustomerCheckOutItem>
+                ))}
             </div>
-            <button className="cancelButton" onClick={cancelOrder}>Cancel Order</button>
-            {showModal && (
-                <h3 className="orderPopup">Order Successful</h3>
-            )}
+            <div className="customerOptions">
+                <form>
+                    <label for="customerName">Please enter your name:</label>
+                    <input type="text" id="customerName" name="customerName" />
+                </form>
+                <div id='customerCheckout'>
+                    <button onClick={e => handlePayment()} id='customerCheckoutBtn'>Checkout ${orderValue.toFixed(2)}</button>
+                </div>
+                <button className="cancelButton" onClick={cancelOrder}>Cancel Order</button>
+                {showModal && (
+                    <h3 className="orderPopup">Order Successful</h3>
+                )}
+            </div>
         </div>
 
     )
