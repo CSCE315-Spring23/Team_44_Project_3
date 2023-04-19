@@ -1,7 +1,7 @@
 import React from 'react';
 import {Outlet} from 'react-router-dom';
 import AddMenuItem from '../../components/AddMenuItem';
-import CustomerNav from './CustomerNav';
+import CustomerNav from '../../components/CustomerNav';
 
 import saladImages from '../../utils/saladImages';
 

@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
-import { endpoints } from "../utils/apiEndpoints";
-import { HOST } from "../utils/host";
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
 import PopUpRow from "./PopUpRow";
 
-
 import "../styles/employee.css";
-
 
 export default function PopUp(props) {
     const item = props.item
@@ -28,10 +26,10 @@ export default function PopUp(props) {
                 })
                 .then(data => {
                     console.log(data)
-                    if(data.length > 0)
+                    if (data.length > 0)
                         setRecipeItems(data);
-                    else{
-                        props.setPopUp(false);
+                    else {
+                        props.setPopUp(true);
                         return;
                     }
                 })
@@ -45,7 +43,7 @@ export default function PopUp(props) {
             singleItem(url);
         }
 
-        if (item.ids){
+        if (item.ids) {
             multiItem();
         }
         else {

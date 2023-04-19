@@ -3,8 +3,13 @@ import {Link, json, useNavigate} from "react-router-dom";
 import CustomerOrder from "./CustomerOrder";
 import {HOST} from "../../utils/host";
 import {endpoints} from "../../utils/apiEndpoints";
+import CustomerCheckOutItem from "../../components/CustomerCheckOutItem";
 
 export default function CustomerCheckout(props) {
+
+	const currentOrder = JSON.parse(localStorage.getItem('curOrder'));
+    const items = currentOrder.items;
+	console.log(items);
 
 	const navigate = useNavigate();
 
@@ -82,6 +87,10 @@ export default function CustomerCheckout(props) {
 
 	}
 
+	const backToOrder = () => {
+		navigate("/customer/order")
+	}
+
 	//get menu and update total
 	const [orderValue, setOrderValue] = useState(0);
 	useEffect(() => {
@@ -112,15 +121,32 @@ export default function CustomerCheckout(props) {
 
 	}, []);
 
-	{/* Work on emptying cart with empty button and  */}
-	{/* Display all menu items in current order, their total price, and the quantity */}
-	{/* Display total price at the bottom */}
 	{/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */}
 	{/* If items.quantity == 0, we remove the component from localstorage */}
-	{/* Update handleCheckout in CustomerOrder.jsx */}
 
 	return (
 		<div>
+			<div className="backDiv">
+				<button title="Back to order list" data-cy="SubNavBack" className="backButton" onClick={backToOrder}>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+						</path>
+					</svg>
+					<div aria-hidden="true" className="backText">
+						Back
+					</div>
+				</button>
+			</div>
+			{items.map((item, index) => (
+				<CustomerCheckOutItem
+					itemName={items[index][0]}
+					count={items[index][1]}
+					price={items[index][2]}
+					currOrderItem = {item}>
+					itemID={items[index][3]}
+					excludedItems={items[index][4]}
+				</CustomerCheckOutItem>
+			))}
 			<form>
 				<label for="customerName">Please enter your name:</label>
 				<input type="text" id="customerName" name="customerName" />

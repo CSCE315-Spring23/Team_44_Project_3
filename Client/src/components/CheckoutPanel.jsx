@@ -1,19 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link, json } from "react-router-dom";
+import React, {useState} from "react";
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
 import CheckoutItem from "./CheckoutItem";
-import { HOST } from "../utils/host";
-import { endpoints } from "../utils/apiEndpoints";
 
 export default function CheckoutPanel(props) {
-    const name = localStorage.getItem('custName');
+    const name = localStorage.getItem("custName");
     const [custName, setCustName] = useState(name ? name : "");
-    const { cart } = props;
+    const {cart} = props;
     const items = Object.keys(cart.items);
     console.log(cart)
 
     //sends order to server when checkout button clicked
     const checkoutBtnClicked = () => {
-        const EMP_ID = localStorage.getItem('empID');
+        const EMP_ID = localStorage.getItem("employeeId");
         console.log(EMP_ID);
         /*
             convert items to an array of form:
@@ -26,11 +25,11 @@ export default function CheckoutPanel(props) {
             const excluded = cart.items[cartID][4];
 
             let excludedIDs = [];
-            for (let i = 0; i < excluded.length; i++) {
+            for (let i = 0;i < excluded.length;i++) {
                 excludedIDs.push(excluded[i].id);
             }
 
-            const curItem = { "id": id, "quantity": count, "excluded": excludedIDs };
+            const curItem = {"id": id, "quantity": count, "excluded": excludedIDs};
             itemsArr.push(curItem);
         }
         //build the order object to be sent in POST
@@ -49,7 +48,7 @@ export default function CheckoutPanel(props) {
             items: itemsArr
         };
 
-        // if customer name is empty or items is empty, don't submit order
+        // if customer name is empty or items is empty, don"t submit order
         if (order.customerName === "" || order.items.length === 0) {
             console.log("order not submitted: customer name or items empty")
             return;
@@ -60,7 +59,7 @@ export default function CheckoutPanel(props) {
         console.log(order);
         fetch(url, {
             method: "POST",
-            headers: { 'Content-Type': 'application/json' },
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(order)
         })
             .then(response => {
@@ -73,14 +72,14 @@ export default function CheckoutPanel(props) {
 
         console.log("order Submitted");
         setCustName("");
-        localStorage.setItem('custName', "");
+        localStorage.setItem("custName", "");
 
     }
 
 
     //change customer name
     const handleNameChanged = (comp) => {
-        localStorage.setItem('custName', comp.target.value);
+        localStorage.setItem("custName", comp.target.value);
         setCustName(comp.target.value);
     }
 
@@ -93,7 +92,7 @@ export default function CheckoutPanel(props) {
                         count={cart.items[cartID][1]}
                         price={cart.items[cartID][2]}
                         onClick={props.removeFromCart}
-                        cartID = {cartID}
+                        cartID={cartID}
                         excluded={cart.items[cartID][4]}>
                     </CheckoutItem>
                 ))}
@@ -101,7 +100,7 @@ export default function CheckoutPanel(props) {
             <div id="checkoutButtonDiv">
                 <p>Total: ${cart.total[0].toFixed(2)}</p>
                 <input type="text" value={custName} onChange={handleNameChanged} placeholder="Customer Name" />
-                <button onClick={e => checkoutBtnClicked()} id='checkoutBtn'>Checkout</button>
+                <button onClick={e => checkoutBtnClicked()} id="checkoutBtn">Checkout</button>
             </div>
         </div>
     );

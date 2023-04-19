@@ -349,31 +349,31 @@ div.PopUp.active {
     pointer-events: all;
 }
 
-.PopUpRows {
+div.PopUpRows {
     width: 60%;
 }
 
-.PopUpRow {
+div.PopUpRow {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
 
-.PopUpRowLeft {
+div.PopUpRowLeft {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     width: 50%;
 }
 
-.PopUpRowRight {
+div.PopUpRowRight {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     width: 50%;
 }
 
-.PopUpButtons {
+div.PopUpButtons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -381,7 +381,7 @@ div.PopUp.active {
     margin-bottom: 10px;
 }
 
-.PopUpButton {
+div.PopUpButton {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #011627;
