@@ -111,6 +111,7 @@ export default function CustomerCheckout(props) {
    
     return(
         <div id="customerCheckout">
+
             <div id="customerCheckoutOrderItems">
                 {items.map((item, index) => (
                     <CustomerCheckOutItem
@@ -122,6 +123,7 @@ export default function CustomerCheckout(props) {
                 ))}
             </div>
             <div className="customerOptions">
+				<h1> Customer Checkout Page</h1>	
                 <form>
                     <label for="customerName">Please enter your name:</label>
                     <input type="text" id="customerName" name="customerName" />

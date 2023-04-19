@@ -31,7 +31,7 @@ export default function PopUp(props) {
                     if(data.length > 0)
                         setRecipeItems(data);
                     else{
-                        props.setPopUp(false);
+                        props.setPopUp(true);
                         return;
                     }
                 })
