@@ -62,21 +62,25 @@ body {
 }
 
 button#customerCheckoutBtn {
-	align-items: center;
 	background-color: #008000;
 	border-radius: 10px;
 	border-style: none;
 	box-shadow: 0px 3px 3px #005e13;
 	color: white;
-	display: flex;
-	height: 50%;
-	justify-content: center;
-	width: 20%;
+	text-align: center;
+	padding: 30px 50px;
 }
 
 button#customerCheckoutBtn:hover {
 	background-color: #006100;
 	box-shadow: 0px 0px 3px #005e13 inset;
+}
+
+button.cancelButton{
+	border-radius: 10px;
+	border-style: none;
+	text-align: center;
+	padding: 0px 10px;
 }
 
 button.backButton {
@@ -151,13 +155,10 @@ button.viewOrderBtn:hover {
 	z-index: 1;
 }
 
-div#customerCheckout {
-	align-items: start;
+div#customerCheckoutButtons {
 	display: flex;
-	flex-direction: row;
-	height: 20vh;
-	justify-content: center;
-	width: 100%;
+	justify-content: space-between;
+	width: 50%;
 }
 
 div.backDiv {
@@ -167,6 +168,7 @@ div.backDiv {
 	text-align: left;
 	-webkit-box-align: center;
 	width: 13.5%;
+	margin-top: 0.5%;
 }
 
 div.backText {
@@ -341,12 +343,13 @@ div.customerCheckoutItems {
     height: 75%;
     min-width: 60%;
     overflow-y: scroll;
+	font-size: 1.5em;
 }
 div.checkoutItem {
     display: flex;
     font-size: .75em;
     flex-direction: column;
-    margin-top: 1em;
+    margin: 1em;
 }
 
 div.checkoutItemInfo {
@@ -380,4 +383,12 @@ div.checkoutItemEx {
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+}
+
+
+form.customerNameForm{
+	margin: 1em 0;
+}
+input#customerName{
+	margin-left: 2.5em;
 }

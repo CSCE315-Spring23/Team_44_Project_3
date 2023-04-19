@@ -184,17 +184,18 @@ export default function CustomerCheckout(props) {
 							</ul>
 						</div>}
 				</div>
-				<form>
+				<form className="customerNameForm">
 					<label for="customerName">Please enter your name:</label>
 					<input type="text" id="customerName" name="customerName" />
 				</form>
-				<div id="customerCheckout">
+				<div id="customerCheckoutButtons">
+					<button className="cancelButton" onClick={cancelOrder}>Cancel Order</button>
+					{showModal && (
+						<h3 className="orderPopup">Order Successful</h3>
+					)}
 					<button onClick={e => handlePayment()} id="customerCheckoutBtn">Checkout ${orderValue.toFixed(2)}</button>
 				</div>
-				<button className="cancelButton" onClick={cancelOrder}>Cancel Order</button>
-				{showModal && (
-					<h3 className="orderPopup">Order Successful</h3>
-				)}
+
 			</div>
 		</div>
 
