@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import EmployeeNav from "../components/EmployeeNav";
+import React, {useEffect, useState} from "react";
 
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
 import { endpoints } from "../utils/apiEndpoints";
 import { HOST } from "../utils/host";
 import logo from '../assets/CFA Banner.svg'
 import backdrop from '../assets/nuggetsmealheader.jpg'
 import '../styles/login.css'
+=======
+import {useNavigate} from "react-router-dom";
+import logo from "../assets/CFA Banner.svg";
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
+>>>>>>> 0f4e411fb36936b63baa0d41655aca6dd8204fe7
 
 import jwt_decode from "jwt-decode";
 
@@ -20,13 +26,13 @@ export default function Login(props) {
     // * @returns: resolves to true if user found and updated localstorage, false otherwise
     async function OAUTH(params) {
         const url = HOST + endpoints.loginAPI;
-        const { email = '', pin = '' } = params;
+        const {email = "", pin = ""} = params;
 
         const response = await fetch(url, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                "Accept": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(params)
         })
@@ -34,11 +40,11 @@ export default function Login(props) {
         const data = await response.json();
 
         if (data.isValidUser) {
-            localStorage.setItem('employeeId', data.id);
-            localStorage.setItem('name', data.name);
-            localStorage.setItem('email', email);
-            localStorage.setItem('pin', pin);
-            localStorage.setItem('isManager', data.isManager);
+            localStorage.setItem("employeeId", data.id);
+            localStorage.setItem("name", data.name);
+            localStorage.setItem("email", email);
+            localStorage.setItem("pin", pin);
+            localStorage.setItem("isManager", data.isManager);
 
             return true;
         } else {
@@ -51,44 +57,44 @@ export default function Login(props) {
         const email = decodedResponse.email;
 
         // if oauth successful, log them in
-        OAUTH({ email })
+        OAUTH({email})
             .then(isValid => {
-                if (isValid) navigate('/employee/order');
+                if (isValid) navigate("/employee/order");
                 else setErrorMessage("Invalid Google User");
             });
     }
 
     function handlePINLogin() {
-        const employeePin = document.getElementById('pass').value;
+        const employeePin = document.getElementById("pass").value;
 
         if (!employeePin || employeePin.length < 4)
             return;
 
         // if pin is valid, log them in
-        OAUTH({ pin: employeePin })
+        OAUTH({pin: employeePin})
             .then(isValid => {
-                if (isValid) navigate('/employee/order');
+                if (isValid) navigate("/employee/order");
                 else setErrorMessage("Invalid PIN");
             });
     }
 
     // set up google oauth button and behavior
     useEffect(() => {
-        const script = document.createElement('script');
+        const script = document.createElement("script");
         script.src = "https://accounts.google.com/gsi/client";
         script.async = true;
         document.body.appendChild(script);
 
         google.accounts.id.initialize({
-            client_id: '494495949926-om1cjij44iie2585is6tk7n98aurqso6.apps.googleusercontent.com',
+            client_id: "494495949926-om1cjij44iie2585is6tk7n98aurqso6.apps.googleusercontent.com",
             callback: handleGoogleLogin
         });
 
         google.accounts.id.renderButton(
-            document.getElementById('google-signin'),
+            document.getElementById("google-signin"),
             {
-                theme: 'outline',
-                size: 'large'
+                theme: "outline",
+                size: "large"
             }
         );
     });

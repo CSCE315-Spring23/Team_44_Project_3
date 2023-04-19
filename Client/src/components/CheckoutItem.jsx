@@ -30,7 +30,6 @@ export default function CheckoutItem(props) {
                         })}
                     </ul>
                 </div>}
-
         </div>
     );
 }
