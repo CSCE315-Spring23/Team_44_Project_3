@@ -31,6 +31,10 @@ export default function EmployeeNav(props) {
 
     // set up google oauth button and behavior
     useEffect(() => {
+        if (localStorage.getItem("email") === '') {
+            return;
+        }
+
         const script = document.createElement('script');
         script.src = "https://accounts.google.com/gsi/client";
         script.async = true;
@@ -62,7 +66,7 @@ export default function EmployeeNav(props) {
                 <button onClick={e => changePage("reports")} className={`empNavButton ${current === "reports" ? "current" : ""}`}>Reports</button>
                 <button onClick={e => changePage("menuBoard")} className={`empNavButton ${current === "menuboard" ? "current" : ""}`}>Menu Board</button>
                 <button onClick={logout} className="empNavLogout">Logout</button>
-                <div id='google-signin'></div>
+                {(localStorage.getItem("email") !== '') ? <div id='google-signin'></div> : null}
             </nav >
         );
     } else {
@@ -71,6 +75,7 @@ export default function EmployeeNav(props) {
                 <button onClick={e => changePage("order")} className="empNavButton">Order</button>
                 <button onClick={e => changePage("orderHistory")} className="empNavButton">Order History</button>
                 <button onClick={logout} className="empNavLogout">Logout</button>
+                {(localStorage.getItem("email") !== '') ? <div id='google-signin'></div> : null}
             </nav>
         );
     }
