@@ -9,7 +9,7 @@ export default function Order(props) {
         Format of Cart
         {
             total : [total cost],
-            items : {itemID : [name, number, cost per, itemID, excluded items]},
+            items : {cartID : [name, number, cost per, itemID, excluded items]},
         } 
 
     */

@@ -23,13 +23,29 @@ export default function CustomerCheckout(props) {
 
 	const handlePayment = () => {
 		console.log("checkout");
-		const orderLocal = JSON.parse(localStorage.getItem('curOrder'));
+		const cart = JSON.parse(localStorage.getItem('curOrder'));
+
+		let itemsArr = [];
+		for (let cartID in cart.items) {
+			const id = cart.items[cartID][3];
+			const count = cart.items[cartID][1];
+			const excluded = cart.items[cartID][4];
+
+			let excludedIDs = [];
+			for (let i = 0; i < excluded.length; i++) {
+				excludedIDs.push(excluded[i].id);
+			}
+
+			const curItem = { "id": id, "quantity": count, "excluded": excludedIDs };
+			itemsArr.push(curItem);
+		}
+
 		const order = {
 			customerName: document.getElementById("customerName").value != "" ?
 				document.getElementById("customerName").value : "noName",
-			totalCost: orderLocal.total[0],
-			employeeID: 0,
-			items: orderLocal.items
+			totalCost: cart.total[0].toString(),
+			employeeID: -1,
+			items: itemsArr
 		};
 
 		const url = HOST + endpoints.postOrder;
@@ -60,6 +76,7 @@ export default function CustomerCheckout(props) {
 
 		const defaultOrder = { total: [0], items: [] };
 		localStorage.setItem('curOrder', JSON.stringify(defaultOrder));
+		localStorage.setItem('numItems', '0');
 		setOrderValue(0);
 
 	}

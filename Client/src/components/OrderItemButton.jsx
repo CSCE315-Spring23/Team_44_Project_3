@@ -8,14 +8,14 @@ export default function OrderItemButton(props) {
 
     const [popUp, setPopUp] = useState(false);
 
-    const handleClick = () => {
+    const openPopUp = () => {
         // addToCart(item);
         setPopUp(true);
     }
 
     return (
         <div>
-            <button onClick={handleClick} className="orderItemBtn">
+            <button onClick={openPopUp} className="orderItemBtn">
                 {itemName ? itemName : "No Item"}
             </button>
             {popUp && <PopUp item={item} setPopUp={setPopUp} addToCart={addToCart} />}

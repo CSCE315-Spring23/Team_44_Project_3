@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { HOST } from '../utils/host';
+import PopUp from './PopUp';
 
 /**
  * 
@@ -8,17 +9,19 @@ import { HOST } from '../utils/host';
  */
 export default function AddMenuItem(props) {
 
+    const [popUp, setPopUp] = useState(false);
+
+    const item = props.item;
+
+
     /*
         Format of Cart
         {
             total : [total cost],
-            items : {itemID : [name, number, cost per, itemID, excluded items]},
+            items : {cartID : [name, number, cost per, itemID, excluded items]},
         }
 
     */
-    const item = props.item;
-
-
     const addToCart = (item, excludeItems) => {
         console.log("item: ", item, "excludeItems: ", excludeItems);
         const cart = JSON.parse(localStorage.getItem('curOrder')) || { total: [0], items: {} };
@@ -84,9 +87,13 @@ export default function AddMenuItem(props) {
         localStorage.setItem('curOrder', JSON.stringify(newCart));
     }
 
+    const openPopUp = () => {
+        setPopUp(true);
+    }
+
     return (
         <li role="listitem">
-            <button data-cy={"\"" + item.name + "\""} className="menuButton" onClick={() => addToCart(item,[])}>
+            <button data-cy={"\"" + item.name + "\""} className="menuButton" onClick={openPopUp}>
                 <div className="image">
                     <img alt={item.name} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
                 </div>
@@ -94,6 +101,7 @@ export default function AddMenuItem(props) {
                     <h3 className="name">{item.name}</h3>
                 </div>
             </button>
+            {popUp && <PopUp item={item} setPopUp={setPopUp} addToCart={addToCart} />}
         </li>
     );
 }
