@@ -18,6 +18,7 @@ const XZRouter = require("./api/Database/Reports/XZ.js");
 const excessRouter = require("./api/Database/Reports/Excess.js");
 
 const weatherRouter = require("./api/Weather/Weather.js");
+const loginRouter = require("./api/Database/Login.js");
 
 
 // connect to static react app
@@ -44,6 +45,7 @@ app.use('/', salesTogetherRouter);
 app.use('/', XZRouter);
 app.use('/', excessRouter);
 app.use('/', weatherRouter);
+app.use('/', loginRouter);
 
 
 

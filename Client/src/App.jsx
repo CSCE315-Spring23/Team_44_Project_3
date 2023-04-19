@@ -4,8 +4,8 @@ import Login from './pages/Login.jsx';
 import CustomerRoutes from './routes/CustomerRoutes';
 import EmployeeRoutes from './routes/EmployeeRoutes';
 
-
 import Test from './pages/Test.jsx';
+import { Helmet } from 'react-helmet';
 
 function App() {
 	return (

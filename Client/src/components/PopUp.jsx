@@ -15,27 +15,43 @@ export default function PopUp(props) {
     const [notes, setNotes] = useState("");
 
     useEffect(() => {
+        const singleItem = async (url) => {
 
-        const url = HOST + endpoints.getRecipe + "?id=" + item.id;
-
-        fetch(url, {
-            method: "GET"
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network Response Not OK");
-                }
-                return response.json();
+            await fetch(url, {
+                method: "GET"
             })
-            .then(data => {
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network Response Not OK");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data)
+                    if(data.length > 0)
+                        setRecipeItems(data);
+                    else{
+                        props.setPopUp(false);
+                        return;
+                    }
+                })
+                .catch(error => {
+                    console.error("Could not fetch recipe items from " + url);
+                });
+        }
 
-                console.log(data)
+        const multiItem = async () => {
+            const url = HOST + endpoints.getRecipe + "?id=" + item.ids[0];
+            singleItem(url);
+        }
 
-                setRecipeItems(data);
-            })
-            .catch(error => {
-                console.error("Could not fetch recipe items from " + url);
-            });
+        if (item.ids){
+            multiItem();
+        }
+        else {
+            const url = HOST + endpoints.getRecipe + "?id=" + item.id;
+            singleItem(url);
+        }
 
     }, []);
 
@@ -43,7 +59,7 @@ export default function PopUp(props) {
         console.log(notes)
         // add notes to excludeItems
         console.log(excludeItems);
-        if(notes !== "")
+        if (notes !== "")
             excludeItems.push(notes);
         props.addToCart(item, excludeItems);
         props.setPopUp(false);
@@ -71,7 +87,7 @@ export default function PopUp(props) {
             </div>
             <div className="PopUpButtons">
                 <button className="PopUpButton" onClick={() => props.setPopUp(false)}>Close</button>
-                <input type="text" placeholder="Special Notes" className="PopUpNotes" onChange={(e) => setNotes(e.target.value)}/>
+                <input type="text" placeholder="Special Notes" className="PopUpNotes" onChange={(e) => setNotes(e.target.value)} />
                 <button className="PopUpButton" onClick={handleSubmitClick}>Add to Cart</button>
             </div>
         </div>
