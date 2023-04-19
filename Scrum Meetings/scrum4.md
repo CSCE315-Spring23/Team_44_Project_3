@@ -1,6 +1,6 @@
-# Scrum Meeting 3
-Prepared by: Steven Mao  
-Meeting Date: 2023-04-05
+# Scrum Meeting 4
+Prepared by: Steven Mao 
+Meeting Date: 2023-04-08 
 
 ## Meeting Attendees
     - Steven Mao
@@ -10,15 +10,15 @@ Meeting Date: 2023-04-05
 	- Huy Lai
 
 ## Meeting Agenda Items
-    - Discuss progress on our tasks.
-    - Discuss any blockers we may have.
-    - Delegate more tasks
+    - Discuss progress on our tasks. 
+    - Discuss any blockers we may have. 
+    - Delegate more tasks 
 
 ## Status Update Since Last Meeting
 ### Accomplishments
-    - Created all reports for manager view.
-    - Set up Google Translate API
-    - Customer view nav bar for cart
+    - Created all reports for manager view. 
+    - Set up Google Translate API 
+    - Customer view nav bar for cart 
 
 
 ### Tasks Completed
