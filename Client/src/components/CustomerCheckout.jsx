@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link, json, useNavigate } from "react-router-dom";
+import React, {useState, useEffect, useContext} from "react";
+import {Link, json, useNavigate} from "react-router-dom";
 import CustomerOrder from "../pages/customer/CustomerOrder";
-import { HOST } from "../utils/host";
-import { endpoints } from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
+import {endpoints} from "../utils/apiEndpoints";
 
 export default function CustomerCheckout(props) {
 
@@ -11,14 +11,14 @@ export default function CustomerCheckout(props) {
 	const [showModal, setShowModal] = useState(false);
 
 	function emptyCurrentOrder() {
-		const defaultOrder = { total: [0], items: [] };
-		localStorage.setItem('curOrder', JSON.stringify(defaultOrder));
-		localStorage.setItem('numItems', '0');
+		const defaultOrder = {total: [0], items: []};
+		localStorage.setItem("curOrder", JSON.stringify(defaultOrder));
+		localStorage.setItem("numItems", "0");
 	}
 
 	function cancelOrder() {
 		emptyCurrentOrder();
-		navigate('/customer/order');
+		navigate("/customer/order");
 	}
 
 	const handlePayment = () => {
@@ -57,7 +57,7 @@ export default function CustomerCheckout(props) {
 		}
 		fetch(url, {
 			method: "POST",
-			headers: { 'Content-Type': 'application/json' },
+			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify(order)
 		})
 			.then(response => {
@@ -97,26 +97,26 @@ export default function CustomerCheckout(props) {
 			})
 			.then(data => {
 				console.log("data from customerOrder: ", data);
-				localStorage.setItem('menu', JSON.stringify(data));
+				localStorage.setItem("menu", JSON.stringify(data));
 			})
 			.catch(error => {
 				console.error("Could not fetch menu items from " + url);
 			});
 
 		//update total
-		const curOrder = JSON.parse(localStorage.getItem('curOrder'));
+		const curOrder = JSON.parse(localStorage.getItem("curOrder"));
 		if (curOrder && curOrder.total) {
 			setOrderValue(curOrder.total[0]);
 		}
 
 	}, []);
 
-	{/* Work on emptying cart with empty button and  */ }
-	{/* Display all menu items in current order, their total price, and the quantity */ }
-	{/* Display total price at the bottom */ }
-	{/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */ }
-	{/* If items.quantity == 0, we remove the component from localstorage */ }
-	{/* Update handleCheckout in CustomerOrder.jsx */ }
+	{/* Work on emptying cart with empty button and  */}
+	{/* Display all menu items in current order, their total price, and the quantity */}
+	{/* Display total price at the bottom */}
+	{/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */}
+	{/* If items.quantity == 0, we remove the component from localstorage */}
+	{/* Update handleCheckout in CustomerOrder.jsx */}
 
 	return (
 		<div>
@@ -124,8 +124,8 @@ export default function CustomerCheckout(props) {
 				<label for="customerName">Please enter your name:</label>
 				<input type="text" id="customerName" name="customerName" />
 			</form>
-			<div id='customerCheckout'>
-				<button onClick={e => handlePayment()} id='customerCheckoutBtn'>Checkout ${orderValue.toFixed(2)}</button>
+			<div id="customerCheckout">
+				<button onClick={e => handlePayment()} id="customerCheckoutBtn">Checkout ${orderValue.toFixed(2)}</button>
 			</div>
 			<button className="cancelButton" onClick={cancelOrder}>Cancel Order</button>
 			{showModal && (

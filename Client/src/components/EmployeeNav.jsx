@@ -16,6 +16,12 @@ export default function EmployeeNav(props) {
 
     const navigate = useNavigate();
     function logout() {
+        localStorage.removeItem("empID");
+        localStorage.removeItem("pin");
+        localStorage.removeItem("email");
+        localStorage.removeItem("name");
+        localStorage.removeItem("employeeId");
+        localStorage.removeItem("isManager");
         navigate("/Login");
     }
 

@@ -46,14 +46,9 @@ export default function Login(props) {
 
     function handleGoogleLogin(response) {
         const decodedResponse = jwt_decode(response.credential);
-        console.log(decodedResponse);
-        
-        const name = decodedResponse.name;
         const email = decodedResponse.email;
         
-        //login handshake with backend
-        const url = HOST + endpoints.loginAPI;
-        
+        // if oauth successful, log them in
         OAUTH({ email })
             .then(isValid => {
                 if (isValid) navigate('/employee/order');
@@ -66,11 +61,12 @@ export default function Login(props) {
 
         if (!employeePin || employeePin.length < 4)
             return;
-
+        
+        // if pin is valid, log them in
         OAUTH({ pin: employeePin })
             .then(isValid => {
                 if (isValid) navigate('/employee/order');
-                else setErrorMessage("Invalid Google User");
+                else setErrorMessage("Invalid PIN");
             });
     }
 
@@ -114,7 +110,7 @@ export default function Login(props) {
                 </div>
 
                 <div>
-                    <input type="password" id="pass" name="password" className="sign-in-field" placeholder="Enter PIN Number" />
+                    <input type="password" id="pass" name="password" className="sign-in-field" placeholder="Enter PIN Number" onKeyDown={(e) => {if (e.key == 'Enter') handlePINLogin();}}/>
                     <input type="submit" value="Sign In" onClick={handlePINLogin} className="sign-in-button" />
                 </div>
             </div>
