@@ -5,6 +5,7 @@ import { HOST } from "../../utils/host";
 import { endpoints } from "../../utils/apiEndpoints";
 import CustomerCheckOutItem from "../../components/CustomerCheckOutItem";
 
+import "../../styles/customer.css";
 export default function CustomerCheckout(props) {
 
 	const currentOrder = JSON.parse(localStorage.getItem('curOrder'));
@@ -128,19 +129,19 @@ export default function CustomerCheckout(props) {
 
 		let newCart = { ...cart };
 		newCart.total[0] -= newCart.items[cartID][2];
-        if (newCart.items[cartID][1] > 1) {
-            newCart.items[cartID][1] -= 1;
-        }
-        else {
-            delete newCart.items[cartID];
-        }
-        setCart(newCart);
+		if (newCart.items[cartID][1] > 1) {
+			newCart.items[cartID][1] -= 1;
+		}
+		else {
+			delete newCart.items[cartID];
+		}
+		setCart(newCart);
 		let newTotal = Math.abs(newCart.total[0]);
 
 		setOrderValue(newTotal);
-        localStorage.setItem('curOrder', JSON.stringify(newCart));
+		localStorage.setItem('curOrder', JSON.stringify(newCart));
 		localStorage.setItem('numItems', Object.keys(newCart.items).length);
-    }
+	}
 	{/* If items.quantity == 0, we remove the component from localstorage */ }
 
 	return (
@@ -156,43 +157,45 @@ export default function CustomerCheckout(props) {
 					</div>
 				</button>
 			</div>
-			<div className="customerCheckoutItems">
-				{items.map(cartID => (
-					<CustomerCheckOutItem
-						itemName={cart.items[cartID][0]}
-						count={cart.items[cartID][1]}
-						price={cart.items[cartID][2]}
-						onClick={props.removeFromCart}
-						cartID={cartID}
-						excluded={cart.items[cartID][4]}
-						removeFromCart={removeFromCart}
+			<div className="customerCheckout">
+				<div className="customerCheckoutItems">
+					{items.map(cartID => (
+						<CustomerCheckOutItem
+							itemName={cart.items[cartID][0]}
+							count={cart.items[cartID][1]}
+							price={cart.items[cartID][2]}
+							onClick={props.removeFromCart}
+							cartID={cartID}
+							excluded={cart.items[cartID][4]}
+							removeFromCart={removeFromCart}
 						>
-					</CustomerCheckOutItem>
-				))}
-				{props.excluded &&
-                <div className="checkoutItemEx">
-                    <ul style={{margin: 0}}>
-                        {props.excluded && props.excluded.map((item, index) => {
-                            if (item.name)
-                                return <li key={index}>no {item.name}</li>
-                            if (index === props.excluded.length - 1) {
-                                return <li key={index}>{item}</li>
-                            }
-                        })}
-                    </ul>
-                </div>}
+						</CustomerCheckOutItem>
+					))}
+					{props.excluded &&
+						<div className="checkoutItemEx">
+							<ul style={{ margin: 0 }}>
+								{props.excluded && props.excluded.map((item, index) => {
+									if (item.name)
+										return <li key={index}>no {item.name}</li>
+									if (index === props.excluded.length - 1) {
+										return <li key={index}>{item}</li>
+									}
+								})}
+							</ul>
+						</div>}
+				</div>
+				<form>
+					<label for="customerName">Please enter your name:</label>
+					<input type="text" id="customerName" name="customerName" />
+				</form>
+				<div id="customerCheckout">
+					<button onClick={e => handlePayment()} id="customerCheckoutBtn">Checkout ${orderValue.toFixed(2)}</button>
+				</div>
+				<button className="cancelButton" onClick={cancelOrder}>Cancel Order</button>
+				{showModal && (
+					<h3 className="orderPopup">Order Successful</h3>
+				)}
 			</div>
-			<form>
-				<label for="customerName">Please enter your name:</label>
-				<input type="text" id="customerName" name="customerName" />
-			</form>
-			<div id="customerCheckout">
-				<button onClick={e => handlePayment()} id="customerCheckoutBtn">Checkout ${orderValue.toFixed(2)}</button>
-			</div>
-			<button className="cancelButton" onClick={cancelOrder}>Cancel Order</button>
-			{showModal && (
-				<h3 className="orderPopup">Order Successful</h3>
-			)}
 		</div>
 
 	)
