@@ -2,6 +2,9 @@ import React from "react";
 
 export default function CustomerCheckOutItem(props) {
 
+    const removeFromCart = () => {
+        props.removeFromCart(props.cartID);
+    }
     return ( 
         <div>
             <style>
@@ -19,6 +22,7 @@ export default function CustomerCheckOutItem(props) {
                     <td>{props.itemName}</td>
                     <td>{props.count}</td>
                     <td>{props.price}</td>
+                    <td><button onClick={removeFromCart}>-</button></td>
                     <br />
                 </tr>
             </table> 

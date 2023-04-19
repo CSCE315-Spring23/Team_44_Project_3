@@ -1,22 +1,23 @@
-import React, {useState, useEffect, useContext} from "react";
-import {Link, json, useNavigate} from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, json, useNavigate } from "react-router-dom";
 import CustomerOrder from "./CustomerOrder";
-import {HOST} from "../../utils/host";
-import {endpoints} from "../../utils/apiEndpoints";
+import { HOST } from "../../utils/host";
+import { endpoints } from "../../utils/apiEndpoints";
 import CustomerCheckOutItem from "../../components/CustomerCheckOutItem";
 
 export default function CustomerCheckout(props) {
 
 	const currentOrder = JSON.parse(localStorage.getItem('curOrder'));
-    const items = currentOrder.items;
-	console.log(items);
+	const items = Object.keys(currentOrder.items);
 
 	const navigate = useNavigate();
 
 	const [showModal, setShowModal] = useState(false);
 
+	const [cart, setCart] = useState(currentOrder ? currentOrder : { total: [0], items: [] });
+
 	function emptyCurrentOrder() {
-		const defaultOrder = {total: [0], items: []};
+		const defaultOrder = { total: [0], items: [] };
 		localStorage.setItem("curOrder", JSON.stringify(defaultOrder));
 		localStorage.setItem("numItems", "0");
 	}
@@ -28,7 +29,6 @@ export default function CustomerCheckout(props) {
 
 	const handlePayment = () => {
 		console.log("checkout");
-		const cart = JSON.parse(localStorage.getItem('curOrder'));
 
 		let itemsArr = [];
 		for (let cartID in cart.items) {
@@ -62,7 +62,7 @@ export default function CustomerCheckout(props) {
 		}
 		fetch(url, {
 			method: "POST",
-			headers: {"Content-Type": "application/json"},
+			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(order)
 		})
 			.then(response => {
@@ -81,6 +81,7 @@ export default function CustomerCheckout(props) {
 		}, 3000);
 
 		const defaultOrder = { total: [0], items: [] };
+		setCart(defaultOrder);
 		localStorage.setItem('curOrder', JSON.stringify(defaultOrder));
 		localStorage.setItem('numItems', '0');
 		setOrderValue(0);
@@ -121,8 +122,26 @@ export default function CustomerCheckout(props) {
 
 	}, []);
 
-	{/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */}
-	{/* If items.quantity == 0, we remove the component from localstorage */}
+	{/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */ }
+	const removeFromCart = (cartID) => {
+		console.log("remove from cart ->", cartID);
+
+		let newCart = { ...cart };
+		newCart.total[0] -= newCart.items[cartID][2];
+        if (newCart.items[cartID][1] > 1) {
+            newCart.items[cartID][1] -= 1;
+        }
+        else {
+            delete newCart.items[cartID];
+        }
+        setCart(newCart);
+		let newTotal = Math.abs(newCart.total[0]);
+
+		setOrderValue(newTotal);
+        localStorage.setItem('curOrder', JSON.stringify(newCart));
+		localStorage.setItem('numItems', Object.keys(newCart.items).length);
+    }
+	{/* If items.quantity == 0, we remove the component from localstorage */ }
 
 	return (
 		<div>
@@ -137,16 +156,32 @@ export default function CustomerCheckout(props) {
 					</div>
 				</button>
 			</div>
-			{items.map((item, index) => (
-				<CustomerCheckOutItem
-					itemName={items[index][0]}
-					count={items[index][1]}
-					price={items[index][2]}
-					currOrderItem = {item}>
-					itemID={items[index][3]}
-					excludedItems={items[index][4]}
-				</CustomerCheckOutItem>
-			))}
+			<div className="customerCheckoutItems">
+				{items.map(cartID => (
+					<CustomerCheckOutItem
+						itemName={cart.items[cartID][0]}
+						count={cart.items[cartID][1]}
+						price={cart.items[cartID][2]}
+						onClick={props.removeFromCart}
+						cartID={cartID}
+						excluded={cart.items[cartID][4]}
+						removeFromCart={removeFromCart}
+						>
+					</CustomerCheckOutItem>
+				))}
+				{props.excluded &&
+                <div className="checkoutItemEx">
+                    <ul style={{margin: 0}}>
+                        {props.excluded && props.excluded.map((item, index) => {
+                            if (item.name)
+                                return <li key={index}>no {item.name}</li>
+                            if (index === props.excluded.length - 1) {
+                                return <li key={index}>{item}</li>
+                            }
+                        })}
+                    </ul>
+                </div>}
+			</div>
 			<form>
 				<label for="customerName">Please enter your name:</label>
 				<input type="text" id="customerName" name="customerName" />
