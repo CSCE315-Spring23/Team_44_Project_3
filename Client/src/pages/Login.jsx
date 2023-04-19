@@ -1,18 +1,11 @@
 import React, {useEffect, useState} from "react";
 
-<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
 import { endpoints } from "../utils/apiEndpoints";
 import { HOST } from "../utils/host";
 import logo from '../assets/CFA Banner.svg'
 import backdrop from '../assets/nuggetsmealheader.jpg'
 import '../styles/login.css'
-=======
-import {useNavigate} from "react-router-dom";
-import logo from "../assets/CFA Banner.svg";
-import {endpoints} from "../utils/apiEndpoints";
-import {HOST} from "../utils/host";
->>>>>>> 0f4e411fb36936b63baa0d41655aca6dd8204fe7
 
 import jwt_decode from "jwt-decode";
 
