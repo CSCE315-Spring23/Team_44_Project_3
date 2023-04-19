@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import PopUp from "./PopUp";
 
 /**
@@ -23,10 +23,10 @@ export default function AddMenuItem(props) {
     */
     const addToCart = (item, excludeItems) => {
         console.log("item: ", item, "excludeItems: ", excludeItems);
-        const cart = JSON.parse(localStorage.getItem("curOrder")) || {total: [0], items: {}};
+        const cart = JSON.parse(localStorage.getItem("curOrder")) || { total: [0], items: {} };
         let cartID = Object.keys(cart.items).length;
         console.log(cartID)
-        let newCart = {...cart};
+        let newCart = { ...cart };
 
         let numberOfItems = localStorage.getItem("numItems");
         numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
@@ -81,7 +81,7 @@ export default function AddMenuItem(props) {
                 }
             });
         }
-
+        newCart.total[0] = Number(newCart.total[0].toFixed(2));
         console.log("newCart: ", newCart);
         localStorage.setItem("curOrder", JSON.stringify(newCart));
     }
@@ -89,6 +89,30 @@ export default function AddMenuItem(props) {
     const openPopUp = () => {
         setPopUp(true);
     }
+
+    const [itemCost, setItemCost] = useState(0);
+    useEffect(() => {
+        const menu = JSON.parse(localStorage.getItem("menu"));
+        let cost = 0;
+        if (item.ids) {
+            item.ids.forEach((curID) => {
+                menu.forEach((arrItem) => {
+                    if (arrItem.id == curID) {
+                        cost += Number(arrItem.cost);
+                    }
+                });
+            });
+        }
+        if (item.id) {
+            menu.forEach((arrItem) => {
+                if (arrItem.id == item.id) {
+                    cost += Number(arrItem.cost);
+                }
+            }
+            );
+        }
+        setItemCost(cost);
+    }, []);
 
     return (
         <li role="listitem">
@@ -98,6 +122,9 @@ export default function AddMenuItem(props) {
                 </div>
                 <div className="name">
                     <h3 className="name">{item.name}</h3>
+                </div>
+                <div className="cost">
+                    <h3 className="cost">${itemCost.toFixed(2)}</h3>
                 </div>
             </button>
             {popUp && <PopUp item={item} setPopUp={setPopUp} addToCart={addToCart} />}
