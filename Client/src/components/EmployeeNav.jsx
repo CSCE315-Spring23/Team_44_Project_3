@@ -29,6 +29,27 @@ export default function EmployeeNav(props) {
         navigate(`/employee/${page}`);
     }
 
+    // set up google oauth button and behavior
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://accounts.google.com/gsi/client";
+        script.async = true;
+        document.body.appendChild(script);
+
+        google.accounts.id.initialize({
+            client_id: '494495949926-om1cjij44iie2585is6tk7n98aurqso6.apps.googleusercontent.com',
+            // callback: handleGoogleLogin
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById('google-signin'),
+            {
+                theme: 'outline',
+                size: 'large'
+            }
+        );
+    });
+
     console.log("Current page:\t" + current);
 
     if (isManager) {
@@ -41,6 +62,7 @@ export default function EmployeeNav(props) {
                 <button onClick={e => changePage("reports")} className={`empNavButton ${current === "reports" ? "current" : ""}`}>Reports</button>
                 <button onClick={e => changePage("menuBoard")} className={`empNavButton ${current === "menuboard" ? "current" : ""}`}>Menu Board</button>
                 <button onClick={logout} className="empNavLogout">Logout</button>
+                <div id='google-signin'></div>
             </nav >
         );
     } else {
