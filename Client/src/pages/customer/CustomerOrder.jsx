@@ -4,7 +4,7 @@ import CategoryItem from "../../components/CategoryItem";
 import Weather from "../../components/Weather";
 import {endpoints} from "../../utils/apiEndpoints";
 import {HOST} from "../../utils/host";
-import CustomerNav from "./CustomerNav";
+import CustomerNav from '../../components/CustomerNav';
 
 import images from "../../utils/imageImport";
 

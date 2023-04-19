@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {endpoints} from "../../utils/apiEndpoints";
-import {HOST} from "../../utils/host";
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
 
 function CustomerNav(props) {
     const numberOfItems = props.numberOfItems;

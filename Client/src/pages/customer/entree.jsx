@@ -1,7 +1,7 @@
 import React from 'react';
 import {Outlet, useNavigate} from 'react-router-dom';
 import AddMenuItem from '../../components/AddMenuItem';
-import CustomerNav from './CustomerNav';
+import CustomerNav from '../../components/CustomerNav';
 
 import entreeImages from '../../utils/entreeImages';
 
