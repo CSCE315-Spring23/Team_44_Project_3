@@ -7,7 +7,7 @@ import Meal from "../pages/customer/meals";
 import Salad from "../pages/customer/salads";
 import Sauces from "../pages/customer/sauces";
 import Treats from "../pages/customer/treats";
-import CustomerCheckout from "../components/CustomerCheckout";
+import CustomerCheckout from "../pages/customer/CustomerCheckout";
 
 export default function CustomerRoutes() {
     return (

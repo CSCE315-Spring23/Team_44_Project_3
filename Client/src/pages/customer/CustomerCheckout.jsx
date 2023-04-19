@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useContext} from "react";
 import {Link, json, useNavigate} from "react-router-dom";
-import CustomerOrder from "../pages/customer/CustomerOrder";
-import {HOST} from "../utils/host";
-import {endpoints} from "../utils/apiEndpoints";
+import CustomerOrder from "./CustomerOrder";
+import {HOST} from "../../utils/host";
+import {endpoints} from "../../utils/apiEndpoints";
 
 export default function CustomerCheckout(props) {
 
@@ -72,6 +72,7 @@ export default function CustomerCheckout(props) {
 		setShowModal(true);
 		setTimeout(() => {
 			setShowModal(false);
+			navigate("/customer/order");
 		}, 3000);
 
 		const defaultOrder = { total: [0], items: [] };
