@@ -14,7 +14,8 @@ const categories = [
 	{title: "Beverages", src: images.beverages, key: 2},
 	{title: "Salads", src: images.salads, key: 3},
 	{title: "Treats", src: images.treats, key: 4},
-	{title: "Sauces", src: images.sauces, key: 5}
+	{title: "Sauces", src: images.sauces, key: 5},
+	{title: "Sides", src: images.sides, key: 6},
 ];
 
 

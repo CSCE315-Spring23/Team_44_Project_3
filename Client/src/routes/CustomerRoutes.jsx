@@ -6,6 +6,7 @@ import Entree from "../pages/customer/entree";
 import Meal from "../pages/customer/meals";
 import Salad from "../pages/customer/salads";
 import Sauces from "../pages/customer/sauces";
+import Sides from "../pages/customer/sides";
 import Treats from "../pages/customer/treats";
 import CustomerCheckout from "../pages/customer/CustomerCheckout";
 
@@ -20,6 +21,7 @@ export default function CustomerRoutes() {
                 <Route path="order/treats" element={<Treats />} />
                 <Route path="order/salads" element={<Salad />} />
                 <Route path="order/sauces" element={<Sauces />} />
+                <Route path="order/sides" element={<Sides />} />
                 <Route path="order/checkout" element={<CustomerCheckout />} />
             </Route>
         </Routes>

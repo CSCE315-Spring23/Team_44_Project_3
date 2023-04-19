@@ -3,6 +3,7 @@ import entree from "../assets/categories/entree.png";
 import meals from "../assets/categories/meals.png";
 import salads from "../assets/categories/salads.png";
 import sauces from "../assets/categories/sauces.png";
+import sides from "../assets/categories/sides.png";
 import treats from "../assets/categories/treats.png";
 
 
@@ -16,4 +17,5 @@ export default {
     salads,
     sauces,
     treats,
+    sides,
 };
