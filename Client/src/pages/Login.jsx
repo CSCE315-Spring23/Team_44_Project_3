@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { endpoints } from "../utils/apiEndpoints";
 import { HOST } from "../utils/host";
 import logo from '../assets/CFA Banner.svg'
+import backdrop from '../assets/nuggetsmealheader.jpg'
+import '../styles/login.css'
 
 import jwt_decode from "jwt-decode";
 
@@ -28,7 +30,7 @@ export default function Login(props) {
             },
             body: JSON.stringify(params)
         })
-        
+
         const data = await response.json();
 
         if (data.isValidUser) {
@@ -47,7 +49,7 @@ export default function Login(props) {
     function handleGoogleLogin(response) {
         const decodedResponse = jwt_decode(response.credential);
         const email = decodedResponse.email;
-        
+
         // if oauth successful, log them in
         OAUTH({ email })
             .then(isValid => {
@@ -61,7 +63,7 @@ export default function Login(props) {
 
         if (!employeePin || employeePin.length < 4)
             return;
-        
+
         // if pin is valid, log them in
         OAUTH({ pin: employeePin })
             .then(isValid => {
@@ -93,27 +95,32 @@ export default function Login(props) {
 
     return (
         <>
-            <header>
-                <h1>Welcome to</h1>
-                <img src={logo}></img>
-            </header>
+            <img src={backdrop} alt="backdrop" className='backdrop' />
+            <div className="card">
+            
+                <header>
+                    <img src={logo}></img>
+                </header>
 
-            <div className="order-wrapper">
-                <a className="order-link" href="/customer/order">Order Now</a>
-            </div>
-
-            <div id='google-signin'></div>
-
-            <div className="login-wrapper">
-                <div className="login-text">
-                    {errorMessage ? <p>{errorMessage}</p> : <p>Employees Only</p>}
+                <div className="order-wrapper">
+                    <a className="order-link" href="/customer/order">Order Now</a>
                 </div>
 
-                <div>
-                    <input type="password" id="pass" name="password" className="sign-in-field" placeholder="Enter PIN Number" onKeyDown={(e) => {if (e.key == 'Enter') handlePINLogin();}}/>
-                    <input type="submit" value="Sign In" onClick={handlePINLogin} className="sign-in-button" />
+                <div id='google-signin'></div>
+
+                <div className="login-wrapper">
+                    <div className="login-text">
+                        {errorMessage ? <p>{errorMessage}</p> : <p>Employees Only</p>}
+                    </div>
+
+                    <div>
+                        <input type="password" id="pass" name="password" className="sign-in-field" placeholder="Enter PIN Number" onKeyDown={(e) => { if (e.key == 'Enter') handlePINLogin(); }} />
+                        <input type="submit" value="Sign In" onClick={handlePINLogin} className="sign-in-button" />
+                    </div>
                 </div>
+
             </div>
+
         </>
     );
 }

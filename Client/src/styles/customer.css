@@ -27,33 +27,6 @@ a.menuLink:visited {
 	text-decoration: none;
 }
 
-a.order-link {
-	display: block;
-	font-size: 48px;
-	font-family: sans-serif;
-	font-weight: 500;
-	text-decoration: none;
-	color: #ffffff;
-	background-image: linear-gradient(-180deg, rgba(254, 67, 108, .99), rgba(201, 0, 43, 0.99) 49%, #9b0720);
-	background-size: 100% 150%;
-	background-position: top;
-	border: 1px solid #333333;
-	border-radius: 20px;
-	color: #ffffff;
-	display: block;
-	font-family: sans-serif;
-	font-size: 48px;
-	font-weight: 500;
-	letter-spacing: 4px;
-	padding: 20px;
-	text-decoration: none;
-	transition: all 0.3s ease-in-out;
-}
-
-a.order-link:hover {
-	background-position: bottom;
-}
-
 body {
 	margin: 0;
 	margin-top: 5em;
@@ -193,33 +166,11 @@ div.bagIcon {
 	-webkit-box-align: center;
 }
 
-#google-signin {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	margin-top: 5em;
-}
-
-div.login-wrapper {
-	margin: 3em;
-	font-family: inherit;
-	display: flex;
-	flex-direction: column;
-	font-family: inherit;
-	justify-content: center;
-	margin: 3em;
-}
-
 div.order {
 	justify-content: flex-end;
 	margin-right: 0.5%;
 	-webkit-box-pack: end;
 	width: 13.5%;
-}
-
-div.order-wrapper {
-	display: inline-block;
-	margin-top: 3em;
 }
 
 div.title {
@@ -241,41 +192,6 @@ header {
 img.menuIMG {
 	max-height: 100%;
 	max-width: 100%;
-}
-
-input[type="password"] {
-	border-radius: 100px 0px 0px 100px;
-	border-right: none;
-}
-
-input[type="password"],
-input[type="submit"] {
-	border: 1px solid black;
-	box-sizing: content-box;
-	font-family: inherit;
-	font-size: 1rem;
-	font-weight: 500;
-	height: 3em;
-	margin: 0;
-	padding: 0 1.2em;
-}
-
-input[type="submit"] {
-	background-color: #dd0031;
-	border-left: none;
-	border-radius: 0px 100px 100px 0px;
-	color: white;
-	cursor: pointer;
-	transition: all 0.5s ease-in-out;
-}
-
-input[type="submit"]:hover {
-	background-color: #9e1c38;
-}
-
-label.passLabel {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	font-size: 24pt;
 }
 
 nav.desktop-navigation {
