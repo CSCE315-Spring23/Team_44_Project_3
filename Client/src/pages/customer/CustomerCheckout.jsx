@@ -3,8 +3,13 @@ import {Link, json, useNavigate} from "react-router-dom";
 import CustomerOrder from "./CustomerOrder";
 import {HOST} from "../../utils/host";
 import {endpoints} from "../../utils/apiEndpoints";
+import CustomerCheckOutItem from "../../components/CustomerCheckOutItem";
 
 export default function CustomerCheckout(props) {
+
+	const currentOrder = JSON.parse(localStorage.getItem('curOrder'));
+    const items = currentOrder.items;
+	console.log(items);
 
 	const navigate = useNavigate();
 
@@ -121,6 +126,18 @@ export default function CustomerCheckout(props) {
 
 	return (
 		<div>
+			<span id="customerCheckoutOrderItems">
+                {items.map((item, index) => (
+                    <CustomerCheckOutItem
+                        itemName={items[index][0]}
+                        count={items[index][1]}
+                        price={items[index][2]}
+                        currOrderItem = {item}>
+						itemID={items[index][3]}
+						excludedItems={items[index][4]}
+                    </CustomerCheckOutItem>
+                ))}
+            </span>
 			<form>
 				<label for="customerName">Please enter your name:</label>
 				<input type="text" id="customerName" name="customerName" />
