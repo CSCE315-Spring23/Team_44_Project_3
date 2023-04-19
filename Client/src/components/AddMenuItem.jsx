@@ -42,7 +42,6 @@ export default function AddMenuItem(props) {
                             if (newCart.items[key][0] === arrItem.name && JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)) {
                                 newCart.items[key][1] += 1;
                                 newCart.total[0] += Number(arrItem.cost);
-                                localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
                                 found = true;
                                 break;
                             }
@@ -51,8 +50,9 @@ export default function AddMenuItem(props) {
                             newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, excludeItems];
                             newCart.total[0] += Number(arrItem.cost);
                             cartID++;
-                            localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
                         }
+                        localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
+                        window.dispatchEvent(new Event('storage'));
                         return;
                     }
                 });
@@ -67,7 +67,6 @@ export default function AddMenuItem(props) {
                         if (newCart.items[key][0] === arrItem.name && JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)) {
                             newCart.items[key][1] += 1;
                             newCart.total[0] += Number(arrItem.cost);
-                            localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
                             found = true;
                             break;
                         }
@@ -75,8 +74,9 @@ export default function AddMenuItem(props) {
                     if (!found) {
                         newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, excludeItems];
                         newCart.total[0] += Number(arrItem.cost);
-                        localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
                     }
+                    localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
+                    window.dispatchEvent(new Event('storage'));
                     return;
                 }
             });
