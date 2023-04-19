@@ -193,11 +193,11 @@ div.bagIcon {
 	-webkit-box-align: center;
 }
 
-#google-signin {
+div#google-signin {
 	position: relative;
 	display: flex;
 	justify-content: center;
-	margin-top: 5em;
+	margin: 5pt;
 }
 
 div.login-wrapper {
