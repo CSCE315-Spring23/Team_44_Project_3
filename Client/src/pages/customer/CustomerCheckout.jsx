@@ -125,7 +125,7 @@ export default function CustomerCheckout(props) {
 
 	{/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */ }
 	const removeFromCart = (cartID) => {
-		console.log("remove from cart ->", cartID);
+		console.log("remove from cart ->", cartID, cart.items[cartID][0]);
 
 		let newCart = { ...cart };
 		newCart.total[0] -= newCart.items[cartID][2];
@@ -135,6 +135,14 @@ export default function CustomerCheckout(props) {
 		else {
 			delete newCart.items[cartID];
 		}
+
+		//check if one of the items in the cart is null, remove it
+		for (let item in newCart.items) {
+			if (newCart.items[item] == null) {
+				delete newCart.items[item];
+			}
+		}
+
 		setCart(newCart);
 		let newTotal = Math.abs(newCart.total[0]);
 
