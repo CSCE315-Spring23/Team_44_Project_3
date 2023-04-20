@@ -52,7 +52,6 @@ function CustomerNav(props) {
 
     useEffect(() => {
         const updateNumItems = () => {
-            console.log("it happends")
             setNumItems(localStorage.getItem("numItems") || 0);
         };
 
