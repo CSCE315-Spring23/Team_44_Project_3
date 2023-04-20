@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
-import { useNavigate } from 'react-router-dom';
-import { endpoints } from "../utils/apiEndpoints";
-import { HOST } from "../utils/host";
+import {useNavigate} from 'react-router-dom';
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
 import logo from '../assets/CFA Banner.svg'
 import backdrop from '../assets/nuggetsmealheader.jpg'
 import '../styles/login.css'
@@ -19,7 +19,7 @@ export default function Login(props) {
     // * @returns: resolves to true if user found and updated localstorage, false otherwise
     async function OAUTH(params) {
         const url = HOST + endpoints.loginAPI;
-        const { email = "", pin = "" } = params;
+        const {email = "", pin = ""} = params;
 
         const response = await fetch(url, {
             method: "POST",
@@ -50,7 +50,7 @@ export default function Login(props) {
         const email = decodedResponse.email;
 
         // if oauth successful, log them in
-        OAUTH({ email })
+        OAUTH({email})
             .then(isValid => {
                 if (isValid) navigate("/employee/order");
                 else setErrorMessage("Invalid Google User");
@@ -64,7 +64,7 @@ export default function Login(props) {
             return;
 
         // if pin is valid, log them in
-        OAUTH({ pin: employeePin })
+        OAUTH({pin: employeePin})
             .then(isValid => {
                 if (isValid) navigate("/employee/order");
                 else setErrorMessage("Invalid PIN");
@@ -92,6 +92,13 @@ export default function Login(props) {
         );
     });
 
+    function navigatePage() {
+        localStorage.removeItem("curOrder");
+        localStorage.removeItem("numItems");
+        navigate("/customer/order");
+    }
+
+
     return (
         <>
             <img src={backdrop} alt="backdrop" className='backdrop' />
@@ -102,7 +109,7 @@ export default function Login(props) {
                 </header>
 
                 <div className="order-wrapper">
-                    <a className="order-link" href="/customer/order">Order Now</a>
+                    <a className="order-link" onClick={navigatePage}>Order Now</a>
                 </div>
 
                 <div className="login-wrapper">
@@ -110,10 +117,10 @@ export default function Login(props) {
                         {errorMessage ? <p>{errorMessage}</p> : <p>Employees Only</p>}
                     </div>
 
-                    <div id='google-signin'></div>
+                    <div id="google-signin"></div>
 
                     <div>
-                        <input type="password" id="pass" name="password" className="sign-in-field" placeholder="Enter PIN Number" onKeyDown={(e) => { if (e.key == 'Enter') handlePINLogin(); }} />
+                        <input type="password" id="pass" name="password" className="sign-in-field" placeholder="Enter PIN Number" onKeyDown={(e) => {if (e.key == 'Enter') handlePINLogin();}} />
                         <input type="submit" value="Sign In" onClick={handlePINLogin} className="sign-in-button" />
                     </div>
                 </div>
