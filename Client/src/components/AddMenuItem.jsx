@@ -34,35 +34,12 @@ export default function AddMenuItem(props) {
         const menu = JSON.parse(localStorage.getItem("menu"));
 
         if (item.ids) {
-            // item.ids.forEach((curID) => {
-            //     menu.forEach((arrItem) => {
-            //         if (arrItem.id == curID) {
-            //             let found = false;
-            //             for (let key in newCart.items) {
-            //                 if (newCart.items[key][0] === arrItem.name && JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)) {
-            //                     newCart.items[key][1] += 1;
-            //                     newCart.total[0] += Number(arrItem.cost);
-            //                     found = true;
-            //                     break;
-            //                 }
-            //             }
-            //             if (!found) {
-            //                 newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, excludeItems];
-            //                 newCart.total[0] += Number(arrItem.cost);
-            //                 cartID++;
-            //             }
-            //             localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
-            //             window.dispatchEvent(new Event('storage'));
-            //             return;
-            //         }
-            //     });
-            // });
             for (let i = 0; i < item.ids.length; i++) {
                 menu.forEach((arrItem) => {
                     if (arrItem.id == item.ids[i]) {
                         let found = false;
                         for (let key in newCart.items) {
-                            if (newCart.items[key][0] === arrItem.name && JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)) {
+                            if (newCart.items[key][0] === arrItem.name && (JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems) || i!=0)) {
                                 newCart.items[key][1] += 1;
                                 newCart.total[0] += Number(arrItem.cost);
                                 found = true;
