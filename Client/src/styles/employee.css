@@ -249,46 +249,6 @@ div.backText {
     vertical-align: initial;
 }
 
-div.checkoutItem {
-    display: flex;
-    font-size: .75em;
-    flex-direction: column;
-    margin-top: 1em;
-}
-
-div.checkoutItemInfo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-}
-
-div.checkoutItemRight {
-    display: flex;
-    flex-direction: flex-end;
-    align-items: center;
-    flex-direction: row;
-    margin-right: 15px;
-    text-align: right;
-    padding: 0px;
-}
-
-div.checkoutItemLeft {
-    margin-left: 15px;
-    text-align: left;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-div.checkoutItemEx {
-    text-align: left;
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-}
-
 div.empInventoryPage {
     display: flex;
     flex-direction: row;
