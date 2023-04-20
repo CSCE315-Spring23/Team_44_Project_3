@@ -4,6 +4,7 @@ a.order-link {
 	background-size: 100% 125%;
 	border-radius: 20px;
 	color: #ffffff;
+	cursor: pointer;
 	display: block;
 	font-family: sans-serif;
 	font-size: 48px;
