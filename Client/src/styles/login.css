@@ -1,7 +1,53 @@
-a.order-link {
+#root {
+    position: relative;
+    min-height: 100vh;
+}
+
+.backdrop {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    object-fit: cover;
+    position: fixed;
+    z-index: -1;
+}
+
+.card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5em;
+    border-radius: 20px;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(20px);
+    z-index: -1;
+}
+
+.order-wrapper {
+	display: inline-block;
+	margin-top: 3em;
+}
+
+.order-link {
+	display: block;
+	font-size: 48px;
+	font-family: sans-serif;
+	font-weight: 500;
+	text-decoration: none;
+	color: #ffffff;
 	background-image: linear-gradient(-180deg, rgba(254, 67, 108, .99), rgba(212, 0, 46, 0.99) 49%, #ad0a25);
-	background-position: top;
 	background-size: 100% 125%;
+	background-position: top;
 	border-radius: 20px;
 	color: #ffffff;
 	cursor: pointer;
@@ -15,55 +61,22 @@ a.order-link {
 	transition: all 0.3s ease-in-out;
 }
 
-a.order-link:hover {
+.order-link:hover {
+    transform: translateY(-3px);
 	background-position: bottom;
-	transform: translateY(-3px);
 }
 
-div#google-signin {
+.login-wrapper {
+    padding: 2em;
+}
+
+.login-text {}
+
+#google-signin {
+	position: relative;
+    margin: 1em;
 	display: flex;
 	justify-content: center;
-	margin: 1em;
-	position: relative;
-}
-
-div.card {
-	background-color: rgba(255, 255, 255, 0.5);
-	border-radius: 20px;
-	left: 50%;
-	padding: 5em;
-	position: absolute;
-	top: 50%;
-	transform: translate(-50%, -50%);
-}
-
-div.card::before {
-	backdrop-filter: blur(20px);
-	content: "";
-	height: 100%;
-	left: 0;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	z-index: -1;
-}
-
-div.login-wrapper {
-	padding: 2em;
-}
-
-div.order-wrapper {
-	display: inline-block;
-	margin-top: 3em;
-}
-
-img.backdrop {
-	left: 0px;
-	object-fit: cover;
-	position: fixed;
-	top: 0px;
-	width: 100%;
-	z-index: -1;
 }
 
 input[type="password"] {
@@ -99,4 +112,10 @@ input[type="submit"]:hover {
 label.passLabel {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	font-size: 24pt;
+}
+
+#google_translate_element {
+    position: absolute;
+    bottom: 0px;
+	right: 0px;
 }
