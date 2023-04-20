@@ -1,15 +1,12 @@
 
 body {
     /* overflow: hidden; */
-    margin-top: 0px !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #root {
     overflow: hidden;
     position: relative;
+    height: 100vh;
 }
 
 .backdrop {
@@ -22,7 +19,10 @@ body {
 }
 
 .card {
-    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: rgba(255, 255, 255, 0.5);
     padding: 5em;
     border-radius: 20px;
@@ -122,4 +122,6 @@ label.passLabel {
 #google_translate_element {
     position: absolute;
     bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
 }
