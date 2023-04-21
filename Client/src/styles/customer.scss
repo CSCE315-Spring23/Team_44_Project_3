@@ -11,20 +11,22 @@
 	-webkit-text-size-adjust: 100%;
 }
 
-a.menuLink:active {
-	text-decoration: none;
-}
+a.menuLink {
+	&:active {
+		text-decoration: none;
+	}
 
-a.menuLink:hover {
-	text-decoration: none;
-}
+	&:hover {
+		text-decoration: none;
+	}
 
-a.menuLink:link {
-	text-decoration: none;
-}
+	&:link {
+		text-decoration: none;
+	}
 
-a.menuLink:visited {
-	text-decoration: none;
+	&:visited {
+		text-decoration: none;
+	}
 }
 
 body {
@@ -49,12 +51,12 @@ button#customerCheckoutBtn {
 	text-align: center;
 	padding: 30px 50px;
 	transition: all 0.3s ease-in-out;
-}
 
-button#customerCheckoutBtn:hover {
-	background-color: #034732;
-	box-shadow: 0px 0px 3px #005e13 inset;
-	transform: translateY(-3px);
+	&:hover {
+		background-color: #034732;
+		box-shadow: 0px 0px 3px #005e13 inset;
+		transform: translateY(-3px);
+	}
 }
 
 button.cancelButton {
@@ -68,11 +70,11 @@ button.cancelButton {
 	padding: 0px 10px;
 	text-align: center;
 	transition: all 0.3s ease-in-out;
-}
 
-button.cancelButton:hover {
-	background-position: bottom;
-	transform: translateY(-3px);
+	&:hover {
+		background-position: bottom;
+		transform: translateY(-3px);
+	}
 }
 
 button.backButton {
@@ -106,10 +108,10 @@ button.menuButton {
 	-webkit-box-align: center;
 	--webkit-box-pack: center;
 	width: 270px;
-}
 
-button.menuButton:hover {
-	border: 2px solid;
+	&:hover {
+		border: 2px solid;
+	}
 }
 
 button.viewOrderBtn {
@@ -138,13 +140,13 @@ button.viewOrderBtn {
 	-webkit-box-align: center;
 	-webkit-box-pack: center;
 	width: 100%;
-}
 
-button.viewOrderBtn:hover {
-	background-image: linear-gradient(#ca0f1a 0%, #ff033b 100%);
-	background-size: 100%;
-	position: relative;
-	z-index: 1;
+	&:hover {
+		background-image: linear-gradient(#ca0f1a 0%, #ff033b 100%);
+		background-size: 100%;
+		position: relative;
+		z-index: 1;
+	}
 }
 
 div#customerCheckoutButtons {
@@ -187,6 +189,65 @@ div.bagIcon {
 	-webkit-box-align: center;
 }
 
+div.checkoutItem {
+	display: flex;
+	font-size: .85em;
+	flex-direction: column;
+	margin: 1em;
+}
+
+div.checkoutItemEx {
+	text-align: left;
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+
+div.checkoutItemInfo {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+div.checkoutItemLeft {
+	margin-left: 15px;
+	text-align: left;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+div.checkoutItemRight {
+	display: flex;
+	flex-direction: flex-end;
+	align-items: center;
+	flex-direction: row;
+	margin-right: 15px;
+	text-align: right;
+	padding: 0px;
+}
+
+div.customerCheckout {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+
+div.customerCheckoutItems {
+	border: #000000 1px solid;
+	display: flex;
+	flex-direction: column;
+	height: 75%;
+	min-width: 60%;
+	overflow-y: scroll;
+	font-size: 1.5em;
+}
+
 div.order {
 	justify-content: flex-end;
 	margin-right: 0.5%;
@@ -206,6 +267,12 @@ div.title {
 	width: 73%;
 }
 
+form.customerNameForm {
+	font-family: inherit;
+	font-size: 14pt;
+	margin: 1em 0;
+}
+
 header {
 	text-align: center;
 }
@@ -213,6 +280,12 @@ header {
 img.menuIMG {
 	max-height: 100%;
 	max-width: 100%;
+}
+
+input#customerName {
+	font-family: inherit;
+	font-size: 14pt;
+	margin-left: 2.5em;
 }
 
 nav.desktop-navigation {
@@ -260,76 +333,4 @@ ul.menu {
 	padding-top: 64px;
 	text-align: center;
 	width: 100%;
-}
-
-div.customerCheckout {
-	height: 100vh;
-	width: 100vw;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-
-div.customerCheckoutItems {
-	border: #000000 1px solid;
-	display: flex;
-	flex-direction: column;
-	height: 75%;
-	min-width: 60%;
-	overflow-y: scroll;
-	font-size: 1.5em;
-}
-
-div.checkoutItem {
-	display: flex;
-	font-size: .85em;
-	flex-direction: column;
-	margin: 1em;
-}
-
-div.checkoutItemInfo {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	box-sizing: border-box;
-}
-
-div.checkoutItemRight {
-	display: flex;
-	flex-direction: flex-end;
-	align-items: center;
-	flex-direction: row;
-	margin-right: 15px;
-	text-align: right;
-	padding: 0px;
-}
-
-div.checkoutItemLeft {
-	margin-left: 15px;
-	text-align: left;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-
-div.checkoutItemEx {
-	text-align: left;
-	box-sizing: border-box;
-	margin: 0px;
-	padding: 0px;
-}
-
-
-form.customerNameForm {
-	font-family: inherit;
-	font-size: 14pt;
-	margin: 1em 0;
-}
-
-input#customerName {
-	font-family: inherit;
-	font-size: 14pt;
-	margin-left: 2.5em;
 }
