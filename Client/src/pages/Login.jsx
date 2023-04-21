@@ -5,7 +5,7 @@ import {endpoints} from "../utils/apiEndpoints";
 import {HOST} from "../utils/host";
 import logo from '../assets/CFA Banner.svg'
 import backdrop from '../assets/nuggetsmealheader.jpg'
-import '../styles/login.css'
+import '../styles/login.scss'
 
 import jwt_decode from "jwt-decode";
 

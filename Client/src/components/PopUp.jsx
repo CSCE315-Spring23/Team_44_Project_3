@@ -4,7 +4,7 @@ import {endpoints} from "../utils/apiEndpoints";
 import {HOST} from "../utils/host";
 import PopUpRow from "./PopUpRow";
 
-import "../styles/employee.css";
+import "../styles/employee.scss";
 
 export default function PopUp(props) {
     const item = props.item
