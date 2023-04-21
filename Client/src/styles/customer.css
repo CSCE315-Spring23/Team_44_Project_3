@@ -48,21 +48,31 @@ button#customerCheckoutBtn {
 	font-size: 18pt;
 	text-align: center;
 	padding: 30px 50px;
+	transition: all 0.3s ease-in-out;
 }
 
 button#customerCheckoutBtn:hover {
 	background-color: #034732;
 	box-shadow: 0px 0px 3px #005e13 inset;
+	transform: translateY(-3px);
 }
 
 button.cancelButton {
+	background-image: linear-gradient(#ad0a25, rgba(212, 0, 46, 0.99) 49%, rgba(254, 67, 108, .99));
 	border-radius: 10px;
 	border-style: none;
+	color: #ffffff;
 	cursor: pointer;
 	font-family: inherit;
 	font-size: 18pt;
-	text-align: center;
 	padding: 0px 10px;
+	text-align: center;
+	transition: all 0.3s ease-in-out;
+}
+
+button.cancelButton:hover {
+	background-position: bottom;
+	transform: translateY(-3px);
 }
 
 button.backButton {
@@ -124,7 +134,7 @@ button.viewOrderBtn {
 	pointer-events: auto;
 	position: relative;
 	text-decoration: none;
-	transition: all 250ms ease-out 0s;
+	transition: all 0.3s ease-in-out;
 	-webkit-box-align: center;
 	-webkit-box-pack: center;
 	width: 100%;
@@ -313,9 +323,13 @@ div.checkoutItemEx {
 
 
 form.customerNameForm {
+	font-family: inherit;
+	font-size: 14pt;
 	margin: 1em 0;
 }
 
 input#customerName {
+	font-family: inherit;
+	font-size: 14pt;
 	margin-left: 2.5em;
 }
