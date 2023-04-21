@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-import '../../styles/employee.css';
+import '../../styles/employee.scss';
 
 import DatabaseTablePane from "../../components/DatabaseTablePane";
 import EmployeeNav from "../../components/EmployeeNav";

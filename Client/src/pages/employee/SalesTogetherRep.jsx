@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import {useNavigate} from "react-router-dom";
 import DatabaseTablePane from "../../components/DatabaseTablePane";
 import EmployeeNav from "../../components/EmployeeNav";
-import '../../styles/employee.css';
+import '../../styles/employee.scss';
 import {endpoints} from "../../utils/apiEndpoints";
 import {HOST} from "../../utils/host";
 

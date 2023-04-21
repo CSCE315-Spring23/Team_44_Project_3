@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link, json, useNavigate } from "react-router-dom";
+import React, {useState, useEffect, useContext} from "react";
+import {Link, json, useNavigate} from "react-router-dom";
 import CustomerOrder from "./CustomerOrder";
-import { HOST } from "../../utils/host";
-import { endpoints } from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
+import {endpoints} from "../../utils/apiEndpoints";
 import CustomerCheckOutItem from "../../components/CustomerCheckOutItem";
 
-import "../../styles/customer.css";
+import "../../styles/customer.scss";
 export default function CustomerCheckout(props) {
 
 	const currentOrder = JSON.parse(localStorage.getItem('curOrder'));
@@ -15,10 +15,10 @@ export default function CustomerCheckout(props) {
 
 	const [showModal, setShowModal] = useState(false);
 
-	const [cart, setCart] = useState(currentOrder ? currentOrder : { total: [0], items: [] });
+	const [cart, setCart] = useState(currentOrder ? currentOrder : {total: [0], items: []});
 
 	function emptyCurrentOrder() {
-		const defaultOrder = { total: [0], items: [] };
+		const defaultOrder = {total: [0], items: []};
 		localStorage.setItem("curOrder", JSON.stringify(defaultOrder));
 		localStorage.setItem("numItems", "0");
 	}
@@ -38,11 +38,11 @@ export default function CustomerCheckout(props) {
 			const excluded = cart.items[cartID][4];
 
 			let excludedIDs = [];
-			for (let i = 0; i < excluded.length; i++) {
+			for (let i = 0;i < excluded.length;i++) {
 				excludedIDs.push(excluded[i].id);
 			}
 
-			const curItem = { "id": id, "quantity": count, "excluded": excludedIDs };
+			const curItem = {"id": id, "quantity": count, "excluded": excludedIDs};
 			itemsArr.push(curItem);
 		}
 
@@ -63,7 +63,7 @@ export default function CustomerCheckout(props) {
 		}
 		fetch(url, {
 			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify(order)
 		})
 			.then(response => {
@@ -81,7 +81,7 @@ export default function CustomerCheckout(props) {
 			navigate("/customer/order");
 		}, 3000);
 
-		const defaultOrder = { total: [0], items: [] };
+		const defaultOrder = {total: [0], items: []};
 		setCart(defaultOrder);
 		localStorage.setItem('curOrder', JSON.stringify(defaultOrder));
 		localStorage.setItem('numItems', '0');
@@ -123,11 +123,11 @@ export default function CustomerCheckout(props) {
 
 	}, []);
 
-	{/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */ }
+	{/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */}
 	const removeFromCart = (cartID) => {
 		console.log("remove from cart ->", cartID, cart.items[cartID][0]);
 
-		let newCart = { ...cart };
+		let newCart = {...cart};
 		newCart.total[0] -= newCart.items[cartID][2];
 		if (newCart.items[cartID][1] > 1) {
 			newCart.items[cartID][1] -= 1;
@@ -150,7 +150,7 @@ export default function CustomerCheckout(props) {
 		localStorage.setItem('curOrder', JSON.stringify(newCart));
 		localStorage.setItem('numItems', Object.keys(newCart.items).length);
 	}
-	{/* If items.quantity == 0, we remove the component from localstorage */ }
+	{/* If items.quantity == 0, we remove the component from localstorage */}
 
 	return (
 		<div>
@@ -181,7 +181,7 @@ export default function CustomerCheckout(props) {
 					))}
 					{props.excluded &&
 						<div className="checkoutItemEx">
-							<ul style={{ margin: 0 }}>
+							<ul style={{margin: 0}}>
 								{props.excluded && props.excluded.map((item, index) => {
 									if (item.name)
 										return <li key={index}>no {item.name}</li>

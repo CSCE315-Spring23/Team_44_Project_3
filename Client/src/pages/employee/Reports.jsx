@@ -1,7 +1,7 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import EmployeeNav from "../../components/EmployeeNav";
-import '../../styles/employee.css';
+import '../../styles/employee.scss';
 
 export default function Reports() {
     const navigate = useNavigate();
