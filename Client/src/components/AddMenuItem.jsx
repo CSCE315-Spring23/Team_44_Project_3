@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import PopUp from "./PopUp";
 
 /**
@@ -23,10 +23,10 @@ export default function AddMenuItem(props) {
     */
     const addToCart = (item, excludeItems) => {
         console.log("item: ", item, "excludeItems: ", excludeItems);
-        const cart = JSON.parse(localStorage.getItem("curOrder")) || { total: [0], items: {} };
+        const cart = JSON.parse(localStorage.getItem("curOrder")) || {total: [0], items: {}};
         let cartID = Object.keys(cart.items).length;
         console.log(cartID)
-        let newCart = { ...cart };
+        let newCart = {...cart};
 
         let numberOfItems = localStorage.getItem("numItems");
         numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
@@ -34,12 +34,12 @@ export default function AddMenuItem(props) {
         const menu = JSON.parse(localStorage.getItem("menu"));
 
         if (item.ids) {
-            for (let i = 0; i < item.ids.length; i++) {
+            for (let i = 0;i < item.ids.length;i++) {
                 menu.forEach((arrItem) => {
                     if (arrItem.id == item.ids[i]) {
                         let found = false;
                         for (let key in newCart.items) {
-                            if (newCart.items[key][0] === arrItem.name && (JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems) || i!=0)) {
+                            if (newCart.items[key][0] === arrItem.name && (JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems) || i != 0)) {
                                 newCart.items[key][1] += 1;
                                 newCart.total[0] += Number(arrItem.cost);
                                 found = true;
@@ -47,12 +47,7 @@ export default function AddMenuItem(props) {
                             }
                         }
                         if (!found) {
-                            if (i != 0) {
-                                newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, []];
-                            }
-                            else {
-                                newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, excludeItems];
-                            }
+                            newCart.item[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, i == 0 ? excludeItems : []];
                             newCart.total[0] += Number(arrItem.cost);
                             cartID++;
                         }

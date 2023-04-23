@@ -77,7 +77,9 @@ export default function PopUp(props) {
 
     return (
         <div className="PopUp">
-            Edit {props.item.name}
+            <div className="PopUpTitle">
+                Edit {props.item.name}
+            </div>
             <div className="PopUpRows">
                 {recipeItems && recipeItems.map((element) =>
                     <PopUpRow inventoryitem={element} handleExcludeClick={handleExcludeClick} />

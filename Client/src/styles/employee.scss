@@ -125,6 +125,14 @@ button.orderItemBtn:hover {
     background-color: #9c9c9c;
 }
 
+button.PopUpButton {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #011627;
+    font-family: inherit;
+    font-size: 14pt;
+}
+
 button.reportBtn {
     background-color: #D9D9D9;
     border-color: #808080;
@@ -309,14 +317,21 @@ div.PopUp.active {
     pointer-events: all;
 }
 
-div.PopUpRows {
-    width: 60%;
+div.PopUpTitle {
+    font-family: inherit;
+    font-size: 18pt;
 }
 
 div.PopUpRow {
     display: flex;
     flex-direction: row;
+    font-family: inherit;
+    font-size: 14pt;
     justify-content: flex-start;
+}
+
+div.PopUpRows {
+    width: 60%;
 }
 
 div.PopUpRowLeft {
@@ -336,17 +351,12 @@ div.PopUpRowRight {
 div.PopUpButtons {
     display: flex;
     flex-direction: row;
+    font-family: inherit;
+    font-size: 14pt;
     justify-content: space-between;
     width: 80%;
     margin-bottom: 10px;
 }
-
-div.PopUpButton {
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #011627;
-}
-
 
 div.repBody {
     display: flex;
