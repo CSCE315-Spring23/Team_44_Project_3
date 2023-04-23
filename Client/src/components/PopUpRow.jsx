@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
+import "../styles/employee.scss";
 
 export default function PopUpRow(props) {
 
@@ -13,12 +14,11 @@ export default function PopUpRow(props) {
 
     return (
         <div className="PopUpRow">
-            <div className="PopUpRowLeft">
-                {inventoryitem.name}
-            </div>
-            <div className="PopUpRowRight">
-                <input style={{ marginLeft: '.25em' }} type="checkbox" checked={checked} onChange={handleCheckboxChange} />
-            </div>
+            <label className="PopUpRowLeft">{inventoryitem.name}</label>
+            <label className="checkmark-container">
+                <input className={`PopUpRowRight ${checked ? "checked" : "not-checked"}`} type="checkbox" checked={checked} onChange={handleCheckboxChange} />
+                <span className="checkmark"></span>
+            </label>
         </div>
     );
 }

@@ -126,11 +126,21 @@ button.orderItemBtn:hover {
 }
 
 button.PopUpButton {
-    padding: 10px;
     border-radius: 10px;
     border: 1px solid #011627;
+    color: #ffffff;
+    cursor: pointer;
     font-family: inherit;
     font-size: 14pt;
+    padding: 10px;
+
+    &.addToCart {
+        background-image: linear-gradient(#008148 0%, #005e13 100%);
+    }
+
+    &.close {
+        background-image: linear-gradient(#ff033b 0%, #ca0f1a 100%);
+    }
 }
 
 button.reportBtn {
@@ -334,20 +344,6 @@ div.PopUpRows {
     width: 60%;
 }
 
-div.PopUpRowLeft {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 50%;
-}
-
-div.PopUpRowRight {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    width: 50%;
-}
-
 div.PopUpButtons {
     display: flex;
     flex-direction: row;
@@ -425,6 +421,52 @@ h2 {
     text-emphasis: bold;
 }
 
+input.PopUpRowRight {
+    display: none;
+
+    &:checked+span.checkmark::before {
+        content: "\2714";
+        display: block;
+        color: #008148;
+        text-align: center;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    &:not(:checked)+span.checkmark::after {
+        content: "\2716";
+        display: block;
+        color: #E51636;
+        text-align: center;
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+
+label.checkmark-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+
+    span.checkmark {
+        background-color: #ffffff;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block;
+        height: 20px;
+        transition: all 0.2s ease-out;
+        width: 20px;
+    }
+}
+
+label.PopUpRowLeft {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 50%;
+}
+
 nav.empNav {
     align-items: center;
     background-color: #f4f8f9;
@@ -435,8 +477,6 @@ nav.empNav {
     position: relative;
     width: 15%;
 }
-
-
 
 table th,
 table td {

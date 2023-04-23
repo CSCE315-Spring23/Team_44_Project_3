@@ -86,9 +86,9 @@ export default function PopUp(props) {
                 )}
             </div>
             <div className="PopUpButtons">
-                <button className="PopUpButton" onClick={() => props.setPopUp(false)}>Close</button>
+                <button className="PopUpButton close" onClick={() => props.setPopUp(false)}>Close</button>
                 <input type="text" placeholder="Special Notes" className="PopUpNotes" onChange={(e) => setNotes(e.target.value)} />
-                <button className="PopUpButton" onClick={handleSubmitClick}>Add to Cart</button>
+                <button className="PopUpButton addToCart" onClick={handleSubmitClick}>Add to Cart</button>
             </div>
         </div>
     );
