@@ -5,31 +5,257 @@ body {
     text-align: center;
 }
 
-button#checkoutBtn {
-    align-items: center;
-    background-color: #008000;
-    border-color: grey;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 0px;
-    box-shadow: 0px 3px 3px #005e13;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-    justify-content: center;
-    margin-bottom: 5%;
-    margin-top: 5%;
-    min-height: 90%;
-    min-width: 90%;
+h2 {
+    font-size: 1.5em;
     text-align: center;
-    text-decoration: none;
+    text-decoration: underline;
+    text-emphasis: bold;
 }
 
-button#checkoutBtn:hover {
-    background-color: #006100;
-    box-shadow: 0px 0px 3px #005e13 inset;
+table th,
+table td {
+    border: none;
+    text-align: center;
 }
+
+input.PopUpNotes {
+    font-family: inherit;
+    font-size: 14pt;
+}
+
+input.PopUpRowRight {
+    display: none;
+
+    &:checked+span.checkmark::before {
+        content: "\2714";
+        display: block;
+        color: #008148;
+        text-align: center;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    &:not(:checked)+span.checkmark::after {
+        content: "\2716";
+        display: block;
+        color: #E51636;
+        text-align: center;
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+
+label.checkmark-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+
+    span.checkmark {
+        background-color: #ffffff;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block;
+        height: 20px;
+        transition: all 0.2s ease-out;
+        width: 20px;
+    }
+}
+
+label.PopUpRowLeft {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 50%;
+}
+
+nav.empNav {
+    align-items: center;
+    background-color: #f4f8f9;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: start;
+    position: relative;
+    width: 15%;
+}
+
+table.databaseTable {
+    border-collapse: collapse;
+    margin: 0 .75em 0 .75em;
+    width: 98%;
+}
+
+div.backDiv {
+    align-items: center;
+    display: flex;
+    text-align: left;
+    -webkit-box-align: center;
+    width: 13.5%;
+}
+
+div.backText {
+    border: 0;
+    color: #485259;
+    font: inherit;
+    font-size: 100%;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    line-height: 20px;
+    margin: 0;
+    margin-left: 12px;
+    padding: 0;
+    vertical-align: initial;
+}
+
+div.empInventoryPage {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    min-width: 100%;
+}
+
+div.empMenuPage {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    min-width: 100%;
+}
+
+div.empOrderPage {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+div.excessRepTable {
+    max-height: 100vh;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+div.orderItemPane {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: 100vh;
+    overflow-y: scroll;
+    padding: 1%;
+    width: 65%;
+}
+
+div.PopUp {
+    align-items: center;
+    background-color: #f8f5ec;
+    border: 1px solid #011627;
+    border-radius: 1em;
+    box-shadow: -2px 5px 5px 0px #000000bf;
+    color: #011627;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    justify-content: space-between;
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    z-index: 9999;
+}
+
+div.PopUp.active {
+    pointer-events: all;
+}
+
+div.PopUpTitle {
+    font-family: inherit;
+    font-size: 18pt;
+}
+
+div.PopUpRow {
+    display: flex;
+    flex-direction: row;
+    font-family: inherit;
+    font-size: 14pt;
+    justify-content: flex-start;
+}
+
+div.PopUpRows {
+    width: 60%;
+}
+
+div.PopUpButtons {
+    display: flex;
+    flex-direction: row;
+    font-family: inherit;
+    font-size: 14pt;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+div.repBody {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+div.repDiv {
+    display: flex;
+    flex-direction: row;
+    max-height: 100vh;
+    width: 85%;
+}
+
+div.repHead {
+    margin-top: 10px;
+    width: 15%;
+}
+
+div.repXZInfo {
+    margin-left: 1em;
+    width: 25%;
+}
+
+div.repXZInfoBody {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+div.repZTable {
+    max-height: 100vh;
+    overflow-y: scroll;
+    width: 75%;
+}
+
+div.restockRepTable {
+    margin-top: 1em;
+    max-height: 100vh;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+div.salesInvItemTable {
+    max-height: 100vh;
+    overflow-y: scroll;
+    width: 50%;
+}
+
+div.salesMenuItemTable {
+    max-height: 100vh;
+    overflow-y: scroll;
+    width: 50%;
+}
+
+div.salesTogetherRepTable {
+    max-height: 100vh;
+    overflow-y: scroll;
+    width: 100%;
+}
+
 
 button.backButton {
     align-items: center;
@@ -244,253 +470,28 @@ div#reportsSelection {
     min-width: 80%;
 }
 
-div.backDiv {
+button#checkoutBtn {
     align-items: center;
-    display: flex;
-    text-align: left;
-    -webkit-box-align: center;
-    width: 13.5%;
-}
-
-div.backText {
-    border: 0;
-    color: #485259;
-    font: inherit;
-    font-size: 100%;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: -0.5px;
-    line-height: 20px;
-    margin: 0;
-    margin-left: 12px;
-    padding: 0;
-    vertical-align: initial;
-}
-
-div.empInventoryPage {
-    display: flex;
-    flex-direction: row;
-    min-height: 100vh;
-    min-width: 100%;
-}
-
-div.empMenuPage {
-    display: flex;
-    flex-direction: row;
-    min-height: 100vh;
-    min-width: 100%;
-}
-
-div.empOrderPage {
-    display: flex;
-    flex-direction: row;
-    min-height: 100vh;
-    width: 100vw;
-}
-
-div.excessRepTable {
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 100%;
-}
-
-div.orderItemPane {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-height: 100vh;
-    overflow-y: scroll;
-    padding: 1%;
-    width: 65%;
-}
-
-div.PopUp {
-    align-items: center;
-    background-color: #f8f5ec;
-    border: 1px solid #011627;
-    border-radius: 1em;
-    box-shadow: -2px 5px 5px 0px #000000bf;
-    color: #011627;
+    background-color: #008000;
+    border-color: grey;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 0px;
+    box-shadow: 0px 3px 3px #005e13;
+    color: white;
     display: flex;
     flex-direction: column;
-    height: 50%;
-    justify-content: space-between;
-    left: 50%;
-    position: fixed;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    z-index: 9999;
-}
-
-div.PopUp.active {
-    pointer-events: all;
-}
-
-div.PopUpTitle {
-    font-family: inherit;
-    font-size: 18pt;
-}
-
-div.PopUpRow {
-    display: flex;
-    flex-direction: row;
-    font-family: inherit;
-    font-size: 14pt;
-    justify-content: flex-start;
-}
-
-div.PopUpRows {
-    width: 60%;
-}
-
-div.PopUpButtons {
-    display: flex;
-    flex-direction: row;
-    font-family: inherit;
-    font-size: 14pt;
-    justify-content: space-between;
-    width: 80%;
-    margin-bottom: 10px;
-}
-
-div.repBody {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-
-div.repDiv {
-    display: flex;
-    flex-direction: row;
-    max-height: 100vh;
-    width: 85%;
-}
-
-div.repHead {
-    margin-top: 10px;
-    width: 15%;
-}
-
-div.repXZInfo {
-    margin-left: 1em;
-    width: 25%;
-}
-
-div.repXZInfoBody {
-    margin: 0;
-    padding: 0;
-    text-align: left;
-}
-
-div.repZTable {
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 75%;
-}
-
-div.restockRepTable {
-    margin-top: 1em;
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 100%;
-}
-
-div.salesInvItemTable {
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 50%;
-}
-
-div.salesMenuItemTable {
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 50%;
-}
-
-div.salesTogetherRepTable {
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 100%;
-}
-
-h2 {
-    font-size: 1.5em;
-    text-align: center;
-    text-decoration: underline;
-    text-emphasis: bold;
-}
-
-input.PopUpNotes {
-    font-family: inherit;
-    font-size: 14pt;
-}
-
-input.PopUpRowRight {
-    display: none;
-
-    &:checked+span.checkmark::before {
-        content: "\2714";
-        display: block;
-        color: #008148;
-        text-align: center;
-        font-size: 16px;
-        line-height: 20px;
-    }
-
-    &:not(:checked)+span.checkmark::after {
-        content: "\2716";
-        display: block;
-        color: #E51636;
-        text-align: center;
-        font-size: 16px;
-        line-height: 20px;
-    }
-}
-
-label.checkmark-container {
-    align-items: center;
-    display: flex;
+    font-weight: bold;
     justify-content: center;
-    width: 50%;
-
-    span.checkmark {
-        background-color: #ffffff;
-        border-radius: 5px;
-        cursor: pointer;
-        display: inline-block;
-        height: 20px;
-        transition: all 0.2s ease-out;
-        width: 20px;
-    }
-}
-
-label.PopUpRowLeft {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 50%;
-}
-
-nav.empNav {
-    align-items: center;
-    background-color: #f4f8f9;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: start;
-    position: relative;
-    width: 15%;
-}
-
-table th,
-table td {
-    border: none;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    min-height: 90%;
+    min-width: 90%;
     text-align: center;
+    text-decoration: none;
 }
 
-table.databaseTable {
-    border-collapse: collapse;
-    margin: 0 .75em 0 .75em;
-    width: 98%;
+button#checkoutBtn:hover {
+    background-color: #006100;
+    box-shadow: 0px 0px 3px #005e13 inset;
 }
