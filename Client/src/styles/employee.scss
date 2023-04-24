@@ -38,7 +38,7 @@ input.PopUpRowRight {
     &:not(:checked)+span.checkmark::after {
         content: "\2716";
         display: block;
-        color: #E51636;
+        color: #e51636;
         text-align: center;
         font-size: 16px;
         line-height: 20px;
@@ -71,7 +71,7 @@ label.PopUpRowLeft {
 
 nav.empNav {
     align-items: center;
-    background-color: #f4f8f9;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -148,7 +148,7 @@ div.orderItemPane {
 
 div.PopUp {
     align-items: center;
-    background-color: #f8f5ec;
+    background-color: #ffffff;
     border: 1px solid #011627;
     border-radius: 1em;
     box-shadow: -2px 5px 5px 0px #000000bf;
