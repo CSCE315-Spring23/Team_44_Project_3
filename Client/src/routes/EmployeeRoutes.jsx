@@ -11,6 +11,7 @@ import RestockRep from "../pages/employee/RestockRep";
 import SalesRep from "../pages/employee/SalesRep";
 import SalesTogetherRep from "../pages/employee/SalesTogetherRep";
 import XZRep from "../pages/employee/XZRep";
+import MenuBoard from "../pages/employee/MenuBoard";
 
 export default function EmployeeRoutes() {
     return (
@@ -28,6 +29,7 @@ export default function EmployeeRoutes() {
                     <Route path="XZ" element={<XZRep />}></Route>
                     <Route path="salestogether" element={<SalesTogetherRep />}></Route>
                 </Route>
+                <Route path = "menuboard" element={<MenuBoard />} />
             </Route>
         </Routes >
     );
