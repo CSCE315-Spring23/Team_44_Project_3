@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Outlet, useNavigate} from "react-router-dom";
 import CategoryItem from "../../components/CategoryItem";
-import Weather from "../../components/Weather";
 import {endpoints} from "../../utils/apiEndpoints";
 import {HOST} from "../../utils/host";
 import CustomerNav from '../../components/CustomerNav';
@@ -66,8 +65,6 @@ function CustomerOrder() {
 			<ul data-cy="MenuCategoryList" className="menu" role="list">
 				{categoryList}
 			</ul>
-
-			<Weather />
 
 			<Outlet />
 		</>
