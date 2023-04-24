@@ -7,15 +7,11 @@ import CustomerCheckOutItem from "../../components/CustomerCheckOutItem";
 
 import "../../styles/customer.scss";
 export default function CustomerCheckout(props) {
-
-	const currentOrder = JSON.parse(localStorage.getItem('curOrder')) || {total: [0], items: []};
-	console.log(currentOrder);
-	const items = Object.keys(currentOrder.items);
-
 	const navigate = useNavigate();
 
+	const currentOrder = JSON.parse(localStorage.getItem("curOrder")) || {total: [0], items: []};
+	const items = Object.keys(currentOrder.items);
 	const [showModal, setShowModal] = useState(false);
-
 	const [cart, setCart] = useState(currentOrder ? currentOrder : {total: [0], items: []});
 
 	function emptyCurrentOrder() {
@@ -46,6 +42,9 @@ export default function CustomerCheckout(props) {
 			const curItem = {"id": id, "quantity": count, "excluded": excludedIDs};
 			itemsArr.push(curItem);
 		}
+
+		if (itemsArr.length == 0)
+			return;
 
 		const order = {
 			customerName: document.getElementById("customerName").value != "" ?
@@ -84,8 +83,8 @@ export default function CustomerCheckout(props) {
 
 		const defaultOrder = {total: [0], items: []};
 		setCart(defaultOrder);
-		localStorage.setItem('curOrder', JSON.stringify(defaultOrder));
-		localStorage.setItem('numItems', '0');
+		localStorage.setItem("curOrder", JSON.stringify(defaultOrder));
+		localStorage.setItem("numItems", "0");
 		setOrderValue(0);
 
 	}
@@ -148,10 +147,12 @@ export default function CustomerCheckout(props) {
 		let newTotal = Math.abs(newCart.total[0]);
 
 		setOrderValue(newTotal);
-		localStorage.setItem('curOrder', JSON.stringify(newCart));
-		localStorage.setItem('numItems', Object.keys(newCart.items).length);
+		localStorage.setItem("curOrder", JSON.stringify(newCart));
+		localStorage.setItem("numItems", Object.keys(newCart.items).length);
+
+		const checkOutBtn = document.getElementById("customerCheckoutBtn");
+		checkOutBtn.disabled = Object.keys(newCart.item).length == 0;
 	}
-	{/* If items.quantity == 0, we remove the component from localstorage */}
 
 	return (
 		<div>
