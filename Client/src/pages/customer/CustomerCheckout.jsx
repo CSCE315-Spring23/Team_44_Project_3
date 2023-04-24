@@ -8,7 +8,8 @@ import CustomerCheckOutItem from "../../components/CustomerCheckOutItem";
 import "../../styles/customer.scss";
 export default function CustomerCheckout(props) {
 
-	const currentOrder = JSON.parse(localStorage.getItem('curOrder'));
+	const currentOrder = JSON.parse(localStorage.getItem('curOrder')) || {total: [0], items: []};
+	console.log(currentOrder);
 	const items = Object.keys(currentOrder.items);
 
 	const navigate = useNavigate();
