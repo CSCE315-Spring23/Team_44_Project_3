@@ -19,7 +19,7 @@ export default function CustomerCheckout(props) {
 	const [cart, setCart] = useState(currentOrder ? currentOrder : {total: [0], items: []});
 
 	function emptyCurrentOrder() {
-		const defaultOrder = {total: [0], items: []};
+		const defaultOrder = {total: [0], items: {}};
 		localStorage.setItem("curOrder", JSON.stringify(defaultOrder));
 		localStorage.setItem("numItems", "0");
 	}
@@ -139,7 +139,7 @@ export default function CustomerCheckout(props) {
 
 		//check if one of the items in the cart is null, remove it
 		for (let item in newCart.items) {
-			if (newCart.items[item] == null) {
+			if (newCart.items[item] === null) {
 				delete newCart.items[item];
 			}
 		}
