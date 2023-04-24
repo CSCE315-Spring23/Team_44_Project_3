@@ -11,7 +11,7 @@ export default function CheckoutPanel(props) {
     console.log(cart)
 
     //sends order to server when checkout button clicked
-    const checkoutBtnClicked = () => {
+    function checkoutBtnClicked() {
         const EMP_ID = localStorage.getItem("employeeId");
         console.log(EMP_ID);
         /*
@@ -78,7 +78,7 @@ export default function CheckoutPanel(props) {
 
 
     //change customer name
-    const handleNameChanged = (comp) => {
+    function handleNameChanged(comp) {
         localStorage.setItem("custName", comp.target.value);
         setCustName(comp.target.value);
     }
