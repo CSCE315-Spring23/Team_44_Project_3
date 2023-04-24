@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { endpoints } from "../utils/apiEndpoints";
 import { HOST } from "../utils/host";
+import Weather from "./Weather.jsx";
 
 function CustomerNav(props) {
     const numberOfItems = props.numberOfItems;
@@ -76,6 +77,8 @@ function CustomerNav(props) {
                         </div>
                     </button>
                 </div>
+                
+                <Weather />
 
                 <div className="title">{title}</div>
 

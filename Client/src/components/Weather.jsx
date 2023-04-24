@@ -25,8 +25,8 @@ const Weather = () => {
 
     return (
         <div className="weather">
-            {temperature && <p>{temperature.toFixed(2)} &#x2109;</p>}
             <img src={"https://openweathermap.org/img/wn/" + icon + "@2x.png"} />
+            {temperature && <p>{temperature.toFixed(2)} ℉</p>}
             {/* {weather && <p>{weather}</p>} */}
             {/* {description && <p>{description}</p>} */}
         </div>
