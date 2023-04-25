@@ -7,8 +7,8 @@ import React from 'react';
  */
 export default function CategoryItem(props) {
     const item = props.item;
-    return (
 
+    return (
         <li role="listitem">
             <a href={`/customer/order/${item.title.toLowerCase()}`} className="menuLink">
                 <button data-cy={`\"${item.name}\"`} className="menuButton">

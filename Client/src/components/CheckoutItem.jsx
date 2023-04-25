@@ -1,8 +1,7 @@
 import React from "react";
 
 export default function CheckoutItem(props) {
-
-    const handleClick = () => {
+    function handleClick() {
         props.onClick(props.cartID);
     }
 

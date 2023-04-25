@@ -7,9 +7,8 @@ import PopUp from "./PopUp";
  * @returns a component to render a food category onto the CustomerOrder screen 
  */
 export default function AddMenuItem(props) {
-
+    const [itemCost, setItemCost] = useState(0);
     const [popUp, setPopUp] = useState(false);
-
     const item = props.item;
 
 
@@ -21,7 +20,7 @@ export default function AddMenuItem(props) {
         }
 
     */
-    const addToCart = (item, excludeItems) => {
+    function addToCart(item, excludeItems) {
         console.log("item: ", item, "excludeItems: ", excludeItems);
         const cart = JSON.parse(localStorage.getItem("curOrder")) || {total: [0], items: {}};
         let cartID = Object.keys(cart.items).length;
@@ -86,11 +85,10 @@ export default function AddMenuItem(props) {
         localStorage.setItem("curOrder", JSON.stringify(newCart));
     }
 
-    const openPopUp = () => {
+    function openPopUp() {
         setPopUp(true);
     }
 
-    const [itemCost, setItemCost] = useState(0);
     useEffect(() => {
         const menu = JSON.parse(localStorage.getItem("menu"));
         let cost = 0;

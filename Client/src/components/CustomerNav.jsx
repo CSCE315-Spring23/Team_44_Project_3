@@ -16,12 +16,22 @@ function CustomerNav(props) {
     }
 
     function checkoutPage() {
-        navigate("/customer/order/checkout");
+        if (numItems > 0) {
+            navigate("/customer/order/checkout");
+        } else {
+            
+        }
     }
 
     //get menu and update total
     const [orderTotal, setOrderTotal] = useState(0);
     useEffect(() => {
+        var button = document.getElementsByClassName("viewOrderBtn");
+        if (numItems > 0) {
+            button.disabled = false;
+        } else {
+            button.disabled = true;
+        }
         //get menu
         const url = HOST + endpoints.getMenu;
         fetch(url, {
