@@ -495,3 +495,33 @@ button#checkoutBtn:hover {
     background-color: #006100;
     box-shadow: 0px 0px 3px #005e13 inset;
 }
+
+
+div.menuBoardPage{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+div.menuBoardTitle{
+    height: 10%;
+    width: 100%;
+}
+
+div.menuBoard{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    div.menuBoardItem{
+        text-align: left;
+    }
+
+    div.menuBoardCate{
+    }
+}
+
