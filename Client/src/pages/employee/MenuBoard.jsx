@@ -73,7 +73,101 @@ export default function MenuBoard(props) {
                 <div className="menuBoardTitle">
                     <h1>Menu</h1>
                 </div>
+
+                <div className="menuBoard">
+                    <div className="menuBoardEntrees">
+                        <div className="menuBoardCate">
+                            <h2>Entrees</h2>
+                        </div>
+                        <div className="menuBoardList">
+                            {entrees.map((item, index) => (
+                                <div className="menuBoardItem" key={index}>
+                                    <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                    <p>Meal: ${(parseFloat(item.cost) + meal).toFixed(2)}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="menuBoardSS">
+                        <div className="menuBoardSalads">
+                            <div className="menuBoardCate">
+                                <h2>Salads</h2>
+                            </div>
+                            <div className="menuBoardList">
+                                {salads.map((item, index) => (
+                                    <div className="menuBoardItem" key={index}>
+                                        <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="menuBoardSides">
+                            <div className="menuBoardCate">
+                                <h2>Sides</h2>
+                            </div>
+                            <div className="menuBoardList">
+                                {sides.map((item, index) => (
+                                    <div className="menuBoardItem" key={index}>
+                                        <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="menuBoardTreats">
+                        <div className="menuBoardCate">
+                            <h2>Treats</h2>
+                        </div>
+                        <div className="menuBoardList">
+                            {treats.map((item, index) => (
+                                <div className="menuBoardItem" key={index}>
+                                    <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="menuBoardBeverages">
+                        <div className="menuBoardCate">
+                            <h2>Beverages</h2>
+                        </div>
+                        <div className="menuBoardList">
+                            {beverages.map((item, index) => (
+                                <div className="menuBoardItem" key={index}>
+                                    <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="menuBoardSauces">
+                        <div className="menuBoardCate">
+                            <h2>Sauces</h2>
+                        </div>
+                        <div className="menuBoardList">
+                            {sauces.map((item, index) => (
+                                <div className="menuBoardItem" key={index}>
+                                    <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="menuBoardSeasonal">
+                        <div className="menuBoardCate">
+                            <h2>Seasonal</h2>
+                        </div>
+                        <div className="menuBoardList">
+                            {seasonal.map((item, index) => (
+                                <div className="menuBoardItem" key={index}>
+                                    <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </PageProtector>
+        </PageProtector >
     );
 }
