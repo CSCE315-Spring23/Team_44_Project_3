@@ -1,5 +1,11 @@
-import React, { useState } from "react";
+/** React component for generating excess report
+ * @module ExcessRep
+ * @param {object} props - Component props
+ * @param {boolean} props.isManager - Determines if the user is a manager or not
+ * @return {JSX.Element} - Returns JSX code for Excess Report component
+*/
 
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from 'react-router-dom';
@@ -11,12 +17,43 @@ import { HOST } from "../../utils/host";
 import PageProtector from "../../components/PageProtector";
 
 
+/** 
+ * Excess Report component
+ * @function
+ * @returns {JSX.Element}
+*/
 export default function ExcessRep(props) {
+
+    /**
+     * Determines if the user is a manager or not
+     * @type {boolean}
+    */
     const isManager = props.isManager;
+
+    /**
+     * State hook to store excess report table data
+     * @type {Array}
+    */
     const [excessRepTable, setExcessRepTable] = useState([]);
+
+    /**
+     * State hook to store start date of excess report
+     * @type {Date|null}
+    */
     const [startDate, setStartDate] = useState(null);
+
+    /**
+     * State hook to store selected start date of excess report
+     * @type {Date|null}
+    */
     const [selectedStartDate, setSelectedDate] = useState(null);
 
+    /**
+     * Event handler for changing start date of excess report
+     * @function
+     * @param {Date} date - Selected date for excess report start date
+     * @returns {void}
+    */
     const handleStartDateChange = (date) => {
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
@@ -25,6 +62,10 @@ export default function ExcessRep(props) {
         setStartDate(`${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`);
     }
 
+    /**
+     * @function async
+     * Fetch the table from server and set the table state
+     */
     const genReport = async () => {
         const today = new Date();
         const year = today.getFullYear();
@@ -50,8 +91,10 @@ export default function ExcessRep(props) {
             );
     }
 
+    /**
+     * Navigate hook to go to the default reports page
+     */
     const navigate = useNavigate();
-
     function navigateOrderPage() {
         navigate("/employee/reports")
     }

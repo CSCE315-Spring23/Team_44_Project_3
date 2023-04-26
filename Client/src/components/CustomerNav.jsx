@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { endpoints } from "../utils/apiEndpoints";
-import { HOST } from "../utils/host";
+import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
 import Weather from "./Weather.jsx";
 
+/**
+ * A navigation bar for the customer view.
+ * @param {Object} props - The props object that contains the numberOfItems, title and navPage values.
+ * @returns {JSX.Element} - A JSX element that represents the navigation bar for the customer view.
+ */
 function CustomerNav(props) {
     const numberOfItems = props.numberOfItems;
     const title = props.title;
@@ -11,27 +16,29 @@ function CustomerNav(props) {
 
     const navigate = useNavigate();
 
+    /**
+     * Navigates to a specified page
+     */
     function navigagePage() {
         navigate(navPage);
     }
 
+    /**
+     * Navigates to the checkout page if there are items in the cart.
+     * Otherwise, returns null.
+     */
     function checkoutPage() {
-        if (numItems > 0) {
+        if (numItems > 0)
             navigate("/customer/order/checkout");
-        } else {
-            
-        }
+        else
+            return;
     }
 
     //get menu and update total
     const [orderTotal, setOrderTotal] = useState(0);
     useEffect(() => {
         var button = document.getElementsByClassName("viewOrderBtn");
-        if (numItems > 0) {
-            button.disabled = false;
-        } else {
-            button.disabled = true;
-        }
+        button.disabled = numItems == 0;
         //get menu
         const url = HOST + endpoints.getMenu;
         fetch(url, {
@@ -62,14 +69,17 @@ function CustomerNav(props) {
     const [numItems, setNumItems] = useState(localStorage.getItem("numItems") || 0);
 
     useEffect(() => {
-        const updateNumItems = () => {
+        /**
+         * Updates the number of items in the cart.
+         */
+        function updateNumItems() {
             setNumItems(localStorage.getItem("numItems") || 0);
         };
 
-        window.addEventListener("storage", () => { updateNumItems() });
+        window.addEventListener("storage", () => {updateNumItems()});
 
         return () => {
-            window.removeEventListener("storage", () => { updateNumItems() });
+            window.removeEventListener("storage", () => {updateNumItems()});
         };
     }, []);
 
@@ -87,7 +97,7 @@ function CustomerNav(props) {
                         </div>
                     </button>
                 </div>
-                
+
                 <Weather />
 
                 <div className="title">{title}</div>

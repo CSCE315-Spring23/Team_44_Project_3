@@ -175,12 +175,13 @@ div.PopUpButtons {
     margin-bottom: 3em;
 }
 
-div.PopUpQuantity{
+div.PopUpQuantity {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    div.PopUpQuantityNumber{
+
+    div.PopUpQuantityNumber {
         margin: 0em .25em;
     }
 }
@@ -488,7 +489,7 @@ button#checkoutBtn:hover {
 }
 
 
-div.menuBoardPage{
+div.menuBoardPage {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
@@ -496,23 +497,37 @@ div.menuBoardPage{
     flex-direction: column;
 }
 
-div.menuBoardTitle{
-    height: 10%;
+div.menuBoardTitle {
+    height: 5%;
     width: 100%;
+
+    h1{
+        margin: 0;
+    }
 }
 
-div.menuBoard{
-    height: 90%;
-    width: 100%;
+div.menuBoard {
+    height: 95%;
+    width: 90%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    align-self: center;
 
-    div.menuBoardItem{
+    div.menuBoardItem {
         text-align: left;
+        margin-bottom: .5em;
+        h4{
+            margin: 0;
+            font-size: .75em;
+        }
     }
 
-    div.menuBoardCate{
+    img {
+        height: 10%;
+        width: 10%;
     }
+
+    div.menuBoardCate {}
+
 }
-
