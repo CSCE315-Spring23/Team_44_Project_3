@@ -10,7 +10,8 @@ export default function PageProtector({ children }) {
             setIsLoading(false);
         }
         else{
-            nav("/");
+            console.log("pageprotector nav to login");
+            //nav("/");
             setIsLoading(true);
         }
     },[]);

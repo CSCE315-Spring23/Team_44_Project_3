@@ -17,7 +17,7 @@ import PageProtector from "../components/PageProtector";
 export default function EmployeeRoutes() {
     return (
         <PageProtector>
-            <Routes>
+            <Routes className='empRoutes'>
                 <Route path="/employee">
                     <Route path='order' element={<Order />} />
                     <Route path='orderHistory' element={<OrderHistory />} />
