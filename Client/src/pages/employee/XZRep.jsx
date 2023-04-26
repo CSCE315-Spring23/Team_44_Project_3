@@ -1,11 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import DatabaseTablePane from "../../components/DatabaseTablePane";
 import EmployeeNav from "../../components/EmployeeNav";
 import '../../styles/employee.scss';
-import {endpoints} from "../../utils/apiEndpoints";
-import {HOST} from "../../utils/host";
+import { endpoints } from "../../utils/apiEndpoints";
+import { HOST } from "../../utils/host";
+import PageProtector from "../../components/PageProtector";
+
 
 export default function XZRep(props) {
     const isManager = props.isManager;
@@ -78,7 +80,7 @@ export default function XZRep(props) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({employeeid: EMP_ID})
+            body: JSON.stringify({ employeeid: EMP_ID })
         })
             .then(response => response.json())
             .then(data => {
@@ -124,43 +126,45 @@ export default function XZRep(props) {
     }
 
     return (
-        <div className="empOrderPage">
-            <EmployeeNav isManager={isManager}></EmployeeNav>
-            <div className="repDiv">
-                <div className="repHead">
-                    <div className="backDiv">
-                        <button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigateOrderPage}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                </path>
-                            </svg>
-                            <div aria-hidden="true" className="backText">
-                                Back
-                            </div>
-                        </button>
+        <PageProtector>
+            <div className="empOrderPage">
+                <EmployeeNav isManager={isManager}></EmployeeNav>
+                <div className="repDiv">
+                    <div className="repHead">
+                        <div className="backDiv">
+                            <button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigateOrderPage}>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    </path>
+                                </svg>
+                                <div aria-hidden="true" className="backText">
+                                    Back
+                                </div>
+                            </button>
+                        </div>
+                        <h2>XZ Reports</h2>
+                        <button className="goButton" onClick={createZReport}>Create Z Report</button>
+                        <button className="goButton" onClick={viewXReport}>View X Report</button>
                     </div>
-                    <h2>XZ Reports</h2>
-                    <button className="goButton" onClick={createZReport}>Create Z Report</button>
-                    <button className="goButton" onClick={viewXReport}>View X Report</button>
-                </div>
 
-                <div className="repBody">
-                    <div className="repZTable">
-                        <h3>Z Reports</h3>
-                        {zReport}
-                    </div>
-                    <div className="repXZInfo">
-                        <h3>Info</h3>
-                        <div className="repXZInfoBody">
-                            <p>Report Type: {reportType}</p>
-                            <p>Employee: {employee}</p>
-                            <p>Date Created: {dateCreated.split('T')[0]}</p>
-                            <p>Since Order ID: {orderID}</p>
-                            <p>Total Sales since last Z Report: ${totalSales}</p>
+                    <div className="repBody">
+                        <div className="repZTable">
+                            <h3>Z Reports</h3>
+                            {zReport}
+                        </div>
+                        <div className="repXZInfo">
+                            <h3>Info</h3>
+                            <div className="repXZInfoBody">
+                                <p>Report Type: {reportType}</p>
+                                <p>Employee: {employee}</p>
+                                <p>Date Created: {dateCreated.split('T')[0]}</p>
+                                <p>Since Order ID: {orderID}</p>
+                                <p>Total Sales since last Z Report: ${totalSales}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </PageProtector>
     );
 }

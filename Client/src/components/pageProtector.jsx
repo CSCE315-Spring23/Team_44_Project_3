@@ -11,7 +11,7 @@ export default function PageProtector({ children }) {
         }
         else{
             console.log("pageprotector nav to login");
-            //nav("/");
+            nav("/");
             setIsLoading(true);
         }
     },[]);

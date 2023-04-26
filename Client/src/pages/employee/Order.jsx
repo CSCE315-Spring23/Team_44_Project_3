@@ -62,10 +62,12 @@ export default function Order(props) {
 
     const isManager = props.isManager;
     return (
+        <PageProtector>
             <div className="empOrderPage">
                 <EmployeeNav isManager={isManager} current={"order"} />
                 <OrderItemPane addToCart={addToCart}></OrderItemPane>
                 <CheckoutPanel cart={cart} emptyCart={emptyCart} removeFromCart={removeFromCart} />
             </div >
+        </PageProtector>
     );
 }

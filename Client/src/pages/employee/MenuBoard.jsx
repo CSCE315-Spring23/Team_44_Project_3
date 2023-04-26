@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { HOST } from "../../utils/host";
 import { endpoints } from "../../utils/apiEndpoints";
+import PageProtector from "../../components/PageProtector";
+
 
 
 
@@ -16,10 +18,12 @@ export default function MenuBoard(props) {
 
 
     return (
-        <div className="menuBoardPage">
-            <div className="menuBoardTitle">
-                <h1>Menu</h1>
+        <PageProtector>
+            <div className="menuBoardPage">
+                <div className="menuBoardTitle">
+                    <h1>Menu</h1>
+                </div>
             </div>
-        </div>
+        </PageProtector>
     );
 }

@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import DatabaseTablePane from "../../components/DatabaseTablePane";
 import EmployeeNav from "../../components/EmployeeNav";
 import '../../styles/employee.scss';
-import {endpoints} from "../../utils/apiEndpoints";
-import {HOST} from "../../utils/host";
+import { endpoints } from "../../utils/apiEndpoints";
+import { HOST } from "../../utils/host";
+import PageProtector from "../../components/PageProtector";
+
 
 export default function OrderHistory(props) {
 
@@ -54,16 +56,18 @@ export default function OrderHistory(props) {
     }
 
     return (
-        <div className="empOrderPage">
-            <EmployeeNav isManager={isManager} current={"history"} />
-            <div id="orderHistoryTableDiv">
-                <h2>Order History</h2>
-                {orderHistTable}
+        <PageProtector>
+            <div className="empOrderPage">
+                <EmployeeNav isManager={isManager} current={"history"} />
+                <div id="orderHistoryTableDiv">
+                    <h2>Order History</h2>
+                    {orderHistTable}
+                </div>
+                <div id="orderHistoryInfoDiv">
+                    <h3>View Order #{orderHistInfoID}</h3>
+                    {orderHistInfo}
+                </div>
             </div>
-            <div id="orderHistoryInfoDiv">
-                <h3>View Order #{orderHistInfoID}</h3>
-                {orderHistInfo}
-            </div>
-        </div>
+        </PageProtector>
     );
 }
