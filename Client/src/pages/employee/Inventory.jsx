@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import '../../styles/employee.scss';
 
 import DatabaseTablePane from "../../components/DatabaseTablePane";
 import EmployeeNav from "../../components/EmployeeNav";
 import Form from "../../components/Form";
-import {endpoints} from "../../utils/apiEndpoints";
-import {HOST} from "../../utils/host";
+import { endpoints } from "../../utils/apiEndpoints";
+import { HOST } from "../../utils/host";
+import PageProtector from "../../components/PageProtector";
 
 
 export default function Inventory(props) {
@@ -38,10 +39,10 @@ export default function Inventory(props) {
     }
 
     const updateInventoryFields = [
-        {name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID"},
-        {name: "newName", label: "New Name", type: "text", placeholder: "New Name"},
-        {name: "newQuantity", label: "New Quantity", type: "text", placeholder: "New Quantity"},
-        {name: "newThreshold", label: "New Threshold", type: "text", placeholder: "New Threshold"}
+        { name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID" },
+        { name: "newName", label: "New Name", type: "text", placeholder: "New Name" },
+        { name: "newQuantity", label: "New Quantity", type: "text", placeholder: "New Quantity" },
+        { name: "newThreshold", label: "New Threshold", type: "text", placeholder: "New Threshold" }
     ];
 
     const handleUpdateInventory = (formState) => {
@@ -78,9 +79,9 @@ export default function Inventory(props) {
     }
 
     const addInventoryFields = [
-        {name: "itemName", label: "Item Name", type: "text", placeholder: "Item Name"},
-        {name: "itemQuantity", label: "Item Quantity", type: "text", placeholder: "Item Quantity"},
-        {name: "itemThreshold", label: "Item Threshold", type: "text", placeholder: "Item Threshold"}
+        { name: "itemName", label: "Item Name", type: "text", placeholder: "Item Name" },
+        { name: "itemQuantity", label: "Item Quantity", type: "text", placeholder: "Item Quantity" },
+        { name: "itemThreshold", label: "Item Threshold", type: "text", placeholder: "Item Threshold" }
     ];
 
     const handleAddInventory = (formState) => {
@@ -114,7 +115,7 @@ export default function Inventory(props) {
     }
 
     const deleteInventoryFields = [
-        {name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID"},
+        { name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID" },
     ];
 
     const handleDeleteInventory = (formState) => {
@@ -143,28 +144,30 @@ export default function Inventory(props) {
             );
     }
     return (
-        <div className="empInventoryPage">
-            <EmployeeNav isManager={isManager} current={"inventory"} />
-            <div id="inventoryTableDiv">
-                <h2>Inventory</h2>
-                {inventoryTable}
+        <PageProtector>
+            <div className="empInventoryPage">
+                <EmployeeNav isManager={isManager} current={"inventory"} />
+                <div id="inventoryTableDiv">
+                    <h2>Inventory</h2>
+                    {inventoryTable}
+                </div>
+                <div id="inventoryFormsDiv">
+                    <div id="updateInventoryFormDiv">
+                        <h4>Update Inventory Item</h4>
+                        <Form fields={updateInventoryFields} onSubmit={handleUpdateInventory} />
+                    </div>
+                    <hr style={{ marginRight: "5px" }}></hr>
+                    <div id="addInventoryFormDiv">
+                        <h4>Add Inventory Item</h4>
+                        <Form fields={addInventoryFields} onSubmit={handleAddInventory} />
+                    </div>
+                    <hr style={{ marginRight: "5px" }}></hr>
+                    <div id="deleteInventoryFormDiv">
+                        <h4>Delete Inventory Item</h4>
+                        <Form fields={deleteInventoryFields} onSubmit={handleDeleteInventory} />
+                    </div>
+                </div>
             </div>
-            <div id="inventoryFormsDiv">
-                <div id="updateInventoryFormDiv">
-                    <h4>Update Inventory Item</h4>
-                    <Form fields={updateInventoryFields} onSubmit={handleUpdateInventory} />
-                </div>
-                <hr style={{marginRight: "5px"}}></hr>
-                <div id="addInventoryFormDiv">
-                    <h4>Add Inventory Item</h4>
-                    <Form fields={addInventoryFields} onSubmit={handleAddInventory} />
-                </div>
-                <hr style={{marginRight: "5px"}}></hr>
-                <div id="deleteInventoryFormDiv">
-                    <h4>Delete Inventory Item</h4>
-                    <Form fields={deleteInventoryFields} onSubmit={handleDeleteInventory} />
-                </div>
-            </div>
-        </div>
+        </PageProtector>
     );
 }

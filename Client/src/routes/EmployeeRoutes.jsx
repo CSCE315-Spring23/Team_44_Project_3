@@ -16,8 +16,7 @@ import PageProtector from "../components/PageProtector";
 
 export default function EmployeeRoutes() {
     return (
-        <PageProtector>
-            <Routes>
+            <Routes className='empRoutes'>
                 <Route path="/employee">
                     <Route path='order' element={<Order />} />
                     <Route path='orderHistory' element={<OrderHistory />} />
@@ -34,6 +33,5 @@ export default function EmployeeRoutes() {
                     <Route path="menuboard" element={<MenuBoard />} />
                 </Route>
             </Routes >
-        </PageProtector>
     );
 }

@@ -15,8 +15,8 @@ function App() {
 				<Route path="/Login" element={<Login />} />
 				<Route path="/Test" element={<Test />} />  {/* This is a test page for testing API calls, remove in done*/}
 			</Routes>
-			<CustomerRoutes />
-			<EmployeeRoutes />
+			<CustomerRoutes></CustomerRoutes>
+			<EmployeeRoutes></EmployeeRoutes>
 		</BrowserRouter>
 	);
 }
