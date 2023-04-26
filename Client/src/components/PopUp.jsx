@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
-import {endpoints} from "../utils/apiEndpoints";
-import {HOST} from "../utils/host";
+import { endpoints } from "../utils/apiEndpoints";
+import { HOST } from "../utils/host";
 import PopUpRow from "./PopUpRow";
 
 import "../styles/employee.scss";
@@ -11,6 +11,8 @@ export default function PopUp(props) {
     const [recipeItems, setRecipeItems] = useState(null);
     const [excludeItems, setExcludeItems] = useState([]);
     const [notes, setNotes] = useState("");
+
+    const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
         const singleItem = async (url) => {
@@ -59,7 +61,8 @@ export default function PopUp(props) {
         console.log(excludeItems);
         if (notes !== "")
             excludeItems.push(notes);
-        props.addToCart(item, excludeItems);
+        for (let i = 0; i < quantity; i++)
+            props.addToCart(item, excludeItems);
         props.setPopUp(false);
     }
 
@@ -72,6 +75,16 @@ export default function PopUp(props) {
         else {
             setExcludeItems(excludeItems.filter((element) => element !== item));
         }
+    }
+
+
+    const addQuantity = () => {
+        setQuantity(quantity + 1);
+    }
+
+    const subtractQuantity = () => {
+        if (quantity > 1)
+            setQuantity(quantity - 1);
     }
 
 
@@ -88,6 +101,11 @@ export default function PopUp(props) {
             <div className="PopUpButtons">
                 <button className="PopUpButton close" onClick={() => props.setPopUp(false)}>Close</button>
                 <input type="text" placeholder="Special Notes" className="PopUpNotes" onChange={(e) => setNotes(e.target.value)} />
+                <div className="PopUpQuantity">
+                    <button className="PopUpButtonSubtract" onClick={subtractQuantity}>-</button>
+                    <div className="PopUpQuantityNumber">Quantity: {quantity}</div>
+                    <button className="PopUpButtonAdd" onClick={addQuantity}>+</button>
+                </div>
                 <button className="PopUpButton addToCart" onClick={handleSubmitClick}>Add to Cart</button>
             </div>
         </div>

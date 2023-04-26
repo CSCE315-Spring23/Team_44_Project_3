@@ -196,6 +196,18 @@ div.PopUpButtons {
     margin-bottom: 3em;
 }
 
+div.PopUpQuantity{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    div.PopUpQuantityNumber{
+        margin: 0em .25em;
+    }
+}
+
+
+
 div.repBody {
     display: flex;
     flex-direction: row;

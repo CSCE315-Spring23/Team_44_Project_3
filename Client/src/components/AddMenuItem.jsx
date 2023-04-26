@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import PopUp from "./PopUp";
 
 /**
@@ -22,10 +22,10 @@ export default function AddMenuItem(props) {
     */
     function addToCart(item, excludeItems) {
         console.log("item: ", item, "excludeItems: ", excludeItems);
-        const cart = JSON.parse(localStorage.getItem("curOrder")) || {total: [0], items: {}};
+        const cart = JSON.parse(localStorage.getItem("curOrder")) || { total: [0], items: {} };
         let cartID = Object.keys(cart.items).length;
         console.log(cartID)
-        let newCart = {...cart};
+        let newCart = { ...cart };
 
         let numberOfItems = localStorage.getItem("numItems");
         numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
@@ -33,9 +33,12 @@ export default function AddMenuItem(props) {
         const menu = JSON.parse(localStorage.getItem("menu"));
 
         if (item.ids) {
-            for (let i = 0;i < item.ids.length;i++) {
+            for (let i = 0; i < item.ids.length; i++) {
+                console.log("item.ids[i]: ", item.ids[i])
                 menu.forEach((arrItem) => {
                     if (arrItem.id == item.ids[i]) {
+                        console.log("arrItem: ", arrItem)
+
                         let found = false;
                         for (let key in newCart.items) {
                             if (newCart.items[key][0] === arrItem.name && (JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems) || i != 0)) {
@@ -46,7 +49,7 @@ export default function AddMenuItem(props) {
                             }
                         }
                         if (!found) {
-                            newCart.item[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, i == 0 ? excludeItems : []];
+                            newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, i == 0 ? excludeItems : []];
                             newCart.total[0] += Number(arrItem.cost);
                             cartID++;
                         }
