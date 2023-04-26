@@ -1,10 +1,14 @@
 import React from 'react';
 
 /**
- * 
- * @param {*} props 
- * @returns a component to render a food category onto the CustomerOrder screen 
- */
+ * A React component that renders a food category onto the CustomerOrder screen.
+ * @param {Object} props - The props object containing the item property.
+ * @param {Object} props.item - The food category item to be rendered.
+ * @param {string} props.item.name - The name of the food category.
+ * @param {string} props.item.title - The title of the food category.
+ * @param {string} props.item.src - The URL of the image for the food category.
+ * @returns {JSX.Element} A component to render a food category onto the CustomerOrder screen.
+*/
 export default function CategoryItem(props) {
     const item = props.item;
 
