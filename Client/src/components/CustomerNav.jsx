@@ -100,9 +100,10 @@ function CustomerNav(props) {
                     </button>
                 </div>
 
-                <Weather />
 
                 <div className="title">{title}</div>
+
+                <Weather />
 
                 <div className="order">
                     <button className="viewOrderBtn" onClick={checkoutPage}>
