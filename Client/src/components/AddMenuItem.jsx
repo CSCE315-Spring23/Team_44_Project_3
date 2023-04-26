@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import PopUp from "./PopUp";
 
 /**
@@ -22,10 +22,10 @@ export default function AddMenuItem(props) {
     */
     function addToCart(item, excludeItems) {
         console.log("item: ", item, "excludeItems: ", excludeItems);
-        const cart = JSON.parse(localStorage.getItem("curOrder")) || { total: [0], items: {} };
+        const cart = JSON.parse(localStorage.getItem("curOrder")) || {total: [0], items: {}};
         let cartID = Object.keys(cart.items).length;
         console.log(cartID)
-        let newCart = { ...cart };
+        let newCart = {...cart};
 
         let numberOfItems = localStorage.getItem("numItems");
         numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
@@ -33,7 +33,7 @@ export default function AddMenuItem(props) {
         const menu = JSON.parse(localStorage.getItem("menu"));
 
         if (item.ids) {
-            for (let i = 0; i < item.ids.length; i++) {
+            for (let i = 0;i < item.ids.length;i++) {
                 console.log("item.ids[i]: ", item.ids[i])
                 menu.forEach((arrItem) => {
                     if (arrItem.id == item.ids[i]) {
