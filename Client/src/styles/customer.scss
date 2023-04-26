@@ -46,7 +46,11 @@ button#customerCheckoutBtn {
 }
 
 button.cancelButton {
-	background-image: linear-gradient(#ad0a25, rgba(212, 0, 46, 0.99) 49%, rgba(254, 67, 108, .99));
+	background-image: linear-gradient(
+		#ad0a25,
+		rgba(212, 0, 46, 0.99) 49%,
+		rgba(254, 67, 108, 0.99)
+	);
 	border-radius: 10px;
 	border-style: none;
 	color: #ffffff;
@@ -97,42 +101,7 @@ button.menuButton {
 
 	&:hover {
 		background-color: #fcf9f4;
-		border: 2px solid #E51636;
-	}
-}
-
-button.viewOrderBtn {
-	align-items: center;
-	background-image: linear-gradient(#ff033b 0%, #ca0f1a 100%);
-	background-size: 100%;
-	border: none;
-	border-radius: 24px;
-	box-sizing: border-box;
-	color: #ffffff;
-	cursor: pointer;
-	display: flex;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 600;
-	height: 48px;
-	justify-content: center;
-	letter-spacing: -0.5625px;
-	min-width: 120px;
-	outline: none;
-	padding: 0px 24px;
-	pointer-events: auto;
-	position: relative;
-	text-decoration: none;
-	transition: all 0.3s ease-in-out;
-	-webkit-box-align: center;
-	-webkit-box-pack: center;
-	width: 100%;
-
-	&:hover {
-		background-image: linear-gradient(#ca0f1a 0%, #ff033b 100%);
-		background-size: 100%;
-		position: relative;
-		z-index: 1;
+		border: 2px solid #e51636;
 	}
 }
 
@@ -142,43 +111,9 @@ div#customerCheckoutButtons {
 	width: 50%;
 }
 
-div.backDiv {
-	align-items: center;
-	display: flex;
-	margin-left: 0.5%;
-	text-align: left;
-	-webkit-box-align: center;
-	width: 13.5%;
-	margin-top: 0.5%;
-}
-
-div.backText {
-	border: 0;
-	color: #485259;
-	font: inherit;
-	font-size: 100%;
-	font-size: 14px;
-	font-weight: 400;
-	letter-spacing: -0.5px;
-	line-height: 20px;
-	margin: 0;
-	margin-left: 12px;
-	padding: 0;
-	vertical-align: initial;
-}
-
-div.bagIcon {
-	align-items: center;
-	display: flex;
-	margin-right: 8px;
-	max-height: 40px;
-	position: relative;
-	-webkit-box-align: center;
-}
-
 div.checkoutItem {
 	display: flex;
-	font-size: .85em;
+	font-size: 0.85em;
 	flex-direction: column;
 	margin: 1em;
 }
@@ -224,7 +159,6 @@ div.customerCheckout {
 	align-items: center;
 }
 
-
 div.customerCheckoutItems {
 	border: #000000 1px solid;
 	display: flex;
@@ -233,13 +167,6 @@ div.customerCheckoutItems {
 	min-width: 60%;
 	overflow-y: scroll;
 	font-size: 1.5em;
-}
-
-div.order {
-	justify-content: flex-end;
-	margin-right: 0.5%;
-	-webkit-box-pack: end;
-	width: 13.5%;
 }
 
 div.title {
@@ -253,8 +180,6 @@ div.title {
 	-webkit-box-pack: center;
 	width: 73%;
 }
-
-
 
 form.customerNameForm {
 	font-family: inherit;
@@ -289,6 +214,21 @@ nav.desktop-navigation {
 	width: 100%;
 	z-index: 50;
 
+	.backDiv {
+		margin: 0px 2em;
+
+		.backText {
+			border: 0;
+			color: #485259;
+			font-weight: 400;
+			line-height: 20px;
+			margin: 0;
+			margin-left: 12px;
+			padding: 0;
+			vertical-align: initial;
+		}
+	}
+
 	.weather {
 		display: flex;
 		align-items: center;
@@ -296,6 +236,57 @@ nav.desktop-navigation {
 			font-size: 1.2em;
 			font-weight: 500;
 			white-space: nowrap;
+		}
+	}
+
+	div.order {
+		justify-content: flex-end;
+		margin-right: 0.5%;
+		-webkit-box-pack: end;
+		width: 13.5%;
+
+		.bagIcon {
+			align-items: center;
+			display: flex;
+			margin-right: 8px;
+			max-height: 40px;
+			position: relative;
+			-webkit-box-align: center;
+		}
+
+		.viewOrderBtn {
+			align-items: center;
+			background-image: linear-gradient(#ff033b 0%, #ca0f1a 100%);
+			background-size: 100%;
+			border: none;
+			border-radius: 24px;
+			box-sizing: border-box;
+			color: #ffffff;
+			cursor: pointer;
+			display: flex;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 600;
+			height: 48px;
+			justify-content: center;
+			letter-spacing: -0.5625px;
+			min-width: 120px;
+			outline: none;
+			padding: 0px 24px;
+			pointer-events: auto;
+			position: relative;
+			text-decoration: none;
+			transition: all 0.3s ease-in-out;
+			-webkit-box-align: center;
+			-webkit-box-pack: center;
+			width: 100%;
+		
+			&:hover {
+				background-image: linear-gradient(#ca0f1a 0%, #ff033b 100%);
+				background-size: 100%;
+				position: relative;
+				z-index: 1;
+			}
 		}
 	}
 }
@@ -319,11 +310,11 @@ span.itemCount {
 }
 
 ul.menu {
+	margin: 0px 10em 0px;
 	align-items: center;
 	display: grid;
 	gap: 28px;
 	grid-template-columns: repeat(3, 1fr);
-	height: 100%;
 	justify-items: center;
 	list-style: none;
 	max-width: 100%;
@@ -331,5 +322,4 @@ ul.menu {
 	padding-inline-start: 0px;
 	padding-top: 100px;
 	text-align: center;
-	width: 100%;
 }
