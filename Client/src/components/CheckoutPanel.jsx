@@ -3,6 +3,11 @@ import {endpoints} from "../utils/apiEndpoints";
 import {HOST} from "../utils/host";
 import CheckoutItem from "./CheckoutItem";
 
+/**
+ * Represents the checkout panel component.
+ * @param {object} props - The props object containing the cart.
+ * @returns {JSX.Element} The checkout panel component.
+*/
 export default function CheckoutPanel(props) {
     const name = localStorage.getItem("custName");
     const [custName, setCustName] = useState(name ? name : "");
@@ -10,7 +15,9 @@ export default function CheckoutPanel(props) {
     const items = Object.keys(cart.items);
     console.log(cart)
 
-    //sends order to server when checkout button clicked
+    /**
+     * Sends order to server when checkout button is clicked.
+     */
     function checkoutBtnClicked() {
         const EMP_ID = localStorage.getItem("employeeId");
         console.log(EMP_ID);
@@ -76,8 +83,10 @@ export default function CheckoutPanel(props) {
 
     }
 
-
-    //change customer name
+    /**
+     * Updates customer name in local storage and state.
+     * @param {object} comp - The component object.
+     */
     function handleNameChanged(comp) {
         localStorage.setItem("custName", comp.target.value);
         setCustName(comp.target.value);
