@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {endpoints} from "../utils/apiEndpoints";
 import {HOST} from "../utils/host";
 import Weather from "./Weather.jsx";
+import logo from "../assets/logo.svg";
 
 /**
  * A navigation bar for the customer view.
@@ -86,6 +87,7 @@ function CustomerNav(props) {
     return (
         <>
             <nav className="desktop-navigation">
+                <img src={logo} alt="Chick-fil-A logo" className="logo-icon" />
                 <div className="backDiv">
                     <button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigagePage}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
