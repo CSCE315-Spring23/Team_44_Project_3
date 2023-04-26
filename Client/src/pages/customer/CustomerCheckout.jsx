@@ -148,7 +148,7 @@ export default function CustomerCheckout(props) {
 
 		setOrderValue(newTotal);
 		localStorage.setItem("curOrder", JSON.stringify(newCart));
-		localStorage.setItem("numItems", Object.keys(newCart.items).length);
+		localStorage.setItem("numItems", newCart.items ? Object.keys(newCart.items).length : 0);
 
 		const checkOutBtn = document.getElementById("customerCheckoutBtn");
 		checkOutBtn.disabled = Object.keys(newCart.item).length == 0;
