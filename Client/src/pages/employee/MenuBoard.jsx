@@ -84,8 +84,9 @@ export default function MenuBoard(props) {
                         <div className="menuBoardList">
                             {entrees.map((item, index) => (
                                 <div className="menuBoardItem" key={index}>
-                                    <h3>{index + 1}. {item.name}: ${item.cost}</h3>
-                                    <p>Meal: ${(parseFloat(item.cost) + meal).toFixed(2)}</p>
+                                    <h4>{index + 1}. {item.name}</h4>
+                                    <h4>Entree: ${item.cost}</h4>
+                                    <h4>Meal: ${(parseFloat(item.cost) + meal).toFixed(2)}</h4>
                                     {item.id === 2 ? <img src={images.sand}/> : item.id === 4 ? <img src={images.spicysSand}/> :
                                         item.id === 8 ? <img src={images.nuggs}/> : item.id === 10 ? <img src={images.grilledsand}/> : null}
                                 </div>
@@ -101,7 +102,7 @@ export default function MenuBoard(props) {
                             <div className="menuBoardList">
                                 {salads.map((item, index) => (
                                     <div className="menuBoardItem" key={index}>
-                                        <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                        <h4>{index + 1}. {item.name}: ${item.cost}</h4>
                                     </div>
                                 ))}
                             </div>
@@ -113,7 +114,7 @@ export default function MenuBoard(props) {
                             <div className="menuBoardList">
                                 {sides.map((item, index) => (
                                     <div className="menuBoardItem" key={index}>
-                                        <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                        <h4>{index + 1}. {item.name}: ${item.cost}</h4>
                                         {item.id === 16 ? <img src={images.waffleFry}/> : null}
                                     </div>
                                 ))}
@@ -128,7 +129,7 @@ export default function MenuBoard(props) {
                         <div className="menuBoardList">
                             {treats.map((item, index) => (
                                 <div className="menuBoardItem" key={index}>
-                                    <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                    <h4>{index + 1}. {item.name}: ${item.cost}</h4>
                                 </div>
                             ))}
                         </div>
@@ -142,7 +143,7 @@ export default function MenuBoard(props) {
                         <div className="menuBoardList">
                             {beverages.map((item, index) => (
                                 <div className="menuBoardItem" key={index}>
-                                    <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                    <h4>{index + 1}. {item.name}: ${item.cost}</h4>
                                 </div>
                             ))}
                         </div>
@@ -155,7 +156,7 @@ export default function MenuBoard(props) {
                         <div className="menuBoardList">
                             {sauces.map((item, index) => (
                                 <div className="menuBoardItem" key={index}>
-                                    <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                    <h5>{index + 1}. {item.name}</h5>
                                 </div>
                             ))}
                         </div>
@@ -168,7 +169,7 @@ export default function MenuBoard(props) {
                         <div className="menuBoardList">
                             {seasonal.map((item, index) => (
                                 <div className="menuBoardItem" key={index}>
-                                    <h3>{index + 1}. {item.name}: ${item.cost}</h3>
+                                    <h4>{index + 1}. {item.name}: ${item.cost}</h4>
                                 </div>
                             ))}
                         </div>

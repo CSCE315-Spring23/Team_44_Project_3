@@ -523,6 +523,10 @@ div.menuBoardPage {
 div.menuBoardTitle {
     height: 5%;
     width: 100%;
+
+    h1{
+        margin: 0;
+    }
 }
 
 div.menuBoard {
@@ -530,12 +534,16 @@ div.menuBoard {
     width: 90%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-self: center;
 
     div.menuBoardItem {
         text-align: left;
-
+        margin-bottom: .5em;
+        h4{
+            margin: 0;
+            font-size: .75em;
+        }
     }
 
     img {
@@ -544,4 +552,5 @@ div.menuBoard {
     }
 
     div.menuBoardCate {}
+
 }
