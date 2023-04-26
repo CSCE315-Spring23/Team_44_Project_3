@@ -38,8 +38,6 @@ export default function Order(props) {
 
         setCart(newCart);
         localStorage.setItem('cart', JSON.stringify(newCart));
-        // console.log("add to cart " + item.name);
-        // console.log(JSON.stringify(cart));
     }
 
     const emptyCart = () => {

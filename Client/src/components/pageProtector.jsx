@@ -6,13 +6,10 @@ export default function PageProtector({ children }) {
     const nav = useNavigate();
     console.log("pageProtector");
     useEffect(() => {
-        //TODO Check auth state and update is loading
         if(localStorage.getItem("employeeId") != null){
-            console.log("not loading");
             setIsLoading(false);
         }
         else{
-            console.log("loading");
             nav("/");
             setIsLoading(true);
         }
