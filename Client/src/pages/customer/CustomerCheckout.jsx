@@ -156,10 +156,10 @@ export default function CustomerCheckout(props) {
 
 	return (
 		<div>
-			<div className="backDiv">
+			<div className="backDiv" style={{width: "6em", margin:".35em 0em 0em .35em"}}>
 				<button title="Back to order list" data-cy="SubNavBack" className="backButton" onClick={backToOrder}>
 					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M14.09 22L5 12l9.09-10" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
 						</path>
 					</svg>
 					<div aria-hidden="true" className="backText">
