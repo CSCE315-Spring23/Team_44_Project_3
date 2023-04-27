@@ -15,6 +15,7 @@
 	position: absolute;
 	top: 50%;
 	transform: translate(-50%, -50%);
+	overflow: hidden;
 
 	&::before {
 		backdrop-filter: blur(20px);

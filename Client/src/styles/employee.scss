@@ -1,533 +1,542 @@
 body {
-    margin: 0;
-    margin-top: 0em;
-    padding: 0;
-    text-align: center;
+	margin: 0;
+	margin-top: 0em;
+	padding: 0;
+	text-align: center;
 }
 
 h2 {
-    font-size: 1.5em;
-    text-align: center;
-    text-decoration: underline;
-    text-emphasis: bold;
+	font-size: 1.5em;
+	text-align: center;
+	text-decoration: underline;
+	text-emphasis: bold;
 }
 
 table th,
 table td {
-    border: none;
-    text-align: center;
+	border: none;
+	text-align: center;
 }
 
 input.PopUpNotes {
-    font-family: inherit;
-    font-size: 14pt;
+	font-family: inherit;
+	font-size: 14pt;
 }
 
 input.PopUpRowRight {
-    display: none;
+	display: none;
 
-    &:checked+span.checkmark::before {
-        content: "\2714";
-        display: block;
-        color: #008148;
-        text-align: center;
-        font-size: 16px;
-        line-height: 20px;
-        border: 1px solid #000000;
-    }
+	&:checked + span.checkmark::before {
+		content: "\2714";
+		display: block;
+		color: #008148;
+		text-align: center;
+		font-size: 16px;
+		line-height: 20px;
+		border: 1px solid #000000;
+	}
 
-    &:not(:checked)+span.checkmark::after {
-        content: "\2716";
-        display: block;
-        color: #e51636;
-        text-align: center;
-        font-size: 16px;
-        line-height: 20px;
-        border: 1px solid #000000;
-    }
+	&:not(:checked) + span.checkmark::after {
+		content: "\2716";
+		display: block;
+		color: #e51636;
+		text-align: center;
+		font-size: 16px;
+		line-height: 20px;
+		border: 1px solid #000000;
+	}
 }
 
 label.checkmark-container {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    width: 50%;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	width: 50%;
 
-    span.checkmark {
-        background-color: #ffffff;
-        border-radius: 5px;
-        cursor: pointer;
-        display: inline-block;
-        height: 20px;
-        transition: all 0.2s ease-out;
-        width: 20px;
-    }
+	span.checkmark {
+		background-color: #ffffff;
+		border-radius: 5px;
+		cursor: pointer;
+		display: inline-block;
+		height: 20px;
+		transition: all 0.2s ease-out;
+		width: 20px;
+	}
 }
 
 label.PopUpRowLeft {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 50%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	width: 50%;
 }
 
-nav.empNav {
-    align-items: center;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: start;
-    position: relative;
-    width: 15%;
+.empNav {
+	align-items: center;
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	height: 100vh;
+	justify-content: start;
+	position: relative;
+	width: 17em;
+	box-shadow: 0px 0px 10px 1px gray;
+
+	.empNavLogo {
+		width: 50%;
+		margin: 2em 1em;
+	}
+
+	#google-signin {
+		margin: 1em 0;
+	}
+
+	.empNavButton {
+		background-color: #ffffff;
+		border-color: #808080;
+		border-radius: 10px;
+		border-style: solid;
+		border-width: 0px;
+		box-shadow: 0px 3px 3px #808080;
+		color: black;
+		font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+		font-size: 1.2em;
+		font-weight: bold;
+		min-height: 4em;
+		min-width: 80%;
+		text-align: center;
+		text-decoration: none;
+		transition: all 0.3s ease;
+
+		&:hover {
+			box-shadow: 0px 0px 3px #808080;
+		}
+
+		&.current {
+			background-color: #dd0031;
+			color: white;
+		}
+	}
+}
+
+.orderItemPane {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	max-height: 100vh;
+	overflow-y: scroll;
+	padding: 5em 3em;
+	width: calc(100vw - 34em);
+	align-items: center;
+	gap: 1em;
+
+	button.orderItemBtn {
+		background-color: white;
+		border-radius: 10px;
+		border: 1px solid black;
+		padding: 1em;
+		text-align: center;
+		text-decoration: none;
+        transition: all 0.3s ease;
+
+		&:hover {
+			background-color: #d9d9d9;
+		}
+	}
+}
+
+#checkoutPanel {
+	box-sizing: border-box;
+	height: 100vh;
+	width: 17em;
+	padding: 4em 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #f4f8f9;
+
+	#checkoutOrderItems {
+		display: flex;
+		flex-direction: column;
+		min-width: 100%;
+		overflow-y: scroll;
+		flex-grow: 1;
+	}
+
+	#checkoutButtonDiv {
+        text-align: center;
+
+		p {
+			font-size: 1.2em;
+			font-weight: bold;
+			margin: 1em;
+		}
+		input {
+            border-radius: 10px;
+            padding: 0.5em;
+            font-size: 1.2em;
+            display: block;
+            box-sizing: border-box;
+            margin: 1em auto;
+            max-width: 80%;
+		}
+		#checkoutBtn {
+            color: white;
+			background-color: #009e00;
+			border-color: #808080;
+			border-radius: 10px;
+			border-style: solid;
+			border-width: 0px;
+			box-shadow: 0px 3px 3px #808080;
+			font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+			font-size: 1.2em;
+			font-weight: bold;
+			min-height: 4em;
+			min-width: 80%;
+			text-align: center;
+			text-decoration: none;
+			transition: all 0.3s ease;
+
+			&:hover {
+				box-shadow: 0px 0px 3px #808080;
+			}
+		}
+	}
 }
 
 table.databaseTable {
-    border-collapse: collapse;
-    margin: 0 .75em 0 .75em;
-    width: 98%;
+	border-collapse: collapse;
+	margin: 0 0.75em 0 0.75em;
+	width: 98%;
 }
 
 div.empInventoryPage {
-    display: flex;
-    flex-direction: row;
-    min-height: 100vh;
-    min-width: 100%;
+	display: flex;
+	flex-direction: row;
+	min-height: 100vh;
+	min-width: 100%;
 }
 
 div.empMenuPage {
-    display: flex;
-    flex-direction: row;
-    min-height: 100vh;
-    min-width: 100%;
+	display: flex;
+	flex-direction: row;
+	min-height: 100vh;
+	min-width: 100%;
 }
 
 div.empOrderPage {
-    display: flex;
-    flex-direction: row;
-    min-height: 100vh;
-    width: 100vw;
+	display: flex;
+	flex-direction: row;
+	min-height: 100vh;
+	width: 100vw;
 }
 
 div.excessRepTable {
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 100%;
-}
-
-div.orderItemPane {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-height: 100vh;
-    overflow-y: scroll;
-    padding: 1%;
-    width: 65%;
+	max-height: 100vh;
+	overflow-y: scroll;
+	width: 100%;
 }
 
 div.PopUp {
-    align-items: center;
-    background-color: #ffffff;
-    border: 1px solid #011627;
-    border-radius: 1em;
-    box-shadow: -2px 5px 5px 0px #000000bf;
-    color: #011627;
-    display: flex;
-    flex-direction: column;
-    height: 50%;
-    justify-content: space-between;
-    left: 50%;
-    position: fixed;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    z-index: 9999;
+	align-items: center;
+	background-color: #ffffff;
+	border: 1px solid #011627;
+	border-radius: 1em;
+	box-shadow: -2px 5px 5px 0px #000000bf;
+	color: #011627;
+	display: flex;
+	flex-direction: column;
+	height: 50%;
+	justify-content: space-between;
+	left: 50%;
+	position: fixed;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+	z-index: 9999;
 }
 
 div.PopUp.active {
-    pointer-events: all;
+	pointer-events: all;
 }
 
 div.PopUpTitle {
-    font-family: inherit;
-    font-size: 18pt;
+	font-family: inherit;
+	font-size: 18pt;
 }
 
 div.PopUpRow {
-    display: flex;
-    flex-direction: row;
-    font-family: inherit;
-    font-size: 14pt;
-    justify-content: flex-start;
+	display: flex;
+	flex-direction: row;
+	font-family: inherit;
+	font-size: 14pt;
+	justify-content: flex-start;
 }
 
 div.PopUpRows {
-    width: 60%;
+	width: 60%;
 }
 
 div.PopUpButtons {
-    display: flex;
-    flex-direction: row;
-    font-family: inherit;
-    font-size: 14pt;
-    justify-content: space-between;
-    width: 80%;
-    margin-bottom: 3em;
+	display: flex;
+	flex-direction: row;
+	font-family: inherit;
+	font-size: 14pt;
+	justify-content: space-between;
+	width: 80%;
+	margin-bottom: 3em;
 }
 
 div.PopUpQuantity {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 
-    div.PopUpQuantityNumber {
-        margin: 0em .25em;
-    }
+	div.PopUpQuantityNumber {
+		margin: 0em 0.25em;
+	}
 }
 
-
-
 div.repBody {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
 }
 
 div.repDiv {
-    display: flex;
-    flex-direction: row;
-    max-height: 100vh;
-    width: 85%;
+	display: flex;
+	flex-direction: row;
+	max-height: 100vh;
+	width: 85%;
 }
 
 div.repHead {
-    margin-top: 10px;
-    width: 15%;
+	margin-top: 10px;
+	width: 15%;
 }
 
 div.repXZInfo {
-    margin-left: 1em;
-    width: 25%;
+	margin-left: 1em;
+	width: 25%;
 }
 
 div.repXZInfoBody {
-    margin: 0;
-    padding: 0;
-    text-align: left;
+	margin: 0;
+	padding: 0;
+	text-align: left;
 }
 
 div.repZTable {
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 75%;
+	max-height: 100vh;
+	overflow-y: scroll;
+	width: 75%;
 }
 
 div.restockRepTable {
-    margin-top: 1em;
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 100%;
+	margin-top: 1em;
+	max-height: 100vh;
+	overflow-y: scroll;
+	width: 100%;
 }
 
 div.salesInvItemTable {
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 50%;
+	max-height: 100vh;
+	overflow-y: scroll;
+	width: 50%;
 }
 
 div.salesMenuItemTable {
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 50%;
+	max-height: 100vh;
+	overflow-y: scroll;
+	width: 50%;
 }
 
 div.salesTogetherRepTable {
-    max-height: 100vh;
-    overflow-y: scroll;
-    width: 100%;
+	max-height: 100vh;
+	overflow-y: scroll;
+	width: 100%;
 }
 
-
 button.backButton {
-    align-items: center;
-    background: 0px center;
-    border: 0px;
-    cursor: pointer;
-    display: flex;
-    font-family: inherit;
-    margin: 0px;
-    padding: 0px;
-    text-align: left;
-    -webkit-box-align: center;
+	align-items: center;
+	background: 0px center;
+	border: 0px;
+	cursor: pointer;
+	display: flex;
+	font-family: inherit;
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+	-webkit-box-align: center;
 }
 
 button.checkoutItemButton {
-    margin-left: 5px;
-    /* height: 30%; */
-}
-
-button.empNavButton {
-    background-color: #ffffff;
-    border-color: #808080;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 0px;
-    box-shadow: 0px 3px 3px #808080;
-    color: black;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 1em;
-    font-weight: bold;
-    margin-top: 1em;
-    min-height: 10%;
-    min-width: 80%;
-    text-align: center;
-    text-decoration: none;
-}
-
-button.empNavButton.current {
-    background-color: #dd0031;
-    color: white;
-}
-
-button.empNavButton:hover {
-    box-shadow: 0px 0px 3px #808080;
-}
-
-button.empNavLogout {
-    align-items: center;
-    background-color: #ffffff;
-    border-color: #808080;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 0px;
-    box-shadow: 0px 3px 3px #808080;
-    color: #000000;
-    display: flex;
-    flex-direction: column;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 1em;
-    font-weight: bold;
-    justify-content: center;
-    margin-top: 1em;
-    min-height: 10%;
-    min-width: 80%;
-    text-align: center;
-    text-decoration: none;
-}
-
-button.empNavLogout:hover {
-    box-shadow: 0px 0px 3px #808080;
+	margin-left: 5px;
+	/* height: 30%; */
 }
 
 button.goButton {
-    margin: 20px;
-    padding: 4px;
-}
-
-button.orderItemBtn {
-    background-color: #d9d9d9;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 1px;
-    color: black;
-    height: 50px;
-    margin-bottom: 1em;
-    margin-right: 1em;
-    padding: 1em;
-    text-align: center;
-    text-decoration: none;
-}
-
-button.orderItemBtn:hover {
-    background-color: #9c9c9c;
+	margin: 20px;
+	padding: 4px;
 }
 
 button.PopUpButton {
-    border-radius: 10px;
-    border: 1px solid #011627;
-    color: #ffffff;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 14pt;
-    padding: 10px;
+	border-radius: 10px;
+	border: 1px solid #011627;
+	color: #ffffff;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 14pt;
+	padding: 10px;
 
-    &.addToCart {
-        background-image: linear-gradient(#008148 0%, #005e13 100%);
-    }
+	&.addToCart {
+		background-image: linear-gradient(#008148 0%, #005e13 100%);
+	}
 
-    &.close {
-        background-image: linear-gradient(#ff033b 0%, #ca0f1a 100%);
-    }
+	&.close {
+		background-image: linear-gradient(#ff033b 0%, #ca0f1a 100%);
+	}
 }
 
 button.reportBtn {
-    background-color: #D9D9D9;
-    border-color: #808080;
-    border-radius: 50px;
-    border-style: solid;
-    border-width: 0px;
-    box-shadow: 0px 3px 3px #808080;
-    color: #000000;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 1em;
-    font-weight: bold;
-    margin: 1em;
-    max-height: 20%;
-    max-width: 33%;
-    text-align: center;
-    text-decoration: none;
-    width: 33%;
+	background-color: #d9d9d9;
+	border-color: #808080;
+	border-radius: 50px;
+	border-style: solid;
+	border-width: 0px;
+	box-shadow: 0px 3px 3px #808080;
+	color: #000000;
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-size: 1em;
+	font-weight: bold;
+	margin: 1em;
+	max-height: 20%;
+	max-width: 33%;
+	text-align: center;
+	text-decoration: none;
+	width: 33%;
 }
 
 button.reportBtn:hover {
-    box-shadow: 0px 3px 3px inset #808080;
-}
-
-div#checkoutButtonDiv {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    min-height: 20%;
-    min-width: 100%;
-}
-
-div#checkoutOrderItems {
-    border-bottom: #000000 1px solid;
-    display: flex;
-    flex-direction: column;
-    height: 70%;
-    min-width: 100%;
-    overflow-y: scroll;
-}
-
-div#checkoutPanel {
-    align-items: center;
-    background-color: #f4f8f9;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: space-between;
-    position: relative;
-    width: 20%;
+	box-shadow: 0px 3px 3px inset #808080;
 }
 
 div#inventoryFormsDiv {
-    height: 100vh;
-    overflow-y: scroll;
-    text-align: center;
-    width: 25%;
+	height: 100vh;
+	overflow-y: scroll;
+	text-align: center;
+	width: 25%;
 }
 
 div#inventoryTableDiv {
-    height: 100vh;
-    overflow-y: scroll;
-    width: 60%;
+	height: 100vh;
+	overflow-y: scroll;
+	width: 60%;
 }
 
 div#menuFormsDiv {
-    height: 100vh;
-    overflow-y: scroll;
-    text-align: center;
-    width: 25%;
+	height: 100vh;
+	overflow-y: scroll;
+	text-align: center;
+	width: 25%;
 }
 
 div#menuTableDiv {
-    height: 100vh;
-    overflow-y: scroll;
-    width: 60%;
+	height: 100vh;
+	overflow-y: scroll;
+	width: 60%;
 }
 
 div#orderHistoryInfoDiv {
-    height: 100vh;
-    overflow-y: scroll;
-    text-align: center;
-    width: 25%;
+	height: 100vh;
+	overflow-y: scroll;
+	text-align: center;
+	width: 25%;
 }
 
 div#orderHistoryTableDiv {
-    height: 100vh;
-    overflow-y: scroll;
-    text-align: center;
-    width: 60%;
+	height: 100vh;
+	overflow-y: scroll;
+	text-align: center;
+	width: 60%;
 }
 
 div#reportsSelection {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    min-height: 50%;
-    min-width: 80%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	min-height: 50%;
+	min-width: 80%;
 }
 
-button#checkoutBtn {
-    align-items: center;
-    background-color: #008000;
-    border-color: grey;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 0px;
-    box-shadow: 0px 3px 3px #005e13;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-    justify-content: center;
-    margin-bottom: 5%;
-    margin-top: 5%;
-    min-height: 90%;
-    min-width: 90%;
-    text-align: center;
-    text-decoration: none;
-}
+// button#checkoutBtn {
+// 	align-items: center;
+// 	background-color: #008000;
+// 	border-color: grey;
+// 	border-radius: 10px;
+// 	border-style: solid;
+// 	border-width: 0px;
+// 	box-shadow: 0px 3px 3px #005e13;
+// 	color: white;
+// 	display: flex;
+// 	flex-direction: column;
+// 	font-weight: bold;
+// 	justify-content: center;
+// 	margin-bottom: 5%;
+// 	margin-top: 5%;
+// 	min-height: 90%;
+// 	min-width: 90%;
+// 	text-align: center;
+// 	text-decoration: none;
+// }
 
-button#checkoutBtn:hover {
-    background-color: #006100;
-    box-shadow: 0px 0px 3px #005e13 inset;
-}
-
+// button#checkoutBtn:hover {
+// 	background-color: #006100;
+// 	box-shadow: 0px 0px 3px #005e13 inset;
+// }
 
 div.menuBoardPage {
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 }
 
 div.menuBoardTitle {
-    height: 5%;
-    width: 100%;
+	height: 5%;
+	width: 100%;
 
-    h1{
-        margin: 0;
-    }
+	h1 {
+		margin: 0;
+	}
 }
 
 div.menuBoard {
-    height: 95%;
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
+	height: 95%;
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-self: center;
 
-    div.menuBoardItem {
-        text-align: left;
-        margin-bottom: .5em;
-        h4{
-            margin: 0;
-            font-size: .75em;
-        }
-    }
+	div.menuBoardItem {
+		text-align: left;
+		margin-bottom: 0.5em;
+		h4 {
+			margin: 0;
+			font-size: 0.75em;
+		}
+	}
 
-    img {
-        height: 10%;
-        width: 10%;
-    }
+	img {
+		height: 10%;
+		width: 10%;
+	}
 
-    div.menuBoardCate {}
-
+	div.menuBoardCate {
+	}
 }

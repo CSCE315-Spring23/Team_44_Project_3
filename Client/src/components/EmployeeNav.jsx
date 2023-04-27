@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import logo from "../assets/logo.svg";
 
 export default function EmployeeNav(props) {
 
@@ -59,15 +60,16 @@ export default function EmployeeNav(props) {
     if (isManager) {
         return (
             <nav className="empNav">
+                <img src={logo} alt="logo" className="empNavLogo"/>
                 <button onClick={e => changePage("order")} className={`empNavButton ${current === "order" ? "current" : ""}`}>Order</button>
                 <button onClick={e => changePage("orderHistory")} className={`empNavButton ${current === "history" ? "current" : ""}`}>Order History</button>
                 <button onClick={e => changePage("inventory")} className={`empNavButton ${current === "inventory" ? "current" : ""}`}>Inventory</button>
                 <button onClick={e => changePage("menu")} className={`empNavButton ${current === "menu" ? "current" : ""}`}>Menu</button>
                 <button onClick={e => changePage("reports")} className={`empNavButton ${current === "reports" ? "current" : ""}`}>Reports</button>
                 <button onClick={e => changePage("menuBoard")} className={`empNavButton ${current === "menuboard" ? "current" : ""}`}>Menu Board</button>
-                <button onClick={logout} className="empNavLogout">Logout</button>
+                <button onClick={logout} className="empNavButton">Logout</button>
                 {(localStorage.getItem("email") !== '') ? <div id='google-signin'></div> : null}
-            </nav >
+            </nav>
         );
     } else {
         return (
