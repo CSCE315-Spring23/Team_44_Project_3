@@ -5,6 +5,8 @@ import { HOST } from "../../utils/host";
 import { endpoints } from "../../utils/apiEndpoints";
 import CustomerCheckOutItem from "../../components/CustomerCheckOutItem";
 import SuggestedMenuItem from "../../components/SuggestedMenuItem";
+
+
 import "../../styles/customer.scss";
 
 import treatImages from "../../utils/treatImages";
@@ -43,7 +45,7 @@ export default function CustomerCheckout(props) {
 		navigate("/customer/order");
 	}
 
-	const handlePayment = () => {
+	function handlePayment() {
 		console.log("checkout");
 
 		let itemsArr = [];
@@ -105,11 +107,11 @@ export default function CustomerCheckout(props) {
 		localStorage.setItem("numItems", "0");
 		setOrderValue(0);
 
-	}
+	};
 
 	const backToOrder = () => {
-		navigate("/customer/order")
-	}
+		navigate("/customer/order");
+	};
 
 	//get menu and update total
 	const [orderValue, setOrderValue] = useState(0);
@@ -147,15 +149,13 @@ export default function CustomerCheckout(props) {
 
 		let newCart = { ...cart };
 		newCart.total[0] -= newCart.items[cartID][2];
-		if (newCart.items[cartID][1] > 1) {
+		if (newCart.items[cartID][1] > 1)
 			newCart.items[cartID][1] -= 1;
-		}
-		else {
+		else
 			delete newCart.items[cartID];
-		}
 
 		setCart(newCart);
-		setItems(Object.keys(newCart.items));
+		setItems(newCart.items ? Object.keys(newCart.items) : []);
 		let newTotal = Math.abs(newCart.total[0]);
 
 		setOrderValue(newTotal);
@@ -167,12 +167,6 @@ export default function CustomerCheckout(props) {
 	}
 
 	useEffect(() => {
-
-		const curOrder = JSON.parse(localStorage.getItem("curOrder")) || { total: [0], items: [] };
-		console.log("curOrder: ", curOrder, curOrder.items);
-		setItems(Object.keys(curOrder.items));
-
-
 		// if cart doesn't contain fries, recommend fries
 		let recs = [];
 
@@ -180,7 +174,7 @@ export default function CustomerCheckout(props) {
 		let drink = false;
 		let sauce = false;
 
-		for (let id in items) {
+		for (let id in cart.items) {
 			if (cart.items[id][3] === 15 || cart.items[id][3] === 16) {
 				fries = true;
 			}
@@ -299,7 +293,6 @@ export default function CustomerCheckout(props) {
 							itemName={cart.items[cartID][0]}
 							count={cart.items[cartID][1]}
 							price={cart.items[cartID][2]}
-							onClick={props.removeFromCart}
 							cartID={cartID}
 							excluded={cart.items[cartID][4]}
 							removeFromCart={removeFromCart}
@@ -330,5 +323,5 @@ export default function CustomerCheckout(props) {
 			</div>
 		</div>
 
-	)
+	);
 }

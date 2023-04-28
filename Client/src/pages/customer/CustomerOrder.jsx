@@ -1,13 +1,21 @@
+/**
+ * A react component for rendering the customer order page
+ * @module CustomerOrder
+ */
+
 import React, {useEffect, useState} from "react";
 import {Outlet, useNavigate} from "react-router-dom";
 import CategoryItem from "../../components/CategoryItem";
 import {endpoints} from "../../utils/apiEndpoints";
 import {HOST} from "../../utils/host";
 import CustomerNav from '../../components/CustomerNav';
-
 import images from "../../utils/imageImport";
 import logo from "../../assets/logo.svg";
 
+/**
+ * An array of objects representing different menu categories
+ * @constant {Object[]}
+ */
 const categories = [
 	{title: "Meals", src: images.meals, key: 0},
 	{title: "Entrées", src: images.entree, key: 1},
@@ -19,20 +27,25 @@ const categories = [
 	{title: "Seasonal", src: logo, key: 7}
 ];
 
-
-// create list of category elements to be ordered
+/**
+ * A list of CategoryItem components to be displayed
+ * @constant {React.Component[]}
+ */
 const categoryList = categories.map(item =>
 	<CategoryItem key={item.key} item={item}></CategoryItem>
 );
 
-
+/**
+ * A react component for rendering the customer order page
+ * @returns {JSX.Element} The JSX representation of the component
+ */
 function CustomerOrder() {
-
 	let numberOfItems = localStorage.getItem("numItems");
 	numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
 
 	//get menu and update total
 	const [orderTotal, setOrderTotal] = useState(0);
+
 	useEffect(() => {
 		//get menu
 		const url = HOST + endpoints.getMenu;
@@ -58,7 +71,6 @@ function CustomerOrder() {
 		if (curOrder && curOrder.total) {
 			setOrderTotal(curOrder.total[0]);
 		}
-
 	}, []);
 
 	return (
