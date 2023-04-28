@@ -6,6 +6,7 @@ import {HOST} from "../../utils/host";
 import CustomerNav from '../../components/CustomerNav';
 
 import images from "../../utils/imageImport";
+import logo from "../../assets/logo.svg";
 
 const categories = [
 	{title: "Meals", src: images.meals, key: 0},
@@ -15,6 +16,7 @@ const categories = [
 	{title: "Treats", src: images.treats, key: 4},
 	{title: "Sauces", src: images.sauces, key: 5},
 	{title: "Sides", src: images.sides, key: 6},
+	{title: "Seasonal", src: logo, key: 7}
 ];
 
 
