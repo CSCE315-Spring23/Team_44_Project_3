@@ -9,6 +9,7 @@ import SuggestedMenuItem from "../../components/SuggestedMenuItem";
 
 import "../../styles/customer.scss";
 
+import logo from "../../assets/logo.svg";
 import treatImages from "../../utils/treatImages";
 import beveragesImages from "../../utils/beverageImages";
 import sidesImages from "../../utils/sidesImages";
@@ -156,8 +157,8 @@ export default function CustomerCheckout(props) {
 			delete newCart.items[cartID];
 
 		// check if null
-		for(let item in newCart.items){
-			if(item === null || item === undefined){
+		for (let item in newCart.items) {
+			if (item === null || item === undefined) {
 				delete newCart.items[item]
 			}
 		}
@@ -193,7 +194,7 @@ export default function CustomerCheckout(props) {
 			if (cart.items[id][3] === 46) {
 				sauce = true;
 			}
-			if (cart.items[id][3] >= 33 && cart.items[id][3] <= 41){
+			if (cart.items[id][3] >= 33 && cart.items[id][3] <= 41) {
 				treat = true;
 			}
 		}
@@ -208,7 +209,7 @@ export default function CustomerCheckout(props) {
 		if (!sauce) {
 			recs.push(potentialRecs[0]);
 		}
-		if (!treat){
+		if (!treat) {
 			recs.push(potentialRecs[4]);
 			recs.push(potentialRecs[5]);
 		}
@@ -220,7 +221,7 @@ export default function CustomerCheckout(props) {
 	function addToCartChkout(item, excludeItems) {
 		console.log("item: ", item, "excludeItems: ", excludeItems);
 		const carts = JSON.parse(localStorage.getItem("curOrder")) || { total: [0], items: {} };
-		let cartID = Object.keys(carts.items).length > 0 ? parseInt(Object.keys(carts.items)[Object.keys(carts.items).length-1]) + 1 : 0;
+		let cartID = Object.keys(carts.items).length > 0 ? parseInt(Object.keys(carts.items)[Object.keys(carts.items).length - 1]) + 1 : 0;
 		console.log(carts, cartID, Object.keys(cart).length)
 		let newCart = { ...cart };
 
@@ -292,16 +293,24 @@ export default function CustomerCheckout(props) {
 
 	return (
 		<div>
-			<div className="backDiv" style={{ width: "6em", margin: ".35em 0em 0em .35em" }}>
-				<button title="Back to order list" data-cy="SubNavBack" className="backButton" onClick={backToOrder}>
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M14.09 22L5 12l9.09-10" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-						</path>
-					</svg>
-					<div aria-hidden="true" className="backText">
-						Back
-					</div>
-				</button>
+			<div className="customerCheckoutTop">
+				<div className="backDiv" style={{ width: "6em", margin: ".35em 0em 0em .35em" }}>
+					<button title="Back to order list" data-cy="SubNavBack" className="backButton" onClick={backToOrder}>
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M14.09 22L5 12l9.09-10" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+							</path>
+						</svg>
+						<div aria-hidden="true" className="backText">
+							Back
+						</div>
+					</button>
+				</div>
+				<div className="customerCheckoutTitle">
+					<h1>Cart</h1>
+				</div>
+				<div className="logo-icon">
+					<img src={logo} alt="Chick-fil-A logo" className="logo-icon" />
+				</div>
 			</div>
 			<div className="customerCheckout">
 				<div className="customerCheckoutItems">
@@ -317,14 +326,15 @@ export default function CustomerCheckout(props) {
 						</CustomerCheckOutItem>
 					))}
 				</div>
-				<div className="customerCheckoutSuggs">
-					<h3>Recommended</h3>
-					<div className="customerCheckoutSuggsItems">
-						{recs && recs.map(item => (
-							<SuggestedMenuItem key={item.id} item={item} addToCart={addToCartChkout} />
-						))}
-					</div>
-				</div>
+				{recs.length > 0 &&
+					<div className="customerCheckoutSuggs">
+						<h3>Recommended</h3>
+						<div className="customerCheckoutSuggsItems">
+							{recs.map(item => (
+								<SuggestedMenuItem key={item.id} item={item} addToCart={addToCartChkout} />
+							))}
+						</div>
+					</div>}
 				<form className="customerNameForm">
 					<label for="customerName">Please enter your name:</label>
 					<input type="text" id="customerName" name="customerName" />
