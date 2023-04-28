@@ -1,6 +1,13 @@
 import React, {useState} from "react";
 import PopUp from "./PopUp";
 
+/**
+ * A component that renders a button for a specific order item and displays a popup with additional item details when clicked.
+ * @param {Object} props - The props object that contains the item object and addToCart function.
+ * @param {Object} props.item - An object that contains information about the item.
+ * @param {Function} props.addToCart - A function that adds the item to the cart.
+ * @returns {JSX.Element} - A button element for the item that displays a popup when clicked.
+ */
 export default function OrderItemButton(props) {
     const item = props.item;
     const itemName = item.name;
@@ -8,8 +15,10 @@ export default function OrderItemButton(props) {
 
     const [popUp, setPopUp] = useState(false);
 
-    const openPopUp = () => {
-        // addToCart(item);
+    /**
+     * A function that sets the popup state to true.
+     */
+    function openPopUp() {
         setPopUp(true);
     }
 

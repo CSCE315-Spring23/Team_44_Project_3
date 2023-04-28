@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/EmployeeNav.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/EmployeeNav.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import logo from "../assets/logo.svg";
+
+/**
+ * React functional component representing the navigation bar for employees.
+ * @param {object} props - The properties of the component.
+ * @returns {JSX.Element} - A JSX element representing the employee navigation bar.
+ */
+export default function EmployeeNav(props) {
+    const [isManager, setIsManager] = useState();
+    const [current, setCurrent] = useState();
+
+
+    useEffect(() => {
+        const managerBool = localStorage.getItem("isManager") !== "false";
+        setIsManager(managerBool);
+        setCurrent(props.current);
+    }, []);
+
+    const navigate = useNavigate();
+
+    /**
+     * Function that logs the employee out by removing all stored information and redirects to the Login page.
+     */
+    function logout() {
+        localStorage.removeItem("empID");
+        localStorage.removeItem("pin");
+        localStorage.removeItem("email");
+        localStorage.removeItem("name");
+        localStorage.removeItem("employeeId");
+        localStorage.removeItem("isManager");
+        navigate("/Login");
+    }
+
+    /**
+     * Function that navigates to the specified page.
+     * @param {string} page - The page to navigate to.
+     */
+    function changePage(page) {
+        navigate(`/employee/${ page }`);
+    }
+
+    // set up google oauth button and behavior
+    useEffect(() => {
+        if (localStorage.getItem("email").length == 0)
+            return;
+
+        const script = document.createElement("script");
+        script.src = "https://accounts.google.com/gsi/client";
+        script.async = true;
+        document.body.appendChild(script);
+
+        google.accounts.id.initialize({
+            client_id: "494495949926-om1cjij44iie2585is6tk7n98aurqso6.apps.googleusercontent.com",
+            // callback: handleGoogleLogin
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById("google-signin"),
+            {
+                theme: "outline",
+                size: "large"
+            }
+        );
+    });
+
+    if (isManager) {
+        return (
+            &lt;nav className="empNav">
+                &lt;img src={logo} alt="logo" className="empNavLogo" />
+                &lt;button onClick={e => changePage("order")} className={`empNavButton ${ current === "order" ? "current" : "" }`}>Order&lt;/button>
+                &lt;button onClick={e => changePage("orderHistory")} className={`empNavButton ${ current === "history" ? "current" : "" }`}>Order History&lt;/button>
+                &lt;button onClick={e => changePage("inventory")} className={`empNavButton ${ current === "inventory" ? "current" : "" }`}>Inventory&lt;/button>
+                &lt;button onClick={e => changePage("menu")} className={`empNavButton ${ current === "menu" ? "current" : "" }`}>Menu&lt;/button>
+                &lt;button onClick={e => changePage("reports")} className={`empNavButton ${ current === "reports" ? "current" : "" }`}>Reports&lt;/button>
+                &lt;button onClick={e => changePage("menuBoard")} className={`empNavButton ${ current === "menuboard" ? "current" : "" }`}>Menu Board&lt;/button>
+                &lt;button onClick={logout} className="empNavButton">Logout&lt;/button>
+                {(localStorage.getItem("email") !== "") ? &lt;div id="google-signin">&lt;/div> : null}
+            &lt;/nav>
+        );
+    } else {
+        return (
+            &lt;nav className="empNav">
+                &lt;button onClick={e => changePage("order")} className="empNavButton">Order&lt;/button>
+                &lt;button onClick={e => changePage("orderHistory")} className="empNavButton">Order History&lt;/button>
+                &lt;button onClick={logout} className="empNavLogout">Logout&lt;/button>
+                {(localStorage.getItem("email") !== "") ? &lt;div id="google-signin">&lt;/div> : null}
+            &lt;/nav>
+        );
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ExcessRep.html">ExcessRep</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Apr 27 2023 19:52:35 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

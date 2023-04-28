@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/CheckoutPanel.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/CheckoutPanel.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useState} from "react";
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
+import CheckoutItem from "./CheckoutItem";
+
+/**
+ * Represents the checkout panel component.
+ * @param {object} props - The props object containing the cart.
+ * @returns {JSX.Element} The checkout panel component.
+*/
+export default function CheckoutPanel(props) {
+    const name = localStorage.getItem("custName");
+    const [custName, setCustName] = useState(name ? name : "");
+    const {cart} = props;
+    const items = Object.keys(cart.items);
+    console.log(cart)
+
+    /**
+     * Sends order to server when checkout button is clicked.
+     */
+    function checkoutBtnClicked() {
+        const EMP_ID = localStorage.getItem("employeeId");
+        console.log(EMP_ID);
+        /*
+            convert items to an array of form:
+            items: [ {"id": 1, "quantity": 2}, ... ] 
+        */
+        let itemsArr = [];
+        for (let cartID in cart.items) {
+            const id = cart.items[cartID][3];
+            const count = cart.items[cartID][1];
+            const excluded = cart.items[cartID][4];
+
+            let excludedIDs = [];
+            for (let i = 0;i &lt; excluded.length;i++) {
+                excludedIDs.push(excluded[i].id);
+            }
+
+            const curItem = {"id": id, "quantity": count, "excluded": excludedIDs};
+            itemsArr.push(curItem);
+        }
+        //build the order object to be sent in POST
+        /* 
+            {
+                customerName: "John Doe",
+                totalCost: "12.34",
+                employeeID: 1,
+                items: [ {"id": 1, "quantity": 2, "excluded": [15,27...]}, ... ]
+            }
+        */
+        const order = {
+            customerName: custName,
+            totalCost: cart.total[0].toString(),
+            employeeID: EMP_ID,
+            items: itemsArr
+        };
+
+        // if customer name is empty or items is empty, don"t submit order
+        if (order.customerName === "" || order.items.length === 0) {
+            console.log("order not submitted: customer name or items empty")
+            return;
+        }
+
+        const url = HOST + endpoints.postOrder;
+
+        console.log(order);
+        fetch(url, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(order)
+        })
+            .then(response => {
+                return response.text();
+            })
+            .then(data => {
+                console.log(data);
+            });
+        props.emptyCart();
+
+        console.log("order Submitted");
+        setCustName("");
+        localStorage.setItem("custName", "");
+
+    }
+
+    /**
+     * Updates customer name in local storage and state.
+     * @param {object} comp - The component object.
+     */
+    function handleNameChanged(comp) {
+        localStorage.setItem("custName", comp.target.value);
+        setCustName(comp.target.value);
+    }
+
+    return (
+        &lt;div id="checkoutPanel">
+            &lt;div id="checkoutOrderItems">
+                {items.map(cartID => (
+                    &lt;CheckoutItem
+                        itemName={cart.items[cartID][0]}
+                        count={cart.items[cartID][1]}
+                        price={cart.items[cartID][2]}
+                        onClick={props.removeFromCart}
+                        cartID={cartID}
+                        excluded={cart.items[cartID][4]}>
+                    &lt;/CheckoutItem>
+                ))}
+            &lt;/div>
+            &lt;div id="checkoutButtonDiv">
+                &lt;p>Total: ${cart.total[0].toFixed(2)}&lt;/p>
+                &lt;input type="text" value={custName} onChange={handleNameChanged} placeholder="Customer Name" />
+                &lt;button onClick={e => checkoutBtnClicked()} id="checkoutBtn">Checkout&lt;/button>
+            &lt;/div>
+        &lt;/div>
+    );
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ExcessRep.html">ExcessRep</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Apr 27 2023 19:52:35 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

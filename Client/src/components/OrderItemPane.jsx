@@ -3,12 +3,21 @@ import {endpoints} from "../utils/apiEndpoints";
 import {HOST} from "../utils/host";
 import OrderItemButton from "./OrderItemButton";
 
+/**
+ * React component that displays a list of menu items as buttons to order from
+ * @param {object} props - Component props
+ * @param {function} props.addToCart - Function to add an item to the cart
+ * @returns {JSX.Element} - JSX element with the list of menu item buttons
+ */
 export default function OrderItemPane(props) {
     //set a react state to contain the json of menu items
     const [menuButtons, setMenuButtons] = useState(null);
 
     const addToCart = props.addToCart;
-    //fetch the menu items from the api
+
+    /**
+     * Effect hook that fetches the menu items from the API
+     */
     useEffect(() => {
         setMenuButtons(null);
         const url = HOST + endpoints.getMenu;
