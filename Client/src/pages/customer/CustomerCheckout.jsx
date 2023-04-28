@@ -315,6 +315,7 @@ export default function CustomerCheckout(props) {
 			<div className="customerCheckout">
 				<div className="customerCheckoutItems">
 					{items && items.map(cartID => (
+						cart.items[cartID] &&
 						<CustomerCheckOutItem
 							itemName={cart.items[cartID][0]}
 							count={cart.items[cartID][1]}
@@ -326,15 +327,16 @@ export default function CustomerCheckout(props) {
 						</CustomerCheckOutItem>
 					))}
 				</div>
-				{recs.length > 0 &&
-					<div className="customerCheckoutSuggs">
-						<h3>Recommended</h3>
-						<div className="customerCheckoutSuggsItems">
-							{recs.map(item => (
-								<SuggestedMenuItem key={item.id} item={item} addToCart={addToCartChkout} />
-							))}
-						</div>
-					</div>}
+
+				<div className="customerCheckoutSuggs">
+					{recs.length > 0 &&
+						<h3>Recommended</h3>}
+					<div className="customerCheckoutSuggsItems">
+						{recs.map(item => (
+							<SuggestedMenuItem key={item.id} item={item} addToCart={addToCartChkout} />
+						))}
+					</div>
+				</div>
 				<form className="customerNameForm">
 					<label for="customerName">Please enter your name:</label>
 					<input type="text" id="customerName" name="customerName" />

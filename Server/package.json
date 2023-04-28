@@ -12,6 +12,7 @@
 	"author": "Dai, Kevin; Davis, Sloan; Kuppa Jayaram, Shreeman; Lai, Huy; Mao, Steven",
 	"license": "GPL-3.0",
 	"dependencies": {
+		"axios": "^1.4.0",
 		"express": "^4.18.2",
 		"node-sass": "^8.0.0",
 		"pg": "^8.10.0",

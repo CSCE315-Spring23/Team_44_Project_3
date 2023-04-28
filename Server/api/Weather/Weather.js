@@ -1,5 +1,6 @@
 const express = require('express');
 const weatherRouter = express.Router();
+const axios = require('axios')
 
 const apiPath = '/api/weather';
 
@@ -12,9 +13,8 @@ weatherRouter.get(apiPath, async (req, res) => {
     const lon = req.query.lon || -96.341508;
     const lat = req.query.lat || 30.612298;
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
-        const data = await response.json();
-        res.send(data);
+        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
+        res.send(response.data)
     }
     catch (err) {
         console.log(err);

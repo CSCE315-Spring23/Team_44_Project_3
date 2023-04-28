@@ -217,10 +217,14 @@ div.customerCheckoutItems {
 	border: #000000 1px solid;
 	display: flex;
 	flex-direction: column;
-	height: 50%;
+	height: 70%;
 	width: 75%;
 	overflow-y: scroll;
 	font-size: 1.5em;
+
+	.checkoutItem{
+		margin: .3em;
+	}
 }
 
 div.customerCheckoutSuggs {
