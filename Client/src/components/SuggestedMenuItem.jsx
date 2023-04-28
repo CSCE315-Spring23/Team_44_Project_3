@@ -55,7 +55,7 @@ function AddMenuItem(props) {
 
     return (
         <li role="listitem">
-            <button data-cy={`\"${ item.name }\"`} className="menuButton" onClick={openPopUp}>
+            <button data-cy={`\"${ item.name }\"`} className="menuButtonSug" onClick={openPopUp}>
                 <div className="image">
                     <img alt={item.name} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
                 </div>

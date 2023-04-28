@@ -155,6 +155,13 @@ export default function CustomerCheckout(props) {
 		else
 			delete newCart.items[cartID];
 
+		// check if null
+		for(let item in newCart.items){
+			if(item === null || item === undefined){
+				delete newCart.items[item]
+			}
+		}
+
 		setCart(newCart);
 		setItems(newCart.items ? Object.keys(newCart.items) : []);
 		let newTotal = Math.abs(newCart.total[0]);
@@ -174,17 +181,18 @@ export default function CustomerCheckout(props) {
 		let fries = false;
 		let drink = false;
 		let sauce = false;
-		// for (let id in cart.items) {
-		// 	if (cart.items[id][3] === 15 || cart.items[id][3] === 16) {
-		// 		fries = true;
-		// 	}
-		// 	if (cart.items[id][3] >= 20 && cart.items[id][3] <= 32) {
-		// 		drink = true;
-		// 	}
-		// 	if (cart.items[id][3] === 46) {
-		// 		sauce = true;
-		// 	}
-		// }
+
+		for (let id in cart.items) {
+			if (cart.items[id][3] === 15 || cart.items[id][3] === 16) {
+				fries = true;
+			}
+			if (cart.items[id][3] >= 20 && cart.items[id][3] <= 32) {
+				drink = true;
+			}
+			if (cart.items[id][3] === 46) {
+				sauce = true;
+			}
+		}
 
 		if (!fries) {
 			recs.push(potentialRecs[3]);
