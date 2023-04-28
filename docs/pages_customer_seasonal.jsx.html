@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/CategoryItem.jsx</title>
+    <title>JSDoc: Source: pages/customer/seasonal.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/CategoryItem.jsx</h1>
+    <h1 class="page-title">Source: pages/customer/seasonal.jsx</h1>
 
     
 
@@ -26,37 +26,82 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
+            <pre class="prettyprint source linenums"><code>/**
+ * @module Seasonal
+ * @desc The Seasonal page component.
+ * @requires React
+ * @requires react-router-dom
+ * @requires AddMenuItem
+ * @requires CustomerNav
+ * @requires HOST
+ * @requires apiEndpoints
+ * @requires logo
+ */
+
+import React, {useEffect, useState} from "react";
+import {Outlet, useNavigate} from 'react-router-dom';
+import AddMenuItem from '../../components/AddMenuItem';
+import CustomerNav from '../../components/CustomerNav';
+import {HOST} from "../../utils/host";
+import {endpoints} from "../../utils/apiEndpoints";
+import logo from "../../assets/logo.svg";
 
 /**
- * A React component that renders a food category onto the CustomerOrder screen.
- * @param {Object} props - The props object containing the item property.
- * @param {Object} props.item - The food category item to be rendered.
- * @param {string} props.item.name - The name of the food category.
- * @param {string} props.item.title - The title of the food category.
- * @param {string} props.item.src - The URL of the image for the food category.
- * @returns {JSX.Element} A component to render a food category onto the CustomerOrder screen.
+ * Seasonal component
+ * @returns {JSX.Element} Seasonal page
  */
-function CategoryItem(props) {
-    const item = props.item;
+function Seasonal() {
+    // Set initial state for menu
+    const [menu, setMenu] = useState([]);
 
+    useEffect(() => {
+        // Get menu from API when the component mounts
+        const url = HOST + endpoints.getMenu;
+        fetch(url, {
+            method: "GET"
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network Response Not OK");
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Filter data and set menu state with logo when category is null
+                for (let i = 0; i &lt; data.length; i++) {
+                    if (data[i].category === null) {
+                        data[i].src = logo;
+                        setMenu(menu => [...menu, data[i]]);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error("Could not fetch menu items from " + url);
+            });
+    }, []);
+
+    // Get number of items in the cart from localStorage
+    let numberOfItems = localStorage.getItem("numItems");
+    numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
+
+    // Map menu items to AddMenuItem component
+    const menuList = menu.map(item =>
+        &lt;AddMenuItem key={item.id} item={item}>&lt;/AddMenuItem>
+    );
+
+    // Render the Seasonal page
     return (
-        &lt;li role="listitem">
-            &lt;a href={`/customer/order/${ item.title.toLowerCase() }`} className="menuLink">
-                &lt;button data-cy={`\"${ item.name }\"`} className="menuButton">
-                    &lt;div className="image">
-                        &lt;img alt={item.title} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
-                    &lt;/div>
-                    &lt;div className="name">
-                        &lt;h3 className="name">{item.title}&lt;/h3>
-                    &lt;/div>
-                &lt;/button>
-            &lt;/a>
-        &lt;/li>
+        &lt;>
+            &lt;CustomerNav numberOfItems={numberOfItems} title={"Seasonal"} navPage={"/customer/order"} />
+            &lt;ul data-cy="SeasonalList" className="menu" role="list">
+                {menuList}
+            &lt;/ul>
+            &lt;Outlet />
+        &lt;/>
     );
 }
 
-export default CategoryItem;
+export default Seasonal;
 </code></pre>
         </article>
     </section>
