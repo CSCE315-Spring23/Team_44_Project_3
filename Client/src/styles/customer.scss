@@ -122,9 +122,10 @@ button.menuButtonSug {
 	--webkit-box-pack: center;
 	width: 170px;
 
-	h3{
+	h3 {
 		margin: 0;
 	}
+
 	&:hover {
 		background-color: #fcf9f4;
 		border: 2px solid #e51636;
@@ -195,11 +196,11 @@ div.customerCheckoutItems {
 	font-size: 1.5em;
 }
 
-div.customerCheckoutSuggs{
+div.customerCheckoutSuggs {
 	display: flex;
 	flex-direction: column;
 
-	div.customerCheckoutSuggsItems{
+	div.customerCheckoutSuggsItems {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -218,7 +219,7 @@ div.title {
 	text-align: center;
 	-webkit-box-align: center;
 	-webkit-box-pack: center;
-	width: 73%;
+	width: -webkit-fill-available;
 }
 
 form.customerNameForm {

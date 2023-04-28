@@ -15,8 +15,8 @@ const menu = [
     {name: "L. Waffle Fries", src: sidesImages.side1, key: 0, id: 15},
     {name: "M. Waffle Fries", src: sidesImages.side1, key: 1, id: 15},
     {name: "Chips", src: sidesImages.side0, key: 2, id: 17},
-    {name: "Fruit Cup", src: sidesImages.side1, key: 3, id: 18},
-    {name: "Side Salad", src: sidesImages.side2, key: 4, id: 19},
+    {name: "Fruit Cup", src: sidesImages.side2, key: 3, id: 18},
+    {name: "Side Salad", src: sidesImages.side3, key: 4, id: 19},
 ];
 
 // Create a list of menu items JSX elements
