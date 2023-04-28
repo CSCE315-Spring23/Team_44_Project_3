@@ -11,6 +11,9 @@ function Weather() {
     const [description, setDescription] = useState(null);
     const [icon, setIcon] = useState(null);
 
+    const isLocal = window.location.hostname === "localhost";
+    const HOST = isLocal ? "http://localhost:3001" : "https://chick-fil-a-m0ss.onrender.com";
+
     /**
      * Convert temperature from Celsius to Fahrenheit
      * @function
@@ -29,7 +32,7 @@ function Weather() {
          * @function
          * @returns {void}
          */
-        fetch("http://localhost:3001/api/weather")
+        fetch(`${ HOST }/api/weather`)
             .then(res => res.json())
             .then(data => {
                 setTemperature(toFahrenheit(data.main.temp));
