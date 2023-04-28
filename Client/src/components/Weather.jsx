@@ -44,7 +44,7 @@ function Weather() {
 
     return (
         <div className="weather">
-            <img src={"https://openweathermap.org/img/wn/" + icon + "@2x.png"} />
+            {icon && <img src={"https://openweathermap.org/img/wn/" + icon + "@2x.png"} />}
             {temperature && <p>{temperature.toFixed(2)} ℉</p>}
             {/* {weather && <p>{weather}</p>} */}
             {/* {description && <p>{description}</p>} */}
