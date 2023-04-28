@@ -1,5 +1,4 @@
 import React from "react";
-
 /**
  * A React component that displays a single item in the checkout list for a customer.
  * @param {Object} props - The props object that contains the necessary information to render the component.
@@ -10,8 +9,9 @@ import React from "react";
  * @param {Array<Object>} props.excluded - An array of items that are excluded from the original item.
  * @param {Function} props.removeFromCart - A function to remove the item from the cart when clicked.
  * @returns {JSX.Element} - Returns the JSX element to render the component.
- */
-export default function CustomerCheckOutItem(props) {
+*/
+
+function CustomerCheckOutItem(props) {
 
     /**
      * A function that is called when the remove button is clicked.
@@ -38,9 +38,9 @@ export default function CustomerCheckOutItem(props) {
                     <ul style={{margin: 0}}>
                         {props.excluded && props.excluded.map((item, index) => {
                             if (item.name)
-                                return <li key={index}>no {item.name}</li>
+                                return <li key={index}>no {item.name}</li>;
                             if (index === props.excluded.length - 1) {
-                                return <li key={index}>{item}</li>
+                                return <li key={index}>{item}</li>;
                             }
                         })}
                     </ul>
@@ -49,3 +49,5 @@ export default function CustomerCheckOutItem(props) {
         </div>
     );
 }
+
+export default CustomerCheckOutItem;

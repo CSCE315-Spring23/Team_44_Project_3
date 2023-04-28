@@ -4,12 +4,12 @@ import {endpoints} from "../utils/apiEndpoints";
 import {HOST} from "../utils/host";
 import Weather from "./Weather.jsx";
 import logo from "../assets/logo.svg";
-
 /**
  * A navigation bar for the customer view.
  * @param {Object} props - The props object that contains the numberOfItems, title and navPage values.
  * @returns {JSX.Element} - A JSX element that represents the navigation bar for the customer view.
  */
+
 function CustomerNav(props) {
     const numberOfItems = props.numberOfItems;
     const title = props.title;
@@ -77,17 +77,19 @@ function CustomerNav(props) {
             setNumItems(localStorage.getItem("numItems") || 0);
         };
 
-        window.addEventListener("storage", () => {updateNumItems()});
+        window.addEventListener("storage", () => {updateNumItems();});
 
         return () => {
-            window.removeEventListener("storage", () => {updateNumItems()});
+            window.removeEventListener("storage", () => {updateNumItems();});
         };
     }, []);
 
     return (
         <>
             <nav className="desktop-navigation">
-                <img src={logo} alt="Chick-fil-A logo" className="logo-icon" />
+                <div className="logo-icon">
+                    <img src={logo} alt="Chick-fil-A logo" className="logo-icon" />
+                </div>
                 <div className="backDiv">
                     <button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigagePage}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -99,12 +101,8 @@ function CustomerNav(props) {
                         </div>
                     </button>
                 </div>
-
-
                 <div className="title">{title}</div>
-
                 <Weather />
-
                 <div className="order">
                     <button className="viewOrderBtn" onClick={checkoutPage}>
                         <div className="bagIcon">

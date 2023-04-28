@@ -1,3 +1,7 @@
+/**
+ * Renders the Sides page with a list of menu items and a navigation bar.
+ * @returns {JSX.Element} The Sides page with a list of menu items and a navigation bar.
+ */
 import React from 'react';
 import {Outlet} from 'react-router-dom';
 import AddMenuItem from '../../components/AddMenuItem';
@@ -21,6 +25,10 @@ function Sides() {
     let numberOfItems = localStorage.getItem("numItems");
     numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
 
+    /**
+     * Renders the Sides page with a list of menu items and a navigation bar.
+     * @returns {JSX.Element} The Sides page with a list of menu items and a navigation bar.
+     */
     return (
         <>
             <CustomerNav numberOfItems={numberOfItems} title={"Sides"} navPage={"/customer/order"} />

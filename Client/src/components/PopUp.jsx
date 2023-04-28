@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
-import { endpoints } from "../utils/apiEndpoints";
-import { HOST } from "../utils/host";
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
 import PopUpRow from "./PopUpRow";
 
 import "../styles/employee.scss";
 
-export default function PopUp(props) {
-    const item = props.item
+/**
+ * React component for a pop-up window.
+ * @param {Object} props - The props object.
+ * @param {Object} props.item - The item object.
+ * @param {Function} props.addToCart - The function to add an item to the cart.
+ * @param {Function} props.setPopUp - The function to set the pop-up window's visibility.
+ * @returns {JSX.Element} - The JSX element for the pop-up window.
+ */
+function PopUp(props) {
+    const item = props.item;
     const [recipeItems, setRecipeItems] = useState(null);
     const [excludeItems, setExcludeItems] = useState([]);
     const [notes, setNotes] = useState("");
@@ -15,8 +23,11 @@ export default function PopUp(props) {
     const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
+        /**
+         * Function to fetch data for a single item.
+         * @param {string} url - The URL to fetch the data from.
+         */
         const singleItem = async (url) => {
-
             await fetch(url, {
                 method: "GET"
             })
@@ -27,7 +38,7 @@ export default function PopUp(props) {
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data)
+                    console.log(data);
                     if (data.length > 0)
                         setRecipeItems(data);
                     else {
@@ -38,55 +49,62 @@ export default function PopUp(props) {
                 .catch(error => {
                     console.error("Could not fetch recipe items from " + url);
                 });
-        }
+        };
 
-        const multiItem = async () => {
+        /**
+        * Function to fetch data for multiple items.
+        */
+        async function multiItem() {
             const url = HOST + endpoints.getRecipe + "?id=" + item.ids[0];
             singleItem(url);
         }
 
         if (item.ids) {
             multiItem();
-        }
-        else {
+        } else {
             const url = HOST + endpoints.getRecipe + "?id=" + item.id;
             singleItem(url);
         }
 
     }, []);
 
-    const handleSubmitClick = () => {
-        console.log(notes)
+    /**
+     * Function to handle a click on the "Add to Cart" button.
+     */
+    function handleSubmitClick() {
         // add notes to excludeItems
-        console.log(excludeItems);
-        if (notes !== "")
+        if (notes.length !== 0)
             excludeItems.push(notes);
-        for (let i = 0; i < quantity; i++)
+        for (let i = 0; i < quantity; ++i)
             props.addToCart(item, excludeItems);
         props.setPopUp(false);
-    }
+    };
 
-    const handleExcludeClick = (item) => {
-        // if item not in excludeItems, add it
-        if (!excludeItems.includes(item)) {
+    /**
+     * Function to handle a click on an exclude button.
+     * @param {string} item - The item to exclude.
+     */
+    function handleExcludeClick(item) {
+        if (!excludeItems.includes(item))
             setExcludeItems([...excludeItems, item]);
-        }
-        // if item is in excludeItems, remove it
-        else {
+        else
             setExcludeItems(excludeItems.filter((element) => element !== item));
-        }
-    }
+    };
 
-
-    const addQuantity = () => {
+    /**
+     * Function to add one to the quantity.
+     */
+    function addQuantity() {
         setQuantity(quantity + 1);
-    }
+    };
 
-    const subtractQuantity = () => {
+    /**
+     * Function to subtract one from the quantity.
+     */
+    function subtractQuantity() {
         if (quantity > 1)
             setQuantity(quantity - 1);
-    }
-
+    };
 
     return (
         <div className="PopUp">
@@ -111,3 +129,5 @@ export default function PopUp(props) {
         </div>
     );
 }
+
+export default PopUp;

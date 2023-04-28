@@ -1,25 +1,41 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from "react";
 
-const Weather = () => {
+/**
+ * A component that displays the current weather and temperature
+ * @function
+ * @returns {JSX.Element} - The rendered weather component
+ */
+function Weather() {
     const [temperature, setTemperature] = useState(null);
     const [weather, setWeather] = useState(null);
     const [description, setDescription] = useState(null);
     const [icon, setIcon] = useState(null);
 
+    /**
+     * Convert temperature from Celsius to Fahrenheit
+     * @function
+     * @param {number} temp - The temperature in Celsius
+     * @returns {number} - The temperature in Fahrenheit
+     */
     function toFahrenheit(temp) {
-        const fahrenheit = 1.8 * temp + 32
-        console.log(`Converted ${temp} to ${fahrenheit}\u2109.`);
+        const fahrenheit = 1.8 * temp + 32;
+        console.log(`Converted ${ temp } to ${ fahrenheit }\u2109.`);
         return fahrenheit;
     }
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/weather')
+        /**
+         * Fetch weather data from API and set component state
+         * @function
+         * @returns {void}
+         */
+        fetch("http://localhost:3001/api/weather")
             .then(res => res.json())
             .then(data => {
                 setTemperature(toFahrenheit(data.main.temp));
                 setWeather(data.weather[0].main);
                 setDescription(data.weather[0].description);
-                setIcon(data.weather[0].icon)
+                setIcon(data.weather[0].icon);
             });
     }, []);
 

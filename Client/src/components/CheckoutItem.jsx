@@ -12,8 +12,8 @@ import React from "react";
  * @param {Function} props.onClick - The function to handle click event on the item.
  * @param {string} props.cartID - The ID of the cart.
  * @returns {JSX.Element} - A component to display an item in the checkout list.
-*/
-export default function CheckoutItem(props) {
+ */
+function CheckoutItem(props) {
     function handleClick() {
         props.onClick(props.cartID);
     }
@@ -35,9 +35,9 @@ export default function CheckoutItem(props) {
                     <ul style={{margin: 0}}>
                         {props.excluded && props.excluded.map((item, index) => {
                             if (item.name)
-                                return <li key={index}>no {item.name}</li>
+                                return <li key={index}>no {item.name}</li>;
                             if (index === props.excluded.length - 1) {
-                                return <li key={index}>{item}</li>
+                                return <li key={index}>{item}</li>;
                             }
                         })}
                     </ul>
@@ -45,3 +45,5 @@ export default function CheckoutItem(props) {
         </div>
     );
 }
+
+export default CheckoutItem;

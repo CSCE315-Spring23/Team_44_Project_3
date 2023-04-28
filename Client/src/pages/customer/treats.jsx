@@ -1,3 +1,7 @@
+/**
+ * Renders the Treats page with a list of menu items and a navigation bar.
+ * @returns {JSX.Element} The Treats page with a list of menu items and a navigation bar.
+ */
 import React from 'react';
 import {Outlet, useNavigate} from 'react-router-dom';
 import AddMenuItem from '../../components/AddMenuItem';
@@ -25,6 +29,10 @@ function Treats() {
     let numberOfItems = localStorage.getItem("numItems");
     numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
 
+    /**
+     * Renders the Treats page with a list of menu items and a navigation bar.
+     * @returns {JSX.Element} The Treats page with a list of menu items and a navigation bar.
+     */
     return (
         <>
             <CustomerNav numberOfItems={numberOfItems} title={"Treats"} navPage={"/customer/order"} />
