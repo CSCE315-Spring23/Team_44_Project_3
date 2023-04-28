@@ -146,8 +146,8 @@ function CustomerCheckout(props) {
 		localStorage.setItem("numItems", newCart.items ? Object.keys(newCart.items).length : 0);
 
 		const checkOutBtn = document.getElementById("customerCheckoutBtn");
-		checkOutBtn.disabled = Object.keys(newCart.item).length == 0;
-	};
+		checkOutBtn.disabled = newCart.items === undefined || Object.keys(newCart.items).length === 0;
+	}
 
 	return (
 		<div>

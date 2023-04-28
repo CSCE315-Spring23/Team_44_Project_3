@@ -73,7 +73,7 @@ function PopUp(props) {
      */
     function handleSubmitClick() {
         // add notes to excludeItems
-        if (notes.length == 0)
+        if (notes.length !== 0)
             excludeItems.push(notes);
         for (let i = 0; i < quantity; ++i)
             props.addToCart(item, excludeItems);
