@@ -1,21 +1,39 @@
-import React, {useState, useEffect, useContext} from "react";
-import {Link, json, useNavigate} from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, json, useNavigate } from "react-router-dom";
 import CustomerOrder from "./CustomerOrder";
-import {HOST} from "../../utils/host";
-import {endpoints} from "../../utils/apiEndpoints";
+import { HOST } from "../../utils/host";
+import { endpoints } from "../../utils/apiEndpoints";
 import CustomerCheckOutItem from "../../components/CustomerCheckOutItem";
-
+import SuggestedMenuItem from "../../components/SuggestedMenuItem";
 import "../../styles/customer.scss";
+
+import treatImages from "../../utils/treatImages";
+import beveragesImages from "../../utils/beverageImages";
+import sidesImages from "../../utils/sidesImages";
+import sauceImages from "../../utils/sauceImages";
+
+
+const potentialRecs = [
+	{ name: "Chick-fil-A Sauce", src: sauceImages.CFASauce, key: 2, id: 46 },
+	{ name: "M. Soft Drink", src: beveragesImages.beverage9, key: 9, id: 29 },
+	{ name: "M. Lemonade", src: beveragesImages.beverage5, key: 5, id: 25 },
+	{ name: "M. Waffle Fries", src: sidesImages.side1, key: 1, id: 15 },
+	{ name: "Vanilla Milkshake", src: treatImages.treat8, key: 8, id: 36 },
+	{ name: "Icedream® Cone", src: treatImages.treat6, key: 6, id: 39 },
+]
+
+
 export default function CustomerCheckout(props) {
 	const navigate = useNavigate();
 
-	const currentOrder = JSON.parse(localStorage.getItem("curOrder")) || {total: [0], items: []};
-	const items = Object.keys(currentOrder.items);
+	const currentOrder = JSON.parse(localStorage.getItem("curOrder")) || { total: [0], items: [] };
 	const [showModal, setShowModal] = useState(false);
-	const [cart, setCart] = useState(currentOrder ? currentOrder : {total: [0], items: []});
+	const [cart, setCart] = useState(currentOrder ? currentOrder : { total: [0], items: [] });
+	const [items, setItems] = useState(Object.keys(cart.items));
+	const [recs, setRecs] = useState([]);
 
 	function emptyCurrentOrder() {
-		const defaultOrder = {total: [0], items: {}};
+		const defaultOrder = { total: [0], items: {} };
 		localStorage.setItem("curOrder", JSON.stringify(defaultOrder));
 		localStorage.setItem("numItems", "0");
 	}
@@ -35,11 +53,11 @@ export default function CustomerCheckout(props) {
 			const excluded = cart.items[cartID][4];
 
 			let excludedIDs = [];
-			for (let i = 0;i < excluded.length;i++) {
+			for (let i = 0; i < excluded.length; i++) {
 				excludedIDs.push(excluded[i].id);
 			}
 
-			const curItem = {"id": id, "quantity": count, "excluded": excludedIDs};
+			const curItem = { "id": id, "quantity": count, "excluded": excludedIDs };
 			itemsArr.push(curItem);
 		}
 
@@ -63,7 +81,7 @@ export default function CustomerCheckout(props) {
 		}
 		fetch(url, {
 			method: "POST",
-			headers: {"Content-Type": "application/json"},
+			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(order)
 		})
 			.then(response => {
@@ -81,7 +99,7 @@ export default function CustomerCheckout(props) {
 			navigate("/customer/order");
 		}, 3000);
 
-		const defaultOrder = {total: [0], items: []};
+		const defaultOrder = { total: [0], items: [] };
 		setCart(defaultOrder);
 		localStorage.setItem("curOrder", JSON.stringify(defaultOrder));
 		localStorage.setItem("numItems", "0");
@@ -123,11 +141,11 @@ export default function CustomerCheckout(props) {
 
 	}, []);
 
-	{/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */}
+	{/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */ }
 	const removeFromCart = (cartID) => {
 		console.log("remove from cart ->", cartID, cart.items[cartID][0]);
 
-		let newCart = {...cart};
+		let newCart = { ...cart };
 		newCart.total[0] -= newCart.items[cartID][2];
 		if (newCart.items[cartID][1] > 1) {
 			newCart.items[cartID][1] -= 1;
@@ -136,14 +154,8 @@ export default function CustomerCheckout(props) {
 			delete newCart.items[cartID];
 		}
 
-		//check if one of the items in the cart is null, remove it
-		for (let item in newCart.items) {
-			if (newCart.items[item] === null) {
-				delete newCart.items[item];
-			}
-		}
-
 		setCart(newCart);
+		setItems(Object.keys(newCart.items));
 		let newTotal = Math.abs(newCart.total[0]);
 
 		setOrderValue(newTotal);
@@ -154,9 +166,122 @@ export default function CustomerCheckout(props) {
 		checkOutBtn.disabled = newCart.items === undefined || Object.keys(newCart.items).length === 0;
 	}
 
+	useEffect(() => {
+
+		const curOrder = JSON.parse(localStorage.getItem("curOrder")) || { total: [0], items: [] };
+		console.log("curOrder: ", curOrder, curOrder.items);
+		setItems(Object.keys(curOrder.items));
+
+
+		// if cart doesn't contain fries, recommend fries
+		let recs = [];
+
+		let fries = false;
+		let drink = false;
+		let sauce = false;
+
+		for (let id in items) {
+			if (cart.items[id][3] === 15 || cart.items[id][3] === 16) {
+				fries = true;
+			}
+			if (cart.items[id][3] >= 20 && cart.items[id][3] <= 32) {
+				drink = true;
+			}
+			if (cart.items[id][3] === 46) {
+				sauce = true;
+			}
+		}
+
+		if (!fries) {
+			recs.push(potentialRecs[3]);
+		}
+		if (!drink) {
+			recs.push(potentialRecs[1]);
+			recs.push(potentialRecs[2]);
+		}
+		if (!sauce) {
+			recs.push(potentialRecs[0]);
+		}
+
+		setRecs(recs);
+
+	}, [cart]);
+
+	function addToCartChkout(item, excludeItems) {
+		console.log("item: ", item, "excludeItems: ", excludeItems);
+		const carts = JSON.parse(localStorage.getItem("curOrder")) || { total: [0], items: {} };
+		let cartID = Object.keys(cart.items).length;
+		let newCart = { ...cart };
+
+		let numberOfItems = localStorage.getItem("numItems");
+		numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
+
+		const menu = JSON.parse(localStorage.getItem("menu"));
+
+		if (item.ids) {
+			for (let i = 0; i < item.ids.length; i++) {
+				console.log("item.ids[i]: ", item.ids[i]);
+				menu.forEach((arrItem) => {
+					if (arrItem.id == item.ids[i]) {
+						console.log("arrItem: ", arrItem);
+
+						let found = false;
+						for (let key in newCart.items) {
+							if (newCart.items[key][0] === arrItem.name && (JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems) || i != 0)) {
+								newCart.items[key][1] += 1;
+								newCart.total[0] += Number(arrItem.cost);
+								found = true;
+								break;
+							}
+						}
+						if (!found) {
+							newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, i == 0 ? excludeItems : []];
+							newCart.total[0] += Number(arrItem.cost);
+							cartID++;
+						}
+						localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
+						window.dispatchEvent(new Event('storage'));
+						return;
+					}
+				});
+			}
+		}
+
+		if (item.id) {
+			menu.forEach((arrItem) => {
+				if (arrItem.id == item.id) {
+					let found = false;
+					for (let key in newCart.items) {
+						if (newCart.items[key][0] === arrItem.name && JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)) {
+							newCart.items[key][1] += 1;
+							newCart.total[0] += Number(arrItem.cost);
+							found = true;
+							break;
+						}
+					}
+					if (!found) {
+						newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, excludeItems];
+						newCart.total[0] += Number(arrItem.cost);
+					}
+					localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
+					window.dispatchEvent(new Event('storage'));
+					return;
+				}
+			});
+		}
+		setCart(newCart);
+		setItems(Object.keys(newCart.items));
+		let newTotal = Math.abs(newCart.total[0]);
+
+		setOrderValue(newTotal);
+		localStorage.setItem("curOrder", JSON.stringify(newCart));
+		localStorage.setItem("numItems", newCart.items ? Object.keys(newCart.items).length : 0);
+
+	}
+
 	return (
 		<div>
-			<div className="backDiv" style={{width: "6em", margin:".35em 0em 0em .35em"}}>
+			<div className="backDiv" style={{ width: "6em", margin: ".35em 0em 0em .35em" }}>
 				<button title="Back to order list" data-cy="SubNavBack" className="backButton" onClick={backToOrder}>
 					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M14.09 22L5 12l9.09-10" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -169,7 +294,7 @@ export default function CustomerCheckout(props) {
 			</div>
 			<div className="customerCheckout">
 				<div className="customerCheckoutItems">
-					{items.map(cartID => (
+					{items && items.map(cartID => (
 						<CustomerCheckOutItem
 							itemName={cart.items[cartID][0]}
 							count={cart.items[cartID][1]}
@@ -181,18 +306,14 @@ export default function CustomerCheckout(props) {
 						>
 						</CustomerCheckOutItem>
 					))}
-					{props.excluded &&
-						<div className="checkoutItemEx">
-							<ul style={{margin: 0}}>
-								{props.excluded && props.excluded.map((item, index) => {
-									if (item.name)
-										return <li key={index}>no {item.name}</li>
-									if (index === props.excluded.length - 1) {
-										return <li key={index}>{item}</li>
-									}
-								})}
-							</ul>
-						</div>}
+				</div>
+				<div className="customerCheckoutSuggs">
+					<h3>Recommended</h3>
+					<div className="customerCheckoutSuggsItems">
+						{recs && recs.map(item => (
+							<SuggestedMenuItem key={item.id} item={item} addToCart={addToCartChkout} />
+						))}
+					</div>
 				</div>
 				<form className="customerNameForm">
 					<label for="customerName">Please enter your name:</label>
