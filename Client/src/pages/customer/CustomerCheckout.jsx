@@ -181,6 +181,7 @@ export default function CustomerCheckout(props) {
 		let fries = false;
 		let drink = false;
 		let sauce = false;
+		let treat = false;
 
 		for (let id in cart.items) {
 			if (cart.items[id][3] === 15 || cart.items[id][3] === 16) {
@@ -191,6 +192,9 @@ export default function CustomerCheckout(props) {
 			}
 			if (cart.items[id][3] === 46) {
 				sauce = true;
+			}
+			if (cart.items[id][3] >= 33 && cart.items[id][3] <= 41){
+				treat = true;
 			}
 		}
 
@@ -204,6 +208,10 @@ export default function CustomerCheckout(props) {
 		if (!sauce) {
 			recs.push(potentialRecs[0]);
 		}
+		if (!treat){
+			recs.push(potentialRecs[4]);
+			recs.push(potentialRecs[5]);
+		}
 
 		setRecs(recs);
 
@@ -212,7 +220,8 @@ export default function CustomerCheckout(props) {
 	function addToCartChkout(item, excludeItems) {
 		console.log("item: ", item, "excludeItems: ", excludeItems);
 		const carts = JSON.parse(localStorage.getItem("curOrder")) || { total: [0], items: {} };
-		let cartID = Object.keys(cart.items).length;
+		let cartID = Object.keys(carts.items).length > 0 ? parseInt(Object.keys(carts.items)[Object.keys(carts.items).length-1]) + 1 : 0;
+		console.log(carts, cartID, Object.keys(cart).length)
 		let newCart = { ...cart };
 
 		let numberOfItems = localStorage.getItem("numItems");
