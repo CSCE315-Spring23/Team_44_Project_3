@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: ExcessRep</title>
+    <title>JSDoc: Source: components/PageProtector.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,185 +17,56 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: ExcessRep</h1>
+    <h1 class="page-title">Source: components/PageProtector.jsx</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">React component for generating excess report</div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pages_employee_ExcessRep.jsx.html">pages/employee/ExcessRep.jsx</a>, <a href="pages_employee_ExcessRep.jsx.html#line1">line 1</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="~asyncFetchthetablefromserverandsetthetablestate"><span class="type-signature">(inner) </span>async
-Fetch the table from server and set the table state<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pages_employee_ExcessRep.jsx.html">pages/employee/ExcessRep.jsx</a>, <a href="pages_employee_ExcessRep.jsx.html#line65">line 65</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+
+/**
+ * A component that protects pages from unauthorized access by checking if the user is authenticated
+ * @param {Object} children - The components to be rendered within the PageProtector component
+ * @returns {Object} The protected component or a page loading message
+ */
+function PageProtector({children}) {
+    const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
+    /**
+     * Check if user is authenticated and update isLoading state accordingly
+     */
+    useEffect(() => {
+        if (localStorage.getItem("employeeId") != null) {
+            setIsLoading(false);
+        }
+        else {
+            console.log("pageprotector nav to login");
+            navigate("/");
+            setIsLoading(true);
+        }
+    }, []);
+
+    /**
+     * Render the protected component or a page loading message
+     */
+    if (isLoading) {
+        return (
+            &lt;p>Page Loading Or No Authorization&lt;/p>
+        );
+    }
+
+    return children;
+}
+
+export default PageProtector;
+</code></pre>
+        </article>
+    </section>
 
 
 

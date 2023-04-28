@@ -1,11 +1,11 @@
+import {useState} from 'react';
+
 /**
  * A component that generates a form based on the given fields and handles form submission.
  * @param {Array} fields - An array of field objects that contain information about the form fields.
  * @param {Function} onSubmit - A callback function to be executed when the form is submitted.
  * @returns {JSX.Element} - A form element with input fields and a submit button.
-*/
-import {useState} from 'react';
-
+ */
 function FormGenerator({fields, onSubmit}) {
 	const initialState = {};
 	fields.forEach((field) => {

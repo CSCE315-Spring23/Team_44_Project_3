@@ -1,14 +1,14 @@
-/**
- * React component that displays a list of menu items as buttons to order from
- * @param {object} props - Component props
- * @param {function} props.addToCart - Function to add an item to the cart
- * @returns {JSX.Element} - JSX element with the list of menu item buttons
-*/
 import React, {useEffect, useState} from "react";
 import {endpoints} from "../utils/apiEndpoints";
 import {HOST} from "../utils/host";
 import OrderItemButton from "./OrderItemButton";
 
+/**
+ * React component that displays a list of menu items as buttons to order from
+ * @param {object} props - Component props
+ * @param {function} props.addToCart - Function to add an item to the cart
+ * @returns {JSX.Element} - JSX element with the list of menu item buttons
+ */
 function OrderItemPane(props) {
     //set a react state to contain the json of menu items
     const [menuButtons, setMenuButtons] = useState(null);

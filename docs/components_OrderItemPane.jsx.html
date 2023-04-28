@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/OrderItemButton.jsx</title>
+    <title>JSDoc: Source: components/OrderItemPane.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/OrderItemButton.jsx</h1>
+    <h1 class="page-title">Source: components/OrderItemPane.jsx</h1>
 
     
 
@@ -26,41 +26,59 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React, {useState} from "react";
-import PopUp from "./PopUp";
+            <pre class="prettyprint source linenums"><code>import React, {useEffect, useState} from "react";
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
+import OrderItemButton from "./OrderItemButton";
 
 /**
- * A component that renders a button for a specific order item and displays a popup with additional item details when clicked.
- * @param {Object} props - The props object that contains the item object and addToCart function.
- * @param {Object} props.item - An object that contains information about the item.
- * @param {Function} props.addToCart - A function that adds the item to the cart.
- * @returns {JSX.Element} - A button element for the item that displays a popup when clicked.
+ * React component that displays a list of menu items as buttons to order from
+ * @param {object} props - Component props
+ * @param {function} props.addToCart - Function to add an item to the cart
+ * @returns {JSX.Element} - JSX element with the list of menu item buttons
  */
-function OrderItemButton(props) {
-    const item = props.item;
-    const itemName = item.name;
+function OrderItemPane(props) {
+    //set a react state to contain the json of menu items
+    const [menuButtons, setMenuButtons] = useState(null);
+
     const addToCart = props.addToCart;
 
-    const [popUp, setPopUp] = useState(false);
-
     /**
-     * A function that sets the popup state to true.
+     * Effect hook that fetches the menu items from the API
      */
-    function openPopUp() {
-        setPopUp(true);
-    }
+    useEffect(() => {
+        setMenuButtons(null);
+        const url = HOST + endpoints.getMenu;
+        fetch(url, {
+            method: "GET"
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network Response Not OK");
+                }
+                return response.json();
+            })
+            .then(data => {
+                //create the map of all the menu buttons to render
+                const menBtns = data.map((element) =>
+                    &lt;OrderItemButton key={element.id} item={element} addToCart={addToCart} />
+                );
+                setMenuButtons(menBtns);
+            })
+            .catch(error => {
+                console.error("Could not fetch menu items from " + url);
+            });
+
+    }, []);
 
     return (
-        &lt;div>
-            &lt;button onClick={openPopUp} className="orderItemBtn">
-                {itemName ? itemName : "No Item"}
-            &lt;/button>
-            {popUp &amp;&amp; &lt;PopUp item={item} setPopUp={setPopUp} addToCart={addToCart} />}
+        &lt;div className="orderItemPane">
+            {menuButtons}
         &lt;/div>
     );
 }
 
-export default OrderItemButton;</code></pre>
+export default OrderItemPane;</code></pre>
         </article>
     </section>
 

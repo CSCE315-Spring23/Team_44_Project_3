@@ -1,3 +1,5 @@
+import React from "react";
+
 /**
  * A functional component to display an item in the checkout list.
  * @param {Object} props - The component's input props.
@@ -11,8 +13,6 @@
  * @param {string} props.cartID - The ID of the cart.
  * @returns {JSX.Element} - A component to display an item in the checkout list.
  */
-import React from "react";
-
 function CheckoutItem(props) {
     function handleClick() {
         props.onClick(props.cartID);

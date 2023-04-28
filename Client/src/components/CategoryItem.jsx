@@ -1,3 +1,5 @@
+import React from 'react';
+
 /**
  * A React component that renders a food category onto the CustomerOrder screen.
  * @param {Object} props - The props object containing the item property.
@@ -7,8 +9,6 @@
  * @param {string} props.item.src - The URL of the image for the food category.
  * @returns {JSX.Element} A component to render a food category onto the CustomerOrder screen.
  */
-import React from 'react';
-
 function CategoryItem(props) {
     const item = props.item;
 

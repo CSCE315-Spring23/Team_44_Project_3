@@ -4,12 +4,12 @@ import {endpoints} from "../utils/apiEndpoints";
 import {HOST} from "../utils/host";
 import Weather from "./Weather.jsx";
 import logo from "../assets/logo.svg";
-
 /**
  * A navigation bar for the customer view.
  * @param {Object} props - The props object that contains the numberOfItems, title and navPage values.
  * @returns {JSX.Element} - A JSX element that represents the navigation bar for the customer view.
  */
+
 function CustomerNav(props) {
     const numberOfItems = props.numberOfItems;
     const title = props.title;

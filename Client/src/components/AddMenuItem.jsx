@@ -1,12 +1,12 @@
+import React, {useEffect, useState} from "react";
+import PopUp from "./PopUp";
+
 /**
  * This function component renders a food category onto the CustomerOrder screen
  * @param {any} props - The props for the AddMenuItem component
  * @param {any} props.item - The item object that contains information about the menu item being added
  * @returns {any} A component to render a food category onto the CustomerOrder screen
  */
-import React, {useEffect, useState} from "react";
-import PopUp from "./PopUp";
-
 function AddMenuItem(props) {
     const [itemCost, setItemCost] = useState(0);
     const [popUp, setPopUp] = useState(false);

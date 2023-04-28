@@ -1,11 +1,3 @@
-/**
- * React component for a pop-up window.
- * @param {Object} props - The props object.
- * @param {Object} props.item - The item object.
- * @param {Function} props.addToCart - The function to add an item to the cart.
- * @param {Function} props.setPopUp - The function to set the pop-up window's visibility.
- * @returns {JSX.Element} - The JSX element for the pop-up window.
- */
 import React, {useEffect, useState} from "react";
 
 import {endpoints} from "../utils/apiEndpoints";
@@ -14,6 +6,14 @@ import PopUpRow from "./PopUpRow";
 
 import "../styles/employee.scss";
 
+/**
+ * React component for a pop-up window.
+ * @param {Object} props - The props object.
+ * @param {Object} props.item - The item object.
+ * @param {Function} props.addToCart - The function to add an item to the cart.
+ * @param {Function} props.setPopUp - The function to set the pop-up window's visibility.
+ * @returns {JSX.Element} - The JSX element for the pop-up window.
+ */
 function PopUp(props) {
     const item = props.item;
     const [recipeItems, setRecipeItems] = useState(null);

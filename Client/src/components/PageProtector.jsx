@@ -1,11 +1,11 @@
+import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+
 /**
  * A component that protects pages from unauthorized access by checking if the user is authenticated
  * @param {Object} children - The components to be rendered within the PageProtector component
  * @returns {Object} The protected component or a page loading message
  */
-import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
-
 function PageProtector({children}) {
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();

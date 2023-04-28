@@ -1,3 +1,5 @@
+import React, {useEffect, useState} from "react";
+
 /**
  * React functional component that displays a database table.
  * @param {Object} props - Component props.
@@ -5,8 +7,6 @@
  * @param {Function} props.handleOnClick - Function to be called when a row in the table is clicked.
  * @returns {JSX.Element} - JSX table element representing the database table.
  */
-import React, {useEffect, useState} from "react";
-
 function DatabaseTablePane(props) {
     const headers = Object.keys(props.data[0]);
     const formattedHeaders = [];

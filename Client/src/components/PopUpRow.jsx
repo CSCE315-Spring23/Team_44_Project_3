@@ -1,3 +1,6 @@
+import React, {useState} from "react";
+import "../styles/employee.scss";
+
 /**
  * A component that displays a row for a specific inventory item
  * @param {Object} props - The props object
@@ -5,9 +8,6 @@
  * @param {Function} props.handleExcludeClick - A callback function to call when the user clicks the exclude checkbox
  * @returns {JSX.Element} A React component that displays a row for a specific inventory item
  */
-import React, {useState} from "react";
-import "../styles/employee.scss";
-
 function PopUpRow(props) {
     const [checked, setChecked] = useState(true);
     const inventoryitem = props.inventoryitem;

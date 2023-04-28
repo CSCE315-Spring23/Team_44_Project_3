@@ -1,12 +1,12 @@
+import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import logo from "../assets/logo.svg";
+
 /**
  * React functional component representing the navigation bar for employees.
  * @param {object} props - The properties of the component.
  * @returns {JSX.Element} - A JSX element representing the employee navigation bar.
  */
-import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import logo from "../assets/logo.svg";
-
 function EmployeeNav(props) {
     const [isManager, setIsManager] = useState();
     const [current, setCurrent] = useState();

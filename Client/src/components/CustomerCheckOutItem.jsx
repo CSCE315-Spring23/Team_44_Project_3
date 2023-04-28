@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * A React component that displays a single item in the checkout list for a customer.
  * @param {Object} props - The props object that contains the necessary information to render the component.
@@ -9,7 +10,6 @@
  * @param {Function} props.removeFromCart - A function to remove the item from the cart when clicked.
  * @returns {JSX.Element} - Returns the JSX element to render the component.
 */
-import React from "react";
 
 function CustomerCheckOutItem(props) {
 

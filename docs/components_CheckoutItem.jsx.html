@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/CustomerCheckOutItem.jsx</title>
+    <title>JSDoc: Source: components/CheckoutItem.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/CustomerCheckOutItem.jsx</h1>
+    <h1 class="page-title">Source: components/CheckoutItem.jsx</h1>
 
     
 
@@ -27,26 +27,23 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from "react";
+
 /**
- * A React component that displays a single item in the checkout list for a customer.
- * @param {Object} props - The props object that contains the necessary information to render the component.
- * @param {string} props.itemName - The name of the item to display.
- * @param {number} props.count - The number of items to display.
- * @param {number} props.price - The price of the item to display.
- * @param {string} props.cartID - The unique identifier of the item in the cart.
- * @param {Array&lt;Object>} props.excluded - An array of items that are excluded from the original item.
- * @param {Function} props.removeFromCart - A function to remove the item from the cart when clicked.
- * @returns {JSX.Element} - Returns the JSX element to render the component.
-*/
-
-function CustomerCheckOutItem(props) {
-
-    /**
-     * A function that is called when the remove button is clicked.
-     * It removes the item from the cart by calling the 'removeFromCart' function passed in as a prop.
-     */
-    function removeFromCart() {
-        props.removeFromCart(props.cartID);
+ * A functional component to display an item in the checkout list.
+ * @param {Object} props - The component's input props.
+ * @param {string} props.itemName - The name of the item to be displayed.
+ * @param {number} props.count - The count of the item to be displayed.
+ * @param {number} props.price - The price of the item to be displayed.
+ * @param {boolean} [props.excluded=false] - Whether the item is excluded from the order.
+ * @param {Object[]} props.excluded - An array of objects representing excluded items.
+ * @param {string} props.excluded[].name - The name of the excluded item.
+ * @param {Function} props.onClick - The function to handle click event on the item.
+ * @param {string} props.cartID - The ID of the cart.
+ * @returns {JSX.Element} - A component to display an item in the checkout list.
+ */
+function CheckoutItem(props) {
+    function handleClick() {
+        props.onClick(props.cartID);
     }
 
     return (
@@ -58,7 +55,7 @@ function CustomerCheckOutItem(props) {
                 &lt;/div>
                 &lt;div className="checkoutItemRight">
                     &lt;p style={{margin: 0}}>${props.price}&lt;/p>
-                    &lt;button className="checkoutItemButton" onClick={removeFromCart}>-&lt;/button>
+                    &lt;button className="checkoutItemButton" onClick={handleClick}>-&lt;/button>
                 &lt;/div>
             &lt;/div>
             {props.excluded &amp;&amp;
@@ -73,12 +70,11 @@ function CustomerCheckOutItem(props) {
                         })}
                     &lt;/ul>
                 &lt;/div>}
-
         &lt;/div>
     );
 }
 
-export default CustomerCheckOutItem;
+export default CheckoutItem;
 </code></pre>
         </article>
     </section>

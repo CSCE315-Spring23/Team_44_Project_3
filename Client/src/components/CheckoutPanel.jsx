@@ -1,13 +1,13 @@
-/**
- * Represents the checkout panel component.
- * @param {object} props - The props object containing the cart.
- * @returns {JSX.Element} The checkout panel component.
- */
 import React, {useState} from "react";
 import {endpoints} from "../utils/apiEndpoints";
 import {HOST} from "../utils/host";
 import CheckoutItem from "./CheckoutItem";
 
+/**
+ * Represents the checkout panel component. 
+ * @param {object} props - The props object containing the cart.
+ * @returns {JSX.Element} The checkout panel component.
+ */
 function CheckoutPanel(props) {
     const name = localStorage.getItem("custName");
     const [custName, setCustName] = useState(name ? name : "");
