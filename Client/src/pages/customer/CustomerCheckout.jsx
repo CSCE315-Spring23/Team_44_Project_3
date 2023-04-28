@@ -103,6 +103,7 @@ export default function CustomerCheckout(props) {
 
 		const defaultOrder = { total: [0], items: [] };
 		setCart(defaultOrder);
+		setItems([]);
 		localStorage.setItem("curOrder", JSON.stringify(defaultOrder));
 		localStorage.setItem("numItems", "0");
 		setOrderValue(0);
@@ -173,18 +174,17 @@ export default function CustomerCheckout(props) {
 		let fries = false;
 		let drink = false;
 		let sauce = false;
-
-		for (let id in cart.items) {
-			if (cart.items[id][3] === 15 || cart.items[id][3] === 16) {
-				fries = true;
-			}
-			if (cart.items[id][3] >= 20 && cart.items[id][3] <= 32) {
-				drink = true;
-			}
-			if (cart.items[id][3] === 46) {
-				sauce = true;
-			}
-		}
+		// for (let id in cart.items) {
+		// 	if (cart.items[id][3] === 15 || cart.items[id][3] === 16) {
+		// 		fries = true;
+		// 	}
+		// 	if (cart.items[id][3] >= 20 && cart.items[id][3] <= 32) {
+		// 		drink = true;
+		// 	}
+		// 	if (cart.items[id][3] === 46) {
+		// 		sauce = true;
+		// 	}
+		// }
 
 		if (!fries) {
 			recs.push(potentialRecs[3]);
