@@ -30,7 +30,7 @@ function AddMenuItem(props) {
     function addToCart(item, excludeItems) {
         console.log("item: ", item, "excludeItems: ", excludeItems);
         const cart = JSON.parse(localStorage.getItem("curOrder")) || {total: [0], items: {}};
-        let cartID = Object.keys(cart.items).length;
+		let cartID = Object.keys(cart.items).length > 0 ? parseInt(Object.keys(cart.items)[Object.keys(cart.items).length-1]) + 1 : 0;
         console.log(cartID);
         let newCart = {...cart};
 
