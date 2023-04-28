@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/Form.jsx</title>
+    <title>JSDoc: Source: pages/customer/salads.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/Form.jsx</h1>
+    <h1 class="page-title">Source: pages/customer/salads.jsx</h1>
 
     
 
@@ -26,66 +26,49 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import {useState} from 'react';
+            <pre class="prettyprint source linenums"><code>/**
+ * Represents a page that displays the list of available salads.
+ * @function
+ * @returns {JSX.Element}
+ */
+import React from 'react';
+import {Outlet} from 'react-router-dom';
+import AddMenuItem from '../../components/AddMenuItem';
+import CustomerNav from '../../components/CustomerNav';
+
+import saladImages from '../../utils/saladImages';
+
+const menu = [
+    {name: "Cobb Salad", src: saladImages.salad0, key: 0, id: 12},
+    {name: "Market Salad", src: saladImages.salad1, key: 1, id: 14},
+    {name: "Spicy Southwest Salad", src: saladImages.salad2, key: 2, id: 13},
+];
+
+const menuList = menu.map(item =>
+    &lt;AddMenuItem key={item.id} item={item}>&lt;/AddMenuItem>
+);
 
 /**
- * A component that generates a form based on the given fields and handles form submission.
- * @param {Array} fields - An array of field objects that contain information about the form fields.
- * @param {Function} onSubmit - A callback function to be executed when the form is submitted.
- * @returns {JSX.Element} - A form element with input fields and a submit button.
+ * Renders the Salad component.
+ * @function
+ * @returns {JSX.Element}
  */
-function FormGenerator({fields, onSubmit}) {
-	const initialState = {};
-	fields.forEach((field) => {
-		initialState[field.name] = '';
-	});
-	const [formState, setFormState] = useState(initialState);
+function Salad() {
+    let numberOfItems = localStorage.getItem("numItems");
+    numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
 
-	/**
-	 * A function that handles changes to form input fields and updates the form state accordingly.
-	 * @param {Event} e - The change event triggered by an input field.
-	 */
-	function handleFieldChange(e) {
-		const {name, value} = e.target;
-		setFormState((prevState) => ({
-			...prevState,
-			[name]: value,
-		}));
-	};
-
-	/**
-	 * A function that handles form submission.
-	 * @param {Event} e - The submit event triggered by the form.
-	 */
-	function handleSubmit(e) {
-		e.preventDefault();
-		onSubmit(formState);
-		setFormState(initialState);
-	};
-
-	// Generate form elements based on the fields array
-	const formElements = fields.map((field) => (
-		&lt;div key={field.name} style={{marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
-			&lt;label style={{display: 'inline-block', width: '150px', textAlign: 'left', marginRight: '10px'}}>{field.label}: &lt;/label>
-			&lt;input
-				type={field.type}
-				name={field.name}
-				value={formState[field.name]}
-				placeholder={field.placeholder}
-				onChange={handleFieldChange}
-				style={{flex: 1, padding: '5px', textAlign: 'right'}}
-			/>
-		&lt;/div>
-	));
-
-	return (
-		&lt;form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-			{formElements}
-			&lt;button type="submit" style={{marginTop: '10px', padding: '5px 10px', fontSize: '16px', marginBottom: '5px'}}>Submit&lt;/button>
-		&lt;/form>
-	);
+    return (
+        &lt;>
+            &lt;CustomerNav numberOfItems={numberOfItems} title={"Salads"} navPage={"/customer/order"} />
+            &lt;ul data-cy="SaladsList" className="menu" role="list">
+                {menuList}
+            &lt;/ul>
+            &lt;Outlet />
+        &lt;/>
+    );
 }
-export default FormGenerator;
+
+export default Salad;
 </code></pre>
         </article>
     </section>

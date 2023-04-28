@@ -1,3 +1,8 @@
+/**
+ * Represents a list of Entree menu items.
+ * @function
+ * @returns {JSX.Element}
+ */
 import React from 'react';
 import {Outlet, useNavigate} from 'react-router-dom';
 import AddMenuItem from '../../components/AddMenuItem';
@@ -5,6 +10,10 @@ import CustomerNav from '../../components/CustomerNav';
 
 import entreeImages from '../../utils/entreeImages';
 
+/**
+ * Array containing the Entree menu items.
+ * @type {Array.<{name: string, src: string, key: number, id: number}>}
+ */
 const menu = [
     {name: "Chicken Sandwich", src: entreeImages.entree0, key: 0, id: 1},
     {name: "Chicken Sandwich Deluxe", src: entreeImages.entree1, key: 1, id: 2},
@@ -19,14 +28,31 @@ const menu = [
     {name: "Grilled Chicken Cool Wrap", src: entreeImages.entree10, key: 10, id: 11}
 ];
 
+/**
+ * Array containing the menu items components.
+ * @type {Array.<JSX.Element>}
+ */
 const menuList = menu.map(item =>
     <AddMenuItem key={item.id} item={item}></AddMenuItem>
 );
 
+/**
+ * The Entree component.
+ * @function
+ * @returns {JSX.Element}
+ */
 function Entree() {
+    /**
+     * Retrieves the number of items stored in local storage.
+     * @type {number}
+     */
     let numberOfItems = localStorage.getItem("numItems");
     numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
 
+    /**
+     * Renders the Entree component.
+     * @returns {JSX.Element}
+     */
     return (
         <>
             <CustomerNav numberOfItems={numberOfItems} title={"Entreé"} navPage={"/customer/order"} />

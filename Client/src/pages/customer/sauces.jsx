@@ -1,3 +1,8 @@
+/**
+ * A React component that displays the sauces menu, allowing users to add items to their order.
+ * @function
+ * @returns {JSX.Element}
+ */
 import React from 'react';
 import {Outlet, useNavigate} from 'react-router-dom';
 import AddMenuItem from '../../components/AddMenuItem';
@@ -5,6 +10,7 @@ import CustomerNav from '../../components/CustomerNav';
 
 import sauceImages from '../../utils/sauceImages';
 
+// An array of objects representing the menu items.
 const menu = [
     {name: "Avacado Lime Ranch Dressing", src: sauceImages.avacadoLimeRanchDressing, key: 0, id: 42},
     {name: "Barbeque Sauce", src: sauceImages.bbqSauce, key: 1, id: 51},
@@ -20,26 +26,43 @@ const menu = [
     {name: "Zesty Buffalo Sauce", src: sauceImages.ZestyBuff, key: 11, id: 50}
 ];
 
+// An array of React components, each representing a menu item.
 const menuList = menu.map(item =>
     <AddMenuItem key={item.id} item={item}></AddMenuItem>
 );
 
+/**
+ * The functional component that returns the rendered Sauces menu.
+ * @function
+ * @returns {JSX.Element}
+ */
 function Sauces() {
     let numberOfItems = localStorage.getItem("numItems");
     numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
 
+    // The hook that allows for navigation to the order page.
     const navigate = useNavigate();
 
+    /**
+     * The function that is called when the user clicks the "Order" button, which navigates to the Order page.
+     * @function
+     * @returns {void}
+     */
     function navigateOrderPage() {
-        navigate('/customer/order')
+        navigate('/customer/order');
     }
 
     return (
         <>
+            {/* The CustomerNav component that displays the page header and "Order" button */}
             <CustomerNav numberOfItems={numberOfItems} title={"Sauces"} navPage={"/customer/order"} />
+
+            {/* The unordered list of menu items */}
             <ul data-cy="SauceList" className="menu" role="list">
                 {menuList}
             </ul>
+
+            {/* The outlet for nested routes */}
             <Outlet />
         </>
     );

@@ -1,12 +1,12 @@
-import React, {useState, useEffect, useContext} from "react";
-import {Link, json, useNavigate} from "react-router-dom";
-import CustomerOrder from "./CustomerOrder";
-import {HOST} from "../../utils/host";
-import {endpoints} from "../../utils/apiEndpoints";
+import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import CustomerCheckOutItem from "../../components/CustomerCheckOutItem";
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
 
 import "../../styles/customer.scss";
-export default function CustomerCheckout(props) {
+
+function CustomerCheckout(props) {
 	const navigate = useNavigate();
 
 	const currentOrder = JSON.parse(localStorage.getItem("curOrder")) || {total: [0], items: []};
@@ -25,7 +25,7 @@ export default function CustomerCheckout(props) {
 		navigate("/customer/order");
 	}
 
-	const handlePayment = () => {
+	function handlePayment() {
 		console.log("checkout");
 
 		let itemsArr = [];
@@ -35,7 +35,7 @@ export default function CustomerCheckout(props) {
 			const excluded = cart.items[cartID][4];
 
 			let excludedIDs = [];
-			for (let i = 0;i < excluded.length;i++) {
+			for (let i = 0; i < excluded.length; ++i) {
 				excludedIDs.push(excluded[i].id);
 			}
 
@@ -87,11 +87,11 @@ export default function CustomerCheckout(props) {
 		localStorage.setItem("numItems", "0");
 		setOrderValue(0);
 
-	}
+	};
 
 	const backToOrder = () => {
-		navigate("/customer/order")
-	}
+		navigate("/customer/order");
+	};
 
 	//get menu and update total
 	const [orderValue, setOrderValue] = useState(0);
@@ -123,18 +123,13 @@ export default function CustomerCheckout(props) {
 
 	}, []);
 
-	{/* Create RemoveMenuItem as a child to handle - item on frontend to decrement price and amount upon click */}
-	const removeFromCart = (cartID) => {
-		console.log("remove from cart ->", cartID, cart.items[cartID][0]);
-
+	function removeFromCart(cartID) {
 		let newCart = {...cart};
 		newCart.total[0] -= newCart.items[cartID][2];
-		if (newCart.items[cartID][1] > 1) {
+		if (newCart.items[cartID][1] > 1)
 			newCart.items[cartID][1] -= 1;
-		}
-		else {
+		else
 			delete newCart.items[cartID];
-		}
 
 		//check if one of the items in the cart is null, remove it
 		for (let item in newCart.items) {
@@ -152,11 +147,11 @@ export default function CustomerCheckout(props) {
 
 		const checkOutBtn = document.getElementById("customerCheckoutBtn");
 		checkOutBtn.disabled = Object.keys(newCart.item).length == 0;
-	}
+	};
 
 	return (
 		<div>
-			<div className="backDiv" style={{width: "6em", margin:".35em 0em 0em .35em"}}>
+			<div className="backDiv" style={{width: "6em", margin: ".35em 0em 0em .35em"}}>
 				<button title="Back to order list" data-cy="SubNavBack" className="backButton" onClick={backToOrder}>
 					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M14.09 22L5 12l9.09-10" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -186,9 +181,9 @@ export default function CustomerCheckout(props) {
 							<ul style={{margin: 0}}>
 								{props.excluded && props.excluded.map((item, index) => {
 									if (item.name)
-										return <li key={index}>no {item.name}</li>
+										return <li key={index}>no {item.name}</li>;
 									if (index === props.excluded.length - 1) {
-										return <li key={index}>{item}</li>
+										return <li key={index}>{item}</li>;
 									}
 								})}
 							</ul>
@@ -209,5 +204,7 @@ export default function CustomerCheckout(props) {
 			</div>
 		</div>
 
-	)
+	);
 }
+
+export default CustomerCheckout;

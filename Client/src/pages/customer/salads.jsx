@@ -1,3 +1,8 @@
+/**
+ * Represents a page that displays the list of available salads.
+ * @function
+ * @returns {JSX.Element}
+ */
 import React from 'react';
 import {Outlet} from 'react-router-dom';
 import AddMenuItem from '../../components/AddMenuItem';
@@ -15,6 +20,11 @@ const menuList = menu.map(item =>
     <AddMenuItem key={item.id} item={item}></AddMenuItem>
 );
 
+/**
+ * Renders the Salad component.
+ * @function
+ * @returns {JSX.Element}
+ */
 function Salad() {
     let numberOfItems = localStorage.getItem("numItems");
     numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
