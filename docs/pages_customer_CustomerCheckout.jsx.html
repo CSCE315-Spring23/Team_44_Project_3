@@ -1,4 +1,32 @@
-import React, {useEffect, useState} from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/customer/CustomerCheckout.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/customer/CustomerCheckout.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import CustomerCheckOutItem from "../../components/CustomerCheckOutItem";
 import SuggestedMenuItem from "../../components/SuggestedMenuItem";
@@ -15,7 +43,7 @@ import treatImages from "../../utils/treatImages";
 
 /**
  * Array of objects containing recommended menu items
- * @typedef {Array<{name: string, src: string, key: number, id: number}>} PotentialRecs
+ * @typedef {Array&lt;{name: string, src: string, key: number, id: number}>} PotentialRecs
  */
 const potentialRecs = [
 	{name: "Chick-fil-A Sauce", src: sauceImages.CFASauce, key: 2, id: 46},
@@ -70,7 +98,7 @@ function CustomerCheckout(props) {
 			const excluded = cart.items[cartID][4];
 
 			let excludedIDs = [];
-			for (let i = 0; i < excluded.length; ++i) {
+			for (let i = 0; i &lt; excluded.length; ++i) {
 				excludedIDs.push(excluded[i].id);
 			}
 
@@ -145,7 +173,7 @@ function CustomerCheckout(props) {
 
 		//update total
 		const curOrder = JSON.parse(localStorage.getItem("curOrder"));
-		if (curOrder && curOrder.total) {
+		if (curOrder &amp;&amp; curOrder.total) {
 			setOrderValue(curOrder.total[0]);
 		}
 
@@ -194,11 +222,11 @@ function CustomerCheckout(props) {
 		for (let id in cart.items) {
 			if (cart.items[id][3] === 15 || cart.items[id][3] === 16)
 				fries = true;
-			if (cart.items[id][3] >= 20 && cart.items[id][3] <= 32)
+			if (cart.items[id][3] >= 20 &amp;&amp; cart.items[id][3] &lt;= 32)
 				drink = true;
 			if (cart.items[id][3] === 46)
 				sauce = true;
-			if (cart.items[id][3] >= 33 && cart.items[id][3] <= 41)
+			if (cart.items[id][3] >= 33 &amp;&amp; cart.items[id][3] &lt;= 41)
 				treat = true;
 		}
 
@@ -240,13 +268,13 @@ function CustomerCheckout(props) {
 		const menu = JSON.parse(localStorage.getItem("menu"));
 
 		if (item.ids) {
-			for (let i = 0; i < item.ids.length; ++i) {
+			for (let i = 0; i &lt; item.ids.length; ++i) {
 				menu.forEach((arrItem) => {
 					if (arrItem.id == item.ids[i]) {
 
 						let found = false;
 						for (let key in newCart.items) {
-							if (newCart.items[key][0] === arrItem.name && (JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems) || i != 0)) {
+							if (newCart.items[key][0] === arrItem.name &amp;&amp; (JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems) || i != 0)) {
 								newCart.items[key][1] += 1;
 								newCart.total[0] += Number(arrItem.cost);
 								found = true;
@@ -271,7 +299,7 @@ function CustomerCheckout(props) {
 				if (arrItem.id == item.id) {
 					let found = false;
 					for (let key in newCart.items) {
-						if (newCart.items[key][0] === arrItem.name && JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)) {
+						if (newCart.items[key][0] === arrItem.name &amp;&amp; JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)) {
 							newCart.items[key][1] += 1;
 							newCart.total[0] += Number(arrItem.cost);
 							found = true;
@@ -299,31 +327,31 @@ function CustomerCheckout(props) {
 
 
 	return (
-		<div>
-			<div className="customerCheckoutTop">
-				<div className="backDiv" style={{width: "6em", margin: ".35em 0em 0em .35em"}}>
-					<button title="Back to order list" data-cy="SubNavBack" className="backButton" onClick={backToOrder}>
-						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M14.09 22L5 12l9.09-10" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-							</path>
-						</svg>
-						<div aria-hidden="true" className="backText">
+		&lt;div>
+			&lt;div className="customerCheckoutTop">
+				&lt;div className="backDiv" style={{width: "6em", margin: ".35em 0em 0em .35em"}}>
+					&lt;button title="Back to order list" data-cy="SubNavBack" className="backButton" onClick={backToOrder}>
+						&lt;svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							&lt;path d="M14.09 22L5 12l9.09-10" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+							&lt;/path>
+						&lt;/svg>
+						&lt;div aria-hidden="true" className="backText">
 							Back
-						</div>
-					</button>
-				</div>
-				<div className="customerCheckoutTitle">
-					<h1>Cart</h1>
-				</div>
-				<div className="logo-icon">
-					<img src={logo} alt="Chick-fil-A logo" className="logo-icon" />
-				</div>
-			</div>
-			<div className="customerCheckout">
-				<div className="customerCheckoutItems">
-					{items && items.map(cartID => (
-						cart.items[cartID] &&
-						<CustomerCheckOutItem
+						&lt;/div>
+					&lt;/button>
+				&lt;/div>
+				&lt;div className="customerCheckoutTitle">
+					&lt;h1>Cart&lt;/h1>
+				&lt;/div>
+				&lt;div className="logo-icon">
+					&lt;img src={logo} alt="Chick-fil-A logo" className="logo-icon" />
+				&lt;/div>
+			&lt;/div>
+			&lt;div className="customerCheckout">
+				&lt;div className="customerCheckoutItems">
+					{items &amp;&amp; items.map(cartID => (
+						cart.items[cartID] &amp;&amp;
+						&lt;CustomerCheckOutItem
 							itemName={cart.items[cartID][0]}
 							count={cart.items[cartID][1]}
 							price={cart.items[cartID][2]}
@@ -331,35 +359,58 @@ function CustomerCheckout(props) {
 							excluded={cart.items[cartID][4]}
 							removeFromCart={removeFromCart}
 						>
-						</CustomerCheckOutItem>
+						&lt;/CustomerCheckOutItem>
 					))}
-				</div>
+				&lt;/div>
 
-				<div className="customerCheckoutSuggs">
-					{recs.length > 0 &&
-						<h3>Recommended</h3>}
-					<div className="customerCheckoutSuggsItems">
+				&lt;div className="customerCheckoutSuggs">
+					{recs.length > 0 &amp;&amp;
+						&lt;h3>Recommended&lt;/h3>}
+					&lt;div className="customerCheckoutSuggsItems">
 						{recs.map(item => (
-							<SuggestedMenuItem key={item.id} item={item} addToCart={addToCartChkout} />
+							&lt;SuggestedMenuItem key={item.id} item={item} addToCart={addToCartChkout} />
 						))}
-					</div>
-				</div>
-				<form className="customerNameForm">
-					<label for="customerName">Please enter your name:</label>
-					<input type="text" id="customerName" name="customerName" />
-				</form>
-				<div id="customerCheckoutButtons">
-					<button className="cancelButton" onClick={cancelOrder}>Cancel Order</button>
-					{showModal && (
-						<h3 className="orderPopup">Order Successful</h3>
+					&lt;/div>
+				&lt;/div>
+				&lt;form className="customerNameForm">
+					&lt;label for="customerName">Please enter your name:&lt;/label>
+					&lt;input type="text" id="customerName" name="customerName" />
+				&lt;/form>
+				&lt;div id="customerCheckoutButtons">
+					&lt;button className="cancelButton" onClick={cancelOrder}>Cancel Order&lt;/button>
+					{showModal &amp;&amp; (
+						&lt;h3 className="orderPopup">Order Successful&lt;/h3>
 					)}
-					<button onClick={e => handlePayment()} id="customerCheckoutBtn">Checkout ${orderValue.toFixed(2)}</button>
-				</div>
+					&lt;button onClick={e => handlePayment()} id="customerCheckoutBtn">Checkout ${orderValue.toFixed(2)}&lt;/button>
+				&lt;/div>
 
-			</div>
-		</div>
+			&lt;/div>
+		&lt;/div>
 
 	);
 }
 
 export default CustomerCheckout;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Apr 28 2023 16:02:49 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
