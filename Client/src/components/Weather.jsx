@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
-
 /**
  * A component that displays the current weather and temperature
  * @function
  * @returns {JSX.Element} - The rendered weather component
  */
-export default function Weather() {
+import React, {useEffect, useState} from "react";
+
+function Weather() {
     const [temperature, setTemperature] = useState(null);
     const [weather, setWeather] = useState(null);
     const [description, setDescription] = useState(null);
@@ -48,3 +48,5 @@ export default function Weather() {
         </div>
     );
 }
+
+export default Weather;

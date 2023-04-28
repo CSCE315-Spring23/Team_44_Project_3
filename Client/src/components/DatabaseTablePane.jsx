@@ -1,5 +1,3 @@
-import React, {useEffect, useState} from "react";
-
 /**
  * React functional component that displays a database table.
  * @param {Object} props - Component props.
@@ -7,7 +5,9 @@ import React, {useEffect, useState} from "react";
  * @param {Function} props.handleOnClick - Function to be called when a row in the table is clicked.
  * @returns {JSX.Element} - JSX table element representing the database table.
  */
-export default function DatabaseTablePane(props) {
+import React, {useEffect, useState} from "react";
+
+function DatabaseTablePane(props) {
     const headers = Object.keys(props.data[0]);
     const formattedHeaders = [];
     // format headers
@@ -56,3 +56,5 @@ export default function DatabaseTablePane(props) {
         </table>
     );
 }
+
+export default DatabaseTablePane;

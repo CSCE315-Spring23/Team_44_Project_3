@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * A React component that renders a food category onto the CustomerOrder screen.
  * @param {Object} props - The props object containing the item property.
@@ -8,14 +6,16 @@ import React from 'react';
  * @param {string} props.item.title - The title of the food category.
  * @param {string} props.item.src - The URL of the image for the food category.
  * @returns {JSX.Element} A component to render a food category onto the CustomerOrder screen.
-*/
-export default function CategoryItem(props) {
+ */
+import React from 'react';
+
+function CategoryItem(props) {
     const item = props.item;
 
     return (
         <li role="listitem">
-            <a href={`/customer/order/${item.title.toLowerCase()}`} className="menuLink">
-                <button data-cy={`\"${item.name}\"`} className="menuButton">
+            <a href={`/customer/order/${ item.title.toLowerCase() }`} className="menuLink">
+                <button data-cy={`\"${ item.name }\"`} className="menuButton">
                     <div className="image">
                         <img alt={item.title} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
                     </div>
@@ -27,3 +27,5 @@ export default function CategoryItem(props) {
         </li>
     );
 }
+
+export default CategoryItem;

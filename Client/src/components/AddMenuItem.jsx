@@ -3,11 +3,11 @@
  * @param {any} props - The props for the AddMenuItem component
  * @param {any} props.item - The item object that contains information about the menu item being added
  * @returns {any} A component to render a food category onto the CustomerOrder screen
-*/
+ */
 import React, {useEffect, useState} from "react";
 import PopUp from "./PopUp";
 
-export default function AddMenuItem(props) {
+function AddMenuItem(props) {
     const [itemCost, setItemCost] = useState(0);
     const [popUp, setPopUp] = useState(false);
     const item = props.item;
@@ -31,7 +31,7 @@ export default function AddMenuItem(props) {
         console.log("item: ", item, "excludeItems: ", excludeItems);
         const cart = JSON.parse(localStorage.getItem("curOrder")) || {total: [0], items: {}};
         let cartID = Object.keys(cart.items).length;
-        console.log(cartID)
+        console.log(cartID);
         let newCart = {...cart};
 
         let numberOfItems = localStorage.getItem("numItems");
@@ -40,11 +40,11 @@ export default function AddMenuItem(props) {
         const menu = JSON.parse(localStorage.getItem("menu"));
 
         if (item.ids) {
-            for (let i = 0;i < item.ids.length;i++) {
-                console.log("item.ids[i]: ", item.ids[i])
+            for (let i = 0; i < item.ids.length; i++) {
+                console.log("item.ids[i]: ", item.ids[i]);
                 menu.forEach((arrItem) => {
                     if (arrItem.id == item.ids[i]) {
-                        console.log("arrItem: ", arrItem)
+                        console.log("arrItem: ", arrItem);
 
                         let found = false;
                         for (let key in newCart.items) {
@@ -128,7 +128,7 @@ export default function AddMenuItem(props) {
 
     return (
         <li role="listitem">
-            <button data-cy={`\"${item.name}\"`} className="menuButton" onClick={openPopUp}>
+            <button data-cy={`\"${ item.name }\"`} className="menuButton" onClick={openPopUp}>
                 <div className="image">
                     <img alt={item.name} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
                 </div>
@@ -143,3 +143,5 @@ export default function AddMenuItem(props) {
         </li>
     );
 }
+
+export default AddMenuItem;

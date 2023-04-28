@@ -1,6 +1,3 @@
-import React, {useState} from "react";
-import PopUp from "./PopUp";
-
 /**
  * A component that renders a button for a specific order item and displays a popup with additional item details when clicked.
  * @param {Object} props - The props object that contains the item object and addToCart function.
@@ -8,7 +5,10 @@ import PopUp from "./PopUp";
  * @param {Function} props.addToCart - A function that adds the item to the cart.
  * @returns {JSX.Element} - A button element for the item that displays a popup when clicked.
  */
-export default function OrderItemButton(props) {
+import React, {useState} from "react";
+import PopUp from "./PopUp";
+
+function OrderItemButton(props) {
     const item = props.item;
     const itemName = item.name;
     const addToCart = props.addToCart;
@@ -31,3 +31,5 @@ export default function OrderItemButton(props) {
         </div>
     );
 }
+
+export default OrderItemButton;

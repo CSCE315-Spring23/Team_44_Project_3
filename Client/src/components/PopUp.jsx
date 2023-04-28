@@ -1,11 +1,3 @@
-import React, {useEffect, useState} from "react";
-
-import {endpoints} from "../utils/apiEndpoints";
-import {HOST} from "../utils/host";
-import PopUpRow from "./PopUpRow";
-
-import "../styles/employee.scss";
-
 /**
  * React component for a pop-up window.
  * @param {Object} props - The props object.
@@ -14,7 +6,15 @@ import "../styles/employee.scss";
  * @param {Function} props.setPopUp - The function to set the pop-up window's visibility.
  * @returns {JSX.Element} - The JSX element for the pop-up window.
  */
-export default function PopUp(props) {
+import React, {useEffect, useState} from "react";
+
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
+import PopUpRow from "./PopUpRow";
+
+import "../styles/employee.scss";
+
+function PopUp(props) {
     const item = props.item;
     const [recipeItems, setRecipeItems] = useState(null);
     const [excludeItems, setExcludeItems] = useState([]);
@@ -129,3 +129,5 @@ export default function PopUp(props) {
         </div>
     );
 }
+
+export default PopUp;

@@ -13,7 +13,7 @@ install:
 	cd Server && npm install
 
 docs: rm-docs
-	jsdoc "./Client/src" "./Server/api" -r --verbose --private -d docs
+	jsdoc "./Client/src" "./Server/api" --recurse --verbose --private --destination docs --access all
 
 rm-docs:
 	rm -rf docs/

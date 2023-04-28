@@ -1,19 +1,19 @@
+/**
+ * Represents the checkout panel component.
+ * @param {object} props - The props object containing the cart.
+ * @returns {JSX.Element} The checkout panel component.
+ */
 import React, {useState} from "react";
 import {endpoints} from "../utils/apiEndpoints";
 import {HOST} from "../utils/host";
 import CheckoutItem from "./CheckoutItem";
 
-/**
- * Represents the checkout panel component.
- * @param {object} props - The props object containing the cart.
- * @returns {JSX.Element} The checkout panel component.
-*/
-export default function CheckoutPanel(props) {
+function CheckoutPanel(props) {
     const name = localStorage.getItem("custName");
     const [custName, setCustName] = useState(name ? name : "");
     const {cart} = props;
     const items = Object.keys(cart.items);
-    console.log(cart)
+    console.log(cart);
 
     /**
      * Sends order to server when checkout button is clicked.
@@ -32,7 +32,7 @@ export default function CheckoutPanel(props) {
             const excluded = cart.items[cartID][4];
 
             let excludedIDs = [];
-            for (let i = 0;i < excluded.length;i++) {
+            for (let i = 0; i < excluded.length; i++) {
                 excludedIDs.push(excluded[i].id);
             }
 
@@ -57,7 +57,7 @@ export default function CheckoutPanel(props) {
 
         // if customer name is empty or items is empty, don"t submit order
         if (order.customerName === "" || order.items.length === 0) {
-            console.log("order not submitted: customer name or items empty")
+            console.log("order not submitted: customer name or items empty");
             return;
         }
 
@@ -114,3 +114,5 @@ export default function CheckoutPanel(props) {
         </div>
     );
 }
+
+export default CheckoutPanel;
