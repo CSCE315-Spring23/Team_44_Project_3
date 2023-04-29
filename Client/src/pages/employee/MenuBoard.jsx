@@ -95,7 +95,7 @@ function MenuBoard(props) {
                         </div>
                     </div>
 
-                    <div className="menuBoardSS">
+                    <div className="menuBoardSalSid">
                         <div className="menuBoardSalads">
                             <div className="menuBoardCate">
                                 <h2>Salads</h2>
@@ -150,29 +150,31 @@ function MenuBoard(props) {
                         </div>
                     </div>
 
-                    <div className="menuBoardSauces">
-                        <div className="menuBoardCate">
-                            <h2>Sauces</h2>
+                    <div className="menuBoardSauSea">
+                        <div className="menuBoardSauces">
+                            <div className="menuBoardCate">
+                                <h2>Sauces</h2>
+                            </div>
+                            <div className="menuBoardList">
+                                {sauces.map((item, index) => (
+                                    <div className="menuBoardItem" key={index}>
+                                        <h5>{index + 1}. {item.name}</h5>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                        <div className="menuBoardList">
-                            {sauces.map((item, index) => (
-                                <div className="menuBoardItem" key={index}>
-                                    <h5>{index + 1}. {item.name}</h5>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
 
-                    <div className="menuBoardSeasonal">
-                        <div className="menuBoardCate">
-                            <h2>Seasonal</h2>
-                        </div>
-                        <div className="menuBoardList">
-                            {seasonal.map((item, index) => (
-                                <div className="menuBoardItem" key={index}>
-                                    <h4>{index + 1}. {item.name}: ${item.cost}</h4>
-                                </div>
-                            ))}
+                        <div className="menuBoardSeasonal">
+                            <div className="menuBoardCate">
+                                <h2>Seasonal</h2>
+                            </div>
+                            <div className="menuBoardList">
+                                {seasonal.map((item, index) => (
+                                    <div className="menuBoardItem" key={index}>
+                                        <h4>{index + 1}. {item.name}: ${item.cost}</h4>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
                     </div>
