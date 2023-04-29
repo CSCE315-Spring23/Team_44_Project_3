@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/OrderItemButton.jsx</title>
+    <title>JSDoc: Source: pages/employee/RestockRep.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/OrderItemButton.jsx</h1>
+    <h1 class="page-title">Source: pages/employee/RestockRep.jsx</h1>
 
     
 
@@ -26,41 +26,87 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React, {useState} from "react";
-import PopUp from "./PopUp";
+            <pre class="prettyprint source linenums"><code>import React, {useEffect, useState} from "react";
+import {useNavigate} from 'react-router-dom';
+import DatabaseTablePane from "../../components/DatabaseTablePane";
+import EmployeeNav from "../../components/EmployeeNav";
+import '../../styles/employee.scss';
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
+import PageProtector from "../../components/PageProtector";
 
 /**
- * A component that renders a button for a specific order item and displays a popup with additional item details when clicked.
- * @param {Object} props - The props object that contains the item object and addToCart function.
- * @param {Object} props.item - An object that contains information about the item.
- * @param {Function} props.addToCart - A function that adds the item to the cart.
- * @returns {JSX.Element} - A button element for the item that displays a popup when clicked.
+ * @desc React functional component that renders the restock report page for employees.
+ * @param {Object} props - Component props
+ * @param {Boolean} props.isManager - A boolean value indicating if the user is a manager
+ * @return {JSX.Element} JSX element representing the restock report page
  */
-function OrderItemButton(props) {
-    const item = props.item;
-    const itemName = item.name;
-    const addToCart = props.addToCart;
+function RestockRep(props) {
+	const isManager = props.isManager;
 
-    const [popUp, setPopUp] = useState(false);
+	// State variable to hold the restock data
+	const [restockTable, setRestockTable] = useState([]);
 
-    /**
-     * A function that sets the popup state to true.
-     */
-    function openPopUp() {
-        setPopUp(true);
-    }
+	// Fetch restock data from server when component mounts
+	useEffect(() => {
+		const url = HOST + endpoints.getRestock;
 
-    return (
-        &lt;div>
-            &lt;button onClick={openPopUp} className="orderItemBtn">
-                {itemName ? itemName : "No Item"}
-            &lt;/button>
-            {popUp &amp;&amp; &lt;PopUp item={item} setPopUp={setPopUp} addToCart={addToCart} />}
-        &lt;/div>
-    );
+		fetch(url, {
+			method: 'GET',
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Newwork Response not OK");
+				}
+				return response.json();
+			})
+			.then(data => {
+				const table = &lt;DatabaseTablePane data={data} />;
+				setRestockTable(table);
+			});
+	}, []);
+
+	const navigate = useNavigate();
+
+	// Function to navigate to the order page
+	function navigateOrderPage() {
+		navigate("/employee/reports");
+	}
+
+	return (
+		&lt;PageProtector>
+			&lt;div className="empOrderPage">
+				&lt;EmployeeNav isManager={isManager}>&lt;/EmployeeNav>
+				&lt;div className="repDiv">
+					&lt;div className="repHead">
+						&lt;div className="backDiv">
+							{/* Button to navigate back to the menu category list */}
+							&lt;button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigateOrderPage}>
+								&lt;svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									&lt;path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+									&lt;/path>
+								&lt;/svg>
+								&lt;div aria-hidden="true" className="backText">
+									Back
+								&lt;/div>
+							&lt;/button>
+						&lt;/div>
+						&lt;h2>Restock Report&lt;/h2>
+					&lt;/div>
+					&lt;div className="repBody">
+						&lt;div className="restockRepTable">
+							{/* Render restock data in a DatabaseTablePane component */}
+							{restockTable}
+						&lt;/div>
+					&lt;/div>
+				&lt;/div>
+			&lt;/div>
+		&lt;/PageProtector>
+	);
 }
 
-export default OrderItemButton;</code></pre>
+export default RestockRep;
+</code></pre>
         </article>
     </section>
 

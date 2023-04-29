@@ -1,41 +1,57 @@
-import React, { useState } from "react";
-
+import React, {useState} from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import DatabaseTablePane from "../../components/DatabaseTablePane";
 import EmployeeNav from "../../components/EmployeeNav";
 import '../../styles/employee.scss';
-import { endpoints } from "../../utils/apiEndpoints";
-import { HOST } from "../../utils/host";
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
 import PageProtector from "../../components/PageProtector";
 
-
-export default function SalesTogetherRep(props) {
+/**
+ * A component that displays the Sales Together Report page.
+ * @param {Object} props - The component props.
+ * @param {boolean} props.isManager - A boolean indicating if the user is a manager or not.
+ * @returns {JSX.Element} - The Sales Together Report page.
+ */
+function SalesTogetherRep(props) {
     const isManager = props.isManager;
+    const navigate = useNavigate();
 
     const [salesTogetherTable, setSalesTogetherTable] = useState([]);
-
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [selectedStartDate, setSelectedDate] = useState(null);
     const [selectedEndDate, setSelectedEndDate] = useState(null);
 
-    const handleStartDateChange = (date) => {
+    /**
+     * A function that handles changes to the start date of the date picker.
+     * @param {Date} date - The selected start date.
+     */
+    function handleStartDateChange(date) {
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
         const day = date.getDate();
         setSelectedDate(date);
-        setStartDate(`${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`);
+        setStartDate(`${ year }-${ month.toString().padStart(2, "0") }-${ day.toString().padStart(2, "0") }`);
     }
-    const handleEndDateChange = (date) => {
+
+    /**
+     * A function that handles changes to the end date of the date picker.
+     * @param {Date} date - The selected end date.
+     */
+    function handleEndDateChange(date) {
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
         const day = date.getDate();
         setSelectedEndDate(date);
-        setEndDate(`${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`);
+        setEndDate(`${ year }-${ month.toString().padStart(2, "0") }-${ day.toString().padStart(2, "0") }`);
     }
 
+    /**
+     * A function that generates the sales together report based on the selected start and end dates.
+     */
     const genReport = async () => {
         console.log(startDate);
         console.log(endDate);
@@ -52,16 +68,17 @@ export default function SalesTogetherRep(props) {
                 return response.json();
             })
             .then(data => {
-                const table = <DatabaseTablePane data={data} />
+                const table = <DatabaseTablePane data={data} />;
                 setSalesTogetherTable(table);
             }
             );
-    }
+    };
 
-    const navigate = useNavigate();
-
+    /**
+     * A function that navigates back to the employee reports page.
+     */
     function navigateOrderPage() {
-        navigate("/employee/reports")
+        navigate("/employee/reports");
     }
 
     return (
@@ -110,3 +127,5 @@ export default function SalesTogetherRep(props) {
         </PageProtector>
     );
 }
+
+export default SalesTogetherRep;

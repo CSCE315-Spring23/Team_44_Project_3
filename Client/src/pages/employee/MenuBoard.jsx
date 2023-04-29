@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-
-import { HOST } from "../../utils/host";
-import { endpoints } from "../../utils/apiEndpoints";
+/**
+ * Renders the MenuBoard component which is used to display different menu items categorized by the types.
+ * @param {object} props - The props object.
+ * @return {JSX.Element} - The JSX of the MenuBoard component.
+ */
+import React, {useState, useEffect} from "react";
+import {HOST} from "../../utils/host";
+import {endpoints} from "../../utils/apiEndpoints";
 import PageProtector from "../../components/PageProtector";
-
 import images from "../../utils/menuboardImages";
 
-
-
-
-export default function MenuBoard(props) {
-
+function MenuBoard(props) {
+    // Define different states to hold each category of menu items
     const [entrees, setEntrees] = useState([]);
     const [salads, setSalads] = useState([]);
     const [sides, setSides] = useState([]);
@@ -22,6 +22,7 @@ export default function MenuBoard(props) {
     const meal = 4.28;
 
     useEffect(() => {
+        // Fetch the menu data from the server
         const url = HOST + endpoints.getMenu;
         fetch(url,
             {
@@ -37,8 +38,8 @@ export default function MenuBoard(props) {
                 return response.json();
             })
             .then(data => {
-                console.log("data from MenuBoard: ", data);
-                for (let i = 0; i < data.length; i++) {
+
+                for (let i = 0; i < data.length; ++i) {
                     switch (data[i].category) {
                         case "entree":
                             setEntrees(entrees => [...entrees, data[i]]);
@@ -87,8 +88,8 @@ export default function MenuBoard(props) {
                                     <h4>{index + 1}. {item.name}</h4>
                                     <h4>Entree: ${item.cost}</h4>
                                     <h4>Meal: ${(parseFloat(item.cost) + meal).toFixed(2)}</h4>
-                                    {item.id === 2 ? <img src={images.sand}/> : item.id === 4 ? <img src={images.spicysSand}/> :
-                                        item.id === 8 ? <img src={images.nuggs}/> : item.id === 10 ? <img src={images.grilledsand}/> : null}
+                                    {item.id === 2 ? <img src={images.sand} /> : item.id === 4 ? <img src={images.spicysSand} /> :
+                                        item.id === 8 ? <img src={images.nuggs} /> : item.id === 10 ? <img src={images.grilledsand} /> : null}
                                 </div>
                             ))}
                         </div>
@@ -115,7 +116,7 @@ export default function MenuBoard(props) {
                                 {sides.map((item, index) => (
                                     <div className="menuBoardItem" key={index}>
                                         <h4>{index + 1}. {item.name}: ${item.cost}</h4>
-                                        {item.id === 16 ? <img src={images.waffleFry}/> : null}
+                                        {item.id === 16 ? <img src={images.waffleFry} /> : null}
                                     </div>
                                 ))}
                             </div>
@@ -124,7 +125,7 @@ export default function MenuBoard(props) {
                     <div className="menuBoardTreats">
                         <div className="menuBoardCate">
                             <h2>Treats</h2>
-                            <img src={images.desserts}/>
+                            <img src={images.desserts} />
                         </div>
                         <div className="menuBoardList">
                             {treats.map((item, index) => (
@@ -138,7 +139,7 @@ export default function MenuBoard(props) {
                     <div className="menuBoardBeverages">
                         <div className="menuBoardCate">
                             <h2>Beverages</h2>
-                            <img src={images.bev}/>
+                            <img src={images.bev} />
                         </div>
                         <div className="menuBoardList">
                             {beverages.map((item, index) => (
@@ -181,3 +182,5 @@ export default function MenuBoard(props) {
         </PageProtector >
     );
 }
+
+export default MenuBoard;

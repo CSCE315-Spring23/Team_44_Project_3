@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/OrderItemButton.jsx</title>
+    <title>JSDoc: Source: pages/employee/Reports.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/OrderItemButton.jsx</h1>
+    <h1 class="page-title">Source: pages/employee/Reports.jsx</h1>
 
     
 
@@ -26,41 +26,45 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React, {useState} from "react";
-import PopUp from "./PopUp";
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import {useNavigate} from "react-router-dom";
+import EmployeeNav from "../../components/EmployeeNav";
+import '../../styles/employee.scss';
+import PageProtector from "../../components/PageProtector";
 
 /**
- * A component that renders a button for a specific order item and displays a popup with additional item details when clicked.
- * @param {Object} props - The props object that contains the item object and addToCart function.
- * @param {Object} props.item - An object that contains information about the item.
- * @param {Function} props.addToCart - A function that adds the item to the cart.
- * @returns {JSX.Element} - A button element for the item that displays a popup when clicked.
+ * Renders a reports page component.
+ * @returns {JSX.Element} The reports page component.
  */
-function OrderItemButton(props) {
-    const item = props.item;
-    const itemName = item.name;
-    const addToCart = props.addToCart;
-
-    const [popUp, setPopUp] = useState(false);
+function Reports() {
+    const navigate = useNavigate();
 
     /**
-     * A function that sets the popup state to true.
+     * Navigates to the selected reports page.
+     * @param {string} page - The name of the page to navigate to.
      */
-    function openPopUp() {
-        setPopUp(true);
+    function changePage(page) {
+        navigate(`/employee/reports/${ page }`);
     }
 
     return (
-        &lt;div>
-            &lt;button onClick={openPopUp} className="orderItemBtn">
-                {itemName ? itemName : "No Item"}
-            &lt;/button>
-            {popUp &amp;&amp; &lt;PopUp item={item} setPopUp={setPopUp} addToCart={addToCart} />}
-        &lt;/div>
+        &lt;PageProtector>
+            &lt;div className="empOrderPage">
+                &lt;EmployeeNav current={"reports"} />
+                &lt;div id="reportsSelection">
+                    &lt;button onClick={e => changePage("sales")} className="reportBtn">Sales Report&lt;/button>
+                    &lt;button onClick={e => changePage("excess")} className="reportBtn">Excess Report&lt;/button>
+                    &lt;button onClick={e => changePage("XZ")} className="reportBtn">XZ Report&lt;/button>
+                    &lt;button onClick={e => changePage("restock")} className="reportBtn">Restock Report&lt;/button>
+                    &lt;button onClick={e => changePage("salestogether")} className="reportBtn">Sales Together Report&lt;/button>
+                &lt;/div>
+            &lt;/div>
+        &lt;/PageProtector>
     );
 }
 
-export default OrderItemButton;</code></pre>
+export default Reports;
+</code></pre>
         </article>
     </section>
 

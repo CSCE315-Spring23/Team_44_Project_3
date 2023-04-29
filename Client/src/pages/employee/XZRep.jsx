@@ -1,62 +1,66 @@
-import React, { useEffect, useState } from "react";
+/**
+ * @name XZRep
+ * @description This function represents the main function for the XZRep module.
+ * @function
+ * @param {object} props - The input properties for the XZRep module.
+ * @returns {JSX.Element} - Returns a JSX element.
+ */
+function XZRep(props) {
 
-import { useNavigate } from 'react-router-dom';
-import DatabaseTablePane from "../../components/DatabaseTablePane";
-import EmployeeNav from "../../components/EmployeeNav";
-import '../../styles/employee.scss';
-import { endpoints } from "../../utils/apiEndpoints";
-import { HOST } from "../../utils/host";
-import PageProtector from "../../components/PageProtector";
-
-
-export default function XZRep(props) {
     const isManager = props.isManager;
+    const navigate = useNavigate();
 
     const [zReport, setZReport] = useState([]);
-
     const [reportType, setReportType] = useState("");
-
     const [totalSales, setTotalSales] = useState("");
     const [employee, setEmployee] = useState("");
     const [dateCreated, setDateCreated] = useState("");
     const [orderID, setOrderID] = useState("");
 
-    useEffect(() => {
-        loadZReports();
-    }, []);
-
+    /**
+     * @name loadZReports
+     * @async
+     * @function
+     * @description This function loads Z reports from the database.
+     */
     const loadZReports = async () => {
         const url = HOST + endpoints.getZReports;
 
         fetch(url, {
-            method: 'GET',
+            method: "GET",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
         })
             .then(response => response.json())
             .then(data => {
-                const table = <DatabaseTablePane data={data} handleOnClick={viewZReportInfo} />
+                const table = <DatabaseTablePane data={data} handleOnClick={viewZReportInfo} />;
                 setZReport(table);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                console.error("Error:", error);
             });
-    }
+    };
 
+    /**
+     * @name viewZReportInfo
+     * @async
+     * @function
+     * @param {string} id - The id of the Z report to be viewed.
+     * @description This function views the details of a specific Z report.
+     */
     const viewZReportInfo = async (id) => {
-
         const url = HOST + endpoints.getZReportInfo + "?id=" + id;
 
         fetch(url, {
-            method: 'GET',
+            method: "GET",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                console.log(data);
                 //convert data to string
                 const dataString = JSON.stringify(data);
                 setReportType("Z Report");
@@ -66,25 +70,29 @@ export default function XZRep(props) {
                 setOrderID(data.orderid);
             }
             );
-    }
+    };
 
-
-    const createZReport = () => {
+    /**
+     * @name createZReport
+     * @function
+     * @description This function creates a new Z report.
+     */
+    function createZReport() {
         console.log("create Z report");
-        const EMP_ID = localStorage.getItem('empID');
+        const EMP_ID = localStorage.getItem("employeID");
 
         const url = HOST + endpoints.createZReport;
 
         fetch(url, {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ employeeid: EMP_ID })
+            body: JSON.stringify({employeeid: EMP_ID})
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                console.log(data);
                 setReportType("Z Report");
                 loadZReports();
                 setTotalSales(data.totalsales);
@@ -93,23 +101,24 @@ export default function XZRep(props) {
                 setOrderID(data.orderid);
             }
             );
-    }
+    };
 
-
+    /**
+     * 
+     */
     const viewXReport = async () => {
-        const EMP_ID = localStorage.getItem('empID');
-
+        const EMP_ID = localStorage.getItem("employeID");
         const url = HOST + endpoints.getXReport + "?employeeid=" + EMP_ID;
 
         fetch(url, {
-            method: 'GET',
+            method: "GET",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                console.log(data);
                 setReportType("X Report");
                 setTotalSales(data.totalSales);
                 setEmployee(data.employeeName);
@@ -117,12 +126,10 @@ export default function XZRep(props) {
                 setOrderID(data.orderID);
             }
             );
-    }
-
-    const navigate = useNavigate();
+    };
 
     function navigateOrderPage() {
-        navigate("/employee/reports")
+        navigate("/employee/reports");
     }
 
     return (
@@ -157,7 +164,7 @@ export default function XZRep(props) {
                             <div className="repXZInfoBody">
                                 <p>Report Type: {reportType}</p>
                                 <p>Employee: {employee}</p>
-                                <p>Date Created: {dateCreated.split('T')[0]}</p>
+                                <p>Date Created: {dateCreated.split("T")[0]}</p>
                                 <p>Since Order ID: {orderID}</p>
                                 <p>Total Sales since last Z Report: ${totalSales}</p>
                             </div>
@@ -168,3 +175,5 @@ export default function XZRep(props) {
         </PageProtector>
     );
 }
+
+export default XZRep;

@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from "react";
-
+/**
+ * @desc React component for displaying order history page for employees
+ * @param {object} props - The props object containing the isManager value
+ * @returns {JSX.Element} - The JSX code for the order history page
+ */
+import React, {useEffect, useState} from "react";
 import DatabaseTablePane from "../../components/DatabaseTablePane";
 import EmployeeNav from "../../components/EmployeeNav";
 import '../../styles/employee.scss';
-import { endpoints } from "../../utils/apiEndpoints";
-import { HOST } from "../../utils/host";
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
 import PageProtector from "../../components/PageProtector";
 
-
-export default function OrderHistory(props) {
-
-
-    const isManager = props.isManager;
-
+function OrderHistory(props) {
+    // State variables for holding the order history table, order history information ID, and order history information
     const [orderHistTable, setOrderHistTable] = useState();
     const [orderHistInfoID, setOrderHistInfoID] = useState();
     const [orderHistInfo, setOrderHistInfo] = useState();
 
+    // Fetches order history data when component is mounted
     useEffect(() => {
+        // Resets the order history table
         setOrderHistTable(null);
+
+        // Fetches the order history data from the server
         const url = HOST + endpoints.orderHistory;
         fetch(url, {
             method: "GET"
@@ -27,7 +31,7 @@ export default function OrderHistory(props) {
                 if (!response.ok) {
                     throw new Error("Network response not OK");
                 }
-                //setOrderHistData(Object.assign({}, response.json()));
+                // Sets the order history data as a database table pane
                 return response.json();
             })
             .then(data => {
@@ -36,9 +40,14 @@ export default function OrderHistory(props) {
             });
     }, []);
 
-    const handleOnClick = (id) => {
+    // Handles the click event of an order history row to display the order information
+    function handleOnClick(id) {
+        // Resets the order history information
         setOrderHistInfo(null);
-        setOrderHistInfoID(id)
+        // Sets the order history information ID
+        setOrderHistInfoID(id);
+
+        // Fetches the order information data from the server
         const url = HOST + endpoints.orderInformation + "?id=" + id;
         fetch(url, {
             method: "GET"
@@ -47,18 +56,20 @@ export default function OrderHistory(props) {
                 if (!response.ok) {
                     throw new Error("Network response not OK");
                 }
+                // Sets the order information data as a database table pane
                 return response.json();
             })
             .then(data => {
                 const table = <DatabaseTablePane data={data} />;
                 setOrderHistInfo(table);
             });
-    }
+    };
 
+    // Renders the order history page
     return (
         <PageProtector>
             <div className="empOrderPage">
-                <EmployeeNav isManager={isManager} current={"history"} />
+                <EmployeeNav isManager={props.isManager} current={"history"} />
                 <div id="orderHistoryTableDiv">
                     <h2>Order History</h2>
                     {orderHistTable}
@@ -71,3 +82,5 @@ export default function OrderHistory(props) {
         </PageProtector>
     );
 }
+
+export default OrderHistory;

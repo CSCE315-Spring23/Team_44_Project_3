@@ -1,45 +1,57 @@
-import React, { useState } from "react";
-
+import React, {useState} from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import DatabaseTablePane from "../../components/DatabaseTablePane";
 import EmployeeNav from "../../components/EmployeeNav";
 import '../../styles/employee.scss';
-import { endpoints } from "../../utils/apiEndpoints";
-import { HOST } from "../../utils/host";
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
 import PageProtector from "../../components/PageProtector";
 
-
-
-export default function SalesRep(props) {
+/**
+ * SalesRep component for generating sales reports.
+ * @param {Object} props - Component props.
+ * @param {boolean} props.isManager - Flag indicating if the user is a manager.
+ */
+function SalesRep(props) {
     const isManager = props.isManager;
+    const navigate = useNavigate();
 
     const [salesTable, setSalesTable] = useState([]);
     const [inventoryTable, setInventoryTable] = useState([]);
-
-
     const [selectedStartDate, setSelectedDate] = useState(null);
     const [selectedEndDate, setSelectedEndDate] = useState(null);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
-
-    const handleStartDateChange = (date) => {
+    /**
+     * Event handler for start date change in date picker.
+     * @param {Date} date - New selected start date.
+     */
+    function handleStartDateChange(date) {
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
         const day = date.getDate();
         setSelectedDate(date);
-        setStartDate(`${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`);
-    }
-    const handleEndDateChange = (date) => {
+        setStartDate(`${ year }-${ month.toString().padStart(2, "0") }-${ day.toString().padStart(2, "0") }`);
+    };
+
+    /**
+     * Event handler for end date change in date picker.
+     * @param {Date} date - New selected end date.
+     */
+    function handleEndDateChange(date) {
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
         const day = date.getDate();
         setSelectedEndDate(date);
-        setEndDate(`${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`);
-    }
+        setEndDate(`${ year }-${ month.toString().padStart(2, "0") }-${ day.toString().padStart(2, "0") }`);
+    };
 
+    /**
+     * Generates and displays sales and inventory tables based on selected start and end dates.
+     */
     const genReport = async () => {
         console.log(startDate);
         console.log(endDate);
@@ -56,7 +68,7 @@ export default function SalesRep(props) {
             })
             .then(data => {
                 console.log(data);
-                const table = <DatabaseTablePane data={data} />
+                const table = <DatabaseTablePane data={data} />;
                 setSalesTable(table);
             });
 
@@ -69,18 +81,19 @@ export default function SalesRep(props) {
                 if (!response.ok) {
                     throw new Error("Network Resposnse not ok");
                 }
-                return response.json()
+                return response.json();
             })
             .then(data => {
-                const table = <DatabaseTablePane data={data} />
+                const table = <DatabaseTablePane data={data} />;
                 setInventoryTable(table);
             });
-    }
+    };
 
-    const navigate = useNavigate();
-
+    /**
+     * Navigates to the employee reports page.
+     */
     function navigateOrderPage() {
-        navigate("/employee/reports")
+        navigate("/employee/reports");
     }
 
     return (
@@ -136,3 +149,5 @@ export default function SalesRep(props) {
         </PageProtector>
     );
 }
+
+export default SalesRep;

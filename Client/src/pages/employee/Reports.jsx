@@ -1,14 +1,22 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import EmployeeNav from "../../components/EmployeeNav";
 import '../../styles/employee.scss';
 import PageProtector from "../../components/PageProtector";
 
-
-export default function Reports() {
+/**
+ * Renders a reports page component.
+ * @returns {JSX.Element} The reports page component.
+ */
+function Reports() {
     const navigate = useNavigate();
+
+    /**
+     * Navigates to the selected reports page.
+     * @param {string} page - The name of the page to navigate to.
+     */
     function changePage(page) {
-        navigate(`/employee/reports/${page}`);
+        navigate(`/employee/reports/${ page }`);
     }
 
     return (
@@ -26,3 +34,5 @@ export default function Reports() {
         </PageProtector>
     );
 }
+
+export default Reports;
