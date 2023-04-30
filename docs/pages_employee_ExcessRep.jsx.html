@@ -26,31 +26,25 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** React component for generating excess report
+            <pre class="prettyprint source linenums"><code>import React, {useState} from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import {useNavigate} from 'react-router-dom';
+import DatabaseTablePane from "../../components/DatabaseTablePane";
+import EmployeeNav from "../../components/EmployeeNav";
+import '../../styles/employee.scss';
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
+import PageProtector from "../../components/PageProtector";
+
+/**
+ * React component for generating excess report
  * @module ExcessRep
  * @param {object} props - Component props
  * @param {boolean} props.isManager - Determines if the user is a manager or not
  * @return {JSX.Element} - Returns JSX code for Excess Report component
-*/
-
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { useNavigate } from 'react-router-dom';
-import DatabaseTablePane from "../../components/DatabaseTablePane";
-import EmployeeNav from "../../components/EmployeeNav";
-import '../../styles/employee.scss';
-import { endpoints } from "../../utils/apiEndpoints";
-import { HOST } from "../../utils/host";
-import PageProtector from "../../components/PageProtector";
-
-
-/** 
- * Excess Report component
- * @function
- * @returns {JSX.Element}
-*/
-export default function ExcessRep(props) {
+ */
+function ExcessRep(props) {
 
     /**
      * Determines if the user is a manager or not
@@ -87,8 +81,8 @@ export default function ExcessRep(props) {
         const month = date.getMonth() + 1;
         const day = date.getDate();
         setSelectedDate(date);
-        setStartDate(`${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`);
-    }
+        setStartDate(`${ year }-${ month.toString().padStart(2, "0") }-${ day.toString().padStart(2, "0") }`);
+    };
 
     /**
      * @function async
@@ -100,8 +94,8 @@ export default function ExcessRep(props) {
         const month = today.getMonth() + 1;
         const day = today.getDate();
 
-        const endDate = `${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
-        const url = `${HOST}${endpoints.getExcess}?startDate=${startDate}&amp;endDate=${endDate}`;
+        const endDate = `${ year }-${ month.toString().padStart(2, "0") }-${ day.toString().padStart(2, "0") }`;
+        const url = `${ HOST }${ endpoints.getExcess }?startDate=${ startDate }&amp;endDate=${ endDate }`;
 
         fetch(url, {
             method: 'GET',
@@ -113,18 +107,18 @@ export default function ExcessRep(props) {
                 return response.json();
             })
             .then(data => {
-                const table = &lt;DatabaseTablePane data={data} />
+                const table = &lt;DatabaseTablePane data={data} />;
                 setExcessRepTable(table);
             }
             );
-    }
+    };
 
     /**
      * Navigate hook to go to the default reports page
      */
     const navigate = useNavigate();
     function navigateOrderPage() {
-        navigate("/employee/reports")
+        navigate("/employee/reports");
     }
 
     return (
@@ -165,7 +159,10 @@ export default function ExcessRep(props) {
             &lt;/div>
         &lt;/PageProtector>
     );
-}</code></pre>
+}
+
+export default ExcessRep;
+</code></pre>
         </article>
     </section>
 
@@ -175,13 +172,13 @@ export default function ExcessRep(props) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Apr 27 2023 21:29:40 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Apr 28 2023 16:02:50 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

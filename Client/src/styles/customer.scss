@@ -103,6 +103,62 @@ button.menuButton {
 	}
 }
 
+button.menuButtonSug {
+	align-items: center;
+	background: 0px center;
+	border: 2px solid transparent;
+	border-radius: 8px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	font-family: inherit;
+	height: 215px;
+	justify-content: center;
+	margin: auto;
+	padding: 23px;
+	position: relative;
+	text-align: center;
+	-webkit-box-align: center;
+	--webkit-box-pack: center;
+	width: 170px;
+
+	h3 {
+		margin: 0;
+	}
+
+	&:hover {
+		background-color: #fcf9f4;
+		border: 2px solid #e51636;
+	}
+
+
+}
+
+
+div.customerCheckoutTop {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 10%;
+
+	.backDiv {
+		width: 6em;
+	}
+
+	.customerCheckoutTitle {
+		text-align: center;
+		flex-grow: 1;
+
+		h1 {
+			margin: 0;
+		}
+	}
+
+	.logo-icon {
+		height: 50px;
+	}
+}
+
 div#customerCheckoutButtons {
 	display: flex;
 	justify-content: space-between;
@@ -161,22 +217,31 @@ div.customerCheckoutItems {
 	border: #000000 1px solid;
 	display: flex;
 	flex-direction: column;
-	height: 50%;
-	min-width: 60%;
+	height: 70%;
+	width: 75%;
 	overflow-y: scroll;
 	font-size: 1.5em;
+
+	.checkoutItem{
+		margin: .3em;
+	}
 }
 
-div.customerCheckoutSuggs{
+div.customerCheckoutSuggs {
 	display: flex;
 	flex-direction: column;
 
-	div.customerCheckoutSuggsItems{
+	h3 {
+		margin-bottom: 1em;
+	}
+
+
+	div.customerCheckoutSuggsItems {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		margin: 1em;
+		margin: 0;
 		list-style: none;
 	}
 }
@@ -190,7 +255,13 @@ div.title {
 	text-align: center;
 	-webkit-box-align: center;
 	-webkit-box-pack: center;
-	width: 73%;
+	-moz-box-align: center;
+	-moz-box-pack: center;
+	width: -moz-available;
+	/* WebKit-based browsers will ignore this. */
+	width: -webkit-fill-available;
+	/* Mozilla-based browsers will ignore this. */
+	width: fill-available;
 }
 
 form.customerNameForm {
@@ -216,13 +287,19 @@ input#customerName {
 
 .backDiv {
 	margin: 0 8em 0 2em;
-	border-radius: 30px;
-	background-image: linear-gradient(#ff033b 0%, #ca0f1a 100%);
-	cursor: pointer;
 
 	.backButton {
+		border-radius: 30px;
+		background-image: linear-gradient(#ff033b 0%, #ca0f1a 100%);
+		cursor: pointer;
 		padding: 10px 18px 10px 12px;
 
+		&:hover {
+			background-image: linear-gradient(#ca0f1a 0%, #ff033b 100%);
+			background-size: 100%;
+			position: relative;
+			z-index: 1;
+		}
 	}
 
 	.backText {
@@ -236,12 +313,6 @@ input#customerName {
 		vertical-align: initial;
 	}
 
-	&:hover {
-		background-image: linear-gradient(#ca0f1a 0%, #ff033b 100%);
-		background-size: 100%;
-		position: relative;
-		z-index: 1;
-	}
 }
 
 

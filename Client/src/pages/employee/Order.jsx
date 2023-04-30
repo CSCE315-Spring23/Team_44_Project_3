@@ -18,7 +18,7 @@ export default function Order(props) {
     const [cart, setCart] = useState(currCart ? JSON.parse(currCart) : { total: [0], items: {} });
 
     const addToCart = (item, excludeItems) => {
-        const cartID = Object.keys(cart.items).length;
+		let cartID = Object.keys(cart.items).length > 0 ? parseInt(Object.keys(cart.items)[Object.keys(cart.items).length-1]) + 1 : 0;
         console.log("add to cart clicked ->", item.name, excludeItems, cartID)
         let newCart = { ...cart };
         //create entry in cart if it doesn't exist and excluded items is different

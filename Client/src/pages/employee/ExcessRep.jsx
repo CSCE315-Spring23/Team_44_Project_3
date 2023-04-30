@@ -1,28 +1,22 @@
-/** React component for generating excess report
+import React, {useState} from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import {useNavigate} from 'react-router-dom';
+import DatabaseTablePane from "../../components/DatabaseTablePane";
+import EmployeeNav from "../../components/EmployeeNav";
+import '../../styles/employee.scss';
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
+import PageProtector from "../../components/PageProtector";
+
+/**
+ * React component for generating excess report
  * @module ExcessRep
  * @param {object} props - Component props
  * @param {boolean} props.isManager - Determines if the user is a manager or not
  * @return {JSX.Element} - Returns JSX code for Excess Report component
-*/
-
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { useNavigate } from 'react-router-dom';
-import DatabaseTablePane from "../../components/DatabaseTablePane";
-import EmployeeNav from "../../components/EmployeeNav";
-import '../../styles/employee.scss';
-import { endpoints } from "../../utils/apiEndpoints";
-import { HOST } from "../../utils/host";
-import PageProtector from "../../components/PageProtector";
-
-
-/** 
- * Excess Report component
- * @function
- * @returns {JSX.Element}
-*/
-export default function ExcessRep(props) {
+ */
+function ExcessRep(props) {
 
     /**
      * Determines if the user is a manager or not
@@ -59,8 +53,8 @@ export default function ExcessRep(props) {
         const month = date.getMonth() + 1;
         const day = date.getDate();
         setSelectedDate(date);
-        setStartDate(`${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`);
-    }
+        setStartDate(`${ year }-${ month.toString().padStart(2, "0") }-${ day.toString().padStart(2, "0") }`);
+    };
 
     /**
      * @function async
@@ -72,8 +66,8 @@ export default function ExcessRep(props) {
         const month = today.getMonth() + 1;
         const day = today.getDate();
 
-        const endDate = `${year}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
-        const url = `${HOST}${endpoints.getExcess}?startDate=${startDate}&endDate=${endDate}`;
+        const endDate = `${ year }-${ month.toString().padStart(2, "0") }-${ day.toString().padStart(2, "0") }`;
+        const url = `${ HOST }${ endpoints.getExcess }?startDate=${ startDate }&endDate=${ endDate }`;
 
         fetch(url, {
             method: 'GET',
@@ -85,18 +79,18 @@ export default function ExcessRep(props) {
                 return response.json();
             })
             .then(data => {
-                const table = <DatabaseTablePane data={data} />
+                const table = <DatabaseTablePane data={data} />;
                 setExcessRepTable(table);
             }
             );
-    }
+    };
 
     /**
      * Navigate hook to go to the default reports page
      */
     const navigate = useNavigate();
     function navigateOrderPage() {
-        navigate("/employee/reports")
+        navigate("/employee/reports");
     }
 
     return (
@@ -138,3 +132,5 @@ export default function ExcessRep(props) {
         </PageProtector>
     );
 }
+
+export default ExcessRep;

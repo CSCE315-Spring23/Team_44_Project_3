@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/CategoryItem.jsx</title>
+    <title>JSDoc: Source: components/SuggestedMenuItem.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/CategoryItem.jsx</h1>
+    <h1 class="page-title">Source: components/SuggestedMenuItem.jsx</h1>
 
     
 
@@ -26,38 +26,80 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
+            <pre class="prettyprint source linenums"><code>import React, {useEffect, useState} from "react";
+import PopUp from "./PopUp";
 
 /**
- * A React component that renders a food category onto the CustomerOrder screen.
- * @param {Object} props - The props object containing the item property.
- * @param {Object} props.item - The food category item to be rendered.
- * @param {string} props.item.name - The name of the food category.
- * @param {string} props.item.title - The title of the food category.
- * @param {string} props.item.src - The URL of the image for the food category.
- * @returns {JSX.Element} A component to render a food category onto the CustomerOrder screen.
+ * This function component renders a food category onto the CustomerOrder screen
+ * @param {any} props - The props for the AddMenuItem component
+ * @param {any} props.item - The item object that contains information about the menu item being added
+ * @returns {any} A component to render a food category onto the CustomerOrder screen
  */
-function CategoryItem(props) {
+function AddMenuItem(props) {
+    const [itemCost, setItemCost] = useState(0);
+    const [popUp, setPopUp] = useState(false);
     const item = props.item;
+
+
+    /*
+        Format of Cart
+        {
+            total : [total cost],
+            items : {cartID : [name, number, cost per, itemID, excluded items]},
+        }
+
+    */
+
+    /**
+     * This function opens the pop-up for adding items to the cart
+     * @returns {any}
+     */
+    function openPopUp() {
+        setPopUp(true);
+    }
+
+    useEffect(() => {
+        const menu = JSON.parse(localStorage.getItem("menu"));
+        let cost = 0;
+        if (item.ids) {
+            item.ids.forEach((curID) => {
+                menu.forEach((arrItem) => {
+                    if (arrItem.id == curID) {
+                        cost += Number(arrItem.cost);
+                    }
+                });
+            });
+        }
+        if (item.id) {
+            menu.forEach((arrItem) => {
+                if (arrItem.id == item.id) {
+                    cost += Number(arrItem.cost);
+                }
+            }
+            );
+        }
+        setItemCost(cost);
+    }, []);
 
     return (
         &lt;li role="listitem">
-            &lt;a href={`/customer/order/${ item.title.toLowerCase() }`} className="menuLink">
-                &lt;button data-cy={`\"${ item.name }\"`} className="menuButton">
-                    &lt;div className="image">
-                        &lt;img alt={item.title} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
-                    &lt;/div>
-                    &lt;div className="name">
-                        &lt;h3 className="name">{item.title}&lt;/h3>
-                    &lt;/div>
-                &lt;/button>
-            &lt;/a>
+            &lt;button data-cy={`\"${ item.name }\"`} className="menuButtonSug" onClick={openPopUp}>
+                &lt;div className="image">
+                    &lt;img alt={item.name} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
+                &lt;/div>
+                &lt;div className="name">
+                    &lt;h3 className="name">{item.name}&lt;/h3>
+                &lt;/div>
+                &lt;div className="cost">
+                    &lt;h3 className="cost">${itemCost.toFixed(2)}&lt;/h3>
+                &lt;/div>
+            &lt;/button>
+            {popUp &amp;&amp; &lt;PopUp item={item} setPopUp={setPopUp} addToCart={props.addToCart} />}
         &lt;/li>
     );
 }
 
-export default CategoryItem;
-</code></pre>
+export default AddMenuItem;</code></pre>
         </article>
     </section>
 
