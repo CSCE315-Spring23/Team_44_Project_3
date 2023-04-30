@@ -40,16 +40,16 @@ import sidesImages from '../../utils/sidesImages';
 
 // The menu items
 const menu = [
-    {name: "L. Waffle Fries", src: sidesImages.side1, key: 0, id: 15},
-    {name: "M. Waffle Fries", src: sidesImages.side1, key: 1, id: 15},
-    {name: "Chips", src: sidesImages.side0, key: 2, id: 17},
-    {name: "Fruit Cup", src: sidesImages.side2, key: 3, id: 18},
-    {name: "Side Salad", src: sidesImages.side3, key: 4, id: 19},
+	{name: "L. Waffle Fries", src: sidesImages.side1, key: 0, id: 15},
+	{name: "M. Waffle Fries", src: sidesImages.side1, key: 1, id: 15},
+	{name: "Chips", src: sidesImages.side0, key: 2, id: 17},
+	{name: "Fruit Cup", src: sidesImages.side2, key: 3, id: 18},
+	{name: "Side Salad", src: sidesImages.side3, key: 4, id: 19},
 ];
 
 // Create a list of menu items JSX elements
 const menuList = menu.map(item =>
-    &lt;AddMenuItem key={item.id} item={item}>&lt;/AddMenuItem>
+	&lt;AddMenuItem key={item.id} item={item}>&lt;/AddMenuItem>
 );
 
 /**
@@ -58,20 +58,20 @@ const menuList = menu.map(item =>
  * @returns {JSX.Element}
  */
 function Sides() {
-    // Get the number of items in the customer's order from local storage
-    let numberOfItems = localStorage.getItem("numItems");
-    numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
+	// Get the number of items in the customer's order from local storage
+	let numberOfItems = localStorage.getItem("numItems");
+	numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
 
-    // Render the customer navigation bar, the sides menu, and the router outlet
-    return (
-        &lt;>
-            &lt;CustomerNav numberOfItems={numberOfItems} title={"Sides"} navPage={"/customer/order"} />
-            &lt;ul data-cy="BeverageList" className="menu" role="list">
-                {menuList}
-            &lt;/ul>
-            &lt;Outlet />
-        &lt;/>
-    );
+	// Render the customer navigation bar, the sides menu, and the router outlet
+	return (
+		&lt;>
+			&lt;CustomerNav numberOfItems={numberOfItems} title={"Sides"} navPage={"/customer/order"} />
+			&lt;ul data-cy="BeverageList" className="menu" role="list">
+				{menuList}
+			&lt;/ul>
+			&lt;Outlet />
+		&lt;/>
+	);
 }
 
 export default Sides;
@@ -85,13 +85,13 @@ export default Sides;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#createZReport">createZReport</a></li><li><a href="global.html#loadZReports">loadZReports</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li><li><a href="global.html#viewZReportInfo">viewZReportInfo</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#CustomerRoutes">CustomerRoutes</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#EmployeeRoutes">EmployeeRoutes</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#OAUTH">OAUTH</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 02:37:21 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 11:03:16 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

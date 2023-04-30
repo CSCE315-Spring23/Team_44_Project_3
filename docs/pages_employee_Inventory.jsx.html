@@ -44,189 +44,189 @@ import PageProtector from "../../components/PageProtector";
  * @returns {JSX.Element} - The Inventory component JSX element.
  */
 function Inventory(props) {
-    const isManager = props.isManager;
-    const [inventoryTable, setInventoryTable] = useState();
+	const isManager = props.isManager;
+	const [inventoryTable, setInventoryTable] = useState();
 
-    const deleteInventoryFields = [
-        {name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID"},
-    ];
+	const deleteInventoryFields = [
+		{name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID"},
+	];
 
-    /**
-     * Fetches inventory data from the server and updates the component state with it.
-     */
-    useEffect(() => {
-        getInventory();
-    }, []);
+	/**
+	 * Fetches inventory data from the server and updates the component state with it.
+	 */
+	useEffect(() => {
+		getInventory();
+	}, []);
 
-    /**
-     * Fetches inventory data from the server and updates the component state with it.
-     * @async
-     */
-    async function getInventory() {
-        const url = HOST + endpoints.inventory;
+	/**
+	 * Fetches inventory data from the server and updates the component state with it.
+	 * @async
+	 */
+	async function getInventory() {
+		const url = HOST + endpoints.inventory;
 
-        fetch(url, {
-            method: "GET"
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response not OK");
-                }
-                return response.json();
-            })
-            .then(data => {
-                const table = &lt;DatabaseTablePane data={data} />;
-                setInventoryTable(table);
-            });
-    };
+		fetch(url, {
+			method: "GET"
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network response not OK");
+				}
+				return response.json();
+			})
+			.then(data => {
+				const table = &lt;DatabaseTablePane data={data} />;
+				setInventoryTable(table);
+			});
+	};
 
-    /**
-     * The form fields for updating an inventory item.
-     */
-    const updateInventoryFields = [
-        {name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID"},
-        {name: "newName", label: "New Name", type: "text", placeholder: "New Name"},
-        {name: "newQuantity", label: "New Quantity", type: "text", placeholder: "New Quantity"},
-        {name: "newThreshold", label: "New Threshold", type: "text", placeholder: "New Threshold"}
-    ];
+	/**
+	 * The form fields for updating an inventory item.
+	 */
+	const updateInventoryFields = [
+		{name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID"},
+		{name: "newName", label: "New Name", type: "text", placeholder: "New Name"},
+		{name: "newQuantity", label: "New Quantity", type: "text", placeholder: "New Quantity"},
+		{name: "newThreshold", label: "New Threshold", type: "text", placeholder: "New Threshold"}
+	];
 
-    /**
-     * Handles updating an inventory item.
-     * @param {object} formState - The current form state.
-     */
-    function handleUpdateInventory(formState) {
-        const id = formState.itemID;
-        const name = formState.newName;
-        const quantity = formState.newQuantity;
-        const threshold = formState.newThreshold;
-        const url = HOST + endpoints.updateInventoryItem;
+	/**
+	 * Handles updating an inventory item.
+	 * @param {object} formState - The current form state.
+	 */
+	function handleUpdateInventory(formState) {
+		const id = formState.itemID;
+		const name = formState.newName;
+		const quantity = formState.newQuantity;
+		const threshold = formState.newThreshold;
+		const url = HOST + endpoints.updateInventoryItem;
 
-        fetch(url, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                id: id,
-                name: name,
-                quantity: quantity,
-                threshold: threshold
-            })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response not OK");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                getInventory();
-            }
-            );
+		fetch(url, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				id: id,
+				name: name,
+				quantity: quantity,
+				threshold: threshold
+			})
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network response not OK");
+				}
+				return response.json();
+			})
+			.then(data => {
+				console.log(data);
+				getInventory();
+			}
+			);
 
-    };
+	};
 
-    /**
-     * The form fields for adding an inventory item.
-     */
-    const addInventoryFields = [
-        {name: "itemName", label: "Item Name", type: "text", placeholder: "Item Name"},
-        {name: "itemQuantity", label: "Item Quantity", type: "text", placeholder: "Item Quantity"},
-        {name: "itemThreshold", label: "Item Threshold", type: "text", placeholder: "Item Threshold"}
-    ];
+	/**
+	 * The form fields for adding an inventory item.
+	 */
+	const addInventoryFields = [
+		{name: "itemName", label: "Item Name", type: "text", placeholder: "Item Name"},
+		{name: "itemQuantity", label: "Item Quantity", type: "text", placeholder: "Item Quantity"},
+		{name: "itemThreshold", label: "Item Threshold", type: "text", placeholder: "Item Threshold"}
+	];
 
-    /**
-     * Handles adding inventory item to the database
-     * @param {object} formState - Object containing the form data for the new inventory item
-     */
-    function handleAddInventory(formState) {
-        const name = formState.itemName;
-        const quantity = formState.itemQuantity;
-        const threshold = formState.itemThreshold;
-        const url = HOST + endpoints.insertInventoryItem;
+	/**
+	 * Handles adding inventory item to the database
+	 * @param {object} formState - Object containing the form data for the new inventory item
+	 */
+	function handleAddInventory(formState) {
+		const name = formState.itemName;
+		const quantity = formState.itemQuantity;
+		const threshold = formState.itemThreshold;
+		const url = HOST + endpoints.insertInventoryItem;
 
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: name,
-                quantity: quantity,
-                threshold: threshold
-            })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response not OK");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                getInventory();
-            }
-            );
-    };
+		fetch(url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				name: name,
+				quantity: quantity,
+				threshold: threshold
+			})
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network response not OK");
+				}
+				return response.json();
+			})
+			.then(data => {
+				console.log(data);
+				getInventory();
+			}
+			);
+	};
 
-    /**
-     * Handles deleting inventory item from the database
-     * @param {object} formState - Object containing the form data for the item to be deleted
-     */
-    const handleDeleteInventory = (formState) => {
-        const id = formState.itemID;
-        const url = HOST + endpoints.deleteInventoryItem;
+	/**
+	 * Handles deleting inventory item from the database
+	 * @param {object} formState - Object containing the form data for the item to be deleted
+	 */
+	const handleDeleteInventory = (formState) => {
+		const id = formState.itemID;
+		const url = HOST + endpoints.deleteInventoryItem;
 
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                id: id
-            })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response not OK");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                getInventory();
-            }
-            );
-    };
+		fetch(url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				id: id
+			})
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network response not OK");
+				}
+				return response.json();
+			})
+			.then(data => {
+				console.log(data);
+				getInventory();
+			}
+			);
+	};
 
-    return (
-        &lt;PageProtector>
-            &lt;div className="empInventoryPage">
-                &lt;EmployeeNav isManager={isManager} current={"inventory"} />
-                &lt;div id="inventoryTableDiv">
-                    &lt;h2>Inventory&lt;/h2>
-                    {inventoryTable}
-                &lt;/div>
-                &lt;div id="inventoryFormsDiv">
-                    &lt;div id="updateInventoryFormDiv">
-                        &lt;h4>Update Inventory Item&lt;/h4>
-                        &lt;Form fields={updateInventoryFields} onSubmit={handleUpdateInventory} />
-                    &lt;/div>
-                    &lt;hr style={{marginRight: "5px"}}>&lt;/hr>
-                    &lt;div id="addInventoryFormDiv">
-                        &lt;h4>Add Inventory Item&lt;/h4>
-                        &lt;Form fields={addInventoryFields} onSubmit={handleAddInventory} />
-                    &lt;/div>
-                    &lt;hr style={{marginRight: "5px"}}>&lt;/hr>
-                    &lt;div id="deleteInventoryFormDiv">
-                        &lt;h4>Delete Inventory Item&lt;/h4>
-                        &lt;Form fields={deleteInventoryFields} onSubmit={handleDeleteInventory} />
-                    &lt;/div>
-                &lt;/div>
-            &lt;/div>
-        &lt;/PageProtector>
-    );
+	return (
+		&lt;PageProtector>
+			&lt;div className="empInventoryPage">
+				&lt;EmployeeNav isManager={isManager} current={"inventory"} />
+				&lt;div id="inventoryTableDiv">
+					&lt;h2>Inventory&lt;/h2>
+					{inventoryTable}
+				&lt;/div>
+				&lt;div id="inventoryFormsDiv">
+					&lt;div id="updateInventoryFormDiv">
+						&lt;h4>Update Inventory Item&lt;/h4>
+						&lt;Form fields={updateInventoryFields} onSubmit={handleUpdateInventory} />
+					&lt;/div>
+					&lt;hr style={{marginRight: "5px"}}>&lt;/hr>
+					&lt;div id="addInventoryFormDiv">
+						&lt;h4>Add Inventory Item&lt;/h4>
+						&lt;Form fields={addInventoryFields} onSubmit={handleAddInventory} />
+					&lt;/div>
+					&lt;hr style={{marginRight: "5px"}}>&lt;/hr>
+					&lt;div id="deleteInventoryFormDiv">
+						&lt;h4>Delete Inventory Item&lt;/h4>
+						&lt;Form fields={deleteInventoryFields} onSubmit={handleDeleteInventory} />
+					&lt;/div>
+				&lt;/div>
+			&lt;/div>
+		&lt;/PageProtector>
+	);
 }
 
 export default Inventory;
@@ -240,13 +240,13 @@ export default Inventory;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#createZReport">createZReport</a></li><li><a href="global.html#loadZReports">loadZReports</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li><li><a href="global.html#viewZReportInfo">viewZReportInfo</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#CustomerRoutes">CustomerRoutes</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#EmployeeRoutes">EmployeeRoutes</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#OAUTH">OAUTH</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 02:37:21 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 11:03:16 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

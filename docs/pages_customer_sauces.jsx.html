@@ -40,23 +40,23 @@ import sauceImages from '../../utils/sauceImages';
 
 // An array of objects representing the menu items.
 const menu = [
-    {name: "Avacado Lime Ranch Dressing", src: sauceImages.avacadoLimeRanchDressing, key: 0, id: 42},
-    {name: "Barbeque Sauce", src: sauceImages.bbqSauce, key: 1, id: 51},
-    {name: "Chick-fil-A Sauce", src: sauceImages.CFASauce, key: 2, id: 46},
-    {name: "Honey Mustard", src: sauceImages.honeyMustard, key: 3, id: 48},
-    {name: "Light Balsamic Vinegar", src: sauceImages.lightBalsamicVin, key: 4, id: 45},
-    {name: "Light Italian Dressing", src: sauceImages.lightItalianDressing, key: 5, id: 45},
-    {name: "Polynesian Sauce", src: sauceImages.polynesian, key: 6, id: 47},
-    {name: "Ranch", src: sauceImages.ranch, key: 7, id: 49},
-    {name: "Ranch Dressing", src: sauceImages.ranchDressing, key: 8, id: 44},
-    {name: "Sweat and Spicy Siracha Sauce", src: sauceImages.SSSrirachaSauce, key: 9, id: 52},
-    {name: "Zesty Apple Dressing", src: sauceImages.zestyAppleDressing, key: 10, id: 43},
-    {name: "Zesty Buffalo Sauce", src: sauceImages.ZestyBuff, key: 11, id: 50}
+	{name: "Avacado Lime Ranch Dressing", src: sauceImages.avacadoLimeRanchDressing, key: 0, id: 42},
+	{name: "Barbeque Sauce", src: sauceImages.bbqSauce, key: 1, id: 51},
+	{name: "Chick-fil-A Sauce", src: sauceImages.CFASauce, key: 2, id: 46},
+	{name: "Honey Mustard", src: sauceImages.honeyMustard, key: 3, id: 48},
+	{name: "Light Balsamic Vinegar", src: sauceImages.lightBalsamicVin, key: 4, id: 45},
+	{name: "Light Italian Dressing", src: sauceImages.lightItalianDressing, key: 5, id: 45},
+	{name: "Polynesian Sauce", src: sauceImages.polynesian, key: 6, id: 47},
+	{name: "Ranch", src: sauceImages.ranch, key: 7, id: 49},
+	{name: "Ranch Dressing", src: sauceImages.ranchDressing, key: 8, id: 44},
+	{name: "Sweat and Spicy Siracha Sauce", src: sauceImages.SSSrirachaSauce, key: 9, id: 52},
+	{name: "Zesty Apple Dressing", src: sauceImages.zestyAppleDressing, key: 10, id: 43},
+	{name: "Zesty Buffalo Sauce", src: sauceImages.ZestyBuff, key: 11, id: 50}
 ];
 
 // An array of React components, each representing a menu item.
 const menuList = menu.map(item =>
-    &lt;AddMenuItem key={item.id} item={item}>&lt;/AddMenuItem>
+	&lt;AddMenuItem key={item.id} item={item}>&lt;/AddMenuItem>
 );
 
 /**
@@ -65,35 +65,35 @@ const menuList = menu.map(item =>
  * @returns {JSX.Element}
  */
 function Sauces() {
-    let numberOfItems = localStorage.getItem("numItems");
-    numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
+	let numberOfItems = localStorage.getItem("numItems");
+	numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
 
-    // The hook that allows for navigation to the order page.
-    const navigate = useNavigate();
+	// The hook that allows for navigation to the order page.
+	const navigate = useNavigate();
 
-    /**
-     * The function that is called when the user clicks the "Order" button, which navigates to the Order page.
-     * @function
-     * @returns {void}
-     */
-    function navigateOrderPage() {
-        navigate('/customer/order');
-    }
+	/**
+	 * The function that is called when the user clicks the "Order" button, which navigates to the Order page.
+	 * @function
+	 * @returns {void}
+	 */
+	function navigateOrderPage() {
+		navigate('/customer/order');
+	}
 
-    return (
-        &lt;>
-            {/* The CustomerNav component that displays the page header and "Order" button */}
-            &lt;CustomerNav numberOfItems={numberOfItems} title={"Sauces"} navPage={"/customer/order"} />
+	return (
+		&lt;>
+			{/* The CustomerNav component that displays the page header and "Order" button */}
+			&lt;CustomerNav numberOfItems={numberOfItems} title={"Sauces"} navPage={"/customer/order"} />
 
-            {/* The unordered list of menu items */}
-            &lt;ul data-cy="SauceList" className="menu" role="list">
-                {menuList}
-            &lt;/ul>
+			{/* The unordered list of menu items */}
+			&lt;ul data-cy="SauceList" className="menu" role="list">
+				{menuList}
+			&lt;/ul>
 
-            {/* The outlet for nested routes */}
-            &lt;Outlet />
-        &lt;/>
-    );
+			{/* The outlet for nested routes */}
+			&lt;Outlet />
+		&lt;/>
+	);
 }
 
 export default Sauces;
@@ -107,13 +107,13 @@ export default Sauces;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#createZReport">createZReport</a></li><li><a href="global.html#loadZReports">loadZReports</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li><li><a href="global.html#viewZReportInfo">viewZReportInfo</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#CustomerRoutes">CustomerRoutes</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#EmployeeRoutes">EmployeeRoutes</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#OAUTH">OAUTH</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 02:37:21 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 11:03:16 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

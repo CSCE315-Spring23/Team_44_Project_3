@@ -47,21 +47,21 @@ import mealImages from '../../utils/mealImages';
  * @property {array} ids - An array of item ids which correspond to the items that make up the meal
  */
 const menu = [
-    {name: "Sandwich Meal", src: mealImages.meal0, key: 0, meal: true, ids: [1, 16, 29]},
-    {name: "Deluxe Sandwich Meal", src: mealImages.meal1, key: 1, meal: true, ids: [2, 16, 29]},
-    {name: "Spicy Chicken Sandwich Meal", src: mealImages.meal2, key: 2, meal: true, ids: [3, 16, 29]},
-    {name: "Spicy Deluxe Chicken Sandwich Meal", src: mealImages.meal3, key: 3, meal: true, ids: [4, 16, 29]},
-    {name: "Grilled Chicken Sandwich Meal", src: mealImages.meal4, key: 4, meal: true, ids: [9, 16, 29]},
-    {name: "Grilled Chicken Club Meal", src: mealImages.meal5, key: 5, meal: true, ids: [10, 16, 29]},
-    {name: "Nuggest Meal", src: mealImages.meal6, key: 6, meal: true, ids: [8, 16, 29]},
-    {name: "Grilled Nugget Meal", src: mealImages.meal7, key: 7, meal: true, ids: [6, 16, 29]}
+	{name: "Sandwich Meal", src: mealImages.meal0, key: 0, meal: true, ids: [1, 16, 29]},
+	{name: "Deluxe Sandwich Meal", src: mealImages.meal1, key: 1, meal: true, ids: [2, 16, 29]},
+	{name: "Spicy Chicken Sandwich Meal", src: mealImages.meal2, key: 2, meal: true, ids: [3, 16, 29]},
+	{name: "Spicy Deluxe Chicken Sandwich Meal", src: mealImages.meal3, key: 3, meal: true, ids: [4, 16, 29]},
+	{name: "Grilled Chicken Sandwich Meal", src: mealImages.meal4, key: 4, meal: true, ids: [9, 16, 29]},
+	{name: "Grilled Chicken Club Meal", src: mealImages.meal5, key: 5, meal: true, ids: [10, 16, 29]},
+	{name: "Nuggest Meal", src: mealImages.meal6, key: 6, meal: true, ids: [8, 16, 29]},
+	{name: "Grilled Nugget Meal", src: mealImages.meal7, key: 7, meal: true, ids: [6, 16, 29]}
 ];
 
 /**
  * @constant {array} menuList - An array of AddMenuItem components, where each component represents a meal item
  */
 const menuList = menu.map(item =>
-    &lt;AddMenuItem key={item.id} item={item}>&lt;/AddMenuItem>
+	&lt;AddMenuItem key={item.id} item={item}>&lt;/AddMenuItem>
 );
 
 /**
@@ -70,18 +70,18 @@ const menuList = menu.map(item =>
  * @returns {JSX.Element}
  */
 function Meals() {
-    let numberOfItems = localStorage.getItem("numItems");
-    numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
+	let numberOfItems = localStorage.getItem("numItems");
+	numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
 
-    return (
-        &lt;>
-            &lt;CustomerNav numberOfItems={numberOfItems} title={"Meals"} navPage={"/customer/order"} />
-            &lt;ul data-cy="MealList" className="menu" role="list">
-                {menuList}
-            &lt;/ul>
-            &lt;Outlet />
-        &lt;/>
-    );
+	return (
+		&lt;>
+			&lt;CustomerNav numberOfItems={numberOfItems} title={"Meals"} navPage={"/customer/order"} />
+			&lt;ul data-cy="MealList" className="menu" role="list">
+				{menuList}
+			&lt;/ul>
+			&lt;Outlet />
+		&lt;/>
+	);
 }
 
 export default Meals;
@@ -95,13 +95,13 @@ export default Meals;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#createZReport">createZReport</a></li><li><a href="global.html#loadZReports">loadZReports</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li><li><a href="global.html#viewZReportInfo">viewZReportInfo</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#CustomerRoutes">CustomerRoutes</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#EmployeeRoutes">EmployeeRoutes</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#OAUTH">OAUTH</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 02:37:21 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 11:03:16 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

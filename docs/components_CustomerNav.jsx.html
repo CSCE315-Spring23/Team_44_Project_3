@@ -39,113 +39,113 @@ import logo from "../assets/logo.svg";
  */
 
 function CustomerNav(props) {
-    const numberOfItems = props.numberOfItems;
-    const title = props.title;
-    const navPage = props.navPage;
+	const numberOfItems = props.numberOfItems;
+	const title = props.title;
+	const navPage = props.navPage;
 
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
-    /**
-     * Navigates to a specified page
-     */
-    function navigagePage() {
-        navigate(navPage);
-    }
+	/**
+	 * Navigates to a specified page
+	 */
+	function navigagePage() {
+		navigate(navPage);
+	}
 
-    /**
-     * Navigates to the checkout page if there are items in the cart.
-     * Otherwise, returns null.
-     */
-    function checkoutPage() {
-        if (numItems > 0)
-            navigate("/customer/order/checkout");
-        else
-            return;
-    }
+	/**
+	 * Navigates to the checkout page if there are items in the cart.
+	 * Otherwise, returns null.
+	 */
+	function checkoutPage() {
+		if (numItems > 0)
+			navigate("/customer/order/checkout");
+		else
+			return;
+	}
 
-    //get menu and update total
-    const [orderTotal, setOrderTotal] = useState(0);
-    useEffect(() => {
-        var button = document.getElementsByClassName("viewOrderBtn");
-        button.disabled = numItems == 0;
-        //get menu
-        const url = HOST + endpoints.getMenu;
-        fetch(url, {
-            method: "GET"
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network Response Not OK");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("data from customerOrder: ", data);
-                localStorage.setItem("menu", JSON.stringify(data));
-            })
-            .catch(error => {
-                console.error("Could not fetch menu items from " + url);
-            });
+	//get menu and update total
+	const [orderTotal, setOrderTotal] = useState(0);
+	useEffect(() => {
+		var button = document.getElementsByClassName("viewOrderBtn");
+		button.disabled = numItems == 0;
+		//get menu
+		const url = HOST + endpoints.getMenu;
+		fetch(url, {
+			method: "GET"
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network Response Not OK");
+				}
+				return response.json();
+			})
+			.then(data => {
+				console.log("data from customerOrder: ", data);
+				localStorage.setItem("menu", JSON.stringify(data));
+			})
+			.catch(error => {
+				console.error("Could not fetch menu items from " + url);
+			});
 
-        //update total
-        const curOrder = JSON.parse(localStorage.getItem("curOrder"));
-        if (curOrder &amp;&amp; curOrder.total) {
-            setOrderTotal(curOrder.total[0]);
-        }
+		//update total
+		const curOrder = JSON.parse(localStorage.getItem("curOrder"));
+		if (curOrder &amp;&amp; curOrder.total) {
+			setOrderTotal(curOrder.total[0]);
+		}
 
-    }, []);
+	}, []);
 
-    const [numItems, setNumItems] = useState(localStorage.getItem("numItems") || 0);
+	const [numItems, setNumItems] = useState(localStorage.getItem("numItems") || 0);
 
-    useEffect(() => {
-        /**
-         * Updates the number of items in the cart.
-         */
-        function updateNumItems() {
-            setNumItems(localStorage.getItem("numItems") || 0);
-        };
+	useEffect(() => {
+		/**
+		 * Updates the number of items in the cart.
+		 */
+		function updateNumItems() {
+			setNumItems(localStorage.getItem("numItems") || 0);
+		};
 
-        window.addEventListener("storage", () => {updateNumItems();});
+		window.addEventListener("storage", () => {updateNumItems();});
 
-        return () => {
-            window.removeEventListener("storage", () => {updateNumItems();});
-        };
-    }, []);
+		return () => {
+			window.removeEventListener("storage", () => {updateNumItems();});
+		};
+	}, []);
 
-    return (
-        &lt;>
-            &lt;nav className="desktop-navigation">
-                &lt;div className="logo-icon">
-                    &lt;img src={logo} alt="Chick-fil-A logo" className="logo-icon" />
-                &lt;/div>
-                &lt;div className="backDiv">
-                    &lt;button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigagePage}>
-                        &lt;svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            &lt;path d="M14.09 22L5 12l9.09-10" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            &lt;/path>
-                        &lt;/svg>
-                        &lt;div aria-hidden="true" className="backText">
-                            Back
-                        &lt;/div>
-                    &lt;/button>
-                &lt;/div>
-                &lt;div className="title">{title}&lt;/div>
-                &lt;Weather />
-                &lt;div className="order">
-                    &lt;button className="viewOrderBtn" onClick={checkoutPage}>
-                        &lt;div className="bagIcon">
-                            &lt;span className="itemCount">{numItems}&lt;/span>
-                            &lt;svg width="30" height="31" viewBox="0 0 30 31" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="sc-NfXLL kkFxpj">
-                                &lt;path fill-rule="evenodd" clip-rule="evenodd" d="M21.065 28.216l2.717-25.681h.713l2.428 25.68h-5.858zM5.227 2.535h3.085c.162 1.01.612 1.94 1.3 2.649.898.925 2.125 1.413 3.546 1.413 1.42 0 2.644-.488 3.542-1.412.69-.709 1.14-1.638 1.304-2.65h3.507l-2.718 25.68H3.144l2.083-25.68zM26.65 1.333a1.12 1.12 0 00-1.126-1h-8.59c-.31 0-.607.125-.82.345a1.083 1.083 0 00-.308.816c.046.835-.233 1.648-.748 2.177-.467.482-1.107.725-1.9.725-.797 0-1.437-.244-1.905-.725-.513-.529-.791-1.342-.744-2.176a1.086 1.086 0 00-.307-.817 1.146 1.146 0 00-.821-.345h-5.2c-.59 0-1.08.442-1.127 1.015L.795 29.23c-.024.306.083.608.297.834.214.224.515.353.83.353h26.24c.318 0 .62-.13.835-.359.213-.229.319-.535.29-.843L26.651 1.333z">
-                                &lt;/path>
-                            &lt;/svg>
-                        &lt;/div>
-                        My Order
-                    &lt;/button>
-                &lt;/div>
-            &lt;/nav>
-        &lt;/>
-    );
+	return (
+		&lt;>
+			&lt;nav className="desktop-navigation">
+				&lt;div className="logo-icon">
+					&lt;img src={logo} alt="Chick-fil-A logo" className="logo-icon" />
+				&lt;/div>
+				&lt;div className="backDiv">
+					&lt;button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigagePage}>
+						&lt;svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							&lt;path d="M14.09 22L5 12l9.09-10" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+							&lt;/path>
+						&lt;/svg>
+						&lt;div aria-hidden="true" className="backText">
+							Back
+						&lt;/div>
+					&lt;/button>
+				&lt;/div>
+				&lt;div className="title">{title}&lt;/div>
+				&lt;Weather />
+				&lt;div className="order">
+					&lt;button className="viewOrderBtn" onClick={checkoutPage}>
+						&lt;div className="bagIcon">
+							&lt;span className="itemCount">{numItems}&lt;/span>
+							&lt;svg width="30" height="31" viewBox="0 0 30 31" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="sc-NfXLL kkFxpj">
+								&lt;path fill-rule="evenodd" clip-rule="evenodd" d="M21.065 28.216l2.717-25.681h.713l2.428 25.68h-5.858zM5.227 2.535h3.085c.162 1.01.612 1.94 1.3 2.649.898.925 2.125 1.413 3.546 1.413 1.42 0 2.644-.488 3.542-1.412.69-.709 1.14-1.638 1.304-2.65h3.507l-2.718 25.68H3.144l2.083-25.68zM26.65 1.333a1.12 1.12 0 00-1.126-1h-8.59c-.31 0-.607.125-.82.345a1.083 1.083 0 00-.308.816c.046.835-.233 1.648-.748 2.177-.467.482-1.107.725-1.9.725-.797 0-1.437-.244-1.905-.725-.513-.529-.791-1.342-.744-2.176a1.086 1.086 0 00-.307-.817 1.146 1.146 0 00-.821-.345h-5.2c-.59 0-1.08.442-1.127 1.015L.795 29.23c-.024.306.083.608.297.834.214.224.515.353.83.353h26.24c.318 0 .62-.13.835-.359.213-.229.319-.535.29-.843L26.651 1.333z">
+								&lt;/path>
+							&lt;/svg>
+						&lt;/div>
+						My Order
+					&lt;/button>
+				&lt;/div>
+			&lt;/nav>
+		&lt;/>
+	);
 }
 
 export default CustomerNav;</code></pre>
@@ -158,13 +158,13 @@ export default CustomerNav;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#createZReport">createZReport</a></li><li><a href="global.html#loadZReports">loadZReports</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li><li><a href="global.html#viewZReportInfo">viewZReportInfo</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#CustomerRoutes">CustomerRoutes</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#EmployeeRoutes">EmployeeRoutes</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#OAUTH">OAUTH</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 02:37:21 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 11:03:16 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

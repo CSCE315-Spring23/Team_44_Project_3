@@ -46,120 +46,120 @@ import PageProtector from "../../components/PageProtector";
  */
 function ExcessRep(props) {
 
-    /**
-     * Determines if the user is a manager or not
-     * @type {boolean}
-    */
-    const isManager = props.isManager;
+	/**
+	 * Determines if the user is a manager or not
+	 * @type {boolean}
+	*/
+	const isManager = props.isManager;
 
-    /**
-     * State hook to store excess report table data
-     * @type {Array}
-    */
-    const [excessRepTable, setExcessRepTable] = useState([]);
+	/**
+	 * State hook to store excess report table data
+	 * @type {Array}
+	*/
+	const [excessRepTable, setExcessRepTable] = useState([]);
 
-    /**
-     * State hook to store start date of excess report
-     * @type {Date|null}
-    */
-    const [startDate, setStartDate] = useState(null);
+	/**
+	 * State hook to store start date of excess report
+	 * @type {Date|null}
+	*/
+	const [startDate, setStartDate] = useState(null);
 
-    /**
-     * State hook to store selected start date of excess report
-     * @type {Date|null}
-    */
-    const [selectedStartDate, setSelectedDate] = useState(null);
+	/**
+	 * State hook to store selected start date of excess report
+	 * @type {Date|null}
+	*/
+	const [selectedStartDate, setSelectedDate] = useState(null);
 
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
-    /**
-     * Event handler for changing start date of excess report
-     * @function
-     * @param {Date} date - Selected date for excess report start date
-     * @returns {void}
-    */
-    const handleStartDateChange = (date) => {
-        const year = date.getFullYear();
-        const month = date.getMonth() + 1;
-        const day = date.getDate();
-        setSelectedDate(date);
-        setStartDate(`${ year }-${ month.toString().padStart(2, "0") }-${ day.toString().padStart(2, "0") }`);
-    };
+	/**
+	 * Event handler for changing start date of excess report
+	 * @function
+	 * @param {Date} date - Selected date for excess report start date
+	 * @returns {void}
+	*/
+	const handleStartDateChange = (date) => {
+		const year = date.getFullYear();
+		const month = date.getMonth() + 1;
+		const day = date.getDate();
+		setSelectedDate(date);
+		setStartDate(`${ year }-${ month.toString().padStart(2, "0") }-${ day.toString().padStart(2, "0") }`);
+	};
 
-    /**
-     * @function async
-     * Fetch the table from server and set the table state
-     */
-    async function genReport() {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = today.getMonth() + 1;
-        const day = today.getDate();
+	/**
+	 * @function async
+	 * Fetch the table from server and set the table state
+	 */
+	async function genReport() {
+		const today = new Date();
+		const year = today.getFullYear();
+		const month = today.getMonth() + 1;
+		const day = today.getDate();
 
-        const endDate = `${ year }-${ month.toString().padStart(2, "0") }-${ day.toString().padStart(2, "0") }`;
-        const url = `${ HOST }${ endpoints.getExcess }?startDate=${ startDate }&amp;endDate=${ endDate }`;
+		const endDate = `${ year }-${ month.toString().padStart(2, "0") }-${ day.toString().padStart(2, "0") }`;
+		const url = `${ HOST }${ endpoints.getExcess }?startDate=${ startDate }&amp;endDate=${ endDate }`;
 
-        fetch(url, {
-            method: "GET",
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network Response not OK");
-                }
-                return response.json();
-            })
-            .then(data => {
-                const table = &lt;DatabaseTablePane data={data} />;
-                setExcessRepTable(table);
-            }
-            );
-    };
+		fetch(url, {
+			method: "GET",
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network Response not OK");
+				}
+				return response.json();
+			})
+			.then(data => {
+				const table = &lt;DatabaseTablePane data={data} />;
+				setExcessRepTable(table);
+			}
+			);
+	};
 
-    /**
-     * Navigate hook to go to the default reports page
-     */
-    function navigateOrderPage() {
-        navigate("/employee/reports");
-    }
+	/**
+	 * Navigate hook to go to the default reports page
+	 */
+	function navigateOrderPage() {
+		navigate("/employee/reports");
+	}
 
-    return (
-        &lt;PageProtector>
-            &lt;div className="empOrderPage">
-                &lt;EmployeeNav isManager={isManager}>&lt;/EmployeeNav>
-                &lt;div className="repDiv">
-                    &lt;div className="repHead">
-                        &lt;div className="backDiv">
-                            &lt;button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigateOrderPage}>
-                                &lt;svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    &lt;path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                    &lt;/path>
-                                &lt;/svg>
-                                &lt;div aria-hidden="true" className="backText">
-                                    Back
-                                &lt;/div>
-                            &lt;/button>
-                        &lt;/div>
-                        &lt;h2>Excess Report&lt;/h2>
-                        &lt;div className="excessRepDate">
-                            &lt;h5>Enter Start Date&lt;/h5>
-                            &lt;DatePicker
-                                selected={selectedStartDate}
-                                onChange={handleStartDateChange}
-                                dateFormat="yyyy-MM-dd"
-                                placeholderText="Start Date"
-                            />
-                            &lt;button className="goButton" onClick={genReport}>Go&lt;/button>
-                        &lt;/div>
-                    &lt;/div>
-                    &lt;div className="repBody">
-                        &lt;div className="excessRepTable">
-                            {excessRepTable}
-                        &lt;/div>
-                    &lt;/div>
-                &lt;/div>
-            &lt;/div>
-        &lt;/PageProtector>
-    );
+	return (
+		&lt;PageProtector>
+			&lt;div className="empOrderPage">
+				&lt;EmployeeNav isManager={isManager}>&lt;/EmployeeNav>
+				&lt;div className="repDiv">
+					&lt;div className="repHead">
+						&lt;div className="backDiv">
+							&lt;button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigateOrderPage}>
+								&lt;svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									&lt;path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+									&lt;/path>
+								&lt;/svg>
+								&lt;div aria-hidden="true" className="backText">
+									Back
+								&lt;/div>
+							&lt;/button>
+						&lt;/div>
+						&lt;h2>Excess Report&lt;/h2>
+						&lt;div className="excessRepDate">
+							&lt;h5>Enter Start Date&lt;/h5>
+							&lt;DatePicker
+								selected={selectedStartDate}
+								onChange={handleStartDateChange}
+								dateFormat="yyyy-MM-dd"
+								placeholderText="Start Date"
+							/>
+							&lt;button className="goButton" onClick={genReport}>Go&lt;/button>
+						&lt;/div>
+					&lt;/div>
+					&lt;div className="repBody">
+						&lt;div className="excessRepTable">
+							{excessRepTable}
+						&lt;/div>
+					&lt;/div>
+				&lt;/div>
+			&lt;/div>
+		&lt;/PageProtector>
+	);
 }
 
 export default ExcessRep;
@@ -173,13 +173,13 @@ export default ExcessRep;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#createZReport">createZReport</a></li><li><a href="global.html#loadZReports">loadZReports</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li><li><a href="global.html#viewZReportInfo">viewZReportInfo</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#CustomerRoutes">CustomerRoutes</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#EmployeeRoutes">EmployeeRoutes</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#OAUTH">OAUTH</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 02:37:21 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 11:03:16 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

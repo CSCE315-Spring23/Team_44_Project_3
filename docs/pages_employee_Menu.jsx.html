@@ -53,222 +53,222 @@ import PageProtector from "../../components/PageProtector";
  * @returns {JSX.Element} The JSX element for the component.
  */
 function Menu(props) {
-    const isManager = props.isManager;
-    const [menuTable, setMenuTable] = useState();
+	const isManager = props.isManager;
+	const [menuTable, setMenuTable] = useState();
 
-    /**
-     * Fields for deleting a menu item.
-     * @type {Object[]}
-     */
-    const deleteMenuItemFields = [
-        {name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID"}
-    ];
+	/**
+	 * Fields for deleting a menu item.
+	 * @type {Object[]}
+	 */
+	const deleteMenuItemFields = [
+		{name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID"}
+	];
 
-    /**
-     * Fields for adding a menu item.
-     * @type {Object[]}
-     */
-    const addMenuItemFields = [
-        {name: "name", label: "Name", type: "text", placeholder: "Name"},
-        {name: "cost", label: "Cost", type: "text", placeholder: "Cost"},
-        {name: "recipe", label: "Recipe", type: "text", placeholder: "Recipe Items IDs"},
-        // { name: "category", label: "Category", type: "text", placeholder: "Category"}
-    ];
+	/**
+	 * Fields for adding a menu item.
+	 * @type {Object[]}
+	 */
+	const addMenuItemFields = [
+		{name: "name", label: "Name", type: "text", placeholder: "Name"},
+		{name: "cost", label: "Cost", type: "text", placeholder: "Cost"},
+		{name: "recipe", label: "Recipe", type: "text", placeholder: "Recipe Items IDs"},
+		// { name: "category", label: "Category", type: "text", placeholder: "Category"}
+	];
 
-    /**
-     * Fields for updating a menu item.
-     * @type {Object[]}
-     */
-    const updateMenuFields = [
-        {name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID"},
-        {name: "newName", label: "New Name", type: "text", placeholder: "New Name"},
-        {name: "newCost", label: "New Cost", type: "text", placeholder: "New Cost"},
-        {name: "newRecipe", label: "New Recipe", type: "text", placeholder: "New Recipe Items IDs"},
-        // { name: "newCategory", label: "New Category", type: "text", placeholder: "New Category"}
-    ];
+	/**
+	 * Fields for updating a menu item.
+	 * @type {Object[]}
+	 */
+	const updateMenuFields = [
+		{name: "itemID", label: "Item ID", type: "text", placeholder: "Item ID"},
+		{name: "newName", label: "New Name", type: "text", placeholder: "New Name"},
+		{name: "newCost", label: "New Cost", type: "text", placeholder: "New Cost"},
+		{name: "newRecipe", label: "New Recipe", type: "text", placeholder: "New Recipe Items IDs"},
+		// { name: "newCategory", label: "New Category", type: "text", placeholder: "New Category"}
+	];
 
-    /**
-     * Retrieves the menu data from the API and sets the state of the menu table.
-     */
-    useEffect(() => {
-        getMenu();
-    }, []);
+	/**
+	 * Retrieves the menu data from the API and sets the state of the menu table.
+	 */
+	useEffect(() => {
+		getMenu();
+	}, []);
 
-    /**
-     * Retrieves the menu data from the API and sets the state of the menu table.
-     */
-    async function getMenu() {
-        const url = HOST + endpoints.menu;
+	/**
+	 * Retrieves the menu data from the API and sets the state of the menu table.
+	 */
+	async function getMenu() {
+		const url = HOST + endpoints.menu;
 
-        fetch(url, {
-            method: "GET"
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response not OK");
-                }
-                return response.json();
-            })
-            .then(data => {
-                const table = &lt;DatabaseTablePane data={data} />;
-                setMenuTable(table);
-            });
-    };
+		fetch(url, {
+			method: "GET"
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network response not OK");
+				}
+				return response.json();
+			})
+			.then(data => {
+				const table = &lt;DatabaseTablePane data={data} />;
+				setMenuTable(table);
+			});
+	};
 
-    /**
-     * Handles updating a menu item.
-     * @param {Object} formState - The form state containing the updated menu item information.
-     */
-    function handleUpdateMenu(formState) {
-        const id = formState.itemID;
-        const name = formState.newName;
-        const cost = formState.newCost;
-        const recipe = parseRecipe(formState.newRecipe);
-        // const category = formState.newCategory;
-        console.log(id, name, cost, recipe);
+	/**
+	 * Handles updating a menu item.
+	 * @param {Object} formState - The form state containing the updated menu item information.
+	 */
+	function handleUpdateMenu(formState) {
+		const id = formState.itemID;
+		const name = formState.newName;
+		const cost = formState.newCost;
+		const recipe = parseRecipe(formState.newRecipe);
+		// const category = formState.newCategory;
+		console.log(id, name, cost, recipe);
 
-        const url = HOST + endpoints.updateMenuItem;
+		const url = HOST + endpoints.updateMenuItem;
 
-        fetch(url, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                id: id,
-                name: name,
-                cost: cost,
-                recipeItems: recipe,
-                // category: category
-            })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response not OK");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                getMenu();
-            }
-            );
-    };
+		fetch(url, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				id: id,
+				name: name,
+				cost: cost,
+				recipeItems: recipe,
+				// category: category
+			})
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network response not OK");
+				}
+				return response.json();
+			})
+			.then(data => {
+				console.log(data);
+				getMenu();
+			}
+			);
+	};
 
-    /**
-     * Handles adding a new menu item to the database
-     * @param {Object} formState - An object containing the state of the form with the new menu item information
-     * @param {string} formState.name - The name of the new menu item
-     * @param {number} formState.cost - The cost of the new menu item
-     * @param {string} formState.recipe - The recipe for the new menu item
-     */
-    function handleAddMenuItem(formState) {
-        const name = formState.name;
-        const cost = Number(formState.cost);
-        const recipe = parseRecipe(formState.recipe);
-        // const category = formState.category;
-        console.log(name, cost, recipe);
-        const url = HOST + endpoints.insertMenuItem;
+	/**
+	 * Handles adding a new menu item to the database
+	 * @param {Object} formState - An object containing the state of the form with the new menu item information
+	 * @param {string} formState.name - The name of the new menu item
+	 * @param {number} formState.cost - The cost of the new menu item
+	 * @param {string} formState.recipe - The recipe for the new menu item
+	 */
+	function handleAddMenuItem(formState) {
+		const name = formState.name;
+		const cost = Number(formState.cost);
+		const recipe = parseRecipe(formState.recipe);
+		// const category = formState.category;
+		console.log(name, cost, recipe);
+		const url = HOST + endpoints.insertMenuItem;
 
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: name,
-                cost: cost,
-                recipeItems: recipe,
-                // category: category
-            })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response not OK");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                getMenu();
-            }
-            );
-    };
+		fetch(url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				name: name,
+				cost: cost,
+				recipeItems: recipe,
+				// category: category
+			})
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network response not OK");
+				}
+				return response.json();
+			})
+			.then(data => {
+				console.log(data);
+				getMenu();
+			}
+			);
+	};
 
-    /**
-     * Handles deleting a menu item from the database
-     * @param {Object} formState - An object containing the state of the form with the item ID to be deleted
-     * @param {string} formState.itemID - The ID of the item to be deleted
-     */
-    function handleDeleteMenuItem(formState) {
-        const id = formState.itemID;
-        const url = HOST + endpoints.deleteMenuItem;
+	/**
+	 * Handles deleting a menu item from the database
+	 * @param {Object} formState - An object containing the state of the form with the item ID to be deleted
+	 * @param {string} formState.itemID - The ID of the item to be deleted
+	 */
+	function handleDeleteMenuItem(formState) {
+		const id = formState.itemID;
+		const url = HOST + endpoints.deleteMenuItem;
 
-        fetch(url, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                id: id
-            })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response not OK");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                getMenu();
-            }
-            );
-    };
+		fetch(url, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				id: id
+			})
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network response not OK");
+				}
+				return response.json();
+			})
+			.then(data => {
+				console.log(data);
+				getMenu();
+			}
+			);
+	};
 
-    /**
-     * Parses a recipe string into an array of objects containing an ID property.
-     * @param {string} recipe - The recipe string to parse.
-     * @returns {Object[]} An array of objects containing an ID property.
-     */
-    function parseRecipe(recipe) {
-        const recipeArray = recipe.split(",");
-        const recipeJson = [];
-        for (let i = 0; i &lt; recipeArray.length; ++i) {
-            if (recipeArray[i].length == 0)
-                continue;
-            recipeJson.push({id: Number(recipeArray[i])});
-        }
-        return recipeJson;
-    };
+	/**
+	 * Parses a recipe string into an array of objects containing an ID property.
+	 * @param {string} recipe - The recipe string to parse.
+	 * @returns {Object[]} An array of objects containing an ID property.
+	 */
+	function parseRecipe(recipe) {
+		const recipeArray = recipe.split(",");
+		const recipeJson = [];
+		for (let i = 0; i &lt; recipeArray.length; ++i) {
+			if (recipeArray[i].length == 0)
+				continue;
+			recipeJson.push({id: Number(recipeArray[i])});
+		}
+		return recipeJson;
+	};
 
-    return (
-        &lt;PageProtector>
-            &lt;div className="empMenuPage">
-                &lt;EmployeeNav isManager={isManager} current={"menu"} />
-                &lt;div id="menuTableDiv">
-                    &lt;h2>Menu&lt;/h2>
-                    {menuTable}
-                &lt;/div>
-                &lt;div id="menuFormsDiv">
-                    &lt;div id="updateMenuFormDiv">
-                        &lt;h4>Update Menu Item&lt;/h4>
-                        &lt;Form fields={updateMenuFields} onSubmit={handleUpdateMenu} />
-                    &lt;/div>
-                    &lt;hr style={{marginRight: "5px"}}>&lt;/hr>
-                    &lt;div id="addMenuItemFormDiv">
-                        &lt;h4>Add Menu Item&lt;/h4>
-                        &lt;Form fields={addMenuItemFields} onSubmit={handleAddMenuItem} />
-                    &lt;/div>
-                    &lt;hr style={{marginRight: "5px"}}>&lt;/hr>
-                    &lt;div id="deleteMenuItemFormDiv">
-                        &lt;h4>Delete Menu Item&lt;/h4>
-                        &lt;Form fields={deleteMenuItemFields} onSubmit={handleDeleteMenuItem} />
-                    &lt;/div>
-                &lt;/div>
-            &lt;/div>
-        &lt;/PageProtector>
-    );
+	return (
+		&lt;PageProtector>
+			&lt;div className="empMenuPage">
+				&lt;EmployeeNav isManager={isManager} current={"menu"} />
+				&lt;div id="menuTableDiv">
+					&lt;h2>Menu&lt;/h2>
+					{menuTable}
+				&lt;/div>
+				&lt;div id="menuFormsDiv">
+					&lt;div id="updateMenuFormDiv">
+						&lt;h4>Update Menu Item&lt;/h4>
+						&lt;Form fields={updateMenuFields} onSubmit={handleUpdateMenu} />
+					&lt;/div>
+					&lt;hr style={{marginRight: "5px"}}>&lt;/hr>
+					&lt;div id="addMenuItemFormDiv">
+						&lt;h4>Add Menu Item&lt;/h4>
+						&lt;Form fields={addMenuItemFields} onSubmit={handleAddMenuItem} />
+					&lt;/div>
+					&lt;hr style={{marginRight: "5px"}}>&lt;/hr>
+					&lt;div id="deleteMenuItemFormDiv">
+						&lt;h4>Delete Menu Item&lt;/h4>
+						&lt;Form fields={deleteMenuItemFields} onSubmit={handleDeleteMenuItem} />
+					&lt;/div>
+				&lt;/div>
+			&lt;/div>
+		&lt;/PageProtector>
+	);
 }
 
 export default Menu;
@@ -282,13 +282,13 @@ export default Menu;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#createZReport">createZReport</a></li><li><a href="global.html#loadZReports">loadZReports</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li><li><a href="global.html#viewZReportInfo">viewZReportInfo</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#CustomerRoutes">CustomerRoutes</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#EmployeeRoutes">EmployeeRoutes</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#OAUTH">OAUTH</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 02:37:21 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 11:03:16 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

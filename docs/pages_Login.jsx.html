@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/EmployeeNav.jsx</title>
+    <title>JSDoc: Source: pages/Login.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/EmployeeNav.jsx</h1>
+    <h1 class="page-title">Source: pages/Login.jsx</h1>
 
     
 
@@ -27,53 +27,102 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import logo from "../assets/logo.svg";
+
+import {useNavigate} from 'react-router-dom';
+import {endpoints} from "../utils/apiEndpoints";
+import {HOST} from "../utils/host";
+import logo from '../assets/CFA Banner.svg';
+import backdrop from '../assets/nuggetsmealheader.jpg';
+import '../styles/login.scss';
+
+import jwt_decode from "jwt-decode";
 
 /**
- * React functional component representing the navigation bar for employees.
- * @param {object} props - The properties of the component.
- * @returns {JSX.Element} - A JSX element representing the employee navigation bar.
+ * Handles OAuth login.
+ * @function
+ * @async
+ * @param {Object} params - Login parameters.
+ * @param {string} params.email - Email address.
+ * @param {string} params.pin - PIN number.
+ * @returns {Promise&lt;boolean>} - Promise that resolves to `true` if user is valid, `false` otherwise.
  */
-function EmployeeNav(props) {
-	const [isManager, setIsManager] = useState();
-	const [current, setCurrent] = useState();
+async function OAUTH(params) {
+	const url = HOST + endpoints.loginAPI;
+	const {email = "", pin = ""} = params;
 
+	const response = await fetch(url, {
+		method: "POST",
+		headers: {
+			"Accept": "application/json",
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(params)
+	});
 
-	useEffect(() => {
-		const managerBool = localStorage.getItem("isManager") !== "false";
-		setIsManager(managerBool);
-		setCurrent(props.current);
-	}, []);
+	const data = await response.json();
+	if (data.isValidUser) {
+		localStorage.setItem("employeeId", data.id);
+		localStorage.setItem("name", data.name);
+		localStorage.setItem("email", email);
+		localStorage.setItem("pin", pin);
+		localStorage.setItem("isManager", data.isManager);
 
+		return true;
+	} else
+		return false;
+}
+
+/**
+ * React functional component for employee login page.
+ * @function
+ * @param {Object} props - React props.
+ * @returns {JSX.Element} - Rendered component.
+ */
+function Login(props) {
 	const navigate = useNavigate();
+	const [errorMessage, setErrorMessage] = useState("");
 
 	/**
-	 * Function that logs the employee out by removing all stored information and redirects to the Login page.
+	 * Handles Google OAuth login.
+	 * @function
+	 * @param {Object} response - Login response.
+	 * @param {string} response.credential - Login credential.
 	 */
-	function logout() {
-		localStorage.removeItem("empID");
-		localStorage.removeItem("pin");
-		localStorage.removeItem("email");
-		localStorage.removeItem("name");
-		localStorage.removeItem("employeeId");
-		localStorage.removeItem("isManager");
-		navigate("/Login");
+	function handleGoogleLogin(response) {
+		const decodedResponse = jwt_decode(response.credential);
+		const email = decodedResponse.email;
+
+		OAUTH({email})
+			.then(isValid => {
+				if (isValid) navigate("/employee/order");
+				else setErrorMessage("Invalid Google User");
+			});
 	}
 
 	/**
-	 * Function that navigates to the specified page.
-	 * @param {string} page - The page to navigate to.
+	 * Handles PIN login.
+	 * @function
 	 */
-	function changePage(page) {
-		navigate(`/employee/${ page }`);
-	}
+	function handlePINLogin() {
+		const employeePin = document.getElementById("pass").value;
 
-	// set up google oauth button and behavior
-	useEffect(() => {
-		if (localStorage.getItem("email").length == 0)
+		if (!employeePin || employeePin.length &lt; 4)
 			return;
 
+		OAUTH({pin: employeePin})
+			.then(isValid => {
+				if (isValid) navigate("/employee/order");
+				else setErrorMessage("Invalid PIN");
+			});
+	}
+
+	/**
+	 * Adds Google OAuth script and initializes login button.
+	 * @function
+	 * @name useEffect
+	 * @memberof Login
+	 */
+	useEffect(() => {
 		const script = document.createElement("script");
 		script.src = "https://accounts.google.com/gsi/client";
 		script.async = true;
@@ -81,7 +130,7 @@ function EmployeeNav(props) {
 
 		google.accounts.id.initialize({
 			client_id: "494495949926-om1cjij44iie2585is6tk7n98aurqso6.apps.googleusercontent.com",
-			// callback: handleGoogleLogin
+			callback: handleGoogleLogin
 		});
 
 		google.accounts.id.renderButton(
@@ -93,33 +142,46 @@ function EmployeeNav(props) {
 		);
 	});
 
-	if (isManager) {
-		return (
-			&lt;nav className="empNav">
-				&lt;img src={logo} alt="logo" className="empNavLogo" />
-				&lt;button onClick={e => changePage("order")} className={`empNavButton ${ current === "order" ? "current" : "" }`}>Order&lt;/button>
-				&lt;button onClick={e => changePage("orderHistory")} className={`empNavButton ${ current === "history" ? "current" : "" }`}>Order History&lt;/button>
-				&lt;button onClick={e => changePage("inventory")} className={`empNavButton ${ current === "inventory" ? "current" : "" }`}>Inventory&lt;/button>
-				&lt;button onClick={e => changePage("menu")} className={`empNavButton ${ current === "menu" ? "current" : "" }`}>Menu&lt;/button>
-				&lt;button onClick={e => changePage("reports")} className={`empNavButton ${ current === "reports" ? "current" : "" }`}>Reports&lt;/button>
-				&lt;button onClick={e => changePage("menuBoard")} className={`empNavButton ${ current === "menuboard" ? "current" : "" }`}>Menu Board&lt;/button>
-				&lt;button onClick={logout} className="empNavButton">Logout&lt;/button>
-				{(localStorage.getItem("email") !== "") ? &lt;div id="google-signin">&lt;/div> : null}
-			&lt;/nav>
-		);
-	} else {
-		return (
-			&lt;nav className="empNav">
-				&lt;button onClick={e => changePage("order")} className="empNavButton">Order&lt;/button>
-				&lt;button onClick={e => changePage("orderHistory")} className="empNavButton">Order History&lt;/button>
-				&lt;button onClick={logout} className="empNavLogout">Logout&lt;/button>
-				{(localStorage.getItem("email") !== "") ? &lt;div id="google-signin">&lt;/div> : null}
-			&lt;/nav>
-		);
+	/**
+	 * Navigates to the customer order page.
+	 */
+	function navigatePage() {
+		localStorage.removeItem("curOrder");
+		localStorage.removeItem("numItems");
+		navigate("/customer/order");
 	}
+
+	return (
+		&lt;>
+			&lt;img src={backdrop} alt="backdrop" className='backdrop' />
+			&lt;div className="card">
+				&lt;header>
+					&lt;img src={logo}>&lt;/img>
+				&lt;/header>
+
+				&lt;div className="order-wrapper">
+					&lt;a className="order-link" onClick={navigatePage}>Order Now&lt;/a>
+				&lt;/div>
+
+				&lt;div className="login-wrapper">
+					&lt;div className="login-text">
+						{errorMessage ? &lt;p>{errorMessage}&lt;/p> : &lt;p>Employees Only&lt;/p>}
+					&lt;/div>
+
+					&lt;div id="google-signin">&lt;/div>
+
+					&lt;div>
+						&lt;input type="password" id="pass" name="password" className="sign-in-field" placeholder="Enter PIN Number" onKeyDown={(e) => {if (e.key == 'Enter') handlePINLogin();}} />
+						&lt;input type="submit" value="Sign In" onClick={handlePINLogin} className="sign-in-button" />
+					&lt;/div>
+				&lt;/div>
+
+			&lt;/div>
+		&lt;/>
+	);
 }
 
-export default EmployeeNav;
+export default Login;
 </code></pre>
         </article>
     </section>

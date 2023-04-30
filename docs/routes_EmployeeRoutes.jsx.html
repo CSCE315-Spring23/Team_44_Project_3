@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: Seasonal</title>
+    <title>JSDoc: Source: routes/EmployeeRoutes.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,228 +17,62 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: Seasonal</h1>
+    <h1 class="page-title">Source: routes/EmployeeRoutes.jsx</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">The Seasonal page component.</div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pages_customer_seasonal.jsx.html">pages/customer/seasonal.jsx</a>, <a href="pages_customer_seasonal.jsx.html#line1">line 1</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-        <h3 class="subsection-title">Requires</h3>
-
-        <ul>
-            <li>module:React</li>
-        
-            <li>module:react-router-dom</li>
-        
-            <li>module:AddMenuItem</li>
-        
-            <li>module:CustomerNav</li>
-        
-            <li>module:HOST</li>
-        
-            <li>module:apiEndpoints</li>
-        
-            <li>module:logo</li>
-        </ul>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="~Seasonal"><span class="type-signature">(inner) </span>Seasonal<span class="signature">()</span><span class="type-signature"> &rarr; {JSX.Element}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Seasonal component
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pages_customer_seasonal.jsx.html">pages/customer/seasonal.jsx</a>, <a href="pages_customer_seasonal.jsx.html#line25">line 25</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    Seasonal page
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">JSX.Element</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import {Outlet, Route, Routes} from "react-router-dom";
+
+import ExcessRep from "../pages/employee/ExcessRep";
+import Inventory from "../pages/employee/Inventory";
+import Menu from "../pages/employee/Menu";
+import Order from "../pages/employee/Order";
+import OrderHistory from "../pages/employee/OrderHistory";
+import Reports from "../pages/employee/Reports";
+import RestockRep from "../pages/employee/RestockRep";
+import SalesRep from "../pages/employee/SalesRep";
+import SalesTogetherRep from "../pages/employee/SalesTogetherRep";
+import XZRep from "../pages/employee/XZRep";
+import MenuBoard from "../pages/employee/MenuBoard";
+
+/**
+ * Defines the routes for the employee section of the app.
+ * @returns {JSX.Element} The routes for the employee section of the app.
+ */
+function EmployeeRoutes() {
+    return (
+        &lt;Routes className='empRoutes'>
+            &lt;Route path="/employee">
+                {/* Define the employee order section of the app. */}
+                &lt;Route path='order' element={&lt;Order />} />
+                &lt;Route path='orderHistory' element={&lt;OrderHistory />} />
+                &lt;Route path='inventory' element={&lt;Inventory />} />
+                &lt;Route path='menu' element={&lt;Menu />} />
+                {/* Define the employee reports section of the app. */}
+                &lt;Route path='reports' element={&lt;Outlet />} >
+                    &lt;Route path="" element={&lt;Reports />}>&lt;/Route>
+                    &lt;Route path="sales" element={&lt;SalesRep />}>&lt;/Route>
+                    &lt;Route path="restock" element={&lt;RestockRep />}>&lt;/Route>
+                    &lt;Route path="excess" element={&lt;ExcessRep />}>&lt;/Route>
+                    &lt;Route path="XZ" element={&lt;XZRep />}>&lt;/Route>
+                    &lt;Route path="salestogether" element={&lt;SalesTogetherRep />}>&lt;/Route>
+                &lt;/Route>
+                &lt;Route path="menuboard" element={&lt;MenuBoard />} />
+            &lt;/Route>
+        &lt;/Routes >
+    );
+}
+
+export default EmployeeRoutes;
+</code></pre>
+        </article>
+    </section>
 
 
 

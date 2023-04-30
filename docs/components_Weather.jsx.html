@@ -34,50 +34,50 @@
  * @returns {JSX.Element} - The rendered weather component
  */
 function Weather() {
-    const [temperature, setTemperature] = useState(null);
-    const [weather, setWeather] = useState(null);
-    const [description, setDescription] = useState(null);
-    const [icon, setIcon] = useState(null);
+	const [temperature, setTemperature] = useState(null);
+	const [weather, setWeather] = useState(null);
+	const [description, setDescription] = useState(null);
+	const [icon, setIcon] = useState(null);
 
-    const isLocal = window.location.hostname === "localhost";
-    const HOST = isLocal ? "http://localhost:3001" : "https://chick-fil-a-m0ss.onrender.com";
+	const isLocal = window.location.hostname === "localhost";
+	const HOST = isLocal ? "http://localhost:3001" : "https://chick-fil-a-m0ss.onrender.com";
 
-    /**
-     * Convert temperature from Celsius to Fahrenheit
-     * @function
-     * @param {number} temp - The temperature in Celsius
-     * @returns {number} - The temperature in Fahrenheit
-     */
-    function toFahrenheit(temp) {
-        const fahrenheit = 1.8 * temp + 32;
-        console.log(`Converted ${ temp } to ${ fahrenheit }\u2109.`);
-        return fahrenheit;
-    }
+	/**
+	 * Convert temperature from Celsius to Fahrenheit
+	 * @function
+	 * @param {number} temp - The temperature in Celsius
+	 * @returns {number} - The temperature in Fahrenheit
+	 */
+	function toFahrenheit(temp) {
+		const fahrenheit = 1.8 * temp + 32;
+		console.log(`Converted ${ temp } to ${ fahrenheit }\u2109.`);
+		return fahrenheit;
+	}
 
-    useEffect(() => {
-        /**
-         * Fetch weather data from API and set component state
-         * @function
-         * @returns {void}
-         */
-        fetch(`${ HOST }/api/weather`)
-            .then(res => res.json())
-            .then(data => {
-                setTemperature(toFahrenheit(data.main.temp));
-                setWeather(data.weather[0].main);
-                setDescription(data.weather[0].description);
-                setIcon(data.weather[0].icon);
-            });
-    }, []);
+	useEffect(() => {
+		/**
+		 * Fetch weather data from API and set component state
+		 * @function
+		 * @returns {void}
+		 */
+		fetch(`${ HOST }/api/weather`)
+			.then(res => res.json())
+			.then(data => {
+				setTemperature(toFahrenheit(data.main.temp));
+				setWeather(data.weather[0].main);
+				setDescription(data.weather[0].description);
+				setIcon(data.weather[0].icon);
+			});
+	}, []);
 
-    return (
-        &lt;div className="weather">
-            {icon &amp;&amp; &lt;img src={"https://openweathermap.org/img/wn/" + icon + "@2x.png"} />}
-            {temperature &amp;&amp; &lt;p>{temperature.toFixed(2)} ℉&lt;/p>}
-            {/* {weather &amp;&amp; &lt;p>{weather}&lt;/p>} */}
-            {/* {description &amp;&amp; &lt;p>{description}&lt;/p>} */}
-        &lt;/div>
-    );
+	return (
+		&lt;div className="weather">
+			{icon &amp;&amp; &lt;img src={"https://openweathermap.org/img/wn/" + icon + "@2x.png"} />}
+			{temperature &amp;&amp; &lt;p>{temperature.toFixed(2)} ℉&lt;/p>}
+			{/* {weather &amp;&amp; &lt;p>{weather}&lt;/p>} */}
+			{/* {description &amp;&amp; &lt;p>{description}&lt;/p>} */}
+		&lt;/div>
+	);
 }
 
 export default Weather;
@@ -91,13 +91,13 @@ export default Weather;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#createZReport">createZReport</a></li><li><a href="global.html#loadZReports">loadZReports</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li><li><a href="global.html#viewZReportInfo">viewZReportInfo</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#CustomerRoutes">CustomerRoutes</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#EmployeeRoutes">EmployeeRoutes</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#OAUTH">OAUTH</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 02:37:21 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 11:03:16 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

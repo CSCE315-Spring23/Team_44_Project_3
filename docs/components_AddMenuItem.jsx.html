@@ -36,140 +36,140 @@ import PopUp from "./PopUp";
  * @returns {any} A component to render a food category onto the CustomerOrder screen
  */
 function AddMenuItem(props) {
-    const [itemCost, setItemCost] = useState(0);
-    const [popUp, setPopUp] = useState(false);
-    const item = props.item;
+	const [itemCost, setItemCost] = useState(0);
+	const [popUp, setPopUp] = useState(false);
+	const item = props.item;
 
 
-    /*
-        Format of Cart
-        {
-            total : [total cost],
-            items : {cartID : [name, number, cost per, itemID, excluded items]},
-        }
+	/*
+		Format of Cart
+		{
+			total : [total cost],
+			items : {cartID : [name, number, cost per, itemID, excluded items]},
+		}
 
-    */
-    /**
-     * This function adds the given menu item to the cart
-     * @param {any} item - The item object that contains information about the menu item being added
-     * @param {any} excludeItems - An array of items to exclude from the order
-     * @returns {any}
-     */
-    function addToCart(item, excludeItems) {
-        console.log("item: ", item, "excludeItems: ", excludeItems);
-        const cart = JSON.parse(localStorage.getItem("curOrder")) || {total: [0], items: {}};
-		let cartID = Object.keys(cart.items).length > 0 ? parseInt(Object.keys(cart.items)[Object.keys(cart.items).length-1]) + 1 : 0;
-        console.log(cartID);
-        let newCart = {...cart};
+	*/
+	/**
+	 * This function adds the given menu item to the cart
+	 * @param {any} item - The item object that contains information about the menu item being added
+	 * @param {any} excludeItems - An array of items to exclude from the order
+	 * @returns {any}
+	 */
+	function addToCart(item, excludeItems) {
+		console.log("item: ", item, "excludeItems: ", excludeItems);
+		const cart = JSON.parse(localStorage.getItem("curOrder")) || {total: [0], items: {}};
+		let cartID = Object.keys(cart.items).length > 0 ? parseInt(Object.keys(cart.items)[Object.keys(cart.items).length - 1]) + 1 : 0;
+		console.log(cartID);
+		let newCart = {...cart};
 
-        let numberOfItems = localStorage.getItem("numItems");
-        numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
+		let numberOfItems = localStorage.getItem("numItems");
+		numberOfItems = numberOfItems ? parseInt(numberOfItems) : 0;
 
-        const menu = JSON.parse(localStorage.getItem("menu"));
+		const menu = JSON.parse(localStorage.getItem("menu"));
 
-        if (item.ids) {
-            for (let i = 0; i &lt; item.ids.length; i++) {
-                console.log("item.ids[i]: ", item.ids[i]);
-                menu.forEach((arrItem) => {
-                    if (arrItem.id == item.ids[i]) {
-                        console.log("arrItem: ", arrItem);
+		if (item.ids) {
+			for (let i = 0; i &lt; item.ids.length; i++) {
+				console.log("item.ids[i]: ", item.ids[i]);
+				menu.forEach((arrItem) => {
+					if (arrItem.id == item.ids[i]) {
+						console.log("arrItem: ", arrItem);
 
-                        let found = false;
-                        for (let key in newCart.items) {
-                            if (newCart.items[key][0] === arrItem.name &amp;&amp; (JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems) || i != 0)) {
-                                newCart.items[key][1] += 1;
-                                newCart.total[0] += Number(arrItem.cost);
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (!found) {
-                            newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, i == 0 ? excludeItems : []];
-                            newCart.total[0] += Number(arrItem.cost);
-                            cartID++;
-                        }
-                        localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
-                        window.dispatchEvent(new Event('storage'));
-                        return;
-                    }
-                });
-            }
-        }
+						let found = false;
+						for (let key in newCart.items) {
+							if (newCart.items[key][0] === arrItem.name &amp;&amp; (JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems) || i != 0)) {
+								newCart.items[key][1] += 1;
+								newCart.total[0] += Number(arrItem.cost);
+								found = true;
+								break;
+							}
+						}
+						if (!found) {
+							newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, i == 0 ? excludeItems : []];
+							newCart.total[0] += Number(arrItem.cost);
+							cartID++;
+						}
+						localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
+						window.dispatchEvent(new Event('storage'));
+						return;
+					}
+				});
+			}
+		}
 
-        if (item.id) {
-            menu.forEach((arrItem) => {
-                if (arrItem.id == item.id) {
-                    let found = false;
-                    for (let key in newCart.items) {
-                        if (newCart.items[key][0] === arrItem.name &amp;&amp; JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)) {
-                            newCart.items[key][1] += 1;
-                            newCart.total[0] += Number(arrItem.cost);
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (!found) {
-                        newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, excludeItems];
-                        newCart.total[0] += Number(arrItem.cost);
-                    }
-                    localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
-                    window.dispatchEvent(new Event('storage'));
-                    return;
-                }
-            });
-        }
-        newCart.total[0] = Number(newCart.total[0].toFixed(2));
-        console.log("newCart: ", newCart);
-        localStorage.setItem("curOrder", JSON.stringify(newCart));
-    }
+		if (item.id) {
+			menu.forEach((arrItem) => {
+				if (arrItem.id == item.id) {
+					let found = false;
+					for (let key in newCart.items) {
+						if (newCart.items[key][0] === arrItem.name &amp;&amp; JSON.stringify(newCart.items[key][4]) === JSON.stringify(excludeItems)) {
+							newCart.items[key][1] += 1;
+							newCart.total[0] += Number(arrItem.cost);
+							found = true;
+							break;
+						}
+					}
+					if (!found) {
+						newCart.items[cartID] = [arrItem.name, 1, arrItem.cost, arrItem.id, excludeItems];
+						newCart.total[0] += Number(arrItem.cost);
+					}
+					localStorage.setItem("numItems", JSON.stringify(numberOfItems + 1));
+					window.dispatchEvent(new Event('storage'));
+					return;
+				}
+			});
+		}
+		newCart.total[0] = Number(newCart.total[0].toFixed(2));
+		console.log("newCart: ", newCart);
+		localStorage.setItem("curOrder", JSON.stringify(newCart));
+	}
 
-    /**
-     * This function opens the pop-up for adding items to the cart
-     * @returns {any}
-     */
-    function openPopUp() {
-        setPopUp(true);
-    }
+	/**
+	 * This function opens the pop-up for adding items to the cart
+	 * @returns {any}
+	 */
+	function openPopUp() {
+		setPopUp(true);
+	}
 
-    useEffect(() => {
-        const menu = JSON.parse(localStorage.getItem("menu"));
-        let cost = 0;
-        if (item.ids) {
-            item.ids.forEach((curID) => {
-                menu.forEach((arrItem) => {
-                    if (arrItem.id == curID) {
-                        cost += Number(arrItem.cost);
-                    }
-                });
-            });
-        }
-        if (item.id) {
-            menu.forEach((arrItem) => {
-                if (arrItem.id == item.id) {
-                    cost += Number(arrItem.cost);
-                }
-            }
-            );
-        }
-        setItemCost(cost);
-    }, []);
+	useEffect(() => {
+		const menu = JSON.parse(localStorage.getItem("menu"));
+		let cost = 0;
+		if (item.ids) {
+			item.ids.forEach((curID) => {
+				menu.forEach((arrItem) => {
+					if (arrItem.id == curID) {
+						cost += Number(arrItem.cost);
+					}
+				});
+			});
+		}
+		if (item.id) {
+			menu.forEach((arrItem) => {
+				if (arrItem.id == item.id) {
+					cost += Number(arrItem.cost);
+				}
+			}
+			);
+		}
+		setItemCost(cost);
+	}, []);
 
-    return (
-        &lt;li role="listitem">
-            &lt;button data-cy={`\"${ item.name }\"`} className="menuButton" onClick={openPopUp}>
-                &lt;div className="image">
-                    &lt;img alt={item.name} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
-                &lt;/div>
-                &lt;div className="name">
-                    &lt;h3 className="name">{item.name}&lt;/h3>
-                &lt;/div>
-                &lt;div className="cost">
-                    &lt;h3 className="cost">${itemCost.toFixed(2)}&lt;/h3>
-                &lt;/div>
-            &lt;/button>
-            {popUp &amp;&amp; &lt;PopUp item={item} setPopUp={setPopUp} addToCart={addToCart} />}
-        &lt;/li>
-    );
+	return (
+		&lt;li role="listitem">
+			&lt;button data-cy={`\"${ item.name }\"`} className="menuButton" onClick={openPopUp}>
+				&lt;div className="image">
+					&lt;img alt={item.name} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
+				&lt;/div>
+				&lt;div className="name">
+					&lt;h3 className="name">{item.name}&lt;/h3>
+				&lt;/div>
+				&lt;div className="cost">
+					&lt;h3 className="cost">${itemCost.toFixed(2)}&lt;/h3>
+				&lt;/div>
+			&lt;/button>
+			{popUp &amp;&amp; &lt;PopUp item={item} setPopUp={setPopUp} addToCart={addToCart} />}
+		&lt;/li>
+	);
 }
 
 export default AddMenuItem;</code></pre>
@@ -182,13 +182,13 @@ export default AddMenuItem;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#createZReport">createZReport</a></li><li><a href="global.html#loadZReports">loadZReports</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li><li><a href="global.html#viewZReportInfo">viewZReportInfo</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CustomerOrder.html">CustomerOrder</a></li><li><a href="module-ExcessRep.html">ExcessRep</a></li><li><a href="module-Meals.html">Meals</a></li><li><a href="module-Menu.html">Menu</a></li><li><a href="module-Seasonal.html">Seasonal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddMenuItem">AddMenuItem</a></li><li><a href="global.html#Beverages">Beverages</a></li><li><a href="global.html#CategoryItem">CategoryItem</a></li><li><a href="global.html#CheckoutItem">CheckoutItem</a></li><li><a href="global.html#CheckoutPanel">CheckoutPanel</a></li><li><a href="global.html#CustomerCheckOutItem">CustomerCheckOutItem</a></li><li><a href="global.html#CustomerCheckout">CustomerCheckout</a></li><li><a href="global.html#CustomerNav">CustomerNav</a></li><li><a href="global.html#CustomerRoutes">CustomerRoutes</a></li><li><a href="global.html#DatabaseTablePane">DatabaseTablePane</a></li><li><a href="global.html#EmployeeNav">EmployeeNav</a></li><li><a href="global.html#EmployeeRoutes">EmployeeRoutes</a></li><li><a href="global.html#Entree">Entree</a></li><li><a href="global.html#FormGenerator">FormGenerator</a></li><li><a href="global.html#Inventory">Inventory</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#OAUTH">OAUTH</a></li><li><a href="global.html#OrderItemButton">OrderItemButton</a></li><li><a href="global.html#OrderItemPane">OrderItemPane</a></li><li><a href="global.html#PageProtector">PageProtector</a></li><li><a href="global.html#PopUp">PopUp</a></li><li><a href="global.html#PopUpRow">PopUpRow</a></li><li><a href="global.html#Reports">Reports</a></li><li><a href="global.html#RestockRep">RestockRep</a></li><li><a href="global.html#Salad">Salad</a></li><li><a href="global.html#SalesRep">SalesRep</a></li><li><a href="global.html#SalesTogetherRep">SalesTogetherRep</a></li><li><a href="global.html#Sauces">Sauces</a></li><li><a href="global.html#Sides">Sides</a></li><li><a href="global.html#Treats">Treats</a></li><li><a href="global.html#Weather">Weather</a></li><li><a href="global.html#XZRep">XZRep</a></li><li><a href="global.html#menu">menu</a></li><li><a href="global.html#menuList">menuList</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 02:37:20 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Apr 30 2023 11:03:16 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

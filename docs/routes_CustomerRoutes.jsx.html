@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: Seasonal</title>
+    <title>JSDoc: Source: routes/CustomerRoutes.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,228 +17,57 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: Seasonal</h1>
+    <h1 class="page-title">Source: routes/CustomerRoutes.jsx</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">The Seasonal page component.</div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pages_customer_seasonal.jsx.html">pages/customer/seasonal.jsx</a>, <a href="pages_customer_seasonal.jsx.html#line1">line 1</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-        <h3 class="subsection-title">Requires</h3>
-
-        <ul>
-            <li>module:React</li>
-        
-            <li>module:react-router-dom</li>
-        
-            <li>module:AddMenuItem</li>
-        
-            <li>module:CustomerNav</li>
-        
-            <li>module:HOST</li>
-        
-            <li>module:apiEndpoints</li>
-        
-            <li>module:logo</li>
-        </ul>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="~Seasonal"><span class="type-signature">(inner) </span>Seasonal<span class="signature">()</span><span class="type-signature"> &rarr; {JSX.Element}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Seasonal component
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pages_customer_seasonal.jsx.html">pages/customer/seasonal.jsx</a>, <a href="pages_customer_seasonal.jsx.html#line25">line 25</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    Seasonal page
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">JSX.Element</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import {Outlet, Route, Routes} from "react-router-dom";
+import CustomerOrder from '../pages/customer/CustomerOrder';
+import Beverage from "../pages/customer/beverages";
+import Entree from "../pages/customer/entree";
+import Meal from "../pages/customer/meals";
+import Salad from "../pages/customer/salads";
+import Sauces from "../pages/customer/sauces";
+import Sides from "../pages/customer/sides";
+import Treats from "../pages/customer/treats";
+import Seasonal from "../pages/customer/seasonal";
+import CustomerCheckout from "../pages/customer/CustomerCheckout";
+
+/**
+ * Defines the routes for the customer section of the app.
+ * @returns {JSX.Element} The routes for the customer section of the app.
+ */
+function CustomerRoutes() {
+	return (
+		&lt;Routes>
+			{/* Define the customer section of the app. */}
+			&lt;Route path="/customer" element={&lt;Outlet />} >
+				{/* Define the customer order section of the app. */}
+				&lt;Route path="order" element={&lt;CustomerOrder />} />
+				&lt;Route path="order/beverages" element={&lt;Beverage />} />
+				&lt;Route path="order/entrées" element={&lt;Entree />} />
+				&lt;Route path="order/meals" element={&lt;Meal />} />
+				&lt;Route path="order/treats" element={&lt;Treats />} />
+				&lt;Route path="order/salads" element={&lt;Salad />} />
+				&lt;Route path="order/sauces" element={&lt;Sauces />} />
+				&lt;Route path="order/sides" element={&lt;Sides />} />
+				&lt;Route path="order/seasonal" element={&lt;Seasonal />} />
+				&lt;Route path="order/checkout" element={&lt;CustomerCheckout />} />
+			&lt;/Route>
+		&lt;/Routes>
+	);
+}
+
+export default CustomerRoutes;
+</code></pre>
+        </article>
+    </section>
 
 
 
