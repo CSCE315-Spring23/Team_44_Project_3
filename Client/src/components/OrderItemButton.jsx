@@ -9,27 +9,40 @@ import PopUp from "./PopUp";
  * @returns {JSX.Element} - A button element for the item that displays a popup when clicked.
  */
 function OrderItemButton(props) {
-	const item = props.item;
-	const itemName = item.name;
-	const addToCart = props.addToCart;
+    const item = props.item;
+    const itemName = item.name;
+    const addToCart = props.addToCart;
+    const colors = {
+        "entree": "#dd0031",
+        "side": "#EEEE9B",
+        "beverage": "#87CEEB",
+        "treat": "#d7a1f9",
+        "salad": "#98FB98",
+        "sauce": "#FFA500"
+    };
+    let color = "white";
+    if (colors[item["category"]] != null) {
+        color = colors[item["category"]];
+    }
+    console.log(color);
 
-	const [popUp, setPopUp] = useState(false);
+    const [popUp, setPopUp] = useState(false);
 
-	/**
-	 * A function that sets the popup state to true.
-	 */
-	function openPopUp() {
-		setPopUp(true);
-	}
+    /**
+     * A function that sets the popup state to true.
+     */
+    function openPopUp() {
+        setPopUp(true);
+    }
 
-	return (
-		<div>
-			<button onClick={openPopUp} className="orderItemBtn">
-				{itemName ? itemName : "No Item"}
-			</button>
-			{popUp && <PopUp item={item} setPopUp={setPopUp} addToCart={addToCart} />}
-		</div>
-	);
+    return (
+        <div>
+            <button style={{backgroundColor: color}} onClick={openPopUp} className="orderItemBtn">
+                {itemName ? itemName : "No Item"}
+            </button>
+            {popUp && <PopUp item={item} setPopUp={setPopUp} addToCart={addToCart} />}
+        </div>
+    );
 }
 
 export default OrderItemButton;
