@@ -2,7 +2,7 @@ const express = require('express');
 const excessRouter = express.Router();
 const db = require('../Info/DatabaseConnect.js');
 
-const { ORDER_ITEM_DATABASE, SOLD_ITEM_DATABASE, RECIPE_ITEM_DATABASE, INVENTORY_DATABASE } = require('../Info/DatabaseNames.js');
+const {ORDER_ITEM_DATABASE, SOLD_ITEM_DATABASE, RECIPE_ITEM_DATABASE, INVENTORY_DATABASE} = require('../Info/DatabaseNames.js');
 const apiPath = "/api/reports/excess";
 
 /*
@@ -26,26 +26,26 @@ const apiPath = "/api/reports/excess";
     ]
 */
 excessRouter.get(apiPath, async (req, res) => {
-    try{
-        console.log(req.query)
+    try {
+        console.log(req.query);
         const startDate = req.query.startDate;
         const endDate = req.query.endDate;
 
         const usage = await getUsage(startDate, endDate);
 
-        const response = await db.query(`SELECT * FROM ${INVENTORY_DATABASE} ORDER BY id`);
+        const response = await db.query(`SELECT * FROM ${ INVENTORY_DATABASE } ORDER BY id`);
         const inventory = response.rows;
 
         let excess = [];
-        for(let i = 0; i < inventory.length; i++){
+        for (let i = 0; i < inventory.length; i++) {
             let item = inventory[i];
             let itemUsage = usage.find(x => x.id == item.id);
 
-            if(itemUsage == null){
-                itemUsage = { total_used: 0 };
+            if (itemUsage == null) {
+                itemUsage = {total_used: 0};
             }
 
-            if(itemUsage.total_used < item.quantity * .1){
+            if (itemUsage.total_used < item.quantity * .1) {
                 excess.push(
                     {
                         id: item.id,
@@ -61,25 +61,25 @@ excessRouter.get(apiPath, async (req, res) => {
         res.send(excess);
 
 
-    } catch(err){
+    } catch (err) {
         console.log(err);
     }
 });
 
 // gets the total usage of each inventory item between the given dates
-const getUsage = async (startDate, endDate) => {
-    try{
+async function getUsage(startDate, endDate) {
+    try {
         const response = await db.query(`SELECT i.id, i.name, SUM(r.count) AS total_used
-        FROM ${ORDER_ITEM_DATABASE} o
-        JOIN ${SOLD_ITEM_DATABASE} s ON o.id = s.orderid
-        JOIN ${RECIPE_ITEM_DATABASE} r ON s.menuid = r.menuid
-        JOIN ${INVENTORY_DATABASE} i ON r.inventoryid = i.id
-        WHERE Date(o.date) >= '${startDate}' AND Date(o.date) <= '${endDate}'
+        FROM ${ ORDER_ITEM_DATABASE } o
+        JOIN ${ SOLD_ITEM_DATABASE } s ON o.id = s.orderid
+        JOIN ${ RECIPE_ITEM_DATABASE } r ON s.menuid = r.menuid
+        JOIN ${ INVENTORY_DATABASE } i ON r.inventoryid = i.id
+        WHERE Date(o.date) >= '${ startDate }' AND Date(o.date) <= '${ endDate }'
         GROUP BY i.id, i.name
         ORDER BY i.id;`);
 
         return response.rows;
-    } catch(err){
+    } catch (err) {
         console.log(err);
     }
 }

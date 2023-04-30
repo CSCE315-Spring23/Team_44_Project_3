@@ -3,7 +3,7 @@ const db = require('./Info/DatabaseConnect.js');
 
 const editMenuRouter = express.Router();
 
-const { MENU_ITEM_DATABASE, RECIPE_ITEM_DATABASE, INVENTORY_DATABASE } = require('./Info/DatabaseNames.js');
+const {MENU_ITEM_DATABASE, RECIPE_ITEM_DATABASE, INVENTORY_DATABASE} = require("./Info/DatabaseNames.js");
 
 const apiPath = "/api/editMenu";
 
@@ -25,10 +25,10 @@ const apiPath = "/api/editMenu";
 //TODO: probably will include a "category" field in the future
 editMenuRouter.get(apiPath + "/getMenu", async (req, res) => {
     try {
-        const response = await db.query(`SELECT id, name, cost, numbersold as number_sold FROM ${MENU_ITEM_DATABASE} ORDER BY id`);
+        const response = await db.query(`SELECT id, name, cost, numbersold as number_sold FROM ${ MENU_ITEM_DATABASE } ORDER BY id`);
         res.status(200).json(response.rows);
     } catch (err) {
-        res.status(500).json({ message: "Error getting menu" });
+        res.status(500).json({message: "Error getting menu"});
     }
 });
 
@@ -47,17 +47,17 @@ editMenuRouter.get(apiPath + "/getMenu", async (req, res) => {
 */
 editMenuRouter.put(apiPath + "/updateMenuItem", async (req, res) => {
     try {
-        const { id, name, cost, recipeItems } = req.body;
+        const {id, name, cost, recipeItems} = req.body;
 
-        if(name !== ''){
-            await db.query(`UPDATE ${MENU_ITEM_DATABASE} SET name = \'${name}\' WHERE id = ${id}`);
+        if (name !== '') {
+            await db.query(`UPDATE ${ MENU_ITEM_DATABASE } SET name = \'${ name }\' WHERE id = ${ id }`);
         }
-        if(cost !== ''){
-            await db.query(`UPDATE ${MENU_ITEM_DATABASE} SET cost = ${cost} WHERE id = ${id}`);
+        if (cost !== '') {
+            await db.query(`UPDATE ${ MENU_ITEM_DATABASE } SET cost = ${ cost } WHERE id = ${ id }`);
         }
 
         // check if recipeItems is empty
-        if(recipeItems.length > 0){
+        if (recipeItems.length > 0) {
 
             // Delete all recipe items associated with this menu item
             await deleteRecipeItems(id);
@@ -66,9 +66,9 @@ editMenuRouter.put(apiPath + "/updateMenuItem", async (req, res) => {
             await addRecipeItems(id, recipeItems);
         }
 
-        res.status(200).json({ message: "Successfully updated menu item" });
+        res.status(200).json({message: "Successfully updated menu item"});
     } catch (err) {
-        res.status(500).json({ message: "Error updating menu item" });
+        res.status(500).json({message: "Error updating menu item"});
     }
 });
 
@@ -85,14 +85,14 @@ editMenuRouter.put(apiPath + "/updateMenuItem", async (req, res) => {
 editMenuRouter.delete(apiPath + "/deleteMenuItem", async (req, res) => {
     try {
         const id = req.body.id;
-        await db.query(`DELETE FROM ${MENU_ITEM_DATABASE} WHERE id = ${id}`);
+        await db.query(`DELETE FROM ${ MENU_ITEM_DATABASE } WHERE id = ${ id }`);
 
         // Delete all recipe items associated with this menu item
         await deleteRecipeItems(id);
 
-        res.status(200).json({ message: "Successfully deleted menu item" });
+        res.status(200).json({message: "Successfully deleted menu item"});
     } catch (err) {
-        res.status(500).json({ message: "Error deleting menu item" });
+        res.status(500).json({message: "Error deleting menu item"});
     }
 });
 
@@ -110,8 +110,8 @@ editMenuRouter.delete(apiPath + "/deleteMenuItem", async (req, res) => {
 */
 editMenuRouter.post(apiPath + "/insertMenuItem", async (req, res) => {
     try {
-        const { name, cost, recipeItems } = req.body;
-        const lastid = await db.query(`SELECT MAX(id) FROM ${MENU_ITEM_DATABASE}`);
+        const {name, cost, recipeItems} = req.body;
+        const lastid = await db.query(`SELECT MAX(id) FROM ${ MENU_ITEM_DATABASE }`);
         const newid = lastid.rows[0].max + 1;
 
         // check if inventory items don't exist
@@ -125,35 +125,35 @@ editMenuRouter.post(apiPath + "/insertMenuItem", async (req, res) => {
         });
 
         recipeItemMap.forEach(async (value, key) => {
-            const inventoryItem = await db.query(`SELECT * FROM ${INVENTORY_DATABASE} WHERE id = ${key}`);
+            const inventoryItem = await db.query(`SELECT * FROM ${ INVENTORY_DATABASE } WHERE id = ${ key }`);
             if (inventoryItem.rows.length === 0) {
-                res.status(500).json({ message: "Error adding menu item" });
+                res.status(500).json({message: "Error adding menu item"});
                 return;
             }
         });
 
-        await db.query(`INSERT INTO ${MENU_ITEM_DATABASE} (id, name, cost, numbersold) VALUES (${newid}, \'${name}\', ${cost}, 0)`);
+        await db.query(`INSERT INTO ${ MENU_ITEM_DATABASE } (id, name, cost, numbersold) VALUES (${ newid }, \'${ name }\', ${ cost }, 0)`);
 
         await addRecipeItems(newid, recipeItems);
 
-        res.status(200).json({ message: "Successfully added menu item" });
+        res.status(200).json({message: "Successfully added menu item"});
     } catch (err) {
-        res.status(500).json({ message: "Error adding menu item" });
+        res.status(500).json({message: "Error adding menu item"});
     }
 });
 
 // helper functions
 
 // Deletes all recipe items associated with a menu item
-const deleteRecipeItems = async (id) => {
+async function deleteRecipeItems(id) {
     try {
-        await db.query(`DELETE FROM ${RECIPE_ITEM_DATABASE} WHERE menuid = ${id}`);
+        await db.query(`DELETE FROM ${ RECIPE_ITEM_DATABASE } WHERE menuid = ${ id }`);
     } catch (err) {
         console.log("Error deleting menu item");
     }
-}
+};
 
-const addRecipeItems = async (id, recipeItems) => {
+async function addRecipeItems(id, recipeItems) {
     try {
         const recipeItemMap = new Map();
         recipeItems.forEach((item) => {
@@ -163,14 +163,14 @@ const addRecipeItems = async (id, recipeItems) => {
                 recipeItemMap.set(item.id, 1);
             }
         });
-        const lastid = await db.query(`SELECT MAX(id) FROM ${RECIPE_ITEM_DATABASE}`);
+        const lastid = await db.query(`SELECT MAX(id) FROM ${ RECIPE_ITEM_DATABASE }`);
         let newid = lastid.rows[0].max + 1;
         recipeItemMap.forEach(async (value, key) => {
-            await db.query(`INSERT INTO ${RECIPE_ITEM_DATABASE} (id, inventoryid, menuid, count) VALUES (${newid++}, ${key}, ${id}, ${value})`);
+            await db.query(`INSERT INTO ${ RECIPE_ITEM_DATABASE } (id, inventoryid, menuid, count) VALUES (${ newid++ }, ${ key }, ${ id }, ${ value })`);
         });
     } catch (err) {
         console.log("Error adding recipe items");
     }
-}
+};
 
 module.exports = editMenuRouter;

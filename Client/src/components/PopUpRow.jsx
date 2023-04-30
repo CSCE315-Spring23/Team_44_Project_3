@@ -9,28 +9,28 @@ import "../styles/employee.scss";
  * @returns {JSX.Element} A React component that displays a row for a specific inventory item
  */
 function PopUpRow(props) {
-    const [checked, setChecked] = useState(true);
-    const inventoryitem = props.inventoryitem;
+	const [checked, setChecked] = useState(true);
+	const inventoryitem = props.inventoryitem;
 
-    /**
-     * Handles the checkbox change event
-     * @function
-     * @returns {void}
-     */
-    function handleCheckboxChange() {
-        props.handleExcludeClick(inventoryitem);
-        setChecked(!checked);
-    };
+	/**
+	 * Handles the checkbox change event
+	 * @function
+	 * @returns {void}
+	 */
+	function handleCheckboxChange() {
+		props.handleExcludeClick(inventoryitem);
+		setChecked(!checked);
+	};
 
-    return (
-        <div className="PopUpRow">
-            <label className="PopUpRowLeft">{inventoryitem.name}</label>
-            <label className="checkmark-container">
-                <input className={`PopUpRowRight ${ checked ? "checked" : "not-checked" }`} type="checkbox" checked={checked} onChange={handleCheckboxChange} />
-                <span className="checkmark"></span>
-            </label>
-        </div>
-    );
+	return (
+		<div className="PopUpRow">
+			<label className="PopUpRowLeft">{inventoryitem.name}</label>
+			<label className="checkmark-container">
+				<input className={`PopUpRowRight ${ checked ? "checked" : "not-checked" }`} type="checkbox" checked={checked} onChange={handleCheckboxChange} />
+				<span className="checkmark"></span>
+			</label>
+		</div>
+	);
 }
 
 export default PopUpRow;

@@ -27,7 +27,7 @@ function PopUp(props) {
          * Function to fetch data for a single item.
          * @param {string} url - The URL to fetch the data from.
          */
-        const singleItem = async (url) => {
+        async function singleItem(url) {
             await fetch(url, {
                 method: "GET"
             })
@@ -55,14 +55,14 @@ function PopUp(props) {
         * Function to fetch data for multiple items.
         */
         async function multiItem() {
-            const url = HOST + endpoints.getRecipe + "?id=" + item.ids[0];
+            const url = `${ HOST }${ endpoints.getRecipe }?id=${ item.ids[0] }`;
             singleItem(url);
         }
 
         if (item.ids) {
             multiItem();
         } else {
-            const url = HOST + endpoints.getRecipe + "?id=" + item.id;
+            const url = `${ HOST }${ endpoints.getRecipe }?id=${ item.id }`;
             singleItem(url);
         }
 

@@ -13,41 +13,41 @@ import React from "react";
 
 function CustomerCheckOutItem(props) {
 
-    /**
-     * A function that is called when the remove button is clicked.
-     * It removes the item from the cart by calling the 'removeFromCart' function passed in as a prop.
-     */
-    function removeFromCart() {
-        props.removeFromCart(props.cartID);
-    }
+	/**
+	 * A function that is called when the remove button is clicked.
+	 * It removes the item from the cart by calling the 'removeFromCart' function passed in as a prop.
+	 */
+	function removeFromCart() {
+		props.removeFromCart(props.cartID);
+	}
 
-    return (
-        <div className="checkoutItem">
-            <div className="checkoutItemInfo">
-                <div className="checkoutItemLeft">
-                    {props.itemName}: x{props.count}
+	return (
+		<div className="checkoutItem">
+			<div className="checkoutItemInfo">
+				<div className="checkoutItemLeft">
+					{props.itemName}: x{props.count}
 
-                </div>
-                <div className="checkoutItemRight">
-                    <p style={{margin: 0}}>${props.price}</p>
-                    <button className="checkoutItemButton" onClick={removeFromCart}>-</button>
-                </div>
-            </div>
-            {props.excluded &&
-                <div className="checkoutItemEx">
-                    <ul style={{margin: 0}}>
-                        {props.excluded && props.excluded.map((item, index) => {
-                            if (item.name)
-                                return <li key={index}>no {item.name}</li>;
-                            if (index === props.excluded.length - 1) {
-                                return <li key={index}>{item}</li>;
-                            }
-                        })}
-                    </ul>
-                </div>}
+				</div>
+				<div className="checkoutItemRight">
+					<p style={{margin: 0}}>${props.price}</p>
+					<button className="checkoutItemButton" onClick={removeFromCart}>-</button>
+				</div>
+			</div>
+			{props.excluded &&
+				<div className="checkoutItemEx">
+					<ul style={{margin: 0}}>
+						{props.excluded && props.excluded.map((item, index) => {
+							if (item.name)
+								return <li key={index}>no {item.name}</li>;
+							if (index === props.excluded.length - 1) {
+								return <li key={index}>{item}</li>;
+							}
+						})}
+					</ul>
+				</div>}
 
-        </div>
-    );
+		</div>
+	);
 }
 
 export default CustomerCheckOutItem;

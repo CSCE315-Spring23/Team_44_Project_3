@@ -10,22 +10,22 @@ import React from 'react';
  * @returns {JSX.Element} A component to render a food category onto the CustomerOrder screen.
  */
 function CategoryItem(props) {
-    const item = props.item;
+	const item = props.item;
 
-    return (
-        <li role="listitem">
-            <a href={`/customer/order/${ item.title.toLowerCase() }`} className="menuLink">
-                <button data-cy={`\"${ item.name }\"`} className="menuButton">
-                    <div className="image">
-                        <img alt={item.title} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
-                    </div>
-                    <div className="name">
-                        <h3 className="name">{item.title}</h3>
-                    </div>
-                </button>
-            </a>
-        </li>
-    );
+	return (
+		<li role="listitem">
+			<a href={`/customer/order/${ item.title.toLowerCase() }`} className="menuLink">
+				<button data-cy={`\"${ item.name }\"`} className="menuButton">
+					<div className="image">
+						<img alt={item.title} src={item.src} data-cy="ProductImageAvailable" aria-hidden="true" className="menuIMG" />
+					</div>
+					<div className="name">
+						<h3 className="name">{item.title}</h3>
+					</div>
+				</button>
+			</a>
+		</li>
+	);
 }
 
 export default CategoryItem;

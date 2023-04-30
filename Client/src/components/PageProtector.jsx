@@ -7,32 +7,32 @@ import {useNavigate} from "react-router-dom";
  * @returns {Object} The protected component or a page loading message
  */
 function PageProtector({children}) {
-    const [isLoading, setIsLoading] = useState(true);
-    const navigate = useNavigate();
-    /**
-     * Check if user is authenticated and update isLoading state accordingly
-     */
-    useEffect(() => {
-        if (localStorage.getItem("employeeId") != null) {
-            setIsLoading(false);
-        }
-        else {
-            console.log("pageprotector nav to login");
-            navigate("/");
-            setIsLoading(true);
-        }
-    }, []);
+	const [isLoading, setIsLoading] = useState(true);
+	const navigate = useNavigate();
+	/**
+	 * Check if user is authenticated and update isLoading state accordingly
+	 */
+	useEffect(() => {
+		if (localStorage.getItem("employeeId") != null) {
+			setIsLoading(false);
+		}
+		else {
+			console.log("pageprotector nav to login");
+			navigate("/");
+			setIsLoading(true);
+		}
+	}, []);
 
-    /**
-     * Render the protected component or a page loading message
-     */
-    if (isLoading) {
-        return (
-            <p>Page Loading Or No Authorization</p>
-        );
-    }
+	/**
+	 * Render the protected component or a page loading message
+	 */
+	if (isLoading) {
+		return (
+			<p>Page Loading Or No Authorization</p>
+		);
+	}
 
-    return children;
+	return children;
 }
 
 export default PageProtector;

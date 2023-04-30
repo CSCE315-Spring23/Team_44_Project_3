@@ -10,44 +10,44 @@ import OrderItemButton from "./OrderItemButton";
  * @returns {JSX.Element} - JSX element with the list of menu item buttons
  */
 function OrderItemPane(props) {
-    //set a react state to contain the json of menu items
-    const [menuButtons, setMenuButtons] = useState(null);
+	//set a react state to contain the json of menu items
+	const [menuButtons, setMenuButtons] = useState(null);
 
-    const addToCart = props.addToCart;
+	const addToCart = props.addToCart;
 
-    /**
-     * Effect hook that fetches the menu items from the API
-     */
-    useEffect(() => {
-        setMenuButtons(null);
-        const url = HOST + endpoints.getMenu;
-        fetch(url, {
-            method: "GET"
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network Response Not OK");
-                }
-                return response.json();
-            })
-            .then(data => {
-                //create the map of all the menu buttons to render
-                const menBtns = data.map((element) =>
-                    <OrderItemButton key={element.id} item={element} addToCart={addToCart} />
-                );
-                setMenuButtons(menBtns);
-            })
-            .catch(error => {
-                console.error("Could not fetch menu items from " + url);
-            });
+	/**
+	 * Effect hook that fetches the menu items from the API
+	 */
+	useEffect(() => {
+		setMenuButtons(null);
+		const url = HOST + endpoints.getMenu;
+		fetch(url, {
+			method: "GET"
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network Response Not OK");
+				}
+				return response.json();
+			})
+			.then(data => {
+				//create the map of all the menu buttons to render
+				const menBtns = data.map((element) =>
+					<OrderItemButton key={element.id} item={element} addToCart={addToCart} />
+				);
+				setMenuButtons(menBtns);
+			})
+			.catch(error => {
+				console.error("Could not fetch menu items from " + url);
+			});
 
-    }, []);
+	}, []);
 
-    return (
-        <div className="orderItemPane">
-            {menuButtons}
-        </div>
-    );
+	return (
+		<div className="orderItemPane">
+			{menuButtons}
+		</div>
+	);
 }
 
 export default OrderItemPane;
