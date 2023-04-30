@@ -1,52 +1,110 @@
 .menuBoardPage {
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+    background-color: rgb(238, 61, 61);
 
+	// Global Selectors (for this page only)
+	img {
+		max-height: 10em;
+	}
 }
 
 .menuBoardTitle {
+	text-align: center;
+	padding: 1em 0 0;
+    color: white;
 
+	h1 {
+		margin: 0;
+	}
+}
+
+@mixin card {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	border-radius: 20px;
+	// background-color: #eee;
+    background-color: white;
+	padding: 1em;
+	margin: 0.5em;
+	text-align: left;
+
+	img {
+		max-height: 8em;
+	}
 }
 
 .menuBoard {
+	padding: 1em;
+	display: flex;
+	flex-direction: row;
 
-    .menuBoardEntrees {
-        
-    }
-    .menuBoardSS {
+	.menuBoardEntrees {
+		@include card;
+		flex: 2;
+        position: relative;
 
-        .menuBoardSalads {
+		h4:not(:first-child) {
+            margin: 0;
+			font-size: 0.7em;
+            padding-left: 1em;
+		}
+		img {
+			position: absolute;
+			right: 2em;
+			transform: translateY(-50%);
+		}
+	}
+	.menuBoardSalSid {
+		flex: 1;
 
-        }
-        .menuBoardSides {
+		.menuBoardSalads {
+			@include card;
+		}
+		.menuBoardSides {
+			@include card;
+            img {
+                margin: 2em 0;
+            }
+		}
+	}
+	.menuBoardTreats {
+		@include card;
+		flex: 1;
+	}
+	.menuBoardBeverages {
+		@include card;
+		flex: 1;
+	}
 
-        }
-    }
-    .menuBoardTreats {
-        
-    }
-    .menuBoardBeverages {
-        
-    }
-    .menuBoardSauces {
-        
-    }
-    .menuBoardSeasonal {
-        
-    }
+	.menuBoardSauSea {
+		flex: 1;
+
+		.menuBoardSauces {
+			@include card;
+		}
+		.menuBoardSeasonal {
+			@include card;
+		}
+	}
 }
 
 .menuBoardCate {
-    h2 {
-        
-    }
+    text-align: center;
+
+	h2 {
+		text-decoration: none;
+		margin: 0;
+	}
 }
 
 .menuBoardList {
-    .menuBoardItem {
-        h4 {
-
-        }
-        img {
-
-        }
-    }
+	.menuBoardItem {
+		h4 {
+			margin: 1em 0 0;
+			font-size: 1em;
+		}
+	}
 }
