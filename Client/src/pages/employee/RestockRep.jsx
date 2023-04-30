@@ -55,7 +55,7 @@ function RestockRep(props) {
 							{/* Button to navigate back to the menu category list */}
 							<button title="Back to menu category list" data-cy="SubNavBack" className="backButton" onClick={navigateOrderPage}>
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M14.09 22L5 12l9.09-10" stroke="#DD0031" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+									<path d="M14.09 22L5 12l9.09-10" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
 									</path>
 								</svg>
 								<div aria-hidden="true" className="backText">
