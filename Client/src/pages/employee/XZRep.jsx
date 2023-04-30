@@ -1,3 +1,12 @@
+import React, {useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
+import DatabaseTablePane from "../../components/DatabaseTablePane";
+import EmployeeNav from "../../components/EmployeeNav";
+import '../../styles/employee.scss';
+import {endpoints} from "../../utils/apiEndpoints";
+import {HOST} from "../../utils/host";
+import PageProtector from "../../components/PageProtector";
+
 /**
  * A component for displaying and managing XZ Reports.
  * @param {Object} props - The component props.
@@ -14,6 +23,10 @@ function XZRep(props) {
 	const [employee, setEmployee] = useState("");
 	const [dateCreated, setDateCreated] = useState("");
 	const [orderID, setOrderID] = useState("");
+
+	useEffect(() => {
+		loadZReports();
+	}, []);
 
 	/**
 	 * Load Z Reports from the server and update the state.
@@ -72,7 +85,7 @@ function XZRep(props) {
 	 */
 	function createZReport() {
 		console.log("create Z report");
-		const EMP_ID = localStorage.getItem("employeID");
+		const EMP_ID = localStorage.getItem("employeeId");
 
 		const url = HOST + endpoints.createZReport;
 
@@ -88,10 +101,10 @@ function XZRep(props) {
 				console.log(data);
 				setReportType("Z Report");
 				loadZReports();
-				setTotalSales(data.totalsales);
-				setEmployee(data.employee);
-				setDateCreated(data.datecreated);
-				setOrderID(data.orderid);
+				setTotalSales(data.totalSales);
+				setEmployee(data.employeeName);
+				setDateCreated(data.date);
+				setOrderID(data.orderID);
 			}
 			);
 	};
@@ -101,9 +114,9 @@ function XZRep(props) {
 	 * @returns {void}
 	 */
 	async function viewXReport() {
-		const EMP_ID = localStorage.getItem("employeID");
+		const EMP_ID = localStorage.getItem("employeeId");
 		const url = HOST + endpoints.getXReport + "?employeeid=" + EMP_ID;
-
+		console.log(url);
 		fetch(url, {
 			method: "GET",
 			headers: {
