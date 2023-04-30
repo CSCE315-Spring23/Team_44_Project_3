@@ -14,6 +14,15 @@ import React from "react";
  * @returns {JSX.Element} - A component to display an item in the checkout list.
  */
 function CheckoutItem(props) {
+
+	/**
+	 * Handle click event on the item - remove item from the cart.
+	 * @function
+	 * @returns {void}
+	 * @fires props.onClick
+	 * @param {int} props.cartID - The ID of the item in the cart
+	 *
+	 */
 	function handleClick() {
 		props.onClick(props.cartID);
 	}

@@ -13,7 +13,6 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Login />} />
 				<Route path="/Login" element={<Login />} />
-				<Route path="/Test" element={<Test />} />  {/* This is a test page for testing API calls, remove in done*/}
 			</Routes>
 			<CustomerRoutes></CustomerRoutes>
 			<EmployeeRoutes></EmployeeRoutes>

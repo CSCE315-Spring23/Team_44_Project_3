@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 
 /**
@@ -11,7 +11,9 @@ function EmployeeNav(props) {
 	const [isManager, setIsManager] = useState();
 	const [current, setCurrent] = useState();
 
-
+	/*
+	 * React hook to set the isManager and current state variables.
+	 */
 	useEffect(() => {
 		const managerBool = localStorage.getItem("isManager") !== "false";
 		setIsManager(managerBool);
@@ -38,7 +40,7 @@ function EmployeeNav(props) {
 	 * @param {string} page - The page to navigate to.
 	 */
 	function changePage(page) {
-		navigate(`/employee/${ page }`);
+		navigate(`/employee/${page}`);
 	}
 
 	// set up google oauth button and behavior
@@ -69,12 +71,12 @@ function EmployeeNav(props) {
 		return (
 			<nav className="empNav">
 				<img src={logo} alt="logo" className="empNavLogo" />
-				<button onClick={e => changePage("order")} className={`empNavButton ${ current === "order" ? "current" : "" }`}>Order</button>
-				<button onClick={e => changePage("orderHistory")} className={`empNavButton ${ current === "history" ? "current" : "" }`}>Order History</button>
-				<button onClick={e => changePage("inventory")} className={`empNavButton ${ current === "inventory" ? "current" : "" }`}>Inventory</button>
-				<button onClick={e => changePage("menu")} className={`empNavButton ${ current === "menu" ? "current" : "" }`}>Menu</button>
-				<button onClick={e => changePage("reports")} className={`empNavButton ${ current === "reports" ? "current" : "" }`}>Reports</button>
-				<button onClick={e => changePage("menuBoard")} className={`empNavButton ${ current === "menuboard" ? "current" : "" }`}>Menu Board</button>
+				<button onClick={e => changePage("order")} className={`empNavButton ${current === "order" ? "current" : ""}`}>Order</button>
+				<button onClick={e => changePage("orderHistory")} className={`empNavButton ${current === "history" ? "current" : ""}`}>Order History</button>
+				<button onClick={e => changePage("inventory")} className={`empNavButton ${current === "inventory" ? "current" : ""}`}>Inventory</button>
+				<button onClick={e => changePage("menu")} className={`empNavButton ${current === "menu" ? "current" : ""}`}>Menu</button>
+				<button onClick={e => changePage("reports")} className={`empNavButton ${current === "reports" ? "current" : ""}`}>Reports</button>
+				<button onClick={e => changePage("menuBoard")} className={`empNavButton ${current === "menuboard" ? "current" : ""}`}>Menu Board</button>
 				<button onClick={logout} className="empNavButton">Logout</button>
 				{(localStorage.getItem("email") !== "") ? <div id="google-signin"></div> : null}
 			</nav>

@@ -30,6 +30,7 @@ function AddMenuItem(props) {
 		setPopUp(true);
 	}
 
+	/* sets the cost of the item */
 	useEffect(() => {
 		const menu = JSON.parse(localStorage.getItem("menu"));
 		let cost = 0;
