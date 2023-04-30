@@ -17,3 +17,6 @@ docs: rm-docs
 
 rm-docs:
 	rm -rf docs/
+
+clean:
+	rm -rf Client/*.mjs

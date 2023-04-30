@@ -11,21 +11,29 @@ import Treats from "../pages/customer/treats";
 import Seasonal from "../pages/customer/seasonal";
 import CustomerCheckout from "../pages/customer/CustomerCheckout";
 
-export default function CustomerRoutes() {
-    return (
-        <Routes>
-            <Route path="/customer" element={<Outlet />} >
-                <Route path="order" element={<CustomerOrder />} />
-                <Route path="order/beverages" element={<Beverage />} />
-                <Route path="order/entrées" element={<Entree />} />
-                <Route path="order/meals" element={<Meal />} />
-                <Route path="order/treats" element={<Treats />} />
-                <Route path="order/salads" element={<Salad />} />
-                <Route path="order/sauces" element={<Sauces />} />
-                <Route path="order/sides" element={<Sides />} />
-                <Route path="order/seasonal" element={<Seasonal />} />
-                <Route path="order/checkout" element={<CustomerCheckout />} />
-            </Route>
-        </Routes>
-    );
+/**
+ * Defines the routes for the customer section of the app.
+ * @returns {JSX.Element} The routes for the customer section of the app.
+ */
+function CustomerRoutes() {
+	return (
+		<Routes>
+			{/* Define the customer section of the app. */}
+			<Route path="/customer" element={<Outlet />} >
+				{/* Define the customer order section of the app. */}
+				<Route path="order" element={<CustomerOrder />} />
+				<Route path="order/beverages" element={<Beverage />} />
+				<Route path="order/entrées" element={<Entree />} />
+				<Route path="order/meals" element={<Meal />} />
+				<Route path="order/treats" element={<Treats />} />
+				<Route path="order/salads" element={<Salad />} />
+				<Route path="order/sauces" element={<Sauces />} />
+				<Route path="order/sides" element={<Sides />} />
+				<Route path="order/seasonal" element={<Seasonal />} />
+				<Route path="order/checkout" element={<CustomerCheckout />} />
+			</Route>
+		</Routes>
+	);
 }
+
+export default CustomerRoutes;

@@ -13,14 +13,20 @@ import SalesTogetherRep from "../pages/employee/SalesTogetherRep";
 import XZRep from "../pages/employee/XZRep";
 import MenuBoard from "../pages/employee/MenuBoard";
 
-export default function EmployeeRoutes() {
+/**
+ * Defines the routes for the employee section of the app.
+ * @returns {JSX.Element} The routes for the employee section of the app.
+ */
+function EmployeeRoutes() {
     return (
         <Routes className='empRoutes'>
             <Route path="/employee">
+                {/* Define the employee order section of the app. */}
                 <Route path='order' element={<Order />} />
                 <Route path='orderHistory' element={<OrderHistory />} />
                 <Route path='inventory' element={<Inventory />} />
                 <Route path='menu' element={<Menu />} />
+                {/* Define the employee reports section of the app. */}
                 <Route path='reports' element={<Outlet />} >
                     <Route path="" element={<Reports />}></Route>
                     <Route path="sales" element={<SalesRep />}></Route>
@@ -34,3 +40,5 @@ export default function EmployeeRoutes() {
         </Routes >
     );
 }
+
+export default EmployeeRoutes;

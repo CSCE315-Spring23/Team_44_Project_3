@@ -26,7 +26,7 @@ input.PopUpNotes {
 input.PopUpRowRight {
 	display: none;
 
-	&:checked + span.checkmark::before {
+	&:checked+span.checkmark::before {
 		content: "\2714";
 		display: block;
 		color: #008148;
@@ -36,7 +36,7 @@ input.PopUpRowRight {
 		border: 1px solid #000000;
 	}
 
-	&:not(:checked) + span.checkmark::after {
+	&:not(:checked)+span.checkmark::after {
 		content: "\2716";
 		display: block;
 		color: #e51636;
@@ -71,7 +71,7 @@ label.PopUpRowLeft {
 	width: 50%;
 }
 
-.empNav {
+nav.empNav {
 	align-items: center;
 	background-color: #ffffff;
 	display: flex;
@@ -84,16 +84,16 @@ label.PopUpRowLeft {
 	width: 17em;
 	box-shadow: 0px 0px 10px 1px gray;
 
-	.empNavLogo {
+	img.empNavLogo {
 		width: 25%;
 		margin: 0em 1em;
 	}
 
-	#google-signin {
+	div#google-signin {
 		margin: 1em 0;
 	}
 
-	.empNavButton {
+	button.empNavButton {
 		background-color: #ffffff;
 		border-color: #808080;
 		border-radius: 10px;
@@ -121,7 +121,7 @@ label.PopUpRowLeft {
 	}
 }
 
-.orderItemPane {
+div.orderItemPane {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -139,7 +139,7 @@ label.PopUpRowLeft {
 		padding: 1em;
 		text-align: center;
 		text-decoration: none;
-        transition: all 0.3s ease;
+		transition: all 0.3s ease;
 
 		&:hover {
 			background-color: #d9d9d9;
@@ -147,7 +147,7 @@ label.PopUpRowLeft {
 	}
 }
 
-#checkoutPanel {
+div#checkoutPanel {
 	box-sizing: border-box;
 	height: 100vh;
 	width: 17em;
@@ -157,7 +157,7 @@ label.PopUpRowLeft {
 	align-items: center;
 	background-color: #f4f8f9;
 
-	#checkoutOrderItems {
+	div#checkoutOrderItems {
 		display: flex;
 		flex-direction: column;
 		min-width: 100%;
@@ -165,25 +165,27 @@ label.PopUpRowLeft {
 		flex-grow: 1;
 	}
 
-	#checkoutButtonDiv {
-        text-align: center;
+	div#checkoutButtonDiv {
+		text-align: center;
 
 		p {
 			font-size: 1.2em;
 			font-weight: bold;
 			margin: 1em;
 		}
+
 		input {
-            border-radius: 10px;
-            padding: 0.5em;
-            font-size: 1.2em;
-            display: block;
-            box-sizing: border-box;
-            margin: 1em auto;
-            max-width: 80%;
+			border-radius: 10px;
+			padding: 0.5em;
+			font-size: 1.2em;
+			display: block;
+			box-sizing: border-box;
+			margin: 1em auto;
+			max-width: 80%;
 		}
-		#checkoutBtn {
-            color: white;
+
+		button#checkoutBtn {
+			color: #ffffff;
 			background-color: #009e00;
 			border-color: #808080;
 			border-radius: 10px;
@@ -472,29 +474,3 @@ div#reportsSelection {
 	min-height: 50%;
 	min-width: 80%;
 }
-
-// button#checkoutBtn {
-// 	align-items: center;
-// 	background-color: #008000;
-// 	border-color: grey;
-// 	border-radius: 10px;
-// 	border-style: solid;
-// 	border-width: 0px;
-// 	box-shadow: 0px 3px 3px #005e13;
-// 	color: white;
-// 	display: flex;
-// 	flex-direction: column;
-// 	font-weight: bold;
-// 	justify-content: center;
-// 	margin-bottom: 5%;
-// 	margin-top: 5%;
-// 	min-height: 90%;
-// 	min-width: 90%;
-// 	text-align: center;
-// 	text-decoration: none;
-// }
-
-// button#checkoutBtn:hover {
-// 	background-color: #006100;
-// 	box-shadow: 0px 0px 3px #005e13 inset;
-// }
