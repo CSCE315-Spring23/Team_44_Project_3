@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PopUp from "./PopUp";
 
 /**
@@ -12,6 +12,19 @@ function OrderItemButton(props) {
     const item = props.item;
     const itemName = item.name;
     const addToCart = props.addToCart;
+    const colors = {
+        "entree": "#dd0031",
+        "side" : "#EEEE9B",
+        "beverage" : "#87CEEB",
+        "treat" : "#d7a1f9",
+        "salad" : "#98FB98",
+        "sauce" : "#FFA500"
+    }
+    let color = "white";
+    if(colors[item["category"]] != null){
+        color = colors[item["category"]];
+    }
+    console.log(color);
 
     const [popUp, setPopUp] = useState(false);
 
@@ -24,7 +37,7 @@ function OrderItemButton(props) {
 
     return (
         <div>
-            <button onClick={openPopUp} className="orderItemBtn">
+            <button style={{backgroundColor : color}} onClick={openPopUp} className="orderItemBtn">
                 {itemName ? itemName : "No Item"}
             </button>
             {popUp && <PopUp item={item} setPopUp={setPopUp} addToCart={addToCart} />}
