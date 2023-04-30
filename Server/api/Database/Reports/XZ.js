@@ -127,12 +127,10 @@ XZRouter.post(apiPath + "/createZReport", async (req, res) => {
 // helper functions
 
 // gets the total sales since the last Z report
-async function getTotalSalesSinceZReport {
+async function getTotalSalesSinceZReport() {
     try {
         const lastZReport = await getLastZReport();
-
         const prevOrderID = lastZReport.orderid;
-
         const totalSales = await db.query(`SELECT SUM(total_cost) FROM ${ ORDER_ITEM_DATABASE } WHERE id > ${ prevOrderID }`);
         return totalSales.rows[0].sum;
     } catch (err) {
@@ -180,20 +178,5 @@ function currentDate() {
     const formattedDate = `${ year }-${ month }-${ day }`;
     return formattedDate;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = XZRouter;
