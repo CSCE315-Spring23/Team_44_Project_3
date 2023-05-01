@@ -86,7 +86,7 @@ function EmployeeNav(props) {
 			<nav className="empNav">
 				<button onClick={e => changePage("order")} className="empNavButton">Order</button>
 				<button onClick={e => changePage("orderHistory")} className="empNavButton">Order History</button>
-				<button onClick={logout} className="empNavLogout">Logout</button>
+				<button onClick={logout} className="empNavButton">Logout</button>
 				{(localStorage.getItem("email") !== "") ? <div id="google-signin"></div> : null}
 			</nav>
 		);
