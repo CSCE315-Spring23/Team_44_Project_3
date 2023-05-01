@@ -1,6 +1,5 @@
 .menuBoardPage {
-	max-height: 100vh;
-	padding-bottom: 5%;
+	height: 100vh;
 	width: 100vw;
 	overflow: hidden;
     background-color: rgb(238, 61, 61);
@@ -12,6 +11,7 @@
 }
 
 .menuBoardTitle {
+	display: none;
 	text-align: center;
 	padding: 1em 0 0;
     color: white;
@@ -40,6 +40,7 @@
 .menuBoard {
 	padding: 1em;
 	display: flex;
+	align-items: start;
 	flex-direction: row;
 
 	.menuBoardEntrees {
