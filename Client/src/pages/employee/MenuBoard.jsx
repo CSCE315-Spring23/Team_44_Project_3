@@ -86,8 +86,8 @@ function MenuBoard(props) {
 							{entrees.map((item, index) => (
 								<div className="menuBoardItem" key={index}>
 									<h4>{index + 1}. {item.name}</h4>
-									<h4>Entree: ${item.cost}</h4>
-									<h4>Meal: ${(parseFloat(item.cost) + meal).toFixed(2)}</h4>
+									<h4>Entree: ${item.cost} | Meal: ${(parseFloat(item.cost) + meal).toFixed(2)}</h4>
+									<h4></h4>
 									{item.id === 2 ? <img src={images.sand} /> : item.id === 4 ? <img src={images.spicysSand} /> :
 										item.id === 8 ? <img src={images.nuggs} /> : item.id === 10 ? <img src={images.grilledsand} /> : null}
 								</div>
