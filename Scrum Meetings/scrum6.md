@@ -1,5 +1,5 @@
 # Scrum 6
-Prepared by: Steven Mao
+Prepared by: Steven Mao  
 Meeting Date: 2023-04-21
 
 ## Meeting Attendees
