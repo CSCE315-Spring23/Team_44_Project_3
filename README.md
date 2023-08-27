@@ -1,5 +1,7 @@
 # Project 3
 
+<span style="color:red">**THIS PROJECT HAS BEEN DEPRECATED AS OF 27-08-2023**</span>
+
 A Node.js and React project that creates a Point-of-Sale webpage for a Restaurant located at the Memorial Student Center at Texas A&M University. Our specific restaurant was Chick-fil-A.
 
 This project integrates an Application Protocal Interface with a Structured Query Language Database.
